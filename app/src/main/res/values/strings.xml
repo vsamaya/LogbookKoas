@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">LOGBOOK KOAS</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="lgn">login</string>
+    <string name="katapembukaan">ON-LINE LOG BOOK KOAS PENDIDIKAN DOKTER</string>
+    <string name="logo_undip">Logo Undip</string>
+    <string name="universitas_diponegoro">UNIVERSITAS DIPONEGORO</string>
 </resources>
