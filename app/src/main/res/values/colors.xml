@@ -8,6 +8,25 @@
     <color name="colorButton">#D5F1ED</color>
     <color name="colorBorder">#FFFFFF</color>
     <color name="colorGrey">#A9A9B0</color>
-
+    <color name="colorsemiblue">#3F51B5</color>
+    <color name="colorblueDark">#303F9F</color>
+    <color name="colorpink">#FF4081</color>
+    <!--color untuk gradient tansition-->
+    <color name="purple_500">#9c27b0</color>
+    <color name="deep_purple_500">#673ab7</color>
+    <color name="indigo_500">#3f51b5</color>
+    <color name="blue_500">#2196f3</color>
+    <color name="cyan_500">#00bcd4</color>
+    <color name="light_blue_500">#03a9f4</color>
+    <color name="WildCaribeanGreen">#1dd1a1</color>
+    <color name="limesoap">#7bed9f</color>
+    <color name="skirretgreen">#44bd32</color>
+    <color name="darkgreen">#008000</color>
+    <color name="greenmid">#329932</color>
+    <color name="darkmountaingreen">#10ac84</color>
+    <color name="semidarkgreen">#198c19</color>
+    <color name="lowgreenmid">#4ca64c</color>
+    <color name="lightgreen">#99cc99</color>
+    <color name="jadedust">#00d2d3</color>
 
 </resources>

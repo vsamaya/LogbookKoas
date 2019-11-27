@@ -46,8 +46,10 @@ public class MainActivity extends AppCompatActivity {
         String Username=usernamet.getText().toString();
         String Password=passwordt.getText().toString();
         String type = "login";
+        String levelds="4";
+        String levelms="5";
         BackgroundWorker backgroundWorker = new BackgroundWorker(this);
-        backgroundWorker.execute(type,Username,Password);
+        backgroundWorker.execute(type,Username,Password,levelds,levelms);
 
 
     }
