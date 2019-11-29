@@ -78,11 +78,20 @@
                     <RelativeLayout
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:id="@+id/btn_generatecode"
                         android:gravity="center"
                         android:padding="10dp"
                         android:background="#E37A04">
+
+                        <Button
+                            android:id="@+id/btn_generatecode"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:padding="10dp" />
+
                         <LinearLayout
+                            android:layout_marginTop="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -107,12 +116,19 @@
                     <RelativeLayout
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:id="@+id/btn_generateqr"
                         android:gravity="center"
                         android:padding="10dp"
                         android:layout_marginLeft="30dp"
                         android:background="#B61751">
+                        <Button
+                            android:id="@+id/btn_generateqr"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:padding="10dp" />
                         <LinearLayout
+                            android:layout_marginTop="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -145,11 +161,18 @@
                     <RelativeLayout
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:id="@+id/btn_dftrkeg"
                         android:gravity="center"
                         android:padding="10dp"
                         android:background="#460F39">
+                        <Button
+                            android:id="@+id/btn_dftrkeg"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:padding="10dp" />
                         <LinearLayout
+                            android:layout_marginTop="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
@@ -174,12 +197,19 @@
                     <RelativeLayout
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:id="@+id/btn_rekapkeg"
                         android:gravity="center"
                         android:layout_marginLeft="30dp"
                         android:padding="10dp"
                         android:background="#0B4668">
+                        <Button
+                            android:id="@+id/btn_rekapkeg"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:padding="10dp" />
                         <LinearLayout
+                            android:layout_marginTop="15dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".QR">
+    <LinearLayout
+        android:id="@+id/layout_atas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/grad"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/head1"
+            android:layout_width="match_parent"
+            android:layout_height="59dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:text="E-LOGBOOK"
+            android:textColor="@android:color/background_light"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qr_up"/>
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/roundedlayout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="5pt"
+                android:layout_marginEnd="5pt"
+                android:background="@drawable/roundedlayout"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/qr_down"/>
+
+                <ImageView
+                    android:id="@+id/iv_qr"
+                    android:layout_width="270dp"
+                    android:layout_height="270dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:layout_gravity="center"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    app:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/waktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5pt"
+                    android:gravity="center_horizontal"
+                    android:text="TextView"
+                    android:textColor="@color/colorGreenBg"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</LinearLayout>
