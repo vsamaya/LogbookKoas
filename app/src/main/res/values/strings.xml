@@ -3,7 +3,12 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="lgn">login</string>
-    <string name="katapembukaan">ON-LINE LOG BOOK KOAS PENDIDIKAN DOKTER</string>
+    <string name="katapembukaan">
+        <br>E-LOG BOOK KOAS\n</br>
+    <br>PENDIDIKAN PROFESI DOKTER\n</br>
+        <br>UNIVERSITAS DIPONEGORO</br></string>
     <string name="logo_undip">Logo Undip</string>
-    <string name="universitas_diponegoro">UNIVERSITAS DIPONEGORO</string>
+    <string name="universitas_diponegoro">
+
+    </string>
 </resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,16 +8,18 @@
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     tools:context=".MainActivity">
-
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="117dp"
         android:layout_height="164dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="40dp"
         android:contentDescription="@string/logo_undip"
-        android:src="@drawable/undipfk"
+        android:src="@drawable/undip"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -29,47 +31,33 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="44dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="17dp"
         android:text="@string/katapembukaan"
         android:textAlignment="center"
         android:textColor="#FFD700"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
-        android:text="@string/universitas_diponegoro"
-        android:textColor="#FFD700"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/gradiendashboard1"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="20dp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.609"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -122,5 +110,5 @@
             android:onClick="onLogin"
             android:text="@string/lgn" />
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
