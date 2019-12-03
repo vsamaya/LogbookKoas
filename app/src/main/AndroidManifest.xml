@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.logbookkoas">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,6 +15,7 @@
         <activity android:name=".MainQR" />
         <activity android:name=".OTP" />
         <activity android:name=".MainOTP" />
+        <activity android:name=".profil"></activity>
         <activity android:name=".MahasiswaActivity" />
         <activity android:name=".DosenActivity" />
         <activity android:name=".MainActivity">
@@ -20,6 +23,17 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="192.168.1.5"
+                    android:pathPrefix="/login.php"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
     </application>
