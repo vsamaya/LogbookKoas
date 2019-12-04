@@ -11,5 +11,9 @@
     <string name="universitas_diponegoro">
 
     </string>
-    <string name="jenis_jurnal">Jenis Jurnal</string>
+    <string name="edit_profile">EDIT PROFILE</string>
+    <string name="ganti">Ganti</string>
+    <string name="hapus">Hapus</string>
+    <string name="pembatas">|</string>
+
 </resources>
