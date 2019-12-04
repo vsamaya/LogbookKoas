@@ -9,15 +9,12 @@ import android.widget.Button;
 
 public class profil extends AppCompatActivity {
 Button editprofile;
-private SessionHandler session;
 Button logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
         editprofile=findViewById(R.id.editp);
-        session= new SessionHandler(getApplicationContext());
-        User user=session.getUserDetails();
         logout=findViewById(R.id.logout);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -27,17 +24,6 @@ Button logout;
 
             }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                session.logoutUser();
-                Intent edit = new Intent(profil.this,MainActivity.class);
-                startActivity(edit);
-                finish();
-
-            }
-        });
-
 
     }
 }
