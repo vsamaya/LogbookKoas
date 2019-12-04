@@ -7,23 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class profil extends AppCompatActivity {
-Button editprofile;
-Button logout;
+public class profilds extends AppCompatActivity {
+    Button editprofile;
+    Button logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profil);
-        editprofile=findViewById(R.id.editp);
-        logout=findViewById(R.id.logout);
+        setContentView(R.layout.activity_profilds);
+        editprofile=findViewById(R.id.editds);
+        logout=findViewById(R.id.logoutds);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent edit = new Intent(profil.this,editprofil.class);
+                Intent edit = new Intent(profilds.this,editprofilds.class);
                 startActivity(edit);
 
             }
         });
-
     }
 }
