@@ -1,5 +1,6 @@
-package com.example.logbookkoas;
 
+package com.example.logbookkoas;
+/*
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -32,7 +33,7 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
     protected String doInBackground(String...params) {
         String type = params[0];
 
-        String login_url = "http://192.168.1.5/login.php";
+        String login_url = "http://192.168.1.5/logbook/login.php";
         if(type.equals("login")) {
             try {
                 String user_name = params[1];
@@ -60,9 +61,9 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
                 while((line = bufferedReader.readLine())!= null) {
                     result += line;
                 }
-                bufferedReader.close();
-                inputStream.close();
-                httpURLConnection.disconnect();
+//                bufferedReader.close();
+//                inputStream.close();
+//                httpURLConnection.disconnect();
                 return result;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -98,3 +99,4 @@ public class BackgroundWorker extends AsyncTask<String,Void,String> {
         super.onProgressUpdate(values);
     }
 }
+*/
