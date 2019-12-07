@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private String username;
     private String password;
     private ProgressDialog pDialog;
-    private String login_url = "http://192.168.1.5/logbook/login.php";
+    private String login_url = "http://192.168.43.44/login.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;
@@ -48,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
         if(session.isLoggedIn()){
             if(session.Dosen()){
                 loadDashboardDosen();
-            } else loadDashboardMahasiswa();
+            } else if(session.Dosen()){ loadDashboardMahasiswa();}
+            else setContentView(R.layout.activity_main);
         }
         setContentView(R.layout.activity_main);
         login = findViewById(R.id.signin);
