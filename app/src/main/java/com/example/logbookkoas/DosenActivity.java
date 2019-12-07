@@ -56,8 +56,7 @@ TextView username;
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                session.logoutUser();
-                Intent i = new Intent(DosenActivity.this, MainActivity.class);
+                Intent i = new Intent(DosenActivity.this, profilds.class);
                 startActivity(i);
                 finish();
             }
