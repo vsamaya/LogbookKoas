@@ -22,8 +22,7 @@ public class MahasiswaActivity extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                session.logoutUser();
-                Intent i = new Intent(MahasiswaActivity.this, MainActivity.class);
+                Intent i = new Intent(MahasiswaActivity.this, profil.class);
                 startActivity(i);
                 finish();
             }
