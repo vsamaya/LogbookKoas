@@ -8,10 +8,12 @@ import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class DosenActivity extends AppCompatActivity {
 Button btn_generatecode,btn_generateqr,btn_dftrkeg,btn_rekapkeg;
 ImageView profile;
+TextView username;
     private SessionHandler session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +26,9 @@ ImageView profile;
         btn_dftrkeg=findViewById(R.id.btn_dftrkeg);
         btn_rekapkeg=findViewById(R.id.btn_rekapkeg);
         profile = findViewById(R.id.img_profile_dsn);
+        username = findViewById(R.id.usernamedosen);
+        username.setText(user.getUsername());
+
 
         btn_generatecode.setOnClickListener(new View.OnClickListener() {
             @Override
