@@ -25,6 +25,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.renderscript.Sampler;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
@@ -79,7 +80,7 @@ public class editprofilds extends Activity {
         User user= session.getUserDetails();
         namat = findViewById(R.id.editnmds);
         gelart = (EditText) findViewById(R.id.gelarbrds);
-        bagiant = (Spinner) findViewById(R.id.bgnbr);
+
 
 
         String url = "http://192.168.43.93/getidbagian.php";
@@ -115,7 +116,6 @@ public class editprofilds extends Activity {
                             .toString();
                     String sName = MyArrList.get(position).get("bagian")
                             .toString();
-
                     viewDetail.setIcon(android.R.drawable.btn_star_big_on);
                     viewDetail.setTitle("Customer Detail");
                     viewDetail.setMessage("id : " + sCustomerID + "\n"
@@ -151,7 +151,7 @@ public class editprofilds extends Activity {
                         passwordbr = passwordt.getText().toString();
                         namabr = namat.getText().toString();
                         gelarbr = gelart.getText().toString();
-                        bagianbr = bagiant.getSelectedItem().toString();
+                        bagianbr = spin.getSelectedItem().toString();
 
                         getsimpan();
             }
@@ -200,6 +200,7 @@ public class editprofilds extends Activity {
             User user = session.getUserDetails();
             String username = user.getUsername();
             request.put(KEY_USERNAME, username);
+            request.put(KEY_PASSWORD,passwordbr);
             request.put(KEY_NAMA, namabr);
             request.put(KEY_GELAR, gelarbr);
             request.put(KEY_BAGIAN, bagianbr);
