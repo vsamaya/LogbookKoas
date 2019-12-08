@@ -12,4 +12,6 @@
 
     </string>
     <string name="jenis_jurnal">Jenis Jurnal</string>
+    <string name="stase">Stase</string>
+    <string name="status_approval">Status Approval</string>
 </resources>
