@@ -20,7 +20,7 @@ ImageView iconprofil;
         btn_generateqr=findViewById(R.id.btn_generateqr);
         btn_dftrkeg=findViewById(R.id.btn_dftrkeg);
         btn_rekapkeg=findViewById(R.id.btn_rekapkeg);
-        iconprofil=findViewById(R.id.iconprofil);
+        iconprofil=findViewById(R.id.img_profile_dsn);
         iconprofil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
