@@ -14,7 +14,7 @@ ImageView iconmahasiswa;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mahasiswa);
-        iconmahasiswa=findViewById(R.id.iconmahasiswa);
+        iconmahasiswa=findViewById(R.id.img_profile_mhs);
         iconmahasiswa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
