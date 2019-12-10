@@ -35,6 +35,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -53,17 +54,19 @@ public class editprofilds extends Activity {
     private static final String KEY_GELAR = "gelar";
     private static final String KEY_BAGIAN = "bagian";
     private static final String KEY_EMPTY = "";
-    private String simpan_url = "http://192.168.43.93/setOtp.php";
+    private String simpan_url = "http://192.168.1.26/setOtp.php";
     private String username;
     private String passwordbr;
     private String namabr;
     private String gelarbr;
     private String bagianbr;
+    private String baru;
     private ProgressDialog pDialog;
     private SessionHandler session;
+    TextView bagiant;
     EditText usernamet,passwordt,namat,gelart;
     Button simpan;
-    Spinner bagiant;
+    String sName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,10 +83,11 @@ public class editprofilds extends Activity {
         User user= session.getUserDetails();
         namat = findViewById(R.id.editnmds);
         gelart = (EditText) findViewById(R.id.gelarbrds);
+        bagiant= (TextView) findViewById(R.id.ColCustomerID);
 
 
 
-        String url = "http://192.168.43.93/getidbagian.php";
+        String url = "http://192.168.1.26/getidbagian.php";
 
         try {
 
@@ -96,6 +100,7 @@ public class editprofilds extends Activity {
                 JSONObject c = data.getJSONObject(i);
 
                 map = new HashMap<String, String>();
+                map.put("select","select an item");
                 map.put("id", c.getString("id"));
                 map.put("bagian", c.getString("bagian"));
                 MyArrList.add(map);
@@ -104,6 +109,7 @@ public class editprofilds extends Activity {
             SimpleAdapter sAdap;
             sAdap = new SimpleAdapter(editprofilds.this, MyArrList, R.layout.column,
                     new String[] {"id", "bagian"}, new int[] {R.id.ColCustomerID, R.id.ColName});
+            spin.setPrompt("---select bagian baru---");
             spin.setAdapter(sAdap);
 
             final AlertDialog.Builder viewDetail = new AlertDialog.Builder(this);
@@ -112,14 +118,14 @@ public class editprofilds extends Activity {
 
                 public void onItemSelected(AdapterView<?> arg0, View selectedItemView,
                                            int position, long id) {
-                    String sCustomerID = MyArrList.get(position).get("id")
-                            .toString();
-                    String sName = MyArrList.get(position).get("bagian")
-                            .toString();
+                    String select= MyArrList.get(0).get("select");
+                    String sid = MyArrList.get(position).get("id");
+                    String bgn = MyArrList.get(position).get("bagian");
+                    Toast.makeText(editprofilds.this,"id: " +sid+ "bagian: "+bgn,Toast.LENGTH_SHORT).show();
                     viewDetail.setIcon(android.R.drawable.btn_star_big_on);
                     viewDetail.setTitle("Customer Detail");
-                    viewDetail.setMessage("id : " + sCustomerID + "\n"
-                            + "bagian : " + sName + "\n" );
+                    viewDetail.setMessage("id : " + sid + "\n"
+                            + "bagian : " + bgn + "\n" );
                     viewDetail.setPositiveButton("OK",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog,
@@ -128,7 +134,6 @@ public class editprofilds extends Activity {
                                     dialog.dismiss();
                                 }
                             });
-                    viewDetail.show();
 
                 }
 
@@ -147,13 +152,14 @@ public class editprofilds extends Activity {
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        //Retrieve the data entered in the edit texts
-                        passwordbr = passwordt.getText().toString();
-                        namabr = namat.getText().toString();
-                        gelarbr = gelart.getText().toString();
-                        bagianbr = spin.getSelectedItem().toString();
+                //Retrieve the data entered in the edit texts
+                passwordbr = passwordt.getText().toString();
+                namabr = namat.getText().toString();
+                gelarbr = gelart.getText().toString();
+                bagianbr = spin.getSelectedItem().toString();
+                 baru = bagianbr.substring(4,9);
 
-                        getsimpan();
+                getsimpan();
             }
         });
 
@@ -203,7 +209,7 @@ public class editprofilds extends Activity {
             request.put(KEY_PASSWORD,passwordbr);
             request.put(KEY_NAMA, namabr);
             request.put(KEY_GELAR, gelarbr);
-            request.put(KEY_BAGIAN, bagianbr);
+            request.put(KEY_BAGIAN, baru);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -247,7 +253,7 @@ public class editprofilds extends Activity {
 
 }
 
-    // Permission StrictMode
+// Permission StrictMode
 
 
-    // spinner1
+// spinner1

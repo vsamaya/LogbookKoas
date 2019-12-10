@@ -16,4 +16,5 @@
     <string name="pembatas">|</string>
     <string name="hapus">hapus</string>
     <string name="ganti">ganti</string>
+    <string-array name="select">selecet an item</string-array>
 </resources>

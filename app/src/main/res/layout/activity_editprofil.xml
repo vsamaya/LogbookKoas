@@ -23,7 +23,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1000dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/roundedlayout"
             android:orientation="vertical">
@@ -51,7 +51,7 @@
                     android:fontFamily="sans-serif"
                     android:textColor="@color/greenmid"
                     android:text="@string/ganti"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="@string/pembatas"
-                    android:textSize="20sp"/>
+                    android:textSize="15sp"/>
                 <TextView
                     android:id="@+id/hapus"
                     android:layout_width="wrap_content"
@@ -71,44 +71,139 @@
             </LinearLayout>
 
             <EditText
-                android:layout_width="370dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:singleLine="true"
+                android:hint="@string/password"
+                android:textSize="15sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:singleLine="true"
                 android:layout_marginTop="10dp"
                 android:hint="@string/username"
-                android:textSize="20sp" />
-            <EditText
-                android:layout_width="370dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:hint="@string/password"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
             <Spinner
-                android:layout_width="370dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp" />
             <Spinner
-                android:layout_width="370dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp" />
 
             <EditText
-                android:layout_width="370dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:singleLine="true"
                 android:layout_marginTop="10dp"
-                android:hint="@string/password"
-                android:textSize="20sp" />
+                android:hint="Date"
+                android:textSize="15sp" />
             <EditText
-                android:layout_width="370dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:hint="Alamat"
+                android:textSize="15sp" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:hint="@string/password"
-                android:textSize="20sp" />
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:singleLine="true"
+                android:hint="No.Hp (Telepon)"
+                android:textSize="15sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:singleLine="true"
+                android:hint="Alamat Surat Elektronik (E-MAIL)"
+                android:textSize="15sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:hint="Nama Wali (Orang Tua)"
+                android:textSize="15sp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:hint="Alamat Wali (Orang Tua)"
+                android:textSize="15sp" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp" />
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:singleLine="true"
+                android:hint="No.Hp (Telepon) Wali (Orang Tua)"
+                android:textSize="15sp" />
+
 
         </LinearLayout>
     </LinearLayout>

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -33,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private String username;
     private String password;
     private ProgressDialog pDialog;
-    private String login_url = "http://192.168.43.93/login1.php";
+    private CheckBox keep;
+    private String login_url = "http://192.168.1.26/login1.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;
@@ -44,12 +46,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
-
-        if(session.isLoggedIn()){
-            if(session.Dosen()){
+        if(session.isLoggedIn()) {
+            if (session.Dosen()){
                 loadDashboardDosen();
-            } else loadDashboardMahasiswa();
         }
+
+        }
+
         setContentView(R.layout.activity_main);
         login = findViewById(R.id.signin);
         usernamet = (EditText) findViewById(R.id.username);
