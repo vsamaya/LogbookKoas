@@ -3,13 +3,13 @@ package com.example.logbookkoas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,33 +28,35 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class DaftarKegiatan extends AppCompatActivity {
-    String showURL = "http://192.168.1.6/logbook/daftar_kegiatan_dosen.php";
+public class DaftarKegiatan extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+
     String spinnerURL = "http://192.168.1.6/logbook/spinnerkegiatandosen.php";
-    RequestQueue requestQueue;
-    ListView rvdafkeg;
     Spinner spinnerJenisJurnal, spinnerStatus;
     SearchableSpinner spinnerStase, spinnerNamaMahasiswa;
-    private static final String KEY_USERNAME = "username";
+    private SharedPreferences.Editor mEditor;
+    private SharedPreferences mPreferences;
+
     String[] jenis_jurnal ={"Jurnal Penyakit", "Jurnal Keterampilan"};
     String[] status ={"Semua status","Approved", "Unapproved"};
     Button btnfilter;
     ArrayList<String> idStase, Stase, namaMahasiswa, nimMahasiswa;
-//    String [] arrayStase = getStringArray(Stase);
-    SessionHandler session;
+
     private ProgressDialog pDialog;
     TextView tv_coba;
-    ArrayList<HashMap<String, String>> rv_dafkeg;
+
+    String filterNim, filterIdStase, filterJenisJurnal, filterStatus;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar_kegiatan);
+        filterJenisJurnal = new String();
+        filterStatus = new String();
         namaMahasiswa = new ArrayList<String>();
         nimMahasiswa = new ArrayList<String>();
-        rv_dafkeg = new ArrayList<HashMap<String, String>>();
-        rvdafkeg = findViewById(R.id.rv_daftarkegiatan);
+
+
         btnfilter = findViewById(R.id.btn_filter);
         tv_coba = findViewById(R.id.cobajson);
         spinnerStatus = findViewById(R.id.spinner_status);
@@ -67,87 +69,21 @@ public class DaftarKegiatan extends AppCompatActivity {
 //        String[] str = getStringArray(Stase);
 
         getArrayStase();
-        getArrayNamaMahasiswa();
+//
 
 
-        ArrayAdapter<String> a = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,jenis_jurnal);
-        a.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerJenisJurnal.setAdapter(a);
 
-        ArrayAdapter<String> b = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, status);
-        b.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        spinnerStatus.setAdapter(b);
 
-        btnfilter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rvdafkeg.setAdapter(null);
-                getArray();
 
-            }
-        });
+
+
+
 
 
     }
 
 
-    private void getArray() {
-        JSONObject request = new JSONObject();
-        try {
-            //Populate the request parameters
-            session = new SessionHandler(getApplicationContext());
-            User user = session.getUserDetails();
-            String username = user.getUsername();
-            request.put(KEY_USERNAME, username);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
-                showURL,request, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jurnal_penyakit = response.getJSONArray("jurnal_penyakit");
-                    HashMap<String, String> item = new HashMap<String, String>();
-                    rv_dafkeg.clear();
-                    item.clear();
-                    for (int i = 0; i < jurnal_penyakit.length(); i++) {
-                        JSONObject j = jurnal_penyakit.getJSONObject(i);
-                        String id = j.getString("id");
-                        String nim = j.getString("nim");
-                        String tanggal = j.getString("tanggal");
-                        item.put("id",id);
-                        item.put("nim", nim);
-                        item.put("tanggal",tanggal);
-                        rv_dafkeg.add(item);
-
-
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                ListAdapter adapter =new SimpleAdapter(
-                        getApplicationContext(), rv_dafkeg,R.layout.recycler_view_dafkeg,
-                        new String[]{"id","nim","tanggal"},
-                        new int[]{R.id.namamhsw_dafkeg,R.id.nim_dafkeg,R.id.tgl_dafkeg}
-                );
-                rvdafkeg.setAdapter(adapter);
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(getApplicationContext(), "Gagal mengambil data, silahkan cek koneksi Anda",Toast.LENGTH_LONG).show();
-
-
-            }
-        });
-        MySingleton.getInstance(this).addToRequestQueue(json);
-
-    }
     private void getArrayStase(){
         JsonObjectRequest jsonstase = new JsonObjectRequest(
                 spinnerURL, new Response.Listener<JSONObject>() {
@@ -156,6 +92,7 @@ public class DaftarKegiatan extends AppCompatActivity {
                 try {
                     JSONArray jsonStase = response.getJSONArray("stase");
                     Stase.add("Semua stase");
+                    idStase.add("all");
                     for (int i = 0; i < jsonStase.length(); i++) {
                         JSONObject j = jsonStase.getJSONObject(i);
                         String id = j.getString("id");
@@ -167,45 +104,45 @@ public class DaftarKegiatan extends AppCompatActivity {
                     ArrayAdapter<String> c = new ArrayAdapter<>(DaftarKegiatan.this, android.R.layout.simple_spinner_item,str);
                     spinnerStase.setAdapter(c);
                     spinnerStase.setTitle("Pilih Stase");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
-//                        Toast.makeText(getApplicationContext(), "Gagal mengambil data, silahkan cek koneksi Anda",Toast.LENGTH_LONG).show();
-
-
-            }
-        });
-        MySingleton.getInstance(DaftarKegiatan.this).addToRequestQueue(jsonstase);
-
-    }
-    private void getArrayNamaMahasiswa(){
-        JsonObjectRequest jsonstase = new JsonObjectRequest(
-                spinnerURL, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray jsonStase = response.getJSONArray("nama");
+                    JSONArray jsonmhs = response.getJSONArray("nama");
                     namaMahasiswa.add("Semua mahasiswa");
-                    for (int i = 0; i < jsonStase.length(); i++) {
-                        JSONObject j = jsonStase.getJSONObject(i);
+                    nimMahasiswa.add("all");
+                    for (int i = 0; i < jsonmhs.length(); i++) {
+                        JSONObject j = jsonmhs.getJSONObject(i);
                         String nim = j.getString("nim");
                         String nama = j.getString("nama");
                         nimMahasiswa.add(nim);
                         namaMahasiswa.add(nama);
                     }
-                    String[] str = getStringArray(namaMahasiswa);
-                    ArrayAdapter<String> c = new ArrayAdapter<>(DaftarKegiatan.this, android.R.layout.simple_spinner_item,str);
-                    spinnerNamaMahasiswa.setAdapter(c);
+                    String[] strnama = getStringArray(namaMahasiswa);
+                    ArrayAdapter<String> d = new ArrayAdapter<>(DaftarKegiatan.this, android.R.layout.simple_spinner_item,strnama);
+                    spinnerNamaMahasiswa.setAdapter(d);
                     spinnerNamaMahasiswa.setTitle("Pilih Mahasiswa");
+                    ArrayAdapter<String> a = new ArrayAdapter<>(DaftarKegiatan.this, android.R.layout.simple_spinner_item,jenis_jurnal);
+                    a.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                    spinnerJenisJurnal.setAdapter(a);
+                    ArrayAdapter<String> b = new ArrayAdapter<>(DaftarKegiatan.this, android.R.layout.simple_spinner_item, status);
+                    b.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                    spinnerStatus.setAdapter(b);
+
+                    btnfilter.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            final String[] NIM = getStringArray(nimMahasiswa);
+                            filterNim = NIM[spinnerNamaMahasiswa.getSelectedItemPosition()];
+                            final String[] id_stase = getStringArray(idStase);
+                            filterIdStase = id_stase[spinnerStase.getSelectedItemPosition()];
+                            filterJenisJurnal = spinnerJenisJurnal.getSelectedItem().toString().trim();
+                            filterStatus = spinnerStatus.getSelectedItem().toString().trim();
+                            Intent intent = new Intent(DaftarKegiatan.this,TampilanDaftarKegiatan.class);
+                            intent.putExtra("nim",filterNim);
+                            intent.putExtra("stase",filterIdStase);
+                            intent.putExtra("jenis_jurnal",filterJenisJurnal);
+                            intent.putExtra("status",filterStatus);
+                            startActivity(intent);
+
+                        }
+                    });
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -227,6 +164,7 @@ public class DaftarKegiatan extends AppCompatActivity {
         MySingleton.getInstance(DaftarKegiatan.this).addToRequestQueue(jsonstase);
 
     }
+
     private static String[] getStringArray(ArrayList<String> arr){
         // declaration and initialise String Array
         String str[] = new String[arr.size()];
@@ -242,6 +180,15 @@ public class DaftarKegiatan extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
 }
 
 

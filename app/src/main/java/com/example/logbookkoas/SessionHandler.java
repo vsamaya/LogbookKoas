@@ -44,6 +44,11 @@ public class SessionHandler {
             return  true;
         } else return false;
     }
+    public boolean Mahasiswa(){
+        if (mPreferences.getString(KEY_MENU,KEY_EMPTY)=="5"){
+            return  true;
+        } else return false;
+    }
 
     /*
      * Checks whether user is logged in

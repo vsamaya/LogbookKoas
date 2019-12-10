@@ -48,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
         if(session.isLoggedIn()){
             if(session.Dosen()){
                 loadDashboardDosen();
-            } else loadDashboardMahasiswa();
+            } else if(session.Mahasiswa()){
+                loadDashboardMahasiswa();
+            } else session.logoutUser();
         }
         setContentView(R.layout.activity_main);
         login = findViewById(R.id.signin);
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
 
     }
+
 
     private void login() {
         JSONObject request = new JSONObject();
