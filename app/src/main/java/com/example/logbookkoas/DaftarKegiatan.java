@@ -2,6 +2,7 @@ package com.example.logbookkoas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +11,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,9 +29,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 
-public class DaftarKegiatan extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
+public class DaftarKegiatan extends AppCompatActivity {
 
     String spinnerURL = "http://192.168.1.6/logbook/spinnerkegiatandosen.php";
     Spinner spinnerJenisJurnal, spinnerStatus;
@@ -42,9 +46,10 @@ public class DaftarKegiatan extends AppCompatActivity implements AdapterView.OnI
     ArrayList<String> idStase, Stase, namaMahasiswa, nimMahasiswa;
 
     private ProgressDialog pDialog;
-    TextView tv_coba;
 
-    String filterNim, filterIdStase, filterJenisJurnal, filterStatus;
+    TextView tv_coba;
+    EditText datePicker;
+    String filterNim, filterIdStase, filterJenisJurnal, filterStatus, filterTanggal;
 
 
     @Override
@@ -63,10 +68,15 @@ public class DaftarKegiatan extends AppCompatActivity implements AdapterView.OnI
         spinnerJenisJurnal = findViewById(R.id.spinner_jnsjurnal);
         spinnerStase = findViewById(R.id.spinner_stase);
         spinnerNamaMahasiswa = findViewById(R.id.spinner_nama_mahasiswa);
+
         Stase = new ArrayList<String>();
         idStase = new ArrayList<String>();
 //        Stase.add("Semua stase");
 //        String[] str = getStringArray(Stase);
+
+        datePicker = findViewById(R.id.spinner_tanggal);
+//        datePicker.setText("Semua tanggal");
+
 
         getArrayStase();
 //
@@ -125,9 +135,37 @@ public class DaftarKegiatan extends AppCompatActivity implements AdapterView.OnI
                     b.setDropDownViewResource(android.R.layout.simple_spinner_item);
                     spinnerStatus.setAdapter(b);
 
+
+
+                    datePicker.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Calendar calendar = Calendar.getInstance();
+                            final int year = calendar.get(Calendar.YEAR);
+                            final int month= calendar.get(Calendar.MONTH);
+                            final int day = calendar.get(Calendar.DAY_OF_MONTH);
+//                            datePicker = view.findViewById(R.id.filter_tanggal);
+                            DatePickerDialog dpDialog = new DatePickerDialog(DaftarKegiatan.this,
+                                    new DatePickerDialog.OnDateSetListener() {
+                                        @Override
+                                        public void onDateSet(DatePicker view, int year, int month1, int day) {
+                                            month1 = month1+1;
+                                            String date = year+"-"+month1+"-"+day;
+                                            datePicker.setText(date);
+                                        }
+                                    },year,month,day);
+                            dpDialog.show();
+                        }
+                    });
+
+
+
                     btnfilter.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            filterTanggal = datePicker.getText().toString().toLowerCase();
+                            if(filterTanggal.equals("") || filterTanggal.equals("semua tanggal")){
+                                filterTanggal="semua tanggal";}
                             final String[] NIM = getStringArray(nimMahasiswa);
                             filterNim = NIM[spinnerNamaMahasiswa.getSelectedItemPosition()];
                             final String[] id_stase = getStringArray(idStase);
@@ -139,6 +177,7 @@ public class DaftarKegiatan extends AppCompatActivity implements AdapterView.OnI
                             intent.putExtra("stase",filterIdStase);
                             intent.putExtra("jenis_jurnal",filterJenisJurnal);
                             intent.putExtra("status",filterStatus);
+                            intent.putExtra("tanggal",filterTanggal);
                             startActivity(intent);
 
                         }
@@ -180,15 +219,15 @@ public class DaftarKegiatan extends AppCompatActivity implements AdapterView.OnI
     }
 
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
+//    @Override
+//    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
+//
+//    }
+//
+//    @Override
+//    public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//    }
 }
 
 

@@ -198,6 +198,53 @@
 
         </RelativeLayout>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/filter_nama_mahasiswa"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginHorizontal="5dp"
+        android:id="@+id/filter_tanggal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tanggal Kegiatan"
+            android:textColor="@color/md_white_1000"
+            android:fontFamily="sans-serif"
+            android:textSize="14sp"
+            android:layout_marginRight="4dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinnerbackground"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/spinner_tanggal"
+                android:hint="Semua Tanggal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/spinnerbackground"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:padding="3dp"
+                android:paddingRight="30dp"
+                android:popupBackground="@drawable/spinnerbackground"
+                android:spinnerMode="dropdown" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_keyboard_arrow_down_black_24dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
 
 

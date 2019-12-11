@@ -39,6 +39,7 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
     private static final String KEY_JENIS_JURNAL = "jenisJurnal";
     private static final String KEY_ID_JURNAL = "id_jurnal";
     private static final String KEY_STATUS = "status";
+    private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_MESSAGE = "message";
     TextView tv_coba;
     String showURL = "http://192.168.1.6/logbook/daftar_kegiatan_dosen.php";
@@ -69,10 +70,12 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
             String stase = getIntent().getStringExtra("stase");
             String jns_jurnal = getIntent().getStringExtra("jenis_jurnal");
             String status = getIntent().getStringExtra("status");
+            String tanggal = getIntent().getStringExtra("tanggal");
             request.put(KEY_USERNAME, username);
             request.put(KEY_NIM, nim);
             request.put(KEY_JENIS_JURNAL,jns_jurnal);
             request.put(KEY_STASE, stase);
+            request.put(KEY_TANGGAL, tanggal);
             request.put(KEY_STATUS, status);
 
         } catch (JSONException e) {
@@ -112,7 +115,8 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
                         HashMap<String, String> item = new HashMap<String, String>();
                         item.put("id",j.getString("id"));
                         item.put("nim", j.getString("nim"));
-                        item.put("tanggal",j.getString("tanggal"));
+                        String tanggal = changeDate(j.getString("tanggal"));
+                        item.put("tanggal",tanggal);
                         item.put("waktu",j.getString("jam_awal")+"-"+j.getString("jam_akhir"));
                         if(j.getString("status").equals("1")){
                             item.put("status","Approved");
@@ -314,6 +318,17 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
         });
         MySingleton.getInstance(this).addToRequestQueue(json);
 
+    }
+
+    private static String  changeDate(String date){
+        String[] namaBulan ={"Januari","Februari","Maret","April","Mei","Juni","Juli",
+                "Agustus","September","Oktober","November","Desember"};
+        final String Tahun = date.substring(0,4);
+        String Bulan = date.substring(5,7);
+        int Bulan1 = Integer.parseInt(Bulan);
+        final String Tanggal = date.substring(8);
+        String changedDate = Tanggal+" "+namaBulan[Bulan1-1]+" "+Tahun;
+        return changedDate;
     }
     private void updateStatus(String newstatus, String id, String jenis){
         JSONObject request = new JSONObject();
