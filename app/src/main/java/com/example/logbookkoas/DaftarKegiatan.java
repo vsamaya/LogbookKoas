@@ -47,7 +47,6 @@ public class DaftarKegiatan extends AppCompatActivity {
 
     private ProgressDialog pDialog;
 
-    TextView tv_coba;
     EditText datePicker;
     String filterNim, filterIdStase, filterJenisJurnal, filterStatus, filterTanggal;
 
@@ -63,7 +62,6 @@ public class DaftarKegiatan extends AppCompatActivity {
 
 
         btnfilter = findViewById(R.id.btn_filter);
-        tv_coba = findViewById(R.id.cobajson);
         spinnerStatus = findViewById(R.id.spinner_status);
         spinnerJenisJurnal = findViewById(R.id.spinner_jnsjurnal);
         spinnerStase = findViewById(R.id.spinner_stase);
@@ -71,23 +69,8 @@ public class DaftarKegiatan extends AppCompatActivity {
 
         Stase = new ArrayList<String>();
         idStase = new ArrayList<String>();
-//        Stase.add("Semua stase");
-//        String[] str = getStringArray(Stase);
-
         datePicker = findViewById(R.id.spinner_tanggal);
-//        datePicker.setText("Semua tanggal");
-
-
         getArrayStase();
-//
-
-
-
-
-
-
-
-
 
 
     }
@@ -136,7 +119,7 @@ public class DaftarKegiatan extends AppCompatActivity {
                     spinnerStatus.setAdapter(b);
 
 
-
+                    datePicker.setText("Semua Tanggal");
                     datePicker.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -145,7 +128,7 @@ public class DaftarKegiatan extends AppCompatActivity {
                             final int month= calendar.get(Calendar.MONTH);
                             final int day = calendar.get(Calendar.DAY_OF_MONTH);
 //                            datePicker = view.findViewById(R.id.filter_tanggal);
-                            DatePickerDialog dpDialog = new DatePickerDialog(DaftarKegiatan.this,
+                            DatePickerDialog dpDialog = new DatePickerDialog(DaftarKegiatan.this, R.style.datepicker,
                                     new DatePickerDialog.OnDateSetListener() {
                                         @Override
                                         public void onDateSet(DatePicker view, int year, int month1, int day) {
@@ -219,15 +202,6 @@ public class DaftarKegiatan extends AppCompatActivity {
     }
 
 
-//    @Override
-//    public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long l) {
-//
-//    }
-//
-//    @Override
-//    public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//    }
 }
 
 

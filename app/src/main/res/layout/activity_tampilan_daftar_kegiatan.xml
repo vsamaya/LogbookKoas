@@ -12,9 +12,39 @@
         android:background="@drawable/roundedlayout"
         android:paddingHorizontal="15dp"
         android:paddingVertical="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="20dp"
+            android:id="@+id/fitur_dafkeg">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:textColor="#01252a"
+                android:textStyle="bold"
+                android:layout_centerVertical="true"
+                android:id="@+id/judul_dafkeg"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/app_all"
+                android:text="Aprrove All"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:textColor="@color/md_white_1000"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/background_approved"/>
+
+        </RelativeLayout>
         <ListView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_below="@+id/fitur_dafkeg"
             android:id="@+id/rv_daftarkegiatan"/>
 
     </RelativeLayout>

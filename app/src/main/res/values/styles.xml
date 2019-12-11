@@ -5,7 +5,12 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorGrey</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/lightgreen</item>
+    </style>
+    <style name="datepicker" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/darkmountaingreen</item>
+        <item name="colorAccent">@color/colorPrimaryDark</item>
     </style>
 
 </resources>

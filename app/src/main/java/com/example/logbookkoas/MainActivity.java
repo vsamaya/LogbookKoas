@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         if(session.isLoggedIn()){
             if(session.Dosen()){
                 loadDashboardDosen();
+
             } else if(session.Mahasiswa()){
                 loadDashboardMahasiswa();
             } else session.logoutUser();
@@ -88,14 +89,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadDashboardDosen() {
-        Intent i = new Intent(getApplicationContext(), DosenActivity.class);
+        Intent i = new Intent(MainActivity.this, DosenActivity.class);
         startActivity(i);
         finish();
+
 
     }
 
     private void loadDashboardMahasiswa() {
-        Intent i = new Intent(getApplicationContext(), MahasiswaActivity.class);
+        Intent i = new Intent(MainActivity.this, MahasiswaActivity.class);
         startActivity(i);
         finish();
 
@@ -120,11 +122,13 @@ public class MainActivity extends AppCompatActivity {
                             //Check if user got logged in successfully
 
                             if (response.getInt(KEY_STATUS) == 0) {
-                                session.loginUser(username, response.getString(KEY_MENU));
+                                session.loginUser(username, response.getString(KEY_MENU),
+                                        response.getString("nama"));
                                 loadDashboardDosen();
 
                             }else if (response.getInt(KEY_STATUS) == 3){
-                                session.loginUser(username, response.getString(KEY_MENU));
+                                session.loginUser(username, response.getString(KEY_MENU),
+                                        response.getString("nama"));
                                 loadDashboardMahasiswa();
                             }else{
                                 Toast.makeText(getApplicationContext(),

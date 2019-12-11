@@ -2,6 +2,7 @@ package com.example.logbookkoas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.renderscript.Sampler;
 import android.support.v4.app.INotificationSideChannel;
@@ -31,7 +32,7 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
     ListView rvdafkeg;
     ArrayList<HashMap<String, String>> rv_dafkeg;
     SessionHandler session;
-    TextView appr,unapp;
+    TextView judul_dafkeg, app_all;
     private static final String KEY_USERNAME = "username";
     private static final String KEY_NEW_STATUS = "new_status";
     private static final String KEY_NIM = "nim";
@@ -41,9 +42,9 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_MESSAGE = "message";
-    TextView tv_coba;
     String showURL = "http://192.168.1.6/logbook/daftar_kegiatan_dosen.php";
     String updateStatus = "http://192.168.1.6/logbook/updateStatus.php";
+    String updateStatusSemua = "http://192.168.1.6/logbook/updateStatusSemua.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +53,8 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
 
         rv_dafkeg = new ArrayList<HashMap<String, String>>();
         rvdafkeg = findViewById(R.id.rv_daftarkegiatan);
-
-
-
+        judul_dafkeg = findViewById(R.id.judul_dafkeg);
+        app_all = findViewById(R.id.app_all);
 
         getArray();
     }
@@ -86,6 +86,7 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    rv_dafkeg.clear();
                     JSONArray lain = response.getJSONArray("lain");
                     JSONArray nama = response.getJSONArray("nama");
                     JSONArray kegiatan = response.getJSONArray("kegiatan");
@@ -116,8 +117,8 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
                         item.put("id",j.getString("id"));
                         item.put("nim", j.getString("nim"));
                         String tanggal = changeDate(j.getString("tanggal"));
-                        item.put("tanggal",tanggal);
-                        item.put("waktu",j.getString("jam_awal")+"-"+j.getString("jam_akhir"));
+                        item.put("tanggal",tanggal+" ");
+                        item.put("waktu",j.getString("jam_awal")+"-"+j.getString("jam_akhir")+" ");
                         if(j.getString("status").equals("1")){
                             item.put("status","Approved");
                         }else item.put("status","Unapproved");
@@ -267,7 +268,7 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
                                         keg_dosen.setVisibility(View.VISIBLE);
                                         kategori.setVisibility(View.VISIBLE);
                                         penyakit.setVisibility(View.VISIBLE);
-                                        show_more.setText("show less");
+                                        show_more.setText("show less ");
                                     }else {
                                         kegiatan.setVisibility(View.GONE);
                                         lokasi.setVisibility(View.GONE);
@@ -275,7 +276,7 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
                                         keg_dosen.setVisibility(View.GONE);
                                         kategori.setVisibility(View.GONE);
                                         penyakit.setVisibility(View.GONE);
-                                        show_more.setText("show more");
+                                        show_more.setText("show more ");
 
                                     }
 
@@ -287,7 +288,20 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
 
 
                     };
+                    judul_dafkeg.setText(getIntent().getStringExtra("jenis_jurnal").toUpperCase());
                     rvdafkeg.setAdapter(adapter);
+                    app_all.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            String jenis = getIntent().getStringExtra("jenis_jurnal");
+                            updateStatusSemua(jenis);
+
+
+//                            Intent i = new Intent(TampilanDaftarKegiatan.this,TampilanDaftarKegiatan.class);
+//                            startActivity(i);
+
+                        }
+                    });
 //                    rvdafkeg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                        @Override
 //                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -351,6 +365,59 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+
+                            if (response.getInt(KEY_STATUS) == 0) {
+
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(),
+                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        //Display error message whenever an error occurs
+                        Toast.makeText(getApplicationContext(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+    }
+    private void updateStatusSemua(String jenis){
+//                                   final ArrayList<HashMap<String,String>> rv_dafkeg){
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            session = new SessionHandler(getApplicationContext());
+            User user = session.getUserDetails();
+            String username = user.getUsername();
+            request.put(KEY_USERNAME, username);
+            request.put(KEY_JENIS_JURNAL, jenis);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST, updateStatusSemua, request, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+//                            ArrayList<HashMap<String,String>> rv_dafkeg1 = new ArrayList<HashMap<String, String>>();
+//                            rv_dafkeg1 = rv_dafkeg;
+//                            rv_dafkeg.removeAll(rv_dafkeg1);
+//                            getArray();
+                            getArray();
 
                             if (response.getInt(KEY_STATUS) == 0) {
 

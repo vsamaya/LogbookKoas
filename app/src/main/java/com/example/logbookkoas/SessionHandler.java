@@ -28,9 +28,10 @@ public class SessionHandler {
      * @param username
      * @param fullName
      */
-    public void loginUser(String username, String level) {
+    public void loginUser(String username, String level, String nama) {
         mEditor.putString(KEY_USERNAME, username);
         mEditor.putString(KEY_MENU,level);
+        mEditor.putString(KEY_FULL_NAME,nama);
         Date date = new Date();
 
         //Set user session for next 7 days
@@ -86,7 +87,9 @@ public class SessionHandler {
         }
         User user = new User();
         user.setUsername(mPreferences.getString(KEY_USERNAME, KEY_EMPTY));
-        user.setFullName(mPreferences.getString(KEY_FULL_NAME, KEY_EMPTY));
+        user.setNama(mPreferences.getString(KEY_FULL_NAME, KEY_EMPTY));
+        user.setLevel(mPreferences.getString(KEY_MENU, KEY_EMPTY));
+
         user.setSessionExpiryDate(new Date(mPreferences.getLong(KEY_EXPIRES, 0)));
 
         return user;
