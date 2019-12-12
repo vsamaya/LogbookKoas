@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DaftarKegiatan"></activity>
+        <activity android:name=".tambahJurnal"></activity>
+        <activity android:name=".IsiJurnalDetail" />
+        <activity android:name=".mainIsiJurnal" />
+        <activity android:name=".DaftarKegiatan" />
         <activity android:name=".QR" />
         <activity android:name=".MainQR" />
         <activity android:name=".OTP" />

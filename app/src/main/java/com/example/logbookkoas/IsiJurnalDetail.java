@@ -288,19 +288,6 @@ public class IsiJurnalDetail extends AppCompatActivity {
                     (Request.Method.POST, updateEntry, request, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-                            try {
-
-                                if (response.getInt(KEY_STATUS) == 0) {
-
-                                }
-                                else{
-                                    Toast.makeText(getApplicationContext(),
-                                            response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
-
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
 
 
                         }
@@ -310,15 +297,10 @@ public class IsiJurnalDetail extends AppCompatActivity {
                         @Override
                         public void onErrorResponse(VolleyError error) {
 
-                            //Display error message whenever an error occurs
-                            Toast.makeText(getApplicationContext(),
-                                    error.getMessage(), Toast.LENGTH_SHORT).show();
+
 
                         }
                     });
-            jsArrayRequest.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 0,
-                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-
             // Access the RequestQueue through your singleton class.
             MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
             Intent intent = getIntent();
