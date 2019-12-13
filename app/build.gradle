@@ -28,6 +28,11 @@ android {
         exclude 'META-INF/ASL2.0'
     }
     useLibrary 'org.apache.http.legacy'
+    configurations {
+        all {
+            exclude module: 'httpclient'
+        }
+    }
 }
 
 dependencies {

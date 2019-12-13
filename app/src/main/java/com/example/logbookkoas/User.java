@@ -5,7 +5,12 @@ import java.util.Date;
 public class User {
     String username;
     String fullName;
+    String level;
     Date sessionExpiryDate;
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -17,6 +22,10 @@ public class User {
 
     public void setSessionExpiryDate(Date sessionExpiryDate) {
         this.sessionExpiryDate = sessionExpiryDate;
+    }
+
+    public String getLevel() {
+        return level;
     }
 
     public String getUsername() {

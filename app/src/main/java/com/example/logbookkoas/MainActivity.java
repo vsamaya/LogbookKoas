@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private String password;
     private ProgressDialog pDialog;
     private CheckBox keep;
-    private String login_url = "http://192.168.1.26/login1.php";
+    private String login_url = "http://192.168.1.11/login1.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;
@@ -47,11 +47,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
         if(session.isLoggedIn()) {
-            if (session.Dosen()){
-                loadDashboardDosen();
+                loadDashboard();
         }
 
-        }
+
 
         setContentView(R.layout.activity_main);
         login = findViewById(R.id.signin);
@@ -87,7 +86,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    private void loadDashboard(){
+        SessionHandler session=new SessionHandler(getApplicationContext());
+        User user= session.getUserDetails();
+        if(user.getLevel()=="4"){
+            loadDashboardDosen();
+        }
+        else if(user.getLevel()=="5"){
+            loadDashboardMahasiswa();
+        }
 
+    }
     private void loadDashboardDosen() {
         Intent i = new Intent(getApplicationContext(), DosenActivity.class);
         startActivity(i);

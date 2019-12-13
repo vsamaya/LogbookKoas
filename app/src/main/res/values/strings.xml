@@ -17,4 +17,39 @@
     <string name="hapus">hapus</string>
     <string name="ganti">ganti</string>
     <string-array name="select">selecet an item</string-array>
+    <string-array name="proparray">
+    <item>ACEH</item>
+    <item>SUMATERA UTARA</item>
+    <item>SUMATERA BARAT</item>
+    <item>RIAU</item>
+    <item>JAMBI</item>
+    <item>SUMATERA SELATAN</item>
+    <item>BENGKULU</item>
+    <item>LAMPUNG</item>
+    <item>KEPULAUAN BANGKA BELITUNG</item>
+    <item>KEPULAUAN RIAU</item>
+    <item>DKI JAKARTA</item>
+    <item>JAWA BARAT</item>
+    <item>DAERAH ISTIMEWA YOGYAKARTA</item>
+    <item>JAWA TIMUR</item>
+    <item>BANTEN</item>
+    <item>BALI</item>
+    <item>NUSA TENGGARA BARAT</item>
+    <item>NUSA TENGGARA TIMUR</item>
+    <item>KALIMANTAN BARAT</item>
+    <item>KALIMANTAN TENGAH</item>
+    <item>KALIMANTAN SELATAN</item>
+    <item>KALIMANTAN TIMUR</item>
+    <item>KALIMANTAN UTARA</item>
+    <item>SULAWESI UTARA</item>
+    <item>SULAWESI TENGAH</item>
+    <item>SULAWESI SELATAN</item>
+    <item>GORONTALO</item>
+    <item>SULAWESI BARAT</item>
+    <item>MALUKU</item>
+    <item>MALUKU UTARA</item>
+    <item>PAPUA</item>
+    <item>PAPUA BARAT</item>
+    <item>LUAR NEGERI</item>
+</string-array>
 </resources>

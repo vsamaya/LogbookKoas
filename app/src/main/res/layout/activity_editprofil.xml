@@ -28,14 +28,13 @@
             android:background="@drawable/roundedlayout"
             android:orientation="vertical">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgprofil"
                 android:layout_width="100dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/circle"
-                android:src="@drawable/ic_account" />
+                android:background="@drawable/ic_account" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -67,7 +66,7 @@
                     android:fontFamily="sans-serif"
                     android:textColor="#FF0000"
                     android:text="@string/hapus"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
             </LinearLayout>
 
             <EditText
@@ -91,30 +90,44 @@
                 android:hint="@string/username"
                 android:textSize="15sp" />
             <Spinner
+                android:id="@+id/propuser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
+                android:entries="@array/proparray"
                 android:layout_marginTop="10dp" />
             <Spinner
+                android:id="@+id/kotauser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp" />
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
             <EditText
-                android:layout_width="match_parent"
+                android:id="@+id/tanggal"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:singleLine="true"
                 android:layout_marginTop="10dp"
                 android:hint="Date"
                 android:textSize="15sp" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/imgbtn"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/ic_action_name"/>
+
+    </LinearLayout>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -126,13 +139,16 @@
                 android:hint="Alamat"
                 android:textSize="15sp" />
             <Spinner
+                android:id="@+id/propoal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
+                android:entries="@array/proparray"
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp" />
             <Spinner
+                android:id="@+id/kotaal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -183,13 +199,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:id="@+id/spinwali"
                 android:layout_marginStart="15dp"
+                android:entries="@array/proparray"
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp" />
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:id="@+id/spinkotawali"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginTop="10dp" />
@@ -203,6 +222,16 @@
                 android:singleLine="true"
                 android:hint="No.Hp (Telepon) Wali (Orang Tua)"
                 android:textSize="15sp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="15sp"
+                android:text="Simpan"
+                android:layout_marginRight="20dp"
+                android:layout_gravity="right"
+                android:layout_marginBottom="20dp"/>
+
 
 
         </LinearLayout>
