@@ -89,20 +89,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadDashboardDosen() {
-        Intent i = new Intent(MainActivity.this, DosenActivity.class);
+        Intent i = new Intent(getApplicationContext(), DosenActivity.class);
         startActivity(i);
         finish();
-
 
     }
 
     private void loadDashboardMahasiswa() {
-        Intent i = new Intent(MainActivity.this, MahasiswaActivity.class);
+        Intent i = new Intent(getApplicationContext(), MahasiswaActivity.class);
         startActivity(i);
         finish();
 
     }
-
 
     private void login() {
         JSONObject request = new JSONObject();

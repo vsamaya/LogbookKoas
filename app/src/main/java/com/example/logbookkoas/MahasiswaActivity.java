@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 public class MahasiswaActivity extends AppCompatActivity {
     ImageView profile;
     TextView username, namaMahasiswa;
+    RelativeLayout isiJurnal;
     private SessionHandler session;
 
     @Override
@@ -26,6 +28,7 @@ public class MahasiswaActivity extends AppCompatActivity {
         username.setText(userName);
         namaMahasiswa.setText(nama);
         profile = findViewById(R.id.img_profile_mhs);
+        isiJurnal = findViewById(R.id.btn_isijurnal);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +37,13 @@ public class MahasiswaActivity extends AppCompatActivity {
                 Intent i = new Intent(MahasiswaActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
+            }
+        });
+        isiJurnal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent b = new Intent(MahasiswaActivity.this, mainIsiJurnal.class);
+                startActivity(b);
             }
         });
     }

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TampilanDaftarKegiatan"></activity>
+        <activity android:name=".tambahJurnal"></activity>
+        <activity android:name=".IsiJurnalDetail" />
+        <activity android:name=".mainIsiJurnal" />
         <activity android:name=".DaftarKegiatan" />
         <activity android:name=".QR" />
         <activity android:name=".MainQR" />
@@ -33,7 +36,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="192.168.0.136"
+                    android:host="192.168.1.5"
                     android:pathPrefix="/login.php"
                     android:scheme="http" />
             </intent-filter>

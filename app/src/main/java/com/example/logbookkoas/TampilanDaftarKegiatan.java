@@ -43,7 +43,7 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
     private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_MESSAGE = "message";
     String showURL = "http://192.168.1.6/logbook/daftar_kegiatan_dosen.php";
-    String updateStatus = "http://192.168.1.6/logbook/updateStatus.php";
+    String updateStatus = "http://192.168.1.6/logbook/updateStatusDosenActivity.php";
     String updateStatusSemua = "http://192.168.1.6/logbook/updateStatusSemua.php";
 
     @Override
