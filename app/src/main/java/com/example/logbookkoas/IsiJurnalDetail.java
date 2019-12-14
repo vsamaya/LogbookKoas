@@ -96,7 +96,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent a = new Intent(IsiJurnalDetail.this, tambahJurnal.class);
-                a.putExtra ("jurnal","jurnal_ketrampilan");
+                a.putExtra("jurnal","jurnal_ketrampilan");
+                a.putExtra("stase", stase.getText());
                 startActivity(a);
             }
         });
@@ -106,6 +107,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
             public void onClick(View view) {
                 Intent b = new Intent(IsiJurnalDetail.this, tambahJurnal.class);
                 b.putExtra ("jurnal","jurnal_penyakit");
+                b.putExtra("stase", stase.getText());
                 startActivity(b);
             }
         });

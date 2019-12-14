@@ -98,6 +98,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/sistem_1_ket"
             android:text="Sistem Penyakit-1     :   "/>
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:id="@+id/sispen_1_isi"
@@ -112,6 +113,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/jenis_1_ket"
         android:text="Penyakit-1     :   "/>
     <com.toptoche.searchablespinnerlibrary.SearchableSpinner
         android:id="@+id/penyakit_1_isi"
@@ -199,4 +201,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/submit_isi_jurnal"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="SUBMIT"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/coba"/>
 </LinearLayout>
