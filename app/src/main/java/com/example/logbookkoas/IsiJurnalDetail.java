@@ -59,9 +59,9 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String updateEntry = "http://192.168.1.6/logbook/updateEntry.php";
+    private String updateEntry = "http://192.168.1.5/logbook/updateEntry.php";
     public static final String KEY_ID = "id";
-    TextView stase,tanggal;
+    TextView stase,tanggal,id_stase;
     EditText evaluasi,rencana;
     LinearLayout MainLayout;
     ListView lv_penyakit,lv_ketrampilan;
@@ -82,6 +82,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
         lv_penyakit = findViewById(R.id.lv_penyakit);
         lv_ketrampilan = findViewById(R.id.lv_ketrampilan);
         tanggal = findViewById(R.id.tanggal);
+        id_stase = findViewById(R.id.tanggal_mulai);
         Intent intent = getIntent();
         final String id = intent.getStringExtra(mainIsiJurnal.KEY_ID);
 
@@ -98,6 +99,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 Intent a = new Intent(IsiJurnalDetail.this, tambahJurnal.class);
                 a.putExtra("jurnal","jurnal_ketrampilan");
                 a.putExtra("stase", stase.getText());
+                a.putExtra("id_stase", id_stase.getText());
                 startActivity(a);
             }
         });
@@ -108,6 +110,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 Intent b = new Intent(IsiJurnalDetail.this, tambahJurnal.class);
                 b.putExtra ("jurnal","jurnal_penyakit");
                 b.putExtra("stase", stase.getText());
+                b.putExtra("id_stase", id_stase.getText());
                 startActivity(b);
             }
         });
@@ -118,7 +121,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
         private void judul() {
             Intent intent = getIntent();
             final String id = intent.getStringExtra(mainIsiJurnal.KEY_ID);
-            String url_judul = "http://192.168.1.6/logbook/getKepaniteraan.php?id="+id;
+            String url_judul = "http://192.168.1.5/logbook/getKepaniteraan.php?id="+id;
 
             try {
 
@@ -147,7 +150,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
             session = new SessionHandler(getApplicationContext());
             User user = session.getUserDetails();
             String username = user.getUsername();
-            String url_judul = "http://192.168.1.6/logbook/getJadwal.php?username="+username+"&stase="+idStase;
+            String url_judul = "http://192.168.1.5/logbook/getJadwal.php?username="+username+"&stase="+idStase;
 
             try {
 
@@ -171,13 +174,14 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 String tglSelesaiText = convert.format(tglSelesai);
                 String jadwal = tglMulaiText + " - " + tglSelesaiText;
                 tanggal.setText(jadwal);
+                id_stase.setText(idStase);
 
 
                 Date now = Calendar.getInstance().getTime();
                 if(now.after(tglMulai) && now.before(tglSelesai1)) {
                     MainLayout.setVisibility(LinearLayout.VISIBLE);
                     String status = "1";
-                    String url_status = "http://192.168.1.6/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.1.5/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -189,7 +193,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else if(now.after(tglMulai)){
                     String status = "0";
-                    String url_status = "http://192.168.1.6/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.1.5/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -200,7 +204,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else{
                     String status = "2";
-                    String url_status = "http://192.168.1.6/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.1.5/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 

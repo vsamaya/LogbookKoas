@@ -44,6 +44,17 @@
                 android:text="Belum terjadwal"
                 android:textColor="@android:color/background_light"
                 android:textSize="18sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tanggal_mulai"
+                android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tanggal_selesai"
+                android:visibility="gone"/>
+
 
             <LinearLayout
                 android:layout_width="match_parent"

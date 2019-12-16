@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SimpleExpandableListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -47,19 +48,26 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+
+import javax.sql.StatementEvent;
 
 public class tambahJurnal extends AppCompatActivity {
-    String spinnerURL = "http://192.168.1.6/logbook/spinnerTambahJurnal.php";
+    String spinnerURL = "http://192.168.1.5/logbook/spinnerTambahJurnal.php";
+    String tanggalURL = "http://192.168.1.5/logbook/tanggalTambahJurnal.php";
+    String submitURL = "http://192.168.1.5/logbook/submitTambahJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;
     ArrayList<String> sistem_keterampilan, id_sistemK,keterampilan,id_keterampilan;
+    ArrayList<String> nipDosen, namaDosen;
     TextView jenisJurnalJudul, sistem1, jenisJurnal1,tv_coba;
     SearchableSpinner spinnerLokasi, spinnerKegiatan, spinnerSistem, spinnerJenis;
     SearchableSpinner spinnerSistem2, spinnerJenis2, spinnerSistem3, spinnerJenis3;
-    SearchableSpinner spinnerSistem4, spinnerJenis4;
+    SearchableSpinner spinnerSistem4, spinnerJenis4, spinnerDosen;
     Button submit;
-    TextView stase, tanggalhari;
+    String tgl_skrg, hari_skrg;
+    TextView stase, tanggalhari, tgl_isi;
     EditText timePickerMulai, timePickerSelesai;
     TimePickerDialog timePickerDialog;
 
@@ -91,11 +99,13 @@ public class tambahJurnal extends AppCompatActivity {
         spinnerJenis2 = findViewById(R.id.penyakit_2_isi);
         spinnerSistem3 = findViewById(R.id.sispen_3_isi);
         spinnerJenis3 = findViewById(R.id.penyakit_3_isi);
+        spinnerDosen = findViewById(R.id.dosen_isi);
         jenisJurnalJudul = findViewById(R.id.jenis_jurnal_isi_jurnal);
         sistem1 = findViewById(R.id.sistem_1_ket);
         jenisJurnal1 = findViewById(R.id.jenis_1_ket);
         submit = findViewById(R.id.submit_isi_jurnal);
         tv_coba = findViewById(R.id.coba);
+        tgl_isi = findViewById(R.id.tgl_isi);
         stase = findViewById(R.id.stase_isi_jurnal);
         tanggalhari = findViewById(R.id.tgl_hari_isi_jurnal);
         timePickerMulai = findViewById(R.id.jam_mulai_isi_jurnal);
@@ -114,7 +124,13 @@ public class tambahJurnal extends AppCompatActivity {
         id_keterampilan = new ArrayList<String>();
         penyakit = new ArrayList<String>();
         id_penyakit = new ArrayList<String>();
+        nipDosen = new ArrayList<String>();
+        namaDosen = new ArrayList<String>();
+        tgl_skrg = new String();
+        hari_skrg = new String();
         stase.setText(getIntent().getStringExtra("stase"));
+
+
         if(jenis_jurnal.equals("jurnal_penyakit")){
             jenisJurnalJudul.setText("Penyakit (Level-Sumber)");
             sistem1.setText("Sistem Penyakit - 1");
@@ -128,11 +144,26 @@ public class tambahJurnal extends AppCompatActivity {
         }
 
         getSpinner();
+        getTanggal();
 
 
     }
 
     private void getSpinner(){
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            session = new SessionHandler(getApplicationContext());
+            User user = session.getUserDetails();
+            String username = user.getUsername();
+            String idStase = getIntent().getStringExtra("id_stase");
+            request.put("id_stase",idStase);
+            request.put("username", username);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         JsonObjectRequest jsonstase = new JsonObjectRequest(
                 spinnerURL, new Response.Listener<JSONObject>() {
             @Override
@@ -165,6 +196,22 @@ public class tambahJurnal extends AppCompatActivity {
                     ArrayAdapter<String> d = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item,strnama);
                     spinnerKegiatan.setAdapter(d);
                     spinnerKegiatan.setTitle("Pilih Kegiatan");
+
+                    JSONArray dosenArray = response.getJSONArray("dosen");
+                    for (int i = 0; i < dosenArray.length(); i++) {
+                        JSONObject j = dosenArray.getJSONObject(i);
+                        String nip = j.getString("nip");
+                        String dosen = j.getString("nama");
+                        String gelar = j.getString("gelar");
+                        nipDosen.add(nip);
+                        namaDosen.add(dosen+", "+gelar);
+                    }
+                    String[] strdosen = getStringArray(namaDosen);
+                    ArrayAdapter<String> dsn = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item,strdosen);
+                    spinnerDosen.setAdapter(dsn);
+                    spinnerDosen.setTitle("Pilih Dosen");
+
+
 
                     //spinner sistem penyakit 1
                     String jenis_penyakit = getIntent().getStringExtra("jurnal");
@@ -294,7 +341,7 @@ public class tambahJurnal extends AppCompatActivity {
 
                             }
                         });
-                        spinnerSistem2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        spinnerSistem3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                 String id_s = idsisket[i];
@@ -307,7 +354,7 @@ public class tambahJurnal extends AppCompatActivity {
 
                             }
                         });
-                        spinnerSistem2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        spinnerSistem4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                 String id_s = idsisket[i];
@@ -321,6 +368,10 @@ public class tambahJurnal extends AppCompatActivity {
                             }
                         });
                     }
+
+
+
+
 
 
 
@@ -391,39 +442,112 @@ public class tambahJurnal extends AppCompatActivity {
                         }
                     });
 
-//                    datePicker.setText("Semua Tanggal");
-//                    datePicker.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
-//                            Calendar calendar = Calendar.getInstance();
-//                            final int year = calendar.get(Calendar.YEAR);
-//                            final int month= calendar.get(Calendar.MONTH);
-//                            final int day = calendar.get(Calendar.DAY_OF_MONTH);
-////                            datePicker = view.findViewById(R.id.filter_tanggal);
-//                            DatePickerDialog dpDialog = new DatePickerDialog(DaftarKegiatan.this, R.style.datepicker,
-//                                    new DatePickerDialog.OnDateSetListener() {
-//                                        @Override
-//                                        public void onDateSet(DatePicker view, int year, int month1, int day) {
-//                                            month1 = month1+1;
-//                                            String date = year+"-"+month1+"-"+day;
-//                                            datePicker.setText(date);
-//                                        }
-//                                    },year,month,day);
-//                            dpDialog.show();
-//                        }
-//                    });
-//
-//
-//
                     submit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            String lokasi = spinnerLokasi.getSelectedItem().toString();
-                            tv_coba.append(lokasi+" ");
-                            String keg = spinnerKegiatan.getSelectedItem().toString();
-                            tv_coba.append(keg+" ");
-                            String Sis1 = spinnerSistem.getSelectedItem().toString();
-                            tv_coba.append(Sis1+" ");
+                            User user = session.getUserDetails();
+                            String username = user.getUsername();
+                            String ang = username.substring(6,8);
+                            String angkatan = "20"+ang;
+                            String jenis = getIntent().getStringExtra("jurnal");
+                            String id_sis1 = new String();
+                            String id_sis2 = new String();
+                            String id_sis3 = new String();
+                            String id_sis4 = new String();
+                            String id_jenis1 = new String();
+                            String id_jenis2 = new String();
+                            String id_jenis3 = new String();
+                            String id_jenis4 = new String();
+                            if(jenis.equals("jurnal_penyakit")){
+                                String[] sis1 = getStringArray(id_sistemP);
+                                id_sis1 = sis1[spinnerSistem.getSelectedItemPosition()];
+                                String[] jenis1 = getStringArray(id_penyakit);
+                                id_jenis1 = jenis1[spinnerJenis.getSelectedItemPosition()];
+                                id_sis2 = sis1[spinnerSistem2.getSelectedItemPosition()];
+                                id_sis3 = sis1[spinnerSistem3.getSelectedItemPosition()];
+                                id_sis4 = sis1[spinnerSistem4.getSelectedItemPosition()];
+                                id_jenis2 = jenis1[spinnerJenis2.getSelectedItemPosition()];
+                                id_jenis3 = jenis1[spinnerJenis3.getSelectedItemPosition()];
+                                id_jenis4 = jenis1[spinnerJenis4.getSelectedItemPosition()];
+                            } else {
+                                String[] sis1 = getStringArray(id_sistemK);
+                                String[] jenis1 = getStringArray(id_keterampilan);
+                                id_sis1 = sis1[spinnerSistem.getSelectedItemPosition()];
+                                id_sis2 = sis1[spinnerSistem2.getSelectedItemPosition()];
+                                id_sis3 = sis1[spinnerSistem3.getSelectedItemPosition()];
+                                id_sis4 = sis1[spinnerSistem4.getSelectedItemPosition()];
+                                id_jenis1 = jenis1[spinnerJenis.getSelectedItemPosition()];
+                                id_jenis2 = jenis1[spinnerJenis2.getSelectedItemPosition()];
+                                id_jenis3 = jenis1[spinnerJenis3.getSelectedItemPosition()];
+                                id_jenis4 = jenis1[spinnerJenis4.getSelectedItemPosition()];
+
+                            }
+                            String[] nip = getStringArray(nipDosen);
+                            String niptmpl = nip[spinnerDosen.getSelectedItemPosition()];
+                            String stase = getIntent().getStringExtra("id_stase");
+                            String jam_awal = timePickerMulai.getText().toString()+":00";
+                            String jam_akhir = timePickerSelesai.getText().toString()+":00";
+                            String[] lokasi = getStringArray(id_lokasi);
+                            String id_lokasi = lokasi[spinnerLokasi.getSelectedItemPosition()];
+                            String[] kegiatan = getStringArray(id_kegiatan);
+                            String id_keg = kegiatan[spinnerKegiatan.getSelectedItemPosition()];
+//                            String spinsis2 = spinnerSistem2.getSelectedItem().toString();
+//                            String spinsis3 = spinnerSistem3.getSelectedItem().toString();
+//                            String spinsis4 = spinnerSistem4.getSelectedItem().toString();
+
+                                JSONObject request = new JSONObject();
+                                try {
+                                    //Populate the request parameters
+                                    request.put("jenis",jenis);
+                                    request.put("username", username);
+                                    request.put("angkatan",angkatan);
+                                    request.put("hari", hari_skrg);
+                                    request.put("tanggal",tgl_skrg);
+                                    request.put("stase",stase);
+                                    request.put("dosen",niptmpl);
+                                    request.put("jam_awal",jam_awal);
+                                    request.put("jam_akhir",jam_akhir);
+                                    request.put("lokasi",id_lokasi);
+                                    request.put("kegiatan",id_keg);
+                                    request.put("id_sis1",id_sis1);
+                                    request.put("id_sis2",id_sis2);
+                                    request.put("id_sis3",id_sis3);
+                                    request.put("id_sis4",id_sis4);
+                                    request.put("id_jenis1",id_jenis1);
+                                    request.put("id_jenis2",id_jenis2);
+                                    request.put("id_jenis3",id_jenis3);
+                                    request.put("id_jenis4",id_jenis4);
+
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                                        ( submitURL, request, new Response.Listener<JSONObject>() {
+                                            @Override
+                                            public void onResponse(JSONObject response) {
+
+                                            }
+                                        }, new Response.ErrorListener() {
+
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+
+                                            }
+                                        });
+
+                                // Access the RequestQueue through your singleton class.
+                                MySingleton.getInstance(tambahJurnal.this).addToRequestQueue(jsArrayRequest);
+
+
+                            tv_coba.append(id_lokasi+" ");
+                            tv_coba.append(niptmpl);
+                            tv_coba.append(tgl_skrg);
+                            tv_coba.append(jam_awal);
+                            tv_coba.append(jam_akhir);
+                            tv_coba.append(angkatan);
+                            tv_coba.append(id_keg);
 
 //                            Intent intent = new Intent(DaftarKegiatan.this,TampilanDaftarKegiatan.class);
 //                            intent.putExtra("nim",filterNim);
@@ -439,7 +563,6 @@ public class tambahJurnal extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
 
 
             }
@@ -550,6 +673,60 @@ public class tambahJurnal extends AppCompatActivity {
 
 
 
+
+
+    }
+    private void getTanggal(){
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            session = new SessionHandler(getApplicationContext());
+            User user = session.getUserDetails();
+            String username = user.getUsername();
+            String id_stase = getIntent().getStringExtra("id_stase");
+            request.put("username",username);
+            request.put("id_stase",id_stase);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonstase = new JsonObjectRequest(
+                tanggalURL,request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    //spiner lokasi
+                    JSONArray skrgArray = response.getJSONArray("tgl");
+                    for (int i = 0; i < skrgArray.length(); i++) {
+                        JSONObject j = skrgArray.getJSONObject(i);
+                        String skrg = j.getString("tgl_isi");
+                        String skrg_date = j.getString("tgl_isi_date");
+                        String jml = j.getString("jml_hari_skrg");
+                        String jmlstase = j.getString("jml_hari_stase");
+                        tanggalhari.setText(skrg+" / Hari ke-"+jml+" dari "+jmlstase+" hari masa kepaniteraan(stase)");
+                        tgl_skrg = skrg_date;
+                        hari_skrg = jml;
+//                        tgl_isi.setText(skrg_date);
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "Gagal mengambil data, silahkan cek koneksi Anda",Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+        MySingleton.getInstance(tambahJurnal.this).addToRequestQueue(jsonstase);
 
 
     }
