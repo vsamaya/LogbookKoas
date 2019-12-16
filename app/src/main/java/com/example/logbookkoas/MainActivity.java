@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_MENU = "level";
     private static final String KEY_MESSAGE = "message";
+    private static final String KEY_FULL_NAME = "full_name";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PASSWORD = "password";
     private static final String KEY_EMPTY = "";
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private String password;
     private ProgressDialog pDialog;
     private CheckBox keep;
-    private String login_url = "http://192.168.1.11/login1.php";
+    private String login_url = "http://192.168.69.122/login1.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;
@@ -46,9 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
-        if(session.isLoggedIn()) {
-                loadDashboard();
-        }
+        User user=session.getUserDetails();
 
 
 
@@ -86,13 +85,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private void loadDashboard(){
+    private void loadDashboard(String level1){
         SessionHandler session=new SessionHandler(getApplicationContext());
-        User user= session.getUserDetails();
-        if(user.getLevel()=="4"){
+        if(level1.equals("4")){
             loadDashboardDosen();
         }
-        else if(user.getLevel()=="5"){
+        else if(level1.equals("5")){
             loadDashboardMahasiswa();
         }
 
@@ -129,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
                             //Check if user got logged in successfully
 
                             if (response.getInt(KEY_STATUS) == 0) {
-                                session.loginUser(username, response.getString(KEY_MENU));
+                                session.loginUser(username, response.getString(KEY_MENU),response.getString(KEY_FULL_NAME));
                                 loadDashboardDosen();
 
                             }else if (response.getInt(KEY_STATUS) == 3){
-                                session.loginUser(username, response.getString(KEY_MENU));
+                                session.loginUser(username, response.getString(KEY_MENU),response.getString(KEY_FULL_NAME));
                                 loadDashboardMahasiswa();
                             }else{
                                 Toast.makeText(getApplicationContext(),

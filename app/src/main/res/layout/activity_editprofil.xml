@@ -9,7 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -17,9 +20,32 @@
             android:layout_marginTop="10dp"
             android:fontFamily="sans-serif"
             android:text="@string/edit_profil"
+            android:layout_weight="1"
             android:textColor="@color/colorBorder"
             android:textSize="25sp"
             android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
+                android:gravity="end"
+                android:text="id : "
+                android:textColor="@color/colorBorder"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/idms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif"
+                android:gravity="end"
+                android:text="no.id"
+                android:textColor="@color/colorBorder"
+                android:textSize="25sp" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,9 +57,9 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/imgprofil"
                 android:layout_width="100dp"
-                android:layout_marginTop="10dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/ic_account" />
 
             <LinearLayout
@@ -48,190 +74,235 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="@color/greenmid"
                     android:text="@string/ganti"
+                    android:textColor="@color/greenmid"
                     android:textSize="15sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
+                    android:fontFamily="sans-serif"
                     android:text="@string/pembatas"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
+
                 <TextView
                     android:id="@+id/hapus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
-                    android:textColor="#FF0000"
                     android:text="@string/hapus"
+                    android:textColor="#FF0000"
                     android:textSize="15sp" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/usernamems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="@string/username" />
+
             <EditText
+                android:id="@+id/passms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:singleLine="true"
                 android:hint="@string/password"
+                android:singleLine="true"
                 android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/nmlengkap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="@string/namabr" />
+
             <EditText
+                android:id="@+id/namalngkpms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:singleLine="true"
                 android:layout_marginTop="10dp"
-                android:hint="@string/username"
+                android:layout_marginEnd="15dp"
+                android:hint="@string/namabr"
+                android:singleLine="true"
                 android:textSize="15sp" />
+
             <Spinner
                 android:id="@+id/propuser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:entries="@array/proparray"
-                android:layout_marginTop="10dp" />
+                android:entries="@array/proparray" />
+
             <Spinner
                 android:id="@+id/kotauser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="10dp" />
-<LinearLayout
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-            <EditText
-                android:id="@+id/tanggal"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:singleLine="true"
                 android:layout_marginTop="10dp"
-                android:hint="Date"
-                android:textSize="15sp" />
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:id="@+id/imgbtn"
-                android:layout_marginTop="15dp"
-                android:src="@drawable/ic_action_name"/>
+                android:layout_marginEnd="15dp" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/tanggal"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="Date"
+                    android:singleLine="true"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/imgbtn"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/ic_action_name" />
+
+            </LinearLayout>
+
             <EditText
+                android:id="@+id/almt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:singleLine="true"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
                 android:hint="Alamat"
+                android:singleLine="true"
                 android:textSize="15sp" />
+
             <Spinner
                 android:id="@+id/propoal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:entries="@array/proparray"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:layout_marginTop="10dp" />
+                android:entries="@array/proparray" />
+
             <Spinner
                 android:id="@+id/kotaal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp" />
+
             <EditText
+                android:id="@+id/nohp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:singleLine="true"
                 android:hint="No.Hp (Telepon)"
+                android:singleLine="true"
                 android:textSize="15sp" />
+
             <EditText
+                android:id="@+id/email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:singleLine="true"
                 android:hint="Alamat Surat Elektronik (E-MAIL)"
+                android:singleLine="true"
                 android:textSize="15sp" />
+
             <EditText
+                android:id="@+id/nmwl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:singleLine="true"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
                 android:hint="Nama Wali (Orang Tua)"
+                android:singleLine="true"
                 android:textSize="15sp" />
+
             <EditText
+                android:id="@+id/almtwl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:singleLine="true"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
                 android:hint="Alamat Wali (Orang Tua)"
-                android:textSize="15sp" />
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/spinwali"
-                android:layout_marginStart="15dp"
-                android:entries="@array/proparray"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="10dp" />
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:id="@+id/spinkotawali"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginTop="10dp" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
                 android:singleLine="true"
-                android:hint="No.Hp (Telepon) Wali (Orang Tua)"
                 android:textSize="15sp" />
+
+            <Spinner
+                android:id="@+id/spinwali"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:entries="@array/proparray" />
+
+            <Spinner
+                android:id="@+id/spinkotawali"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp" />
+
+            <EditText
+                android:id="@+id/nohpwl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:hint="No.Hp (Telepon) Wali (Orang Tua)"
+                android:singleLine="true"
+                android:textSize="15sp" />
+
             <Button
+                android:id="@+id/simpanms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:textSize="15sp"
-                android:text="Simpan"
-                android:layout_marginRight="20dp"
                 android:layout_gravity="right"
-                android:layout_marginBottom="20dp"/>
-
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="Simpan"
+                android:textSize="15sp" />
 
 
         </LinearLayout>

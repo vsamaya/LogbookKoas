@@ -28,9 +28,10 @@ public class SessionHandler {
      * @param username
      * @param fullName
      */
-    public void loginUser(String username, String level) {
+    public void loginUser(String username, String level,String nama) {
         mEditor.putString(KEY_USERNAME, username);
         mEditor.putString(KEY_MENU,level);
+        mEditor.putString(KEY_FULL_NAME,nama);
         Date date = new Date();
 
         //Set user session for next 7 days

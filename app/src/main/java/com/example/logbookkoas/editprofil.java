@@ -3,11 +3,15 @@ package com.example.logbookkoas;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +20,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,39 +31,100 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.regex.PatternSyntaxException;
 
 public class editprofil extends AppCompatActivity {
     private Spinner spinnerkota, spinnerprop,spinnerwali,spinnerkota1,spinnerkota2;
     Button buttonSubmit;
     ProgressDialog pDialog;
-    public static final String UPLOAD_URL = "http://192.168.1.11/upload.php";
-    public static final String KOTA_URL = "http://192.168.1.11/getKota.php";
-    public static final String KOTA_URL1 = "http://192.168.1.11/getKota1.php";
-    public static final String KOTA_URL2 = "http://192.168.1.11/getKota2.php";
+    private static final String KEY_STATUS = "status";
+    private static final String KEY_MENU = "level";
+    private static final String KEY_MESSAGE = "message";
+    private static final String KEY_USERNAME = "username";
+    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_NAMA = "nama";
+    private static final String KEY_PROPLHR = "proplahir";
+    private static final String KEY_KOTALHR = "kotalahir";
+    private static final String KEY_TGLLHR = "tgllahir";
+    private static final String KEY_ALAMAT = "alamat";
+    private static final String KEY_PROPALAMAT = "propinsialamat";
+    private static final String KEY_KOTAALAMAT = "kotalamat";
+    private static final String KEY_NOHP = "nohp";
+    private static final String KEY_EMAIL = "email";
+    private static final String KEY_NMWALI = "namawali";
+    private static final String KEY_ALAMATWALI = "alamatwali";
+    private static final String KEY_PROPWALI = "propwali";
+    private static final String KEY_KOTAWALI = "kotawali";
+    private static final String KEY_NOHPWALI = "nohpwali";
+    private static final String KEY_EMPTY = "";
+    private String UPLOAD_URL = "http://192.168.69.122/upload.php";
+    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG_SUCCESS = "success";
+    private String simpan_url = "http://192.168.69.122/updateprofil.php";
+    private String data_url = "http://192.168.69.122/getdataprofilms.php";
+    private String data_url1 = "http://192.168.69.122/getdataprofilms1.php";
+    public static final String KOTA_URL = "http://192.168.69.122/getKota.php";
+    private static final String TAG_MESSAGE = "message";
     public static final String UPLOAD_KEY = "image";
-    private String propName;
+    private String KEY_IMAGE = "image";
+    private String username;
+    private String passwordbr;
+    private String namabr;
+    private String propuserbr;
+    private String kotauserbr;
+    private String tgllahirbr;
+    private String alamatbr;
+    private String propalmtbr;
+    private String kotaalmtbr;
+    private String nohpbr;
+    private String emailbr;
+    private String nmwalibr;
+    int success;
+    private String almtwlbr;
+    private String propwalibr;
+    private String kotawalibr;
+    private String nohpwalibr;
+    private String namalengkap;
+    private String idbr;
+    EditText passwordt,namat,tgllhrt,alamatt,nohpt,emailt,nmwlt,nohpwlt,almtwlt;
+    Spinner propusert,kotausert,propalmtt,kotaalmtt,propwalit,kotawalit;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     private TextView tvDateResult;
     private int PICK_IMAGE_REQUEST = 1;
     private TextView ganti;
     private ImageView imageView, dateimg;
+    SessionHandler session;
     private TextView hapus;
     private EditText btDatePicker;
-    private Bitmap bitmap;
+    private Bitmap bitmap,decoded;
     private Uri filePath;
+    TextView usernamems,nmlengkap,id;
+    String propusers,kotausers,propals,kotaals,propwalis,kotawalis;
+    Button simpan;
+    String tag_json_obj = "json_obj_req";
+    final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
+    final ArrayList<HashMap<String, String>> MyArrList1 = new ArrayList<HashMap<String, String>>();
+    final ArrayList<HashMap<String, String>> MyArrList2 = new ArrayList<HashMap<String, String>>();
+    final ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
+    final ArrayList<HashMap<String, String>> list_data1 = new ArrayList<HashMap<String, String>>();
+    int bitmap_size = 60; // range 1 - 100
+    HashMap<String, String> map;
     // array list for spinner adapter
     ArrayList<String> kotaList1,kotalist2,kotalist3;
 
@@ -84,7 +150,10 @@ public class editprofil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editprofil);
         String myformat = "yyyy-MM-dd";
+        SessionHandler session= new SessionHandler(getApplicationContext());
         dateFormatter = new SimpleDateFormat(myformat, Locale.US);
+        usernamems= findViewById(R.id.usernamems);
+        id=findViewById(R.id.idms);
         btDatePicker = (EditText) findViewById(R.id.tanggal);
         tvDateResult = (TextView) findViewById(R.id.tanggal);
         spinnerprop = (Spinner) findViewById(R.id.propuser);
@@ -100,6 +169,62 @@ public class editprofil extends AppCompatActivity {
         imageView = findViewById(R.id.imgprofil);
         spinnerwali = (Spinner) findViewById(R.id.spinwali);
         final Spinner spin_prop = findViewById(R.id.propoal);
+        passwordt=findViewById(R.id.passms);
+        namat=findViewById(R.id.namalngkpms);
+        nmlengkap=findViewById(R.id.nmlengkap);
+        alamatt=findViewById(R.id.almt);
+        nohpt=findViewById(R.id.nohp);
+        emailt=findViewById(R.id.email);
+        nmwlt=findViewById(R.id.nmwl);
+        almtwlt=findViewById(R.id.almtwl);
+        nohpwlt=findViewById(R.id.nohpwl);
+        simpan=findViewById(R.id.simpanms);
+        User user= session.getUserDetails();
+        String user1=user.getUsername();
+        Bundle bundle = getIntent().getExtras();
+        usernamems.setText(bundle.getString("data1"));
+        nmlengkap.setText(bundle.getString("data2"));
+        String namaedit = user.getFullName();
+        namat.setText(namaedit);
+        String namalengkap1=nmlengkap.getText().toString();
+        getData1(namalengkap1);
+
+
+        simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Retrieve the data entered in the edit texts
+                passwordbr = passwordt.getText().toString();
+                namabr = namat.getText().toString();
+                propuserbr= spinnerprop.getSelectedItem().toString();
+                propusers=propuserbr.substring(0,2);
+                kotauserbr = spinnerkota.getSelectedItem().toString();
+                kotausers=kotauserbr.substring(4,9);
+                tgllahirbr = btDatePicker.getText().toString();
+                alamatbr=alamatt.getText().toString();
+                propalmtbr=spin_prop.getSelectedItem().toString();
+                propals=propalmtbr.substring(0,2);
+                kotaalmtbr=spinnerkota1.getSelectedItem().toString();
+                kotaals=kotaalmtbr.substring(4,9);
+                nohpbr=nohpt.getText().toString();
+                emailbr=emailt.getText().toString();
+                nmwalibr=nmwlt.getText().toString();
+                propwalibr=spinnerwali.getSelectedItem().toString();
+                propwalis=propwalibr.substring(0,2);
+                kotawalibr=spinnerkota2.getSelectedItem().toString();
+                kotawalis=kotawalibr.substring(4,9);
+                almtwlbr=almtwlt.getText().toString();
+                nohpwalibr=nohpwlt.getText().toString();
+                namalengkap=nmlengkap.getText().toString();
+                idbr=id.getText().toString();
+
+                getsimpan();
+
+            }
+        });
+
+
+
 
         dateimg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,9 +235,10 @@ public class editprofil extends AppCompatActivity {
        spinnerwali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                  kotalist3.clear();
+                  MyArrList2.clear();
                   String prov = spinnerwali.getSelectedItem().toString();
-                  getKota2(prov);
+                  String prov1=prov.substring(3);
+                  getKota(prov1);
 
            }
 
@@ -126,9 +252,10 @@ public class editprofil extends AppCompatActivity {
         spin_prop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                kotalist2.clear();
+               MyArrList1.clear();
                 String prov = spin_prop.getSelectedItem().toString();
-               getKota1(prov);
+                String prov1=prov.substring(3);
+               getKota(prov1);
 
             }
             @Override
@@ -141,11 +268,11 @@ public class editprofil extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
 
-                kotaList1.clear();
+               MyArrList.clear();
                 // Refresh Spinner
                 String prov = spinnerprop.getSelectedItem().toString();
-                Toast.makeText(editprofil.this, prov, Toast.LENGTH_SHORT).show();
-                getKota(prov);
+                String prov1=prov.substring(3);
+                getKota(prov1);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -160,18 +287,9 @@ public class editprofil extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_IMAGE_REQUEST) {
-            filePath = data.getData();
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
-                imageView.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
+    private void kosong() {
+        imageView.setImageResource(0);
     }
 
 
@@ -191,13 +309,24 @@ public class editprofil extends AppCompatActivity {
                     JSONArray kota = response.getJSONArray("kota");
                     for (int i = 0; i < kota.length(); i++) {
                         JSONObject j = kota.getJSONObject(i);
+                        map = new HashMap<String, String>();
+                        map.put("id",j.getString("id_kota"));
+                        map.put("kota",j.getString("kota"));
                         String namaKota = j.getString("kota");
-                        kotaList1.add(namaKota);
+                        MyArrList.add(map);
+                        MyArrList1.add(map);
+                        MyArrList2.add(map);
 
                     }
-                    String[] strKota = getStringArray(kotaList1);
-                    ArrayAdapter<String> kot4 = new ArrayAdapter<String>(editprofil.this, android.R.layout.simple_spinner_dropdown_item, strKota);
-                    spinnerkota.setAdapter(kot4);
+                    SimpleAdapter s4dap;
+                    s4dap = new SimpleAdapter(editprofil.this,MyArrList,R.layout.columnkota,new String[]{"id","kota"},new int[]{R.id.idkota,R.id.nmkota});
+                    spinnerkota.setAdapter(s4dap);
+                    SimpleAdapter s4dap1;
+                    s4dap1 = new SimpleAdapter(editprofil.this,MyArrList1,R.layout.columnkota,new String[]{"id","kota"},new int[]{R.id.idkota,R.id.nmkota});
+                    spinnerkota1.setAdapter(s4dap1);
+                    SimpleAdapter s4dap2;
+                    s4dap2 = new SimpleAdapter(editprofil.this,MyArrList2,R.layout.columnkota2,new String[]{"id","kota"},new int[]{R.id.idkota2,R.id.nmkota2});
+                    spinnerkota2.setAdapter(s4dap2);
 
 
 
@@ -214,30 +343,34 @@ public class editprofil extends AppCompatActivity {
         });
         MySingleton.getInstance(this).addToRequestQueue(json);
     }
-    private void getKota1(String provinsi) {
+
+  /*  public void getData(String user1){
+
         JSONObject request = new JSONObject();
         try {
-            String prov = provinsi;
-            request.put("provinsi", prov);
+            request.put(KEY_USERNAME, user1);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
-                KOTA_URL1, request, new Response.Listener<JSONObject>() {
+                data_url, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray kota = response.getJSONArray("kota1");
+                    JSONArray kota = response.getJSONArray("data");
                     for (int i = 0; i < kota.length(); i++) {
                         JSONObject j = kota.getJSONObject(i);
-                        String namaKota = j.getString("kota");
-                        kotalist2.add(namaKota);
+                        HashMap<String, String> map1  = new HashMap<String, String>();
+                        map1 = new HashMap<String, String>();
+                        map1.put("username",j.getString("username"));
+                        map1.put("nama",j.getString("nama"));
+                        list_data.add(map1);
 
                     }
 
-                    String[] strKota1=getStringArray(kotalist2);
-                    ArrayAdapter<String> kot41 = new ArrayAdapter<String>(editprofil.this, android.R.layout.simple_spinner_dropdown_item, strKota1);
-                    spinnerkota1.setAdapter(kot41);
+                    usernamems.setText(list_data.get(0).get("username"));
+                    namat.setText(list_data.get(0).get("nama"));
+                    nmlengkap.setText(list_data.get(0).get("nama"));
 
 
 
@@ -253,33 +386,32 @@ public class editprofil extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
-        MySingleton.getInstance(this).addToRequestQueue(json);
-    }
-    private void getKota2(String provinsi) {
+        MySingleton.getInstance(this).addToRequestQueue(json);}*/
+
+    public void getData1(String nmlengkap){
+
         JSONObject request = new JSONObject();
         try {
-            String prov = provinsi;
-            request.put("provinsi", prov);
+            request.put(KEY_NAMA, nmlengkap);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
-                KOTA_URL2, request, new Response.Listener<JSONObject>() {
+                data_url1, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray kota = response.getJSONArray("kota2");
+                    JSONArray kota = response.getJSONArray("data1");
                     for (int i = 0; i < kota.length(); i++) {
                         JSONObject j = kota.getJSONObject(i);
-                        String namaKota = j.getString("kota");
-                        kotalist3.add(namaKota);
+                        HashMap<String, String> map1  = new HashMap<String, String>();
+                        map1 = new HashMap<String, String>();
+                        map1.put("id",j.getString("id"));
+                        list_data1.add(map1);
 
                     }
 
-                    String[] strKota2=getStringArray(kotalist3);
-                    ArrayAdapter<String> kot41 = new ArrayAdapter<String>(editprofil.this, android.R.layout.simple_spinner_dropdown_item, strKota2);
-                    spinnerkota2.setAdapter(kot41);
-
+                    id.setText(list_data1.get(0).get("id"));
 
 
 
@@ -294,8 +426,7 @@ public class editprofil extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
             }
         });
-        MySingleton.getInstance(this).addToRequestQueue(json);
-    }
+        MySingleton.getInstance(this).addToRequestQueue(json);}
 
 
 
@@ -307,6 +438,22 @@ public class editprofil extends AppCompatActivity {
         }
         return str;
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            try {
+                //mengambil fambar dari Gallery
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                // 512 adalah resolusi tertinggi setelah image di resize, bisa di ganti.
+                setToImageView(getResizedBitmap(bitmap, 512));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private void showFileChooser() {
         Intent intent = new Intent();
@@ -314,9 +461,105 @@ public class editprofil extends AppCompatActivity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
+    private void getsimpan() {
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            session = new SessionHandler(getApplicationContext());
+            User user = session.getUserDetails();
+            String username = user.getUsername();
+            request.put(KEY_USERNAME, username);
+            request.put(KEY_PASSWORD,passwordbr);
+            request.put(KEY_NAMA, namabr);
+            request.put("namalengkap", namalengkap);
+            request.put(KEY_PROPLHR, propusers);
+            request.put(KEY_KOTALHR, kotausers);
+            request.put(KEY_TGLLHR, tgllahirbr);
+            request.put(KEY_ALAMAT, alamatbr);
+            request.put(KEY_PROPALAMAT, propals);
+            request.put(KEY_KOTAALAMAT, kotaals);
+            request.put(KEY_NOHP, nohpbr);
+            request.put(KEY_EMAIL, emailbr);
+            request.put(KEY_NMWALI, nmwalibr);
+            request.put(KEY_ALAMATWALI, almtwlbr);
+            request.put(KEY_PROPWALI, propwalis);
+            request.put(KEY_KOTAWALI, kotawalis);
+            request.put(KEY_NOHPWALI, nohpwalibr);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST,simpan_url , request, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+
+                            if (response.getInt(KEY_STATUS) == 0) {
+                                Toast.makeText(getApplicationContext(),
+                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
 
 
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(),
+                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        //Display error message whenever an error occurs
+                        Toast.makeText(getApplicationContext(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+    }
+
+    private void setToImageView(Bitmap bmp) {
+        //compress image
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+
+        bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, bytes);
+        decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(bytes.toByteArray()));
+
+        //menampilkan gambar yang dipilih dari camera/gallery ke ImageView
+        imageView.setImageBitmap(decoded);
+    }
+    public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maxSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maxSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
+    }
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, bitmap_size, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
 }
+
+
 
 
 
