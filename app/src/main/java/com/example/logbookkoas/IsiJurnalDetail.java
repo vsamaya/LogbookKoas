@@ -10,10 +10,12 @@ import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
@@ -59,13 +61,14 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String updateEntry = "http://192.168.1.5/logbook/updateEntry.php";
+    private String showURL = "http://192.168.1.5/logbook/daftar_isi_jurnal.php";
     public static final String KEY_ID = "id";
-    TextView stase,tanggal,id_stase;
+    TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;
     LinearLayout MainLayout;
     ListView lv_penyakit,lv_ketrampilan;
     Button buttonPenyakit, buttonKetrampilan, entry;
+    ArrayList<HashMap<String,String>> list_jurnal_penyakit, list_jurnal_ketrampilan;
 
 
     @Override
@@ -83,6 +86,9 @@ public class IsiJurnalDetail extends AppCompatActivity {
         lv_ketrampilan = findViewById(R.id.lv_ketrampilan);
         tanggal = findViewById(R.id.tanggal);
         id_stase = findViewById(R.id.tanggal_mulai);
+        coba = findViewById(R.id.cobacoba);
+        list_jurnal_penyakit = new ArrayList<HashMap<String, String>>();
+        list_jurnal_ketrampilan = new ArrayList<HashMap<String, String>>();
         Intent intent = getIntent();
         final String id = intent.getStringExtra(mainIsiJurnal.KEY_ID);
 
@@ -93,6 +99,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
         MainLayout.setVisibility(LinearLayout.GONE);
         judul();
         process();
+
         buttonKetrampilan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +151,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
         }
 
         private void process(){
+
             Intent intent = getIntent();
             final String id = intent.getStringExtra(mainIsiJurnal.KEY_ID);
             final String idStase = "stase_"+id;
@@ -180,6 +188,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 Date now = Calendar.getInstance().getTime();
                 if(now.after(tglMulai) && now.before(tglSelesai1)) {
                     MainLayout.setVisibility(LinearLayout.VISIBLE);
+                    showList();
                     String status = "1";
                     String url_status = "http://192.168.1.5/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
@@ -290,6 +299,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            String updateEntry = "http://192.168.1.5/logbook/updateEntry.php";
             JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                     (Request.Method.POST, updateEntry, request, new Response.Listener<JSONObject>() {
                         @Override
@@ -316,5 +326,278 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
 
         }
+        private void showList(){
+            JSONObject request = new JSONObject();
+            try {
+                //Populate the request parameters
+                session = new SessionHandler(getApplicationContext());
+                User user = session.getUserDetails();
+                String username = user.getUsername();
+                request.put("username", username);
+                Intent intent = getIntent();
+                String id = intent.getStringExtra(mainIsiJurnal.KEY_ID);
+                request.put("id_stase", id);
+
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JsonObjectRequest json = new JsonObjectRequest(
+                    showURL,request, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        list_jurnal_penyakit.clear();
+                        JSONArray lain_penyakit = response.getJSONArray("lain_penyakit");
+                        JSONArray dosen_penyakit = response.getJSONArray("dosen_penyakit");
+                        JSONArray kegiatan_penyakit = response.getJSONArray("kegiatan_penyakit");
+                        JSONArray lokasi_penyakit = response.getJSONArray("lokasi_penyakit");
+                        JSONArray lain_ketrampilan = response.getJSONArray("lain_ketrampilan");
+                        JSONArray dosen_ketrampilan = response.getJSONArray("dosen_ketrampilan");
+                        JSONArray kegiatan_ketrampilan = response.getJSONArray("kegiatan_ketrampilan");
+                        JSONArray lokasi_ketrampilan = response.getJSONArray("lokasi_ketrampilan");
+                        JSONArray penyakit1 = response.getJSONArray("penyakit1");
+                        JSONArray penyakit2 = response.getJSONArray("penyakit2");
+                        JSONArray penyakit3= response.getJSONArray("penyakit3");
+                        JSONArray penyakit4= response.getJSONArray("penyakit4");
+                        JSONArray ketrampilan1= response.getJSONArray("keterampilan1");
+                        JSONArray ketrampilan2= response.getJSONArray("keterampilan2");
+                        JSONArray ketrampilan3= response.getJSONArray("keterampilan3");
+                        JSONArray ketrampilan4= response.getJSONArray("keterampilan4");
+
+
+                        for (int i = 0; i < lain_penyakit.length(); i++) {
+                            JSONObject j = lain_penyakit.getJSONObject(i);
+                            JSONObject j_nama = dosen_penyakit.getJSONObject(i);
+                            JSONObject j_kegiatan = kegiatan_penyakit.getJSONObject(i);
+                            JSONObject j_lokasi = lokasi_penyakit.getJSONObject(i);
+                            JSONObject j_p1 = penyakit1.getJSONObject(i);
+                            JSONObject j_p2 = penyakit2.getJSONObject(i);
+                            JSONObject j_p3 = penyakit3.getJSONObject(i);
+                            JSONObject j_p4 = penyakit4.getJSONObject(i);
+                            HashMap<String, String> item = new HashMap<String, String>();
+                            item.put("id",j.getString("id"));
+                            item.put("nim", j.getString("nim"));
+                            String tanggal = changeDate(j.getString("tanggal"));
+                            item.put("tanggal",tanggal+" ");
+                            item.put("waktu",j.getString("jam_awal")+"-"+j.getString("jam_akhir")+" ");
+                            if(j.getString("status").equals("1")){
+                                item.put("status","Approved");
+                            }else item.put("status","Unapproved");
+                            item.put("dosen", j_nama.getString("nama"));
+                            item.put("kegiatan", j_kegiatan.getString("kegiatan"));
+                            item.put("level",j_kegiatan.getString("level"));
+                            item.put("kategori",j_kegiatan.getString("kategori"));
+                            item.put("lokasi", j_lokasi.getString("lokasi"));
+                            item.put("p1", j_p1.getString("penyakit").toUpperCase() +
+                                    "(" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ")");
+
+                            if (j_p2.getString("penyakit").equals("null")) {
+                                item.put("p2", " ");
+
+                            } else {
+                                item.put("p2", j_p2.getString("penyakit").toUpperCase() +
+                                        "(" + j_p2.getString("skdi_level") + "-"
+                                        + j_p2.getString("sumber") + ")");
+                            }
+                            if (j_p3.getString("penyakit").equals("null")) {
+                                item.put("p3", " ");
+                            } else {
+                                item.put("p3", j_p3.getString("penyakit").toUpperCase()
+                                        + "(" + j_p3.getString("skdi_level") + "-"
+                                        + j_p3.getString("sumber") + ")");
+                            }
+                            if (j_p4.getString("penyakit").equals("null")) {
+                                item.put("p4", " ");
+                            } else {
+                                item.put("p4", j_p4.getString("penyakit").toUpperCase()
+                                        + "(" + j_p4.getString("skdi_level") + "-"
+                                        + j_p4.getString("sumber") + ")");
+                            }
+                            list_jurnal_penyakit.add(item);
+
+                        }
+
+//                                item.put("p1", j_p1.getString("ketrampilan").toUpperCase() +
+//                                        "(" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ")");
+//
+//                                if (j_p2.getString("ketrampilan").equals("null")) {
+//                                    item.put("p2", " ");
+//
+//                                } else {
+//                                    item.put("p2", j_p2.getString("ketrampilan").toUpperCase() +
+//                                            "(" + j_p2.getString("skdi_level") + "-"
+//                                            + j_p2.getString("sumber") + ")");
+//                                }
+//                                if (j_p3.getString("ketrampilan").equals("null")) {
+//                                    item.put("p3", " ");
+//                                } else {
+//                                    item.put("p3", j_p3.getString("ketrampilan").toUpperCase()
+//                                            + "(" + j_p3.getString("skdi_level") + "-"
+//                                            + j_p3.getString("sumber") + ")");
+//                                }
+//                                if (j_p4.getString("ketrampilan").equals("null")) {
+//                                    item.put("p4", " ");
+//                                } else {
+//                                    item.put("p4", j_p4.getString("ketrampilan").toUpperCase()
+//                                            + "(" + j_p4.getString("skdi_level") + "-"
+//                                            + j_p4.getString("sumber") + ")");
+//                                }
+
+
+
+
+//                            obj2 = response.getJSONArray("keterampilan2");
+//                            obj3 = response.getJSONArray("keterampilan3");
+//                            obj4 = response.getJSONArray("keterampilan4");
+//
+//                        }
+
+
+
+
+                        ListAdapter adapter =new SimpleAdapter(
+                                getApplicationContext(), list_jurnal_penyakit,R.layout.item_row_show,
+                                new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status"},
+                                new int[]{R.id.tv_jam,R.id.tv_lokasi,R.id.tv_kegiatan,R.id.tv_sumber,R.id.tv_sumber2,
+                                        R.id.tv_sumber3,R.id.tv_sumber4,R.id.tv_dosen,R.id.tv_status}
+                        );
+                        lv_penyakit.setAdapter(adapter);
+//                        {
+//                            @Override
+//                            public View getView (int position, View convertView, ViewGroup parent)
+//                            {
+//                                View v = super.getView(position, convertView, parent);
+//
+//                                final TextView status=(TextView) v.findViewById(R.id.status);
+//                                final TextView statuslain=(TextView) v.findViewById(R.id.another_status);
+//                                final TextView show_more=(TextView) v.findViewById(R.id.show_more);
+//                                final LinearLayout kegiatan=(LinearLayout) v.findViewById(R.id.layout_keiatan);
+//                                final LinearLayout lokasi=(LinearLayout) v.findViewById(R.id.layout_lokasi);
+//                                final LinearLayout lv_keg=(LinearLayout) v.findViewById(R.id.layout_level);
+//                                final LinearLayout keg_dosen=(LinearLayout) v.findViewById(R.id.layout_keg_dosen);
+//                                final LinearLayout kategori=(LinearLayout) v.findViewById(R.id.layout_kategori);
+//                                final LinearLayout penyakit=(LinearLayout) v.findViewById(R.id.layout_penyakit);
+//                                final TextView jenis= v.findViewById(R.id.jns_jurnal);
+//                                final TextView id_jurnal = v.findViewById(R.id.id_jurnal);
+//
+////                            final TextView show_less=(TextView) v.findViewById(R.id.show_less);
+//                                if(getIntent().getStringExtra("jenis_jurnal").equals("Jurnal Penyakit")){
+//                                    jenis.setText("Penyakit :");
+//                                } else{
+//                                    jenis.setText("Keterampilan :");
+//                                }
+//
+//
+//                                if(status.getText().equals("Approved")){
+//                                    statuslain.setText("Unapprove");
+//                                    statuslain.setBackgroundResource(R.drawable.background_unapproved);
+//                                }else {
+//                                    statuslain.setText("Approve");
+//                                    statuslain.setBackgroundResource(R.drawable.background_approved);
+//                                }
+//
+//                                statuslain.setOnClickListener(new View.OnClickListener() {
+//
+//                                    @Override
+//                                    public void onClick(View arg0) {
+//                                        if(status.getText().equals("Approved")){
+//                                            String newstatus = "0";
+//                                            String id = (String) id_jurnal.getText();
+//                                            String jenis = getIntent().getStringExtra("jenis_jurnal");
+//                                            updateStatus(newstatus,id, jenis);
+//                                            status.setText("Unapproved");
+//                                            statuslain.setText("Approve");
+//                                            statuslain.setBackgroundResource(R.drawable.background_approved);
+//
+//                                        }else {
+//                                            String newstatus = "1";
+//                                            String id = (String) id_jurnal.getText();
+//                                            String jenis = getIntent().getStringExtra("jenis_jurnal");
+//                                            updateStatus(newstatus,id, jenis);
+//                                            status.setText("Approved");
+//                                            statuslain.setText("Unapprove");
+//                                            statuslain.setBackgroundResource(R.drawable.background_unapproved);
+//                                        }
+//
+//                                    }
+//                                });
+//                                show_more.setOnClickListener(new View.OnClickListener() {
+//                                    @Override
+//                                    public void onClick(View view) {
+//                                        if (show_more.getText().equals("show more")) {
+//                                            kegiatan.setVisibility(View.VISIBLE);
+//                                            lokasi.setVisibility(View.VISIBLE);
+//                                            lv_keg.setVisibility(View.VISIBLE);
+//                                            keg_dosen.setVisibility(View.VISIBLE);
+//                                            kategori.setVisibility(View.VISIBLE);
+//                                            penyakit.setVisibility(View.VISIBLE);
+//                                            show_more.setText("show less ");
+//                                        }else {
+//                                            kegiatan.setVisibility(View.GONE);
+//                                            lokasi.setVisibility(View.GONE);
+//                                            lv_keg.setVisibility(View.GONE);
+//                                            keg_dosen.setVisibility(View.GONE);
+//                                            kategori.setVisibility(View.GONE);
+//                                            penyakit.setVisibility(View.GONE);
+//                                            show_more.setText("show more ");
+//
+//                                        }
+//
+//                                    }
+//                                });
+//
+//                                return v;
+//                            }
+
+
+//                        };
+//                        judul_dafkeg.setText(getIntent().getStringExtra("jenis_jurnal").toUpperCase());
+//                        rvdafkeg.setAdapter(adapter);
+//                        app_all.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//                                String jenis = getIntent().getStringExtra("jenis_jurnal");
+//                                updateStatusSemua(jenis);
+//
+//
+//                            }
+//
+//
+//                    });
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "Gagal mengambil data, silahkan cek koneksi Anda",Toast.LENGTH_LONG).show();
+
+                }
+            });
+            MySingleton.getInstance(this).addToRequestQueue(json);
+
+
+        }
+
+    private static String  changeDate(String date){
+        String[] namaBulan ={"Januari","Februari","Maret","April","Mei","Juni","Juli",
+                "Agustus","September","Oktober","November","Desember"};
+        final String Tahun = date.substring(0,4);
+        String Bulan = date.substring(5,7);
+        int Bulan1 = Integer.parseInt(Bulan);
+        final String Tanggal = date.substring(8);
+        String changedDate = Tanggal+" "+namaBulan[Bulan1-1]+" "+Tahun;
+        return changedDate;
+    }
+
 
     }
