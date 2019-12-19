@@ -59,7 +59,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String updateEntry = "http://10.104.22.143/updateEntry.php";
+    private String updateEntry = "http://192.168.0.103/updateEntry.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal;
     EditText evaluasi,rencana;
@@ -95,7 +95,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
         buttonKetrampilan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent a = new Intent(IsiJurnalDetail.this, tambahJurnal.class);
+                Intent a = new Intent(IsiJurnalDetail.this, MainApprove.class);
                 a.putExtra ("jurnal","jurnal_ketrampilan");
                 startActivity(a);
             }
@@ -116,7 +116,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
         private void judul() {
             Intent intent = getIntent();
             final String id = intent.getStringExtra(mainIsiJurnal.KEY_ID);
-            String url_judul = "http://10.104.22.143/getKepaniteraan.php?id="+id;
+            String url_judul = "http://192.168.0.103/getKepaniteraan.php?id="+id;
 
             try {
 
@@ -145,7 +145,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
             session = new SessionHandler(getApplicationContext());
             User user = session.getUserDetails();
             String username = user.getUsername();
-            String url_judul = "http://10.104.22.143/getJadwal.php?username="+username+"&stase="+idStase;
+            String url_judul = "http://192.168.0.103/getJadwal.php?username="+username+"&stase="+idStase;
 
             try {
 
@@ -175,7 +175,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 if(now.after(tglMulai) && now.before(tglSelesai1)) {
                     MainLayout.setVisibility(LinearLayout.VISIBLE);
                     String status = "1";
-                    String url_status = "http://10.104.22.143/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.0.103/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -187,7 +187,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else if(now.after(tglMulai)){
                     String status = "0";
-                    String url_status = "http://10.104.22.143/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.0.103/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -198,7 +198,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else{
                     String status = "2";
-                    String url_status = "http://10.104.22.143/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.0.103/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 

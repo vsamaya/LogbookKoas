@@ -3,6 +3,7 @@ package com.example.logbookkoas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
@@ -24,6 +25,7 @@ ImageView profile;
         btn_dftrkeg=findViewById(R.id.btn_dftrkeg);
         btn_rekapkeg=findViewById(R.id.btn_rekapkeg);
         profile = findViewById(R.id.img_profile_dsn);
+
 
         btn_generatecode.setOnClickListener(new View.OnClickListener() {
             @Override

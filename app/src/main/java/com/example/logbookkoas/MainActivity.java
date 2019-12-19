@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private String username;
     private String password;
     private ProgressDialog pDialog;
-    private String login_url = "http://10.104.22.143/login.php";
+    private String login_url = "http://192.168.0.103/login.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;

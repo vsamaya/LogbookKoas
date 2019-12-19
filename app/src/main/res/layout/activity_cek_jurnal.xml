@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".CekJurnal">
 
     <LinearLayout
         android:id="@+id/layout_atas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/grad"
         android:orientation="vertical">
 
@@ -23,18 +23,26 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="15dp"
             android:gravity="center_horizontal"
-            android:text="ISI LOGBOOK KEPANITERAAN (STASE)"
+            android:text="CEK LOGBOOK KEPANITERAAN (STASE)"
             android:textColor="@android:color/background_light"
             android:textSize="24sp"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/roundedlayout"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/lv_cekjurnal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_row_cekjurnal">
+
+            </ListView>
+        </LinearLayout>
+
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/lv_isi_jurnal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/item_row_jurnal"/>
-
 
 </LinearLayout>

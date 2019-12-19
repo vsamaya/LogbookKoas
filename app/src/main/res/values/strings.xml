@@ -14,4 +14,8 @@
     <string name="jenis_jurnal">Jenis Jurnal</string>
     <string name="judul">judul</string>
     <string name="jadwal">jadwal</string>
+    <string name="pass_info">Masukkan Password Untuk Approvement Jurnal</string>
+    <string name="otp_info">Masukkan Code OTP Untuk Approvement</string>
+    <string name="qr_info">Scan QR Code Untuk Approvement Jurnal</string>
+    <string name="status">status</string>
 </resources>

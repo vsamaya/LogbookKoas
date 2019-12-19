@@ -37,4 +37,5 @@ dependencies {
     implementation 'com.leodroidcoder:generic-adapter:1.0.0'
     implementation 'org.jbundle.util.osgi.wrapped:org.jbundle.util.osgi.wrapped.org.apache.http.client:4.1.2'
     implementation 'com.leodroidcoder:generic-adapter:1.0.0'
+    implementation 'me.dm7.barcodescanner:zxing:1.9'
 }
