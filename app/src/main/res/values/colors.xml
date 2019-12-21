@@ -32,5 +32,8 @@
     <color name="lightgreen">#99cc99</color>
     <color name="jadedust">#00d2d3</color>
     <color name="purple_accent">#860434</color>
+    <color name="aktif">#B54CAF50</color>
+    <color name="belum_aktif">#BAFFEB3B</color>
+    <color name="terlewat">#D22196F3</color>
 
 </resources>
