@@ -135,10 +135,12 @@
                         <ListView
                             android:id="@+id/lv_ketrampilan"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scrollbarSize="3dp"
+                            android:nestedScrollingEnabled="true"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            tools:listitem="@layout/item_row_show" />
+                            android:background="@drawable/roundedfulllayout" />
 
                         <Button
                             android:id="@+id/buttonKetrampilan"

@@ -1,15 +1,16 @@
 package com.example.logbookkoas;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -22,86 +23,58 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.StrictMode;
-import android.annotation.SuppressLint;
-import android.app.Activity;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.util.Log;
-import android.view.View;
-import android.view.Menu;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-
-public class mainIsiJurnal extends Activity {
+public class CekJurnal extends AppCompatActivity {
     private SessionHandler session;
+    ListView lv_cekjurnal;
     public static final String KEY_ID = "id";
-    private static final String KEY_USERNAME = "username";
-    ArrayList<HashMap<String, String>> MyArr;
-    ListView lv_isi_jurnal;
-    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-    SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
-    final String url_judul = "http://192.168.43.159/logbook/showalljurnal.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_isi_jurnal);
+        setContentView(R.layout.activity_cek_jurnal);
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        final ListView lv_isi_jurnal = (ListView) findViewById(R.id.lv_isi_jurnal);
+        lv_cekjurnal=findViewById(R.id.lv_cekjurnal);
         session = new SessionHandler(getApplicationContext());
-        User user = session.getUserDetails();
-        String username = user.getUsername();
-        String url_judul = "http://192.168.43.159/logbook/judul.php";
-        MyArr = new ArrayList<HashMap<String, String>>();
-//        showalljurnal();
+        String url_kepaniteraan = "http://192.168.200.31/judul.php";
 
         try {
 
-            JSONArray data = new JSONArray(getJSONUrl(url_judul));
+            JSONArray data = new JSONArray(getJSONUrl(url_kepaniteraan));
 
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
 
             for(int i = 0; i < data.length(); i++){
                 JSONObject c = data.getJSONObject(i);
+
                 map = new HashMap<String, String>();
-                map.put("kepaniteraan", c.getString("kepaniteraan"));
                 map.put("id", c.getString("id"));
+                map.put("kepaniteraan", c.getString("kepaniteraan"));
                 MyArrList.add(map);
-                String stase="stase_"+c.getString("kepaniteraan");
-                String url_jadwal= "http://192.168.43.159/logbook/jadwal1.php?stase="+stase;
+
             }
-            SimpleAdapter lAdap;
-            lAdap = new SimpleAdapter(mainIsiJurnal.this, MyArrList, R.layout.item_row_jurnal,
-                    new String[] {"kepaniteraan"}, new int[] {R.id.tv_judul});
-            lv_isi_jurnal.setAdapter(lAdap);
+            SimpleAdapter sAdap;
+            sAdap = new SimpleAdapter(CekJurnal.this, MyArrList, R.layout.item_row_cekjurnal,
+                    new String[] {"kepaniteraan"}, new int[] {R.id.tv_judul,});
+            lv_cekjurnal.setAdapter(sAdap);
 
             final AlertDialog.Builder viewDetail = new AlertDialog.Builder(this);
 
-            lv_isi_jurnal.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            lv_cekjurnal.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
                     HashMap<String, String> map = MyArrList.get(pos);
-                    Intent i = new Intent(mainIsiJurnal.this,IsiJurnalDetail.class);
+                    Intent i = new Intent(CekJurnal.this,CekJurnalDatePicker.class);
                     i.putExtra (KEY_ID,(map.get("id")));
                     startActivity(i);
                 }
@@ -111,6 +84,7 @@ public class mainIsiJurnal extends Activity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
     }
 
     public String getJSONUrl(String url) {

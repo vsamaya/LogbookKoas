@@ -3,6 +3,7 @@ package com.example.logbookkoas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
@@ -43,6 +44,7 @@ TextView username,namaDosen;
         namaDosen.setText(nama);
         username = findViewById(R.id.usernamedosen);
         username.setText(nip);
+
 
 
 

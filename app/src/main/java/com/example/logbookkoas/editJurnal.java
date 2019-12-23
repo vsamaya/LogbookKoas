@@ -2,21 +2,14 @@ package com.example.logbookkoas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.SimpleExpandableListAdapter;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -24,35 +17,17 @@ import android.widget.Toast;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
-import javax.sql.StatementEvent;
+public class editJurnal extends AppCompatActivity {
 
-public class tambahJurnal extends AppCompatActivity {
     String spinnerURL = "http://192.168.43.159/logbook/spinnerTambahJurnal.php";
     String tanggalURL = "http://192.168.43.159/logbook/tanggalTambahJurnal.php";
     String submitURL = "http://192.168.43.159/logbook/submitTambahJurnal.php";
@@ -71,14 +46,11 @@ public class tambahJurnal extends AppCompatActivity {
     TextView stase, tanggalhari, id_jenis1, id_jenis2, id_jenis3, id_jenis4;
     TextView timePickerMulai, timePickerSelesai;
     TimePickerDialog timePickerDialog;
-
     private SessionHandler session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah_jurnal);
-//        jurnal = findViewById(R.id.jurnal);
-//        potong = findViewById(R.id.potong);
+        setContentView(R.layout.activity_edit_jurnal);
         Intent intent = getIntent();
         final String jenis_jurnal = intent.getStringExtra("jurnal");
         String nim = "22010118220192";
@@ -201,8 +173,10 @@ public class tambahJurnal extends AppCompatActivity {
                         lokasi.add(loc);
                     }
                     String[] str = getStringArray(lokasi);
-                    ArrayAdapter<String> c = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item,str);
+                    ArrayAdapter<String> c = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item,str);
                     spinnerLokasi.setAdapter(c);
+                    String lokasi = getIntent().getStringExtra("lokasi");
+                    spinnerLokasi.setSelection(getIndex(spinnerLokasi,lokasi));
                     spinnerLokasi.setTitle("Pilih Lokasi");
 
                     //spinner kegiatan
@@ -215,8 +189,11 @@ public class tambahJurnal extends AppCompatActivity {
                         kegiatan.add(keg);
                     }
                     String[] strnama = getStringArray(kegiatan);
-                    ArrayAdapter<String> d = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item,strnama);
+                    ArrayAdapter<String> d = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item,strnama);
                     spinnerKegiatan.setAdapter(d);
+                    String kegiatan = getIntent().getStringExtra("kegiatan");
+                    tv_coba.append(kegiatan);
+                    spinnerKegiatan.setSelection(getIndex(spinnerKegiatan,kegiatan));
                     spinnerKegiatan.setTitle("Pilih Kegiatan");
 
                     JSONArray dosenArray = response.getJSONArray("dosen");
@@ -229,9 +206,12 @@ public class tambahJurnal extends AppCompatActivity {
                         namaDosen.add(dosen+", "+gelar);
                     }
                     String[] strdosen = getStringArray(namaDosen);
-                    ArrayAdapter<String> dsn = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item,strdosen);
+                    ArrayAdapter<String> dsn = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item,strdosen);
                     spinnerDosen.setAdapter(dsn);
+                    String dosen = getIntent().getStringExtra("dosen");
+                    spinnerDosen.setSelection(getIndex(spinnerDosen, dosen));
                     spinnerDosen.setTitle("Pilih Dosen");
+
 
 
 
@@ -250,7 +230,9 @@ public class tambahJurnal extends AppCompatActivity {
                         }
                         String[] strsispen = getStringArray(sistem_penyakit);
                         final String[] idsispen = getStringArray(id_sistemP);
-                        ArrayAdapter<String> a = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item, strsispen);
+                        ArrayAdapter<String> a = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item, strsispen);
+
+                        getSistem("penyakit", );
                         a.setDropDownViewResource(android.R.layout.simple_spinner_item);
                         spinnerSistem.setAdapter(a);
                         spinnerSistem.setTitle("Pilih Sistem Penyakit");
@@ -326,7 +308,7 @@ public class tambahJurnal extends AppCompatActivity {
                         }
                         String[] strsisket = getStringArray(sistem_keterampilan);
                         final String[] idsisket = getStringArray(id_sistemK);
-                        ArrayAdapter<String> a = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item, strsisket);
+                        ArrayAdapter<String> a = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item, strsisket);
                         a.setDropDownViewResource(android.R.layout.simple_spinner_item);
                         spinnerSistem.setAdapter(a);
                         spinnerSistem.setTitle("Pilih Sistem Keterampilan");
@@ -391,10 +373,10 @@ public class tambahJurnal extends AppCompatActivity {
                         });
                     }
 
-
-
-
-
+                    String jam_awal = getIntent().getStringExtra("jam_awal");
+                    String jam_akhir = getIntent().getStringExtra("jam_akhir");
+                    timePickerMulai.setText(jam_awal);
+                    timePickerSelesai.setText(jam_akhir);
 
 
 
@@ -406,7 +388,7 @@ public class tambahJurnal extends AppCompatActivity {
                             /**
                              * Initialize TimePicker Dialog
                              */
-                            timePickerDialog = new TimePickerDialog(tambahJurnal.this, new TimePickerDialog.OnTimeSetListener() {
+                            timePickerDialog = new TimePickerDialog(editJurnal.this, new TimePickerDialog.OnTimeSetListener() {
                                 @Override
                                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                     /**
@@ -419,11 +401,11 @@ public class tambahJurnal extends AppCompatActivity {
                                      * Tampilkan jam saat ini ketika TimePicker pertama kali dibuka
                                      */
                                     calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
-                                    DateFormat.is24HourFormat(tambahJurnal.this));
+                                    DateFormat.is24HourFormat(editJurnal.this));
 
-                                    /**
-                                     * Cek apakah format waktu menggunakan 24-hour format
-                                     */
+                            /**
+                             * Cek apakah format waktu menggunakan 24-hour format
+                             */
 //                                    DateFormat.is24HourFormat(this)
 
                             timePickerDialog.show();
@@ -439,7 +421,7 @@ public class tambahJurnal extends AppCompatActivity {
                             /**
                              * Initialize TimePicker Dialog
                              */
-                            timePickerDialog = new TimePickerDialog(tambahJurnal.this, new TimePickerDialog.OnTimeSetListener() {
+                            timePickerDialog = new TimePickerDialog(editJurnal.this, new TimePickerDialog.OnTimeSetListener() {
                                 @Override
                                 public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                     /**
@@ -452,7 +434,7 @@ public class tambahJurnal extends AppCompatActivity {
                                      * Tampilkan jam saat ini ketika TimePicker pertama kali dibuka
                                      */
                                     calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
-                                    DateFormat.is24HourFormat(tambahJurnal.this));
+                                    DateFormat.is24HourFormat(editJurnal.this));
 
                             /**
                              * Cek apakah format waktu menggunakan 24-hour format
@@ -520,54 +502,54 @@ public class tambahJurnal extends AppCompatActivity {
                             String[] kegiatan = getStringArray(id_kegiatan);
                             String id_keg = kegiatan[spinnerKegiatan.getSelectedItemPosition()];
 
-                                JSONObject request = new JSONObject();
-                                try {
-                                    //Populate the request parameters
-                                    request.put("jenis",jenis);
-                                    request.put("username", username);
-                                    request.put("angkatan",angkatan);
-                                    request.put("hari", hari_skrg);
-                                    request.put("tanggal",tgl_skrg);
-                                    request.put("stase",stase);
-                                    request.put("dosen",niptmpl);
-                                    request.put("jam_awal",jam_awal);
-                                    request.put("jam_akhir",jam_akhir);
-                                    request.put("lokasi",id_lokasi);
-                                    request.put("kegiatan",id_keg);
-                                    request.put("id_sis1",id_sis1);
-                                    request.put("id_sis2",id_sis2);
-                                    request.put("id_sis3",id_sis3);
-                                    request.put("id_sis4",id_sis4);
-                                    request.put("id_jenis1",method(jenis1));
-                                    request.put("id_jenis2",method(jenis2));
-                                    request.put("id_jenis3",method(jenis3));
-                                    request.put("id_jenis4",method(jenis4));
-                                    Intent intent = new Intent(tambahJurnal.this,IsiJurnalDetail.class);
-                                    intent.putExtra(mainIsiJurnal.KEY_ID,stase);
-                                    startActivity(intent);
-                                    finish();
+                            JSONObject request = new JSONObject();
+                            try {
+                                //Populate the request parameters
+                                request.put("jenis",jenis);
+                                request.put("username", username);
+                                request.put("angkatan",angkatan);
+                                request.put("hari", hari_skrg);
+                                request.put("tanggal",tgl_skrg);
+                                request.put("stase",stase);
+                                request.put("dosen",niptmpl);
+                                request.put("jam_awal",jam_awal);
+                                request.put("jam_akhir",jam_akhir);
+                                request.put("lokasi",id_lokasi);
+                                request.put("kegiatan",id_keg);
+                                request.put("id_sis1",id_sis1);
+                                request.put("id_sis2",id_sis2);
+                                request.put("id_sis3",id_sis3);
+                                request.put("id_sis4",id_sis4);
+                                request.put("id_jenis1",method(jenis1));
+                                request.put("id_jenis2",method(jenis2));
+                                request.put("id_jenis3",method(jenis3));
+                                request.put("id_jenis4",method(jenis4));
+                                Intent intent = new Intent(editJurnal.this,IsiJurnalDetail.class);
+                                intent.putExtra(mainIsiJurnal.KEY_ID,stase);
+                                startActivity(intent);
+                                finish();
 
 
 
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                                        ( submitURL, request, new Response.Listener<JSONObject>() {
-                                            @Override
-                                            public void onResponse(JSONObject response) {
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                                    ( submitURL, request, new Response.Listener<JSONObject>() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
 
-                                            }
-                                        }, new Response.ErrorListener() {
+                                        }
+                                    }, new Response.ErrorListener() {
 
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
 
-                                            }
-                                        });
+                                        }
+                                    });
 
-                                // Access the RequestQueue through your singleton class.
-                                MySingleton.getInstance(tambahJurnal.this).addToRequestQueue(jsArrayRequest);
+                            // Access the RequestQueue through your singleton class.
+                            MySingleton.getInstance(editJurnal.this).addToRequestQueue(jsArrayRequest);
 
 
 
@@ -598,7 +580,7 @@ public class tambahJurnal extends AppCompatActivity {
 
             }
         });
-        MySingleton.getInstance(tambahJurnal.this).addToRequestQueue(jsonstase);
+        MySingleton.getInstance(editJurnal.this).addToRequestQueue(jsonstase);
 
     }
 
@@ -632,7 +614,7 @@ public class tambahJurnal extends AppCompatActivity {
                             penyakit.add(pen+" ("+j.getString("skdi_level")+"-"+j.getString("sumber")+") ");
                         }
                         String[] str = getStringArray(penyakit);
-                        ArrayAdapter<String> p = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item, str);
+                        ArrayAdapter<String> p = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item, str);
                         if(key == 1){
                             spinnerJenis.setAdapter(p);
                             spinnerJenis.setTitle("Pilih Penyakit");}
@@ -659,10 +641,10 @@ public class tambahJurnal extends AppCompatActivity {
                             keterampilan.add(ketr+" ("+j.getString("skdi_level")+"-"+j.getString("sumber")+") ");
                         }
                         String[] str = getStringArray(keterampilan);
-                        ArrayAdapter<String> k = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item, str);
+                        ArrayAdapter<String> k = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item, str);
                         if(key==1){
-                        spinnerJenis.setAdapter(k);
-                        spinnerJenis.setTitle("Pilih Ketrampilan");}
+                            spinnerJenis.setAdapter(k);
+                            spinnerJenis.setTitle("Pilih Ketrampilan");}
                         else if (key==2){
                             spinnerJenis2.setAdapter(k);
                             spinnerJenis2.setTitle("Pilih Ketrampilan");
@@ -693,7 +675,7 @@ public class tambahJurnal extends AppCompatActivity {
 
             }
         });
-        MySingleton.getInstance(tambahJurnal.this).addToRequestQueue(jsonpenyakit);
+        MySingleton.getInstance(editJurnal.this).addToRequestQueue(jsonpenyakit);
 
 
 
@@ -750,7 +732,7 @@ public class tambahJurnal extends AppCompatActivity {
 
             }
         });
-        MySingleton.getInstance(tambahJurnal.this).addToRequestQueue(jsonstase);
+        MySingleton.getInstance(editJurnal.this).addToRequestQueue(jsonstase);
 
 
     }
@@ -776,7 +758,17 @@ public class tambahJurnal extends AppCompatActivity {
         }
         return str;
     }
+    private int getIndex(SearchableSpinner spinner, String myString){
+        for (int i=0;i<spinner.getCount();i++){
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)){
+                return i;
+            }
+        }
+        return 0;
+    }
+    private String getSistem(String jns, String penyakit){
 
+    }
 
 
 }
