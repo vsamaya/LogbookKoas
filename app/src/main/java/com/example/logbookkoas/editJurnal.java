@@ -28,9 +28,10 @@ import java.util.Calendar;
 
 public class editJurnal extends AppCompatActivity {
 
-    String spinnerURL = "http://192.168.43.159/logbook/spinnerTambahJurnal.php";
-    String tanggalURL = "http://192.168.43.159/logbook/tanggalTambahJurnal.php";
-    String submitURL = "http://192.168.43.159/logbook/submitTambahJurnal.php";
+    String spinnerURL = "http://192.168.3.10/logbook/spinnerTambahJurnal.php";
+    String tanggalURL = "http://192.168.3.10/logbook/tanggalTambahJurnal.php";
+    String editSistemURL = "http://192.168.3.10/logbook/sistemEdit.php";
+    String editURL = "http://192.168.3.10/logbook/editJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;
@@ -232,8 +233,6 @@ public class editJurnal extends AppCompatActivity {
                         final String[] idsispen = getStringArray(id_sistemP);
                         ArrayAdapter<String> a = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item, strsispen);
 
-                        getSistem("penyakit", );
-                        a.setDropDownViewResource(android.R.layout.simple_spinner_item);
                         spinnerSistem.setAdapter(a);
                         spinnerSistem.setTitle("Pilih Sistem Penyakit");
                         spinnerSistem2.setAdapter(a);
@@ -242,6 +241,29 @@ public class editJurnal extends AppCompatActivity {
                         spinnerSistem3.setTitle("Pilih Sistem Penyakit");
                         spinnerSistem4.setAdapter(a);
                         spinnerSistem4.setTitle("Pilih Sistem Penyakit");
+                        String penyakit = getIntent().getStringExtra("jenis1");
+                        String penyakit2 = new String();
+                        String penyakit3= new String();
+                        String penyakit4= new String();
+                        if(getIntent().getStringExtra("jenis2").equals("-")){
+                            penyakit2="-";
+                        } else {
+                            penyakit2 = method(getIntent().getStringExtra("jenis2"));
+                        }if(getIntent().getStringExtra("jenis3").equals("-")){
+                            penyakit3="-";
+                        } else {
+                            penyakit3 = method(getIntent().getStringExtra("jenis3"));
+                        }if(getIntent().getStringExtra("jenis4").equals("-")){
+                            penyakit4="-";
+                        } else {
+                            penyakit4 = method(getIntent().getStringExtra("jenis4"));
+                        }
+
+
+                        a.setDropDownViewResource(android.R.layout.simple_spinner_item);
+                        tv_coba.append(penyakit2);
+//                        tv_coba.append(method(penyakit));
+                        getSistem("penyakit", method(penyakit), method(penyakit2), method(penyakit3), method(penyakit4));
 
                         spinnerSistem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
@@ -535,7 +557,7 @@ public class editJurnal extends AppCompatActivity {
                                 e.printStackTrace();
                             }
                             JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                                    ( submitURL, request, new Response.Listener<JSONObject>() {
+                                    ( editURL, request, new Response.Listener<JSONObject>() {
                                         @Override
                                         public void onResponse(JSONObject response) {
 
@@ -766,9 +788,107 @@ public class editJurnal extends AppCompatActivity {
         }
         return 0;
     }
-    private String getSistem(String jns, String penyakit){
+    private void getSistem(final String jns, final String idjns1, String idjns2, String idjns3, String idjns4){
+
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            request.put("jenis",jns);
+            request.put("penyakit",idjns1);
+            request.put("penyakit2",idjns2);
+            request.put("penyakit3",idjns3);
+            request.put("penyakit4",idjns4);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsonstase = new JsonObjectRequest(
+                editSistemURL,request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    //spiner lokasi
+                    JSONArray sistemArray = response.getJSONArray("sistem");
+//                    JSONArray sistemArray2 = response.getJSONArray("sistem2");
+//                    JSONArray sistemArray3 = response.getJSONArray("sistem3");
+//                    JSONArray sistemArray4 = response.getJSONArray("sistem4");
+                    if(jns.equals("penyakit")){
+
+                        for (int i = 0; i < sistemArray.length(); i++) {
+                            JSONObject j = sistemArray.getJSONObject(i);
+//                            JSONObject j2 = sistemArray2.getJSONObject(i);
+//                            JSONObject j3 = sistemArray3.getJSONObject(i);
+//                            JSONObject j4 = sistemArray4.getJSONObject(i);
+                            String sistemPenyakit = j.getString("sistem_penyakit");
+//                            String sistemPenyakit2 = j2.getString("sistem_penyakit");
+//                            String sistemPenyakit3 = j3.getString("sistem_penyakit");
+//                            String sistemPenyakit4 = j4.getString("sistem_penyakit");
+                            id_jenis1.setText(sistemPenyakit);
+                            spinnerSistem.setSelection(getIndex(spinnerSistem,sistemPenyakit));
+//                            tv_coba.append(sistemPenyakit2);
+//                            if(sistemPenyakit2.equals("<KOSONG>")){
+//                                spinnerSistem2.setSelection(getIndex(spinnerSistem2,"<KOSONG>"));
+//
+//                            } else{
+//                                spinnerSistem2.setSelection(getIndex(spinnerSistem2,sistemPenyakit2));}
+//                            if(sistemPenyakit2.equals("<KOSONG>")){
+//                                spinnerSistem3.setSelection(getIndex(spinnerSistem3,"<KOSONG>"));
+//
+//                            } else{
+//                                spinnerSistem3.setSelection(getIndex(spinnerSistem3,sistemPenyakit3));}
+//                            if(sistemPenyakit2.equals("<KOSONG>")){
+//                                spinnerSistem4.setSelection(getIndex(spinnerSistem4,"<KOSONG>"));
+//
+//                            } else{
+//                                spinnerSistem4.setSelection(getIndex(spinnerSistem4,sistemPenyakit4));}
+
+
+
+
+                        }
+                    }else {
+                        for (int i = 0; i < sistemArray.length(); i++) {
+                            JSONObject j = sistemArray.getJSONObject(i);
+//                            JSONObject j2 = sistemArray2.getJSONObject(i);
+//                            JSONObject j3 = sistemArray3.getJSONObject(i);
+//                            JSONObject j4 = sistemArray4.getJSONObject(i);
+                            String sistemPenyakit = j.getString("sistem_ketrampilan");
+//                            String sistemPenyakit2 = j2.getString("sistem_ketrampilan");
+//                            String sistemPenyakit3 = j3.getString("sistem_ketrampilan");
+//                            String sistemPenyakit4 = j4.getString("sistem_ketrampilan");
+                            id_jenis1.setText(sistemPenyakit);
+                            spinnerSistem.setSelection(getIndex(spinnerSistem,sistemPenyakit));
+//                            spinnerSistem2.setSelection(getIndex(spinnerSistem2,sistemPenyakit2));
+//                            spinnerSistem3.setSelection(getIndex(spinnerSistem3,sistemPenyakit3));
+//                            spinnerSistem4.setSelection(getIndex(spinnerSistem4,sistemPenyakit4));
+
+
+                        }
+
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(), "Gagal mengambil data, silahkan cek koneksi Anda",Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+        MySingleton.getInstance(editJurnal.this).addToRequestQueue(jsonstase);
 
     }
+
 
 
 }

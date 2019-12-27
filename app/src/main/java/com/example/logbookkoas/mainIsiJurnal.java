@@ -57,7 +57,7 @@ public class mainIsiJurnal extends Activity {
     ListView lv_isi_jurnal;
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
-    final String url_judul = "http://192.168.43.159/logbook/showalljurnal.php";
+    final String url_judul = "http://192.168.3.10/logbook/showalljurnal.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +70,7 @@ public class mainIsiJurnal extends Activity {
         session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
         String username = user.getUsername();
-        String url_judul = "http://192.168.43.159/logbook/judul.php";
+        String url_judul = "http://192.168.3.10/logbook/judul.php";
         MyArr = new ArrayList<HashMap<String, String>>();
 //        showalljurnal();
 
@@ -88,7 +88,7 @@ public class mainIsiJurnal extends Activity {
                 map.put("id", c.getString("id"));
                 MyArrList.add(map);
                 String stase="stase_"+c.getString("kepaniteraan");
-                String url_jadwal= "http://192.168.43.159/logbook/jadwal1.php?stase="+stase;
+                String url_jadwal= "http://192.168.3.10/logbook/jadwal1.php?stase="+stase;
             }
             SimpleAdapter lAdap;
             lAdap = new SimpleAdapter(mainIsiJurnal.this, MyArrList, R.layout.item_row_jurnal,
@@ -146,5 +146,7 @@ public class mainIsiJurnal extends Activity {
         // getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
     }
+
+
 
 }

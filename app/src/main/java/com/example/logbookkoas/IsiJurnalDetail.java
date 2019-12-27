@@ -61,8 +61,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String showURL = "http://192.168.43.159/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.43.159/logbook/deleteJurnal.php";
+    private String showURL = "http://192.168.3.10/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.3.10/logbook/deleteJurnal.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;
@@ -136,7 +136,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
         private void judul() {
             Intent intent = getIntent();
             final String id = intent.getStringExtra(mainIsiJurnal.KEY_ID);
-            String url_judul = "http://192.168.43.159/logbook/getKepaniteraan.php?id="+id;
+            String url_judul = "http://192.168.3.10/logbook/getKepaniteraan.php?id="+id;
 
             try {
 
@@ -165,7 +165,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
             session = new SessionHandler(getApplicationContext());
             User user = session.getUserDetails();
             String username = user.getUsername();
-            String url_judul = "http://192.168.43.159/logbook/getJadwal.php?username="+username+"&stase="+idStase;
+            String url_judul = "http://192.168.3.10/logbook/getJadwal.php?username="+username+"&stase="+idStase;
 
             try {
 
@@ -197,7 +197,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                     MainLayout.setVisibility(LinearLayout.VISIBLE);
 
                     String status = "1";
-                    String url_status = "http://192.168.43.159/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.3.10/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -209,7 +209,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else if(now.after(tglMulai)){
                     String status = "0";
-                    String url_status = "http://192.168.43.159/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.3.10/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -220,7 +220,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else{
                     String status = "2";
-                    String url_status = "http://192.168.43.159/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.3.10/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -392,29 +392,29 @@ public class IsiJurnalDetail extends AppCompatActivity {
                             statusPenyakit.add(j.getString("status"));
                             item.put("lokasi", j_lokasi.getString("lokasi"));
                             item.put("p1", j_p1.getString("penyakit").toUpperCase() +
-                                    "(" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ")");
+                                    " (" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ") ");
 
                             if (j_p2.getString("penyakit").equals("null")) {
-                                item.put("p2", " ");
+                                item.put("p2", "-");
 
                             } else {
                                 item.put("p2", j_p2.getString("penyakit").toUpperCase() +
-                                        "(" + j_p2.getString("skdi_level") + "-"
-                                        + j_p2.getString("sumber") + ")");
+                                        " (" + j_p2.getString("skdi_level") + "-"
+                                        + j_p2.getString("sumber") + ") ");
                             }
                             if (j_p3.getString("penyakit").equals("null")) {
-                                item.put("p3", " ");
+                                item.put("p3", "-");
                             } else {
                                 item.put("p3", j_p3.getString("penyakit").toUpperCase()
-                                        + "(" + j_p3.getString("skdi_level") + "-"
-                                        + j_p3.getString("sumber") + ")");
+                                        + " (" + j_p3.getString("skdi_level") + "-"
+                                        + j_p3.getString("sumber") + ") ");
                             }
                             if (j_p4.getString("penyakit").equals("null")) {
-                                item.put("p4", " ");
+                                item.put("p4", "-");
                             } else {
                                 item.put("p4", j_p4.getString("penyakit").toUpperCase()
-                                        + "(" + j_p4.getString("skdi_level") + "-"
-                                        + j_p4.getString("sumber") + ")");
+                                        + " (" + j_p4.getString("skdi_level") + "-"
+                                        + j_p4.getString("sumber") + ") ");
                             }
                             list_jurnal_penyakit.add(item);
 
@@ -456,29 +456,29 @@ public class IsiJurnalDetail extends AppCompatActivity {
                             item.put("lokasi", j_lokasi.getString("lokasi"));
 
                             item.put("p1", j_p1.getString("ketrampilan").toUpperCase() +
-                                    "(" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ")");
+                                    " (" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ") ");
 
                             if (j_p2.getString("ketrampilan").equals("null")) {
-                                item.put("p2", " ");
+                                item.put("p2", "-");
 
                             } else {
                                 item.put("p2", j_p2.getString("ketrampilan").toUpperCase() +
-                                        "(" + j_p2.getString("skdi_level") + "-"
-                                        + j_p2.getString("sumber") + ")");
+                                        " (" + j_p2.getString("skdi_level") + "-"
+                                        + j_p2.getString("sumber") + ") ");
                             }
                             if (j_p3.getString("ketrampilan").equals("null")) {
-                                item.put("p3", " ");
+                                item.put("p3", "-");
                             } else {
                                 item.put("p3", j_p3.getString("ketrampilan").toUpperCase()
-                                        + "(" + j_p3.getString("skdi_level") + "-"
-                                        + j_p3.getString("sumber") + ")");
+                                        + " (" + j_p3.getString("skdi_level") + "-"
+                                        + j_p3.getString("sumber") + ") ");
                             }
                             if (j_p4.getString("ketrampilan").equals("null")) {
-                                item.put("p4", " ");
+                                item.put("p4", "-");
                             } else {
                                 item.put("p4", j_p4.getString("ketrampilan").toUpperCase()
-                                        + "(" + j_p4.getString("skdi_level") + "-"
-                                        + j_p4.getString("sumber") + ")");
+                                        + " (" + j_p4.getString("skdi_level") + "-"
+                                        + j_p4.getString("sumber") + ") ");
                             }
                             list_jurnal_ketrampilan.add(item);
 
@@ -730,4 +730,5 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
         return str;
     }
+
     }
