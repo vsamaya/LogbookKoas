@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/grad"
     android:orientation="vertical">
 
@@ -39,7 +40,12 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:textSize="20sp" />
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:orientation="horizontal">
             <EditText
                 android:id="@+id/pass"
                 android:layout_width="match_parent"
@@ -49,14 +55,25 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:singleLine="true"
+                android:layout_weight="1"
                 android:textSize="20sp" />
-
+                <cyd.awesome.material.AwesomeText
+                    android:id="@+id/ImgShowPasswordds"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    app:awesome_font="material_design"
+                    app:awesome_icon="MD_VISIBILITY_OFF" />
+            </LinearLayout>
             <TextView
                 android:id="@+id/namads"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="kurniawan xxx"
+                android:text="Nama Lengkap"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:textSize="20sp" />
@@ -79,7 +96,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
-                android:text="Dr.xxx"
+                android:text="Gelar"
                 android:textSize="20sp" />
 
             <EditText
@@ -100,7 +117,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
-                android:text="Obsetri"
+                android:text="Bagian"
                 android:textSize="20sp" />
             <Spinner
                 android:id="@+id/bgnbr"

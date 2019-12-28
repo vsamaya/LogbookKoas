@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/grad"
     android:orientation="vertical">
 
@@ -96,7 +97,14 @@
                     android:textColor="#FF0000"
                     android:textSize="15sp" />
             </LinearLayout>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Username"
+                android:textSize="15sp" />
             <TextView
                 android:id="@+id/usernamems"
                 android:layout_width="wrap_content"
@@ -105,19 +113,34 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:text="@string/username" />
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:orientation="horizontal">
             <EditText
                 android:id="@+id/passms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
+                android:layout_weight="1"
                 android:hint="@string/password"
                 android:singleLine="true"
+                android:inputType="textPassword"
                 android:textSize="15sp" />
-
+                <cyd.awesome.material.AwesomeText
+                    android:id="@+id/ImgShowPasswordms"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    app:awesome_font="material_design"
+                    app:awesome_icon="MD_VISIBILITY_OFF" />
+            </LinearLayout>
             <TextView
                 android:id="@+id/nmlengkap"
                 android:layout_width="wrap_content"
@@ -125,7 +148,8 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:text="@string/namabr" />
+                android:text="@string/namabr"
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/namalngkpms"
@@ -139,6 +163,15 @@
                 android:singleLine="true"
                 android:textSize="15sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Propinsi Lahir"
+                android:textSize="15sp" />
+
             <Spinner
                 android:id="@+id/propuser"
                 android:layout_width="match_parent"
@@ -148,6 +181,16 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:entries="@array/proparray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Kota Lahir"
+                android:textSize="15sp" />
+
 
             <Spinner
                 android:id="@+id/kotauser"
@@ -182,7 +225,14 @@
                     android:src="@drawable/ic_action_name" />
 
             </LinearLayout>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Alamat"
+                android:textSize="15sp" />
             <EditText
                 android:id="@+id/almt"
                 android:layout_width="match_parent"
@@ -195,6 +245,16 @@
                 android:singleLine="true"
                 android:textSize="15sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Propinsi Pengguna"
+                android:textSize="15sp" />
+
+
             <Spinner
                 android:id="@+id/propoal"
                 android:layout_width="match_parent"
@@ -205,6 +265,15 @@
                 android:layout_marginEnd="15dp"
                 android:entries="@array/proparray" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Kota Pengguna"
+                android:textSize="15sp" />
+
             <Spinner
                 android:id="@+id/kotaal"
                 android:layout_width="match_parent"
@@ -213,7 +282,14 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="No.Hp (Telepon) Pengguna"
+                android:textSize="15sp" />
             <EditText
                 android:id="@+id/nohp"
                 android:layout_width="match_parent"
@@ -225,7 +301,14 @@
                 android:hint="No.Hp (Telepon)"
                 android:singleLine="true"
                 android:textSize="15sp" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="E-Mail Pengguna"
+                android:textSize="15sp" />
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
@@ -237,7 +320,14 @@
                 android:hint="Alamat Surat Elektronik (E-MAIL)"
                 android:singleLine="true"
                 android:textSize="15sp" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Nama Wali/Orang Tua"
+                android:textSize="15sp" />
             <EditText
                 android:id="@+id/nmwl"
                 android:layout_width="match_parent"
@@ -246,10 +336,17 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:hint="Nama Wali (Orang Tua)"
+                android:hint="Nama Wali/Orang Tua"
                 android:singleLine="true"
                 android:textSize="15sp" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Alamat Wali/Orang Tua"
+                android:textSize="15sp" />
             <EditText
                 android:id="@+id/almtwl"
                 android:layout_width="match_parent"
@@ -262,6 +359,15 @@
                 android:singleLine="true"
                 android:textSize="15sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Propinsi Orang Tua/Wali"
+                android:textSize="15sp" />
+
             <Spinner
                 android:id="@+id/spinwali"
                 android:layout_width="match_parent"
@@ -272,6 +378,15 @@
                 android:layout_marginEnd="15dp"
                 android:entries="@array/proparray" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Kota Orang Tua/Wali"
+                android:textSize="15sp" />
+
             <Spinner
                 android:id="@+id/spinkotawali"
                 android:layout_width="match_parent"
@@ -280,7 +395,14 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp" />
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="No.Hp (Telepon) Wali/Orang Tua"
+                android:textSize="15sp" />
             <EditText
                 android:id="@+id/nohpwl"
                 android:layout_width="match_parent"
@@ -289,7 +411,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:hint="No.Hp (Telepon) Wali (Orang Tua)"
+                android:hint="No.Hp (Telepon) Wali/Orang Tua"
                 android:singleLine="true"
                 android:textSize="15sp" />
 

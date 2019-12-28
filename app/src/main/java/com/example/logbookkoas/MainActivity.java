@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private String password;
     private ProgressDialog pDialog;
     private CheckBox keep;
-    private String login_url = "http://192.168.69.122/login1.php";
+    private String login_url = "http://192.168.1.9/login1.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;
@@ -47,8 +47,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
+        keep=findViewById(R.id.keep);
         User user=session.getUserDetails();
+        if(session.isLoggedIn()) {
+            String Username2=user.getUsername();
+            String level=user.getLevel();
+            loadDashboard(level);
+            Toast.makeText(MainActivity.this, Username2, Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(MainActivity.this, "kosong", Toast.LENGTH_SHORT).show();
 
+        }
 
 
         setContentView(R.layout.activity_main);

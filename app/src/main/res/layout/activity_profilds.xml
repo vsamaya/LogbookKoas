@@ -70,7 +70,7 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/namamahasiswa"
+                android:id="@+id/namadsp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profilepic"
@@ -83,10 +83,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/usernamemahasiswa"
+                android:id="@+id/usernamedsp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/namamahasiswa"
+                android:layout_below="@+id/namadsp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-light"

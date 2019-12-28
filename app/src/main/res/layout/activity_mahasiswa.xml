@@ -46,26 +46,32 @@
         android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
         android:background="@drawable/circle_border">
+
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgmhs"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_account"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="3dp"
             android:background="@drawable/circle"
-            android:layout_margin="3dp"
-            android:padding="2dp" />
+            android:padding="2dp"
+            android:src="@drawable/ic_account" />
     </RelativeLayout>
+
     <TextView
+        android:id="@+id/namamahasiswa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/profilepic"
-        android:id="@+id/namamahasiswa"
-        android:text="Valentina Samaya"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:fontFamily="sans-serif-light"
-        android:textColor="@color/colorBorder"/>
+        android:text="Username"
+        android:textColor="@color/colorBorder"
+        android:textSize="20sp"
+        android:textStyle="bold" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

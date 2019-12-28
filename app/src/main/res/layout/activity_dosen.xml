@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_slmtdtgket"
             android:id="@+id/namadosen"
-            android:text="Valentina Samaya"
+            android:text="Username"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:textSize="20sp"

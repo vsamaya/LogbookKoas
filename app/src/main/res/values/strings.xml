@@ -19,40 +19,40 @@
     <string name="ganti">ganti</string>
     <string-array name="select">selecet an item</string-array>
     <string-array name="proparray">
-    <item>11-ACEH</item>
-    <item>12-SUMATERA UTARA</item>
-    <item>13-SUMATERA BARAT</item>
-    <item>14-RIAU</item>
-    <item>15-JAMBI</item>
-    <item>16-SUMATERA SELATAN</item>
-    <item>17-BENGKULU</item>
-    <item>18-LAMPUNG</item>
-    <item>19-KEPULAUAN BANGKA BELITUNG</item>
-    <item>21-KEPULAUAN RIAU</item>
-    <item>31-DKI JAKARTA</item>
-    <item>32-JAWA BARAT</item>
-    <item>33-JAWA TENGAH</item>
-    <item>34-DAERAH ISTIMEWA YOGYAKARTA</item>
-    <item>35-JAWA TIMUR</item>
-    <item>36-BANTEN</item>
-    <item>51-BALI</item>
-    <item>52-NUSA TENGGARA BARAT</item>
-    <item>53-NUSA TENGGARA TIMUR</item>
-    <item>61-KALIMANTAN BARAT</item>
-    <item>62-KALIMANTAN TENGAH</item>
-    <item>63-KALIMANTAN SELATAN</item>
-    <item>64-KALIMANTAN TIMUR</item>
-    <item>65-KALIMANTAN UTARA</item>
-    <item>71-SULAWESI UTARA</item>
-    <item>72-SULAWESI TENGAH</item>
-    <item>73-SULAWESI SELATAN</item>
-    <item>74-SULAWESI TENGGARA</item>
-    <item>75-GORONTALO</item>
-    <item>76-SULAWESI BARAT</item>
-    <item>81-MALUKU</item>
-    <item>82-MALUKU UTARA</item>
-    <item>91-PAPUA</item>
-    <item>92-PAPUA BARAT</item>
-    <item>99-LUAR NEGERI</item>
-</string-array>
+        <item>11-ACEH</item>
+        <item>12-SUMATERA UTARA</item>
+        <item>13-SUMATERA BARAT</item>
+        <item>14-RIAU</item>
+        <item>15-JAMBI</item>
+        <item>16-SUMATERA SELATAN</item>
+        <item>17-BENGKULU</item>
+        <item>18-LAMPUNG</item>
+        <item>19-KEPULAUAN BANGKA BELITUNG</item>
+        <item>21-KEPULAUAN RIAU</item>
+        <item>31-DKI JAKARTA</item>
+        <item>32-JAWA BARAT</item>
+        <item>33-JAWA TENGAH</item>
+        <item>34-DAERAH ISTIMEWA YOGYAKARTA</item>
+        <item>35-JAWA TIMUR</item>
+        <item>36-BANTEN</item>
+        <item>51-BALI</item>
+        <item>52-NUSA TENGGARA BARAT</item>
+        <item>53-NUSA TENGGARA TIMUR</item>
+        <item>61-KALIMANTAN BARAT</item>
+        <item>62-KALIMANTAN TENGAH</item>
+        <item>63-KALIMANTAN SELATAN</item>
+        <item>64-KALIMANTAN TIMUR</item>
+        <item>65-KALIMANTAN UTARA</item>
+        <item>71-SULAWESI UTARA</item>
+        <item>72-SULAWESI TENGAH</item>
+        <item>73-SULAWESI SELATAN</item>
+        <item>74-SULAWESI TENGGARA</item>
+        <item>75-GORONTALO</item>
+        <item>76-SULAWESI BARAT</item>
+        <item>81-MALUKU</item>
+        <item>82-MALUKU UTARA</item>
+        <item>91-PAPUA</item>
+        <item>92-PAPUA BARAT</item>
+        <item>99-LUAR NEGERI</item>
+    </string-array>
 </resources>
