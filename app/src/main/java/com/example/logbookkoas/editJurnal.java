@@ -28,10 +28,10 @@ import java.util.Calendar;
 
 public class editJurnal extends AppCompatActivity {
 
-    String spinnerURL = "http://192.168.3.10/logbook/spinnerTambahJurnal.php";
-    String tanggalURL = "http://192.168.3.10/logbook/tanggalTambahJurnal.php";
-    String editSistemURL = "http://192.168.3.10/logbook/sistemEdit.php";
-    String editURL = "http://192.168.3.10/logbook/editJurnal.php";
+    String spinnerURL = "http://192.168.3.5/logbook/spinnerTambahJurnal.php";
+    String tanggalURL = "http://192.168.3.5/logbook/tanggalTambahJurnal.php";
+    String editSistemURL = "http://192.168.3.5/logbook/sistemEdit.php";
+    String editURL = "http://192.168.3.5/logbook/editJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;
@@ -44,7 +44,7 @@ public class editJurnal extends AppCompatActivity {
     SearchableSpinner spinnerSistem4, spinnerJenis4, spinnerDosen;
     Button submit;
     String tgl_skrg, hari_skrg;
-    TextView stase, tanggalhari, id_jenis1, id_jenis2, id_jenis3, id_jenis4;
+    TextView stase, tanggalhari;
     TextView timePickerMulai, timePickerSelesai;
     TimePickerDialog timePickerDialog;
     private SessionHandler session;
@@ -61,8 +61,6 @@ public class editJurnal extends AppCompatActivity {
         String ang = username.substring(6,8);
         String angkatan = "20"+ang;
 
-//        jurnal.setText(jenis_jurnal);
-//        potong.setText(angkatan);
         spinnerLokasi = findViewById(R.id.lokasi_isi_jurnal);
         spinnerKegiatan = findViewById(R.id.keg_isi_jurnal);
         spinnerSistem = findViewById(R.id.sispen_1_isi);
@@ -85,10 +83,6 @@ public class editJurnal extends AppCompatActivity {
         jenisJurnal4 = findViewById(R.id.jenis_4_ket);
         submit = findViewById(R.id.submit_isi_jurnal);
         tv_coba = findViewById(R.id.coba);
-        id_jenis1 = findViewById(R.id.id_jenis1);
-        id_jenis2 = findViewById(R.id.id_jenis2);
-        id_jenis3 = findViewById(R.id.id_jenis3);
-        id_jenis4 = findViewById(R.id.id_jenis4);
         stase = findViewById(R.id.stase_isi_jurnal);
         tanggalhari = findViewById(R.id.tgl_hari_isi_jurnal);
         timePickerMulai = findViewById(R.id.jam_mulai_isi_jurnal);
@@ -263,7 +257,7 @@ public class editJurnal extends AppCompatActivity {
                         a.setDropDownViewResource(android.R.layout.simple_spinner_item);
                         tv_coba.append(penyakit2);
 //                        tv_coba.append(method(penyakit));
-                        getSistem("penyakit", method(penyakit), method(penyakit2), method(penyakit3), method(penyakit4));
+                        getSistem("penyakit", method(penyakit), penyakit2, penyakit3, penyakit4);
 
                         spinnerSistem.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
@@ -330,6 +324,24 @@ public class editJurnal extends AppCompatActivity {
                         }
                         String[] strsisket = getStringArray(sistem_keterampilan);
                         final String[] idsisket = getStringArray(id_sistemK);
+                        String penyakit = getIntent().getStringExtra("jenis1");
+                        String penyakit2 = new String();
+                        String penyakit3= new String();
+                        String penyakit4= new String();
+                        if(getIntent().getStringExtra("jenis2").equals("-")){
+                            penyakit2="-";
+                        } else {
+                            penyakit2 = method(getIntent().getStringExtra("jenis2"));
+                        }if(getIntent().getStringExtra("jenis3").equals("-")){
+                            penyakit3="-";
+                        } else {
+                            penyakit3 = method(getIntent().getStringExtra("jenis3"));
+                        }if(getIntent().getStringExtra("jenis4").equals("-")){
+                            penyakit4="-";
+                        } else {
+                            penyakit4 = method(getIntent().getStringExtra("jenis4"));
+                        }
+                        getSistem("ketrampilan", method(penyakit), penyakit2, penyakit3, penyakit4);
                         ArrayAdapter<String> a = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item, strsisket);
                         a.setDropDownViewResource(android.R.layout.simple_spinner_item);
                         spinnerSistem.setAdapter(a);
@@ -495,11 +507,6 @@ public class editJurnal extends AppCompatActivity {
                                 id_sis2 = sis1[spinnerSistem2.getSelectedItemPosition()];
                                 id_sis3 = sis1[spinnerSistem3.getSelectedItemPosition()];
                                 id_sis4 = sis1[spinnerSistem4.getSelectedItemPosition()];
-//                                id_jenis1 = jenis1[spinnerJenis.getSelectedItemPosition()];
-//                                id_jenis2 = jenis1[spinnerJenis2.getSelectedItemPosition()];
-//                                id_jenis3 = jenis1[spinnerJenis3.getSelectedItemPosition()];
-//                                id_jenis4 = jenis1[spinnerJenis4.getSelectedItemPosition()];
-//
                             }
                             String jenis2 = new String();
                             String jenis3 = new String();
@@ -523,6 +530,7 @@ public class editJurnal extends AppCompatActivity {
                             String id_lokasi = lokasi[spinnerLokasi.getSelectedItemPosition()];
                             String[] kegiatan = getStringArray(id_kegiatan);
                             String id_keg = kegiatan[spinnerKegiatan.getSelectedItemPosition()];
+                            String id_jurnal = getIntent().getStringExtra("id_jurnal");
 
                             JSONObject request = new JSONObject();
                             try {
@@ -546,6 +554,7 @@ public class editJurnal extends AppCompatActivity {
                                 request.put("id_jenis2",method(jenis2));
                                 request.put("id_jenis3",method(jenis3));
                                 request.put("id_jenis4",method(jenis4));
+                                request.put("id_jurnal",id_jurnal);
                                 Intent intent = new Intent(editJurnal.this,IsiJurnalDetail.class);
                                 intent.putExtra(mainIsiJurnal.KEY_ID,stase);
                                 startActivity(intent);
@@ -639,15 +648,23 @@ public class editJurnal extends AppCompatActivity {
                         ArrayAdapter<String> p = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item, str);
                         if(key == 1){
                             spinnerJenis.setAdapter(p);
+                            String pen1 = getIntent().getStringExtra("jenis1");
+                            spinnerJenis.setSelection(getIndex(spinnerJenis,pen1));
                             spinnerJenis.setTitle("Pilih Penyakit");}
                         else if (key==2){
                             spinnerJenis2.setAdapter(p);
+                            String pen2 = getIntent().getStringExtra("jenis2");
+                            spinnerJenis2.setSelection(getIndex(spinnerJenis2,pen2));
                             spinnerJenis2.setTitle("Pilih Penyakit");
                         } else if (key == 3){
                             spinnerJenis3.setAdapter(p);
+                            String pen3 = getIntent().getStringExtra("jenis3");
+                            spinnerJenis3.setSelection(getIndex(spinnerJenis3,pen3));
                             spinnerJenis3.setTitle("Pilih Penyakit");
                         } else {
                             spinnerJenis4.setAdapter(p);
+                            String pen4 = getIntent().getStringExtra("jenis4");
+                            spinnerJenis4.setSelection(getIndex(spinnerJenis4,pen4));
                             spinnerJenis4.setTitle("Pilih Penyakit");
                         }
 
@@ -666,15 +683,23 @@ public class editJurnal extends AppCompatActivity {
                         ArrayAdapter<String> k = new ArrayAdapter<>(editJurnal.this, android.R.layout.simple_spinner_item, str);
                         if(key==1){
                             spinnerJenis.setAdapter(k);
+                            String pen1 = getIntent().getStringExtra("jenis1");
+                            spinnerJenis.setSelection(getIndex(spinnerJenis,pen1));
                             spinnerJenis.setTitle("Pilih Ketrampilan");}
                         else if (key==2){
                             spinnerJenis2.setAdapter(k);
+                            String pen2 = getIntent().getStringExtra("jenis2");
+                            spinnerJenis2.setSelection(getIndex(spinnerJenis2,pen2));
                             spinnerJenis2.setTitle("Pilih Ketrampilan");
                         }else if (key==3){
                             spinnerJenis3.setAdapter(k);
+                            String pen3 = getIntent().getStringExtra("jenis3");
+                            spinnerJenis3.setSelection(getIndex(spinnerJenis3,pen3));
                             spinnerJenis3.setTitle("Pilih Ketrampilan");
                         } else {
                             spinnerJenis4.setAdapter(k);
+                            String pen4 = getIntent().getStringExtra("jenis4");
+                            spinnerJenis4.setSelection(getIndex(spinnerJenis4,pen4));
                             spinnerJenis4.setTitle("Pilih Ketrampilan");
                         }
 
@@ -788,7 +813,7 @@ public class editJurnal extends AppCompatActivity {
         }
         return 0;
     }
-    private void getSistem(final String jns, final String idjns1, String idjns2, String idjns3, String idjns4){
+    private void getSistem(final String jns, String idjns1, String idjns2, String idjns3, String idjns4){
 
         JSONObject request = new JSONObject();
         try {
@@ -810,23 +835,24 @@ public class editJurnal extends AppCompatActivity {
                 try {
                     //spiner lokasi
                     JSONArray sistemArray = response.getJSONArray("sistem");
-//                    JSONArray sistemArray2 = response.getJSONArray("sistem2");
-//                    JSONArray sistemArray3 = response.getJSONArray("sistem3");
-//                    JSONArray sistemArray4 = response.getJSONArray("sistem4");
+                    JSONArray sistemArray2 = response.getJSONArray("sistem2");
+                    JSONArray sistemArray3 = response.getJSONArray("sistem3");
+                    JSONArray sistemArray4 = response.getJSONArray("sistem4");
                     if(jns.equals("penyakit")){
 
                         for (int i = 0; i < sistemArray.length(); i++) {
                             JSONObject j = sistemArray.getJSONObject(i);
-//                            JSONObject j2 = sistemArray2.getJSONObject(i);
-//                            JSONObject j3 = sistemArray3.getJSONObject(i);
-//                            JSONObject j4 = sistemArray4.getJSONObject(i);
+                            JSONObject j2 = sistemArray2.getJSONObject(i);
+                            JSONObject j3 = sistemArray3.getJSONObject(i);
+                            JSONObject j4 = sistemArray4.getJSONObject(i);
                             String sistemPenyakit = j.getString("sistem_penyakit");
-//                            String sistemPenyakit2 = j2.getString("sistem_penyakit");
-//                            String sistemPenyakit3 = j3.getString("sistem_penyakit");
-//                            String sistemPenyakit4 = j4.getString("sistem_penyakit");
-                            id_jenis1.setText(sistemPenyakit);
+                            String sistemPenyakit2 = j2.getString("sistem_penyakit");
+                            String sistemPenyakit3 = j3.getString("sistem_penyakit");
+                            String sistemPenyakit4 = j4.getString("sistem_penyakit");
                             spinnerSistem.setSelection(getIndex(spinnerSistem,sistemPenyakit));
-//                            tv_coba.append(sistemPenyakit2);
+                            spinnerSistem2.setSelection(getIndex(spinnerSistem2,sistemPenyakit2));
+                            spinnerSistem3.setSelection(getIndex(spinnerSistem3,sistemPenyakit3));
+                            spinnerSistem4.setSelection(getIndex(spinnerSistem4,sistemPenyakit4));
 //                            if(sistemPenyakit2.equals("<KOSONG>")){
 //                                spinnerSistem2.setSelection(getIndex(spinnerSistem2,"<KOSONG>"));
 //
@@ -850,18 +876,18 @@ public class editJurnal extends AppCompatActivity {
                     }else {
                         for (int i = 0; i < sistemArray.length(); i++) {
                             JSONObject j = sistemArray.getJSONObject(i);
-//                            JSONObject j2 = sistemArray2.getJSONObject(i);
-//                            JSONObject j3 = sistemArray3.getJSONObject(i);
-//                            JSONObject j4 = sistemArray4.getJSONObject(i);
+                            JSONObject j2 = sistemArray2.getJSONObject(i);
+                            JSONObject j3 = sistemArray3.getJSONObject(i);
+                            JSONObject j4 = sistemArray4.getJSONObject(i);
                             String sistemPenyakit = j.getString("sistem_ketrampilan");
-//                            String sistemPenyakit2 = j2.getString("sistem_ketrampilan");
-//                            String sistemPenyakit3 = j3.getString("sistem_ketrampilan");
-//                            String sistemPenyakit4 = j4.getString("sistem_ketrampilan");
-                            id_jenis1.setText(sistemPenyakit);
+                            String sistemPenyakit2 = j2.getString("sistem_ketrampilan");
+                            String sistemPenyakit3 = j3.getString("sistem_ketrampilan");
+                            String sistemPenyakit4 = j4.getString("sistem_ketrampilan");
+                            tv_coba.append(sistemPenyakit2);
                             spinnerSistem.setSelection(getIndex(spinnerSistem,sistemPenyakit));
-//                            spinnerSistem2.setSelection(getIndex(spinnerSistem2,sistemPenyakit2));
-//                            spinnerSistem3.setSelection(getIndex(spinnerSistem3,sistemPenyakit3));
-//                            spinnerSistem4.setSelection(getIndex(spinnerSistem4,sistemPenyakit4));
+                            spinnerSistem2.setSelection(getIndex(spinnerSistem2,sistemPenyakit2));
+                            spinnerSistem3.setSelection(getIndex(spinnerSistem3,sistemPenyakit3));
+                            spinnerSistem4.setSelection(getIndex(spinnerSistem4,sistemPenyakit4));
 
 
                         }

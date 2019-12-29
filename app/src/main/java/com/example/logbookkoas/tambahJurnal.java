@@ -53,9 +53,9 @@ import java.util.concurrent.TimeUnit;
 import javax.sql.StatementEvent;
 
 public class tambahJurnal extends AppCompatActivity {
-    String spinnerURL = "http://192.168.3.10/logbook/spinnerTambahJurnal.php";
-    String tanggalURL = "http://192.168.3.10/logbook/tanggalTambahJurnal.php";
-    String submitURL = "http://192.168.3.10/logbook/submitTambahJurnal.php";
+    String spinnerURL = "http://192.168.3.5/logbook/spinnerTambahJurnal.php";
+    String tanggalURL = "http://192.168.3.5/logbook/tanggalTambahJurnal.php";
+    String submitURL = "http://192.168.3.5/logbook/submitTambahJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;
@@ -68,7 +68,7 @@ public class tambahJurnal extends AppCompatActivity {
     SearchableSpinner spinnerSistem4, spinnerJenis4, spinnerDosen;
     Button submit;
     String tgl_skrg, hari_skrg;
-    TextView stase, tanggalhari, id_jenis1, id_jenis2, id_jenis3, id_jenis4;
+    TextView stase, tanggalhari;
     TextView timePickerMulai, timePickerSelesai;
     TimePickerDialog timePickerDialog;
 
@@ -112,10 +112,6 @@ public class tambahJurnal extends AppCompatActivity {
         jenisJurnal4 = findViewById(R.id.jenis_4_ket);
         submit = findViewById(R.id.submit_isi_jurnal);
         tv_coba = findViewById(R.id.coba);
-        id_jenis1 = findViewById(R.id.id_jenis1);
-        id_jenis2 = findViewById(R.id.id_jenis2);
-        id_jenis3 = findViewById(R.id.id_jenis3);
-        id_jenis4 = findViewById(R.id.id_jenis4);
         stase = findViewById(R.id.stase_isi_jurnal);
         tanggalhari = findViewById(R.id.tgl_hari_isi_jurnal);
         timePickerMulai = findViewById(R.id.jam_mulai_isi_jurnal);
@@ -467,6 +463,7 @@ public class tambahJurnal extends AppCompatActivity {
                     submit.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
                             User user = session.getUserDetails();
                             String username = user.getUsername();
                             String ang = username.substring(6,8);
@@ -519,7 +516,10 @@ public class tambahJurnal extends AppCompatActivity {
                             String id_lokasi = lokasi[spinnerLokasi.getSelectedItemPosition()];
                             String[] kegiatan = getStringArray(id_kegiatan);
                             String id_keg = kegiatan[spinnerKegiatan.getSelectedItemPosition()];
-
+                            if(jam_awal.equals("00:00:00") || jam_akhir.equals("00:00:00") ||
+                            id_sis1.equals("0")){
+                                tv_coba.setText("semua required kolom harus diisi");
+                            }else{
                                 JSONObject request = new JSONObject();
                                 try {
                                     //Populate the request parameters
@@ -568,6 +568,10 @@ public class tambahJurnal extends AppCompatActivity {
 
                                 // Access the RequestQueue through your singleton class.
                                 MySingleton.getInstance(tambahJurnal.this).addToRequestQueue(jsArrayRequest);
+
+                            }
+
+
 
 
 
