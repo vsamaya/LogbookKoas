@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".semester11"></activity>
+        <activity android:name=".semester12"></activity>
+        <activity android:name=".semester11" />
         <activity android:name=".semester10" />
         <activity android:name=".semester9" />
         <activity android:name=".rotasiinternal" />

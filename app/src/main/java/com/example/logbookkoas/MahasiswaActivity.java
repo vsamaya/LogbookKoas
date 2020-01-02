@@ -28,8 +28,9 @@ public class MahasiswaActivity extends AppCompatActivity {
 ImageView iconmahasiswa;
     final ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
-    private String data_url = "http://192.168.1.9/getdataprofilms.php";
-    private String foto_url = "http://192.168.1.9/getdatafoto.php";
+    private String data_url = "http://192.168.1.4/logbook1/getdataprofilms.php";
+    private String foto_url = "http://192.168.1.4/logbook1/getdatafoto.php";
+    private String foto_image = "http://192.168.1.4/upload/";
     TextView usernamems,nmlengkap,id;
     RelativeLayout rotasiinternal;
     private String username;
@@ -43,6 +44,8 @@ ImageView iconmahasiswa;
         User user=session.getUserDetails();
         String username=user.getUsername();
         String fullname=user.getFullName();
+        String pass=user.getPassword();
+       // Toast.makeText(MahasiswaActivity.this,pass, Toast.LENGTH_SHORT).show();
        // Toast.makeText(MahasiswaActivity.this, fullname, Toast.LENGTH_SHORT).show();
         //Toast.makeText(MahasiswaActivity.this, username, Toast.LENGTH_SHORT).show();
         usernamems=findViewById(R.id.usernamemahasiswa);
@@ -98,7 +101,7 @@ ImageView iconmahasiswa;
                     }
                     nmlengkap.setText(list_data.get(0).get("nama"));
                     Glide.with(getApplicationContext())
-                            .load("http://192.168.1.9/upload/" + list_data.get(0).get("foto"))
+                            .load(foto_image + list_data.get(0).get("foto"))
                             .into(foto);
 
 

@@ -25,7 +25,7 @@ public class semester10 extends AppCompatActivity {
     final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
     ListView listView;
-    String url = "http://192.168.1.9/sem10.php";
+    String url = "http://192.168.1.4/logbook1/sem10.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -193,19 +193,19 @@ public class semester10 extends AppCompatActivity {
                        }
                        MyArrList.add(map);
                    }
-                   for (int i = 0; i <MyArrList.size(); i++) {
-                       HashMap<String, String> hashMap = MyArrList.get(i);
+                   for(int j=0;j<MyArrList.size()+3;j++){
+                       for (int i = 0; i < MyArrList.size(); i++) {
+                           HashMap<String, String> hashMap = MyArrList.get(i);
 
-                       // for(String j : hashMap.values()){
-                       if (Objects.equals(MyArrList.get(i).get("n"), "")) {
-                           MyArrList.remove(i);
+                           // for(String j : hashMap.values()){
+                           if (Objects.equals(MyArrList.get(i).get("st"), "")) {
+                               MyArrList.remove(i);
 
 
-                       }
-                   }
+                           }
+                       }}
                    int jumlah = MyArrList.size();
                    String jumlaht = Integer.toString(jumlah);
-                   MyArrList.remove(jumlah - 1);
                    Toast.makeText(semester10.this, jumlaht, Toast.LENGTH_SHORT).show();
                    SimpleAdapter s4dap;
                    s4dap = new SimpleAdapter(semester10.this, MyArrList, R.layout.listview9, new String[]{"s1", "n", "mli", "sls", "st"}, new int[]{R.id.stase9, R.id.username9, R.id.tglmulai9, R.id.tglselesai9, R.id.status9});

@@ -97,6 +97,7 @@
                     android:textColor="#FF0000"
                     android:textSize="15sp" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -105,6 +106,7 @@
                 android:layout_marginEnd="15dp"
                 android:text="Username"
                 android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/usernamems"
                 android:layout_width="wrap_content"
@@ -113,23 +115,26 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:text="@string/username" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
                 android:orientation="horizontal">
-            <EditText
-                android:id="@+id/passms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:hint="@string/password"
-                android:singleLine="true"
-                android:inputType="textPassword"
-                android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/passms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:singleLine="true"
+                    android:textSize="15sp" />
+
                 <cyd.awesome.material.AwesomeText
                     android:id="@+id/ImgShowPasswordms"
                     android:layout_width="25dp"
@@ -141,6 +146,7 @@
                     app:awesome_font="material_design"
                     app:awesome_icon="MD_VISIBILITY_OFF" />
             </LinearLayout>
+
             <TextView
                 android:id="@+id/nmlengkap"
                 android:layout_width="wrap_content"
@@ -172,15 +178,26 @@
                 android:text="Propinsi Lahir"
                 android:textSize="15sp" />
 
-            <Spinner
-                android:id="@+id/propuser"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:entries="@array/proparray" />
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/propuser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imgpropus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clear" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -191,15 +208,26 @@
                 android:text="Kota Lahir"
                 android:textSize="15sp" />
 
-
-            <Spinner
-                android:id="@+id/kotauser"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/kotauser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imgkotaus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clear" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -225,6 +253,7 @@
                     android:src="@drawable/ic_action_name" />
 
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -233,6 +262,7 @@
                 android:layout_marginEnd="15dp"
                 android:text="Alamat"
                 android:textSize="15sp" />
+
             <EditText
                 android:id="@+id/almt"
                 android:layout_width="match_parent"
@@ -254,16 +284,27 @@
                 android:text="Propinsi Pengguna"
                 android:textSize="15sp" />
 
-
-            <Spinner
-                android:id="@+id/propoal"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:entries="@array/proparray" />
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/propoal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:entries="@array/proparray" />
+
+                <ImageView
+                    android:id="@+id/imgpropal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clear" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -274,14 +315,27 @@
                 android:text="Kota Pengguna"
                 android:textSize="15sp" />
 
-            <Spinner
-                android:id="@+id/kotaal"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/kotaal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imgkotaal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clear" />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -290,6 +344,7 @@
                 android:layout_marginEnd="15dp"
                 android:text="No.Hp (Telepon) Pengguna"
                 android:textSize="15sp" />
+
             <EditText
                 android:id="@+id/nohp"
                 android:layout_width="match_parent"
@@ -301,6 +356,7 @@
                 android:hint="No.Hp (Telepon)"
                 android:singleLine="true"
                 android:textSize="15sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -309,6 +365,7 @@
                 android:layout_marginEnd="15dp"
                 android:text="E-Mail Pengguna"
                 android:textSize="15sp" />
+
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
@@ -320,6 +377,7 @@
                 android:hint="Alamat Surat Elektronik (E-MAIL)"
                 android:singleLine="true"
                 android:textSize="15sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -328,6 +386,7 @@
                 android:layout_marginEnd="15dp"
                 android:text="Nama Wali/Orang Tua"
                 android:textSize="15sp" />
+
             <EditText
                 android:id="@+id/nmwl"
                 android:layout_width="match_parent"
@@ -339,6 +398,7 @@
                 android:hint="Nama Wali/Orang Tua"
                 android:singleLine="true"
                 android:textSize="15sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -347,6 +407,7 @@
                 android:layout_marginEnd="15dp"
                 android:text="Alamat Wali/Orang Tua"
                 android:textSize="15sp" />
+
             <EditText
                 android:id="@+id/almtwl"
                 android:layout_width="match_parent"
@@ -368,15 +429,27 @@
                 android:text="Propinsi Orang Tua/Wali"
                 android:textSize="15sp" />
 
-            <Spinner
-                android:id="@+id/spinwali"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
-                android:entries="@array/proparray" />
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinwali"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:entries="@array/proparray" />
+
+                <ImageView
+                    android:id="@+id/imgpropwali"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clear" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -387,14 +460,27 @@
                 android:text="Kota Orang Tua/Wali"
                 android:textSize="15sp" />
 
-            <Spinner
-                android:id="@+id/spinkotawali"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp" />
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spinkotawali"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imgkotawali"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/clear" />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -403,6 +489,7 @@
                 android:layout_marginEnd="15dp"
                 android:text="No.Hp (Telepon) Wali/Orang Tua"
                 android:textSize="15sp" />
+
             <EditText
                 android:id="@+id/nohpwl"
                 android:layout_width="match_parent"

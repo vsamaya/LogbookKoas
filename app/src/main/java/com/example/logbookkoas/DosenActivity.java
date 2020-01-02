@@ -28,7 +28,7 @@ public class DosenActivity extends AppCompatActivity {
 Button btn_generatecode,btn_generateqr,btn_dftrkeg,btn_rekapkeg;
 TextView username1,nama1;
 private static final String KEY_USERNAME="username";
-private String datads = "http://192.168.1.9/datads.php";
+private String datads = "http://192.168.1.4/logbook1/datads.php";
 ArrayList<HashMap<String,String>> list_data= new ArrayList<HashMap<String, String>>();
 ImageView iconprofil;
     @Override
@@ -41,7 +41,8 @@ ImageView iconprofil;
         nama1=findViewById(R.id.namadosen);
         String username=user.getUsername();
         String nama=user.getFullName();
-        Toast.makeText(DosenActivity.this, nama, Toast.LENGTH_SHORT).show();
+        String pass=user.getPassword();
+     //   Toast.makeText(DosenActivity.this,pass, Toast.LENGTH_SHORT).show();
         username1.setText(username);
         getData1(username1.getText().toString());
 

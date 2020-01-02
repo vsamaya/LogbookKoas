@@ -6,7 +6,17 @@ public class User {
     String username;
     String fullName;
     String level;
+    String password;
     Date sessionExpiryDate;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
     public void setLevel(String level) {
         this.level = level;
