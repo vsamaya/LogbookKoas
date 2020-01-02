@@ -11,10 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".editJurnal"></activity>
-        <activity android:name=".TampilanDaftarKegiatan" />
-        <activity android:name=".tambahJurnal" />
-        <activity android:name=".showJurnalKetrampilan" />
+        <activity android:name=".showJurnalKetrampilan"></activity>
         <activity android:name=".showJurnalPenyakit" />
         <activity android:name=".showJurnal" />
         <activity android:name=".CekJurnalDatePicker" />
@@ -28,6 +25,9 @@
             android:name=".MainApprove"
             android:noHistory="true" />
         <activity android:name=".PassApprove" />
+        <activity android:name=".tambahJurnal" />
+        <activity android:name=".editJurnal"></activity>
+        <activity android:name=".TampilanDaftarKegiatan" />
         <activity android:name=".IsiJurnalDetail" />
         <activity android:name=".mainIsiJurnal" />
         <activity android:name=".DaftarKegiatan" />

@@ -62,19 +62,11 @@ public class mainIsiJurnal extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_isi_jurnal);
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
-        final ListView lv_isi_jurnal = (ListView) findViewById(R.id.lv_isi_jurnal);
-        session = new SessionHandler(getApplicationContext());
-        User user = session.getUserDetails();
-        String username = user.getUsername();
-        String url_judul = "http://192.168.43.159/logbook/judul.php";
+        lv_isi_jurnal = findViewById(R.id.lv_isi_jurnal);
         MyArr = new ArrayList<HashMap<String, String>>();
-//        showalljurnal();
+        showalljurnal();
 
-        try {
+        /*try {
 
             JSONArray data = new JSONArray(getJSONUrl(url_judul));
 
@@ -88,7 +80,7 @@ public class mainIsiJurnal extends Activity {
                 map.put("id", c.getString("id"));
                 MyArrList.add(map);
                 String stase="stase_"+c.getString("kepaniteraan");
-                String url_jadwal= "http://192.168.43.159/logbook/jadwal1.php?stase="+stase;
+                String url_jadwal= "http://192.168.0.103/jadwal1.php?stase="+stase;
             }
             SimpleAdapter lAdap;
             lAdap = new SimpleAdapter(mainIsiJurnal.this, MyArrList, R.layout.item_row_jurnal,
@@ -110,10 +102,10 @@ public class mainIsiJurnal extends Activity {
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
     }
 
-    public String getJSONUrl(String url) {
+    /*public String getJSONUrl(String url) {
         StringBuilder str = new StringBuilder();
         HttpClient client = new DefaultHttpClient();
         HttpGet httpGet = new HttpGet(url);
@@ -140,13 +132,116 @@ public class mainIsiJurnal extends Activity {
 
         return str.toString();
     }
+*/
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // getMenuInflater().inflate(R.menu.activity_main, menu);
-        return true;
+    private void showalljurnal(){
+        JSONObject request = new JSONObject();
+        try {
+            session = new SessionHandler(getApplicationContext());
+            User user = session.getUserDetails();
+            String username = user.getUsername();
+            request.put(KEY_USERNAME, username);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest json;
+        json = new JsonObjectRequest(Request.Method.POST,
+                url_judul,request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray tmp = response.getJSONArray("tmp");
+                    JSONArray mulai = response.getJSONArray("mulai");
+                    JSONArray selesai = response.getJSONArray("selesai");
+                    for (int i = 0; i < tmp.length(); i++) {
+                        JSONObject c = tmp.getJSONObject(i);
+                        JSONObject cmulai = mulai.getJSONObject(i);
+                        JSONObject cselesai = selesai.getJSONObject(i);
+                        HashMap<String, String> map = new HashMap<String, String>();
+                        map.put("id", c.getString("id"));
+                        map.put("kepaniteraan", c.getString("kepaniteraan"));
+                        if(cmulai.getString("tgl_mulai").equals("null") || cselesai.getString("tgl_selesai").equals("null")){
+                            map.put("tgl_mulai"," ");
+                            map.put("tgl_selesai"," ");
+                        } else {
+                            Date tglMulai = format.parse(cmulai.getString("tgl_mulai"));
+                            String tglMulaiText = convert.format(tglMulai);
+                            Date tglSelesai = format.parse(cselesai.getString("tgl_selesai"));
+                            String tglSelesaiText = convert.format(tglSelesai);
+                            map.put("tgl_mulai", tglMulaiText);
+                            map.put("tgl_selesai", tglSelesaiText);
+                            Date tglSelesai1 = new Date(tglSelesai.getTime() + (1000 * 60 * 60 * 24));
+                            Date now = Calendar.getInstance().getTime();
+                            if(now.after(tglMulai) && now.before(tglSelesai1)){
+                                map.put("status","Aktif");
+                            }
+                            else if(now.before(tglMulai)){
+                                map.put("status","Belum Aktif");
+                            }
+                            else{
+                                map.put("status", "Sudah Terlewat");
+                            }
+                        }
+
+                        MyArr.add(map);
+                    }
+                    ListAdapter sAdap = new SimpleAdapter(mainIsiJurnal.this, MyArr, R.layout.item_row_jurnal,
+                            new String[] {"kepaniteraan","tgl_mulai","tgl_selesai","status"},
+                            new int[] {R.id.tv_judul,R.id.tv_tgl_mulai,R.id.tv_tgl_selesai,R.id.tv_status})
+                    {
+                        @Override
+                        public View getView (int position, View convertView, ViewGroup parent)
+                        {
+                            View lv = super.getView(position, convertView, parent);
+                            final TextView pembatas = lv.findViewById(R.id.pembatas);
+                            final TextView status = lv.findViewById(R.id.tv_status);
+                            final TextView tgl_mulai = lv.findViewById(R.id.tv_tgl_mulai);
+                            final TextView tgl_selesai = lv.findViewById(R.id.tv_tgl_selesai);
+
+                            if(status.getText().equals("Aktif")){
+                                status.setBackgroundColor(getResources().getColor(R.color.aktif));
+                            }
+                            else if(status.getText().equals("Belum Aktif")){
+                                status.setBackgroundColor(getResources().getColor(R.color.belum_aktif));
+                            }
+                            else if(status.getText().equals("Sudah Terlewat")) {
+                                status.setBackgroundColor(getResources().getColor(R.color.terlewat));
+                            }
+                            else{
+                                status.setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                            }
+
+                            return  lv;
+                        }
+                    };
+
+                    lv_isi_jurnal.setAdapter(sAdap);
+                    lv_isi_jurnal.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                            HashMap<String, String> map = MyArr.get(pos);
+                            Intent i = new Intent(mainIsiJurnal.this,IsiJurnalDetail.class);
+                            i.putExtra (KEY_ID,(map.get("id")));
+                            startActivity(i);
+                        }
+                    });
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        MySingleton.getInstance(this).addToRequestQueue(json);
+
     }
-
-
 
 }

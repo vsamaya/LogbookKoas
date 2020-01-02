@@ -22,6 +22,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class CamScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static final String KEY_USERNAME = "username";
+    private static final String KEY_NIP = "nip";
     private static final String KEY_DOSEN = "dosen";
     private static final String KEY_QR_CODE= "qr_code";
     private static final String KEY_ID= "id";

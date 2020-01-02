@@ -12,6 +12,12 @@
         android:background="@drawable/recyclerview"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"></LinearLayout>
+
         <TextView
             android:id="@+id/tv_jam"
             android:layout_width="wrap_content"

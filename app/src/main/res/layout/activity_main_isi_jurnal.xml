@@ -28,17 +28,13 @@
             android:textSize="24sp"
             android:textStyle="bold" />
 
-
-        <ListView
-            android:id="@+id/lv_isi_jurnal"
-            android:background="@drawable/roundedlayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            tools:listitem="@layout/item_row_jurnal"/>
     </LinearLayout>
 
+    <ListView
+        android:id="@+id/lv_isi_jurnal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/item_row_jurnal"/>
 
 
 </LinearLayout>

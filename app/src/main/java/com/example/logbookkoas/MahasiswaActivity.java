@@ -11,8 +11,8 @@ import android.widget.TextView;
 
 public class MahasiswaActivity extends AppCompatActivity {
     ImageView profile;
-    TextView username, namaMahasiswa;
     RelativeLayout isiJurnal,CekJurnal;
+    TextView username, namaMahasiswa;
     private SessionHandler session;
 
     @Override
