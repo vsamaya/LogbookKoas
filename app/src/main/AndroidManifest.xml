@@ -30,6 +30,10 @@
         <activity android:name=".TampilanDaftarKegiatan" />
         <activity android:name=".IsiJurnalDetail" />
         <activity android:name=".mainIsiJurnal" />
+        <activity android:name=".rotasiinternal" />
+        <activity android:name=".semester9" />
+        <activity android:name=".semester10" />
+        <activity android:name=".semester11" />
         <activity android:name=".DaftarKegiatan" />
         <activity android:name=".QR" />
         <activity android:name=".MainQR" />

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class MahasiswaActivity extends AppCompatActivity {
     ImageView profile;
-    RelativeLayout isiJurnal,CekJurnal;
+    RelativeLayout isiJurnal,CekJurnal, rotasiInternal;
     TextView username, namaMahasiswa;
     private SessionHandler session;
 
@@ -30,6 +30,7 @@ public class MahasiswaActivity extends AppCompatActivity {
         profile = findViewById(R.id.img_profile_mhs);
         isiJurnal = findViewById(R.id.btn_isijurnal);
         CekJurnal = findViewById(R.id.btn_cekjurnal);
+        rotasiInternal = findViewById(R.id.btn_rotasiinternal);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +52,15 @@ public class MahasiswaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent c = new Intent(MahasiswaActivity.this, CekJurnal.class);
                 startActivity(c);
+            }
+        });
+
+        rotasiInternal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent d = new Intent(MahasiswaActivity.this, rotasiinternal.class);
+                startActivity(d);
+
             }
         });
     }
