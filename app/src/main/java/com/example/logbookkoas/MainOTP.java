@@ -22,7 +22,7 @@ public class MainOTP extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_MESSAGE = "message";
-    private String setNull_url = "http://192.168.200.31/setNullOtp.php";
+    private String setNull_url = "http://192.168.43.159/setNullOtp.php";
     private SessionHandler session;
 
 

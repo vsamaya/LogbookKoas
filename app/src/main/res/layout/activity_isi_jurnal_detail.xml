@@ -101,6 +101,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 tools:listitem="@layout/item_row_show"
+
                                 />
 <!--                        </RelativeLayout>-->
 
@@ -137,6 +138,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="5dp"
+                            android:nestedScrollingEnabled="true"
                             android:layout_marginBottom="5dp"
                             tools:listitem="@layout/item_row_show" />
 

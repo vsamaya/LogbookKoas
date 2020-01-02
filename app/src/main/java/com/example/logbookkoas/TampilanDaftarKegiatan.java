@@ -42,9 +42,9 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_MESSAGE = "message";
-    String showURL = "http://192.168.200.31/logbook/daftar_kegiatan_dosen.php";
-    String updateStatus = "http://192.168.200.31/logbook/updateStatusDosenActivity.php";
-    String updateStatusSemua = "http://192.168.200.31/logbook/updateStatusSemua.php";
+    String showURL = "http://192.168.43.159/logbook/daftar_kegiatan_dosen.php";
+    String updateStatus = "http://192.168.43.159/logbook/updateStatusDosenActivity.php";
+    String updateStatusSemua = "http://192.168.43.159/logbook/updateStatusSemua.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

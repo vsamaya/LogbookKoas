@@ -61,8 +61,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String showURL = "http://192.168.3.5/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.3.5/logbook/deleteJurnal.php";
+    private String showURL = "http://192.168.43.159/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.43.159/logbook/deleteJurnal.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;
@@ -136,7 +136,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
         private void judul() {
             Intent intent = getIntent();
             final String id = intent.getStringExtra(mainIsiJurnal.KEY_ID);
-            String url_judul = "http://192.168.3.5/logbook/getKepaniteraan.php?id="+id;
+            String url_judul = "http://192.168.43.159/logbook/getKepaniteraan.php?id="+id;
 
             try {
 
@@ -165,7 +165,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
             session = new SessionHandler(getApplicationContext());
             User user = session.getUserDetails();
             String username = user.getUsername();
-            String url_judul = "http://192.168.3.5/logbook/getJadwal.php?username="+username+"&stase="+idStase;
+            String url_judul = "http://192.168.43.159/logbook/getJadwal.php?username="+username+"&stase="+idStase;
 
             try {
 
@@ -197,7 +197,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                     MainLayout.setVisibility(LinearLayout.VISIBLE);
 
                     String status = "1";
-                    String url_status = "http://192.168.3.5/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.43.159/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -209,7 +209,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else if(now.after(tglMulai)){
                     String status = "0";
-                    String url_status = "http://192.168.3.5/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.43.159/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -220,7 +220,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else{
                     String status = "2";
-                    String url_status = "http://192.168.3.5/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = "http://192.168.43.159/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -306,7 +306,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            String updateEntry = "http://192.168.3.5/logbook/updateEntry.php";
+            String updateEntry = "http://192.168.43.159/logbook/updateEntry.php";
             JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                     (Request.Method.POST, updateEntry, request, new Response.Listener<JSONObject>() {
                         @Override
@@ -356,6 +356,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         list_jurnal_penyakit.clear();
+                        id_penyakit.clear();
+                        statusPenyakit.clear();
                         JSONArray lain_penyakit = response.getJSONArray("lain_penyakit");
                         JSONArray dosen_penyakit = response.getJSONArray("dosen_penyakit");
                         JSONArray kegiatan_penyakit = response.getJSONArray("kegiatan_penyakit");
@@ -421,6 +423,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
                         }
 
                         list_jurnal_ketrampilan.clear();
+                        id_ketrampilan.clear();
+                        statusKetrampilan.clear();
                         JSONArray lain_ketrampilan = response.getJSONArray("lain_ketrampilan");
                         JSONArray dosen_ketrampilan = response.getJSONArray("dosen_ketrampilan");
                         JSONArray kegiatan_ketrampilan = response.getJSONArray("kegiatan_ketrampilan");
@@ -562,8 +566,10 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 });
                                if(statP[position].equals("0")){
                                    approve.setVisibility(View.VISIBLE);
+                                   edit.setVisibility(View.VISIBLE);
                                }else {
                                    approve.setVisibility(View.GONE);
+                                   edit.setVisibility(View.GONE);
                                }
 
 
@@ -648,8 +654,10 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 });
                                 if(statK[position].equals("0")){
                                     approve.setVisibility(View.VISIBLE);
+                                    edit.setVisibility(View.VISIBLE);
                                 }else {
                                     approve.setVisibility(View.GONE);
+                                    edit.setVisibility(View.GONE);
                                 }
 
 
