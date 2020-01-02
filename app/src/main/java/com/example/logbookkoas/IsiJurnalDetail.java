@@ -513,7 +513,18 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 final TextView penyakit3 = v.findViewById(R.id.tv_sumber3);
                                 final TextView penyakit4 = v.findViewById(R.id.tv_sumber4);
 
-
+                                approve.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent a=new Intent(IsiJurnalDetail.this, MainApprove.class);
+                                        a.putExtra("jurnal","jurnal_penyakit");
+                                        a.putExtra("dosen",dosen.getText());
+                                        String[] idArray = getStringArray(id_penyakit);
+                                        String id = idArray[position];
+                                        a.putExtra("id_jurnal",id);
+                                        startActivity(a);
+                                    }
+                                });
 
                                delete.setOnClickListener(new View.OnClickListener() {
                                    @Override
@@ -591,7 +602,18 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 final TextView ketrampilan3 = v.findViewById(R.id.tv_sumber3);
                                 final TextView ketrampilan4 = v.findViewById(R.id.tv_sumber4);
 
-
+                                approve.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent a=new Intent(IsiJurnalDetail.this, MainApprove.class);
+                                        a.putExtra("jurnal","jurnal_ketrampilan");
+                                        a.putExtra("dosen",dosen.getText());
+                                        String[] idArray = getStringArray(id_penyakit);
+                                        String id = idArray[position];
+                                        a.putExtra("id_jurnal",id);
+                                        startActivity(a);
+                                    }
+                                });
 
                                 delete.setOnClickListener(new View.OnClickListener() {
                                     @Override

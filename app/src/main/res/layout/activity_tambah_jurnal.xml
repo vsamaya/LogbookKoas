@@ -10,226 +10,310 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kepaniteraan/Stase     :   "/>
-        <TextView
-            android:id="@+id/stase_isi_jurnal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tanngal/Hari     :   "/>
-        <TextView
-            android:id="@+id/tgl_hari_isi_jurnal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Jam mulai - selesai     :   "/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="jam mulai"
-            android:textSize="14sp"
-            android:id="@+id/jam_mulai_isi_jurnal"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="   -   "/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="jam selesai"
-            android:textSize="14sp"
-            android:id="@+id/jam_selesai_isi_jurnal"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lokasi     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/lokasi_isi_jurnal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kegiatan (level)     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/keg_isi_jurnal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/jenis_jurnal_isi_jurnal"
-        android:text="Penyakit (level-sumber)"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sistem_1_ket"
-            android:text="Sistem Penyakit-1     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/sispen_1_isi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </LinearLayout>
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/jenis_1_ket"
-        android:text="Penyakit-1     :   "/>
-    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-        android:id="@+id/penyakit_1_isi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
-</LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sistem_2_ket"
-            android:text="Sistem Penyakit-2     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/sispen_2_isi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/jenis_2_ket"
-            android:text="Penyakit-2     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/penyakit_2_isi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sistem_3_ket"
-            android:text="Sistem Penyakit-3     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/sispen_3_isi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/jenis_3_ket"
-            android:text="Penyakit-3     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/penyakit_3_isi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sistem_4_ket"
-            android:text="Sistem Penyakit-4     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/sispen_4_isi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/jenis_4_ket"
-            android:text="Penyakit-4     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/penyakit_4_isi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Dosen     :   "/>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/dosen_isi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/submit_isi_jurnal"
-        android:gravity="center"
-        android:layout_gravity="center"
-        android:text="SUBMIT"/>
+        android:background="@color/colorGradBefore"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/coba"/>
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="ISI LOGBOOK KEPANITERAAN"
+            android:textColor="@android:color/background_light"
+            android:textSize="10pt"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kepaniteraan/Stase     :   "
+                    android:textColor="@color/colorGradBefore"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/stase_isi_jurnal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView"
+                    android:textColor="@color/colorGradBefore"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Tanngal/Hari     :   "/>
+                <TextView
+                    android:id="@+id/tgl_hari_isi_jurnal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="TextView" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Jam mulai - selesai     :   "/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="jam mulai"
+                    android:textColor="@color/colorGradBefore"
+                    android:textSize="14sp"
+                    android:id="@+id/jam_mulai_isi_jurnal"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:layout_height="wrap_content"
+                    android:text="   -   "/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="jam selesai"
+                    android:textColor="@color/colorGradBefore"
+                    android:textSize="14sp"
+                    android:id="@+id/jam_selesai_isi_jurnal"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Lokasi     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/lokasi_isi_jurnal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Kegiatan (level)     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/keg_isi_jurnal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/jenis_jurnal_isi_jurnal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Penyakit (level-sumber)"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sistem_1_ket"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Sistem Penyakit-1     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/sispen_1_isi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/jenis_1_ket"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Penyakit-1     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/penyakit_1_isi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Sistem Penyakit-2     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/sispen_2_isi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Penyakit-2     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/penyakit_2_isi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Sistem Penyakit-3     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/sispen_3_isi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Penyakit-3     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/penyakit_3_isi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Sistem Penyakit-4     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/sispen_4_isi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Penyakit-4     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/penyakit_4_isi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorGradBefore"
+                    android:text="Dosen     :   "/>
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/dosen_isi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit_isi_jurnal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorGradBefore"
+                android:gravity="center"
+                android:text="SUBMIT"
+                android:textColor="@android:color/background_light"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_jenis1"
+                android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_jenis2"
+                android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_jenis3"
+                android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/id_jenis4"
+                android:visibility="gone"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/coba"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
 </LinearLayout>

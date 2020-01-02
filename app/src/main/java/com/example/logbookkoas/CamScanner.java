@@ -22,7 +22,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class CamScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static final String KEY_USERNAME = "username";
-    private static final String KEY_NIP = "nip";
+    private static final String KEY_DOSEN = "dosen";
     private static final String KEY_QR_CODE= "qr_code";
     private static final String KEY_ID= "id";
     private static final String KEY_JURNAL= "jurnal";
@@ -61,11 +61,12 @@ public class CamScanner extends AppCompatActivity implements ZXingScannerView.Re
                 session = new SessionHandler(getApplicationContext());
                 User user = session.getUserDetails();
                 String username = user.getUsername();
-                String nip = "198306232009122006";//benerin
-                String id = "2";//benerin
-                String jurnal = "jurnal_ketrampilan";//benerin
+                Intent intent = getIntent();
+                final String id = intent.getStringExtra("id_jurnal");
+                final String jurnal = intent.getStringExtra("jurnal");
+                final String dosen = intent.getStringExtra("dosen");
                 request.put(KEY_USERNAME, username);
-                request.put(KEY_NIP, nip);
+                request.put(KEY_DOSEN, dosen);
                 request.put(KEY_QR_CODE, qr_code);
                 request.put(KEY_ID, id);
                 request.put(KEY_JURNAL, jurnal);

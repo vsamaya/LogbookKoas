@@ -100,7 +100,7 @@
                                 android:nestedScrollingEnabled="true"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
-                                android:background="@drawable/roundedfulllayout"
+                                tools:listitem="@layout/item_row_show"
                                 />
 <!--                        </RelativeLayout>-->
 
@@ -135,12 +135,10 @@
                         <ListView
                             android:id="@+id/lv_ketrampilan"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:scrollbarSize="3dp"
-                            android:nestedScrollingEnabled="true"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
-                            android:background="@drawable/roundedfulllayout" />
+                            tools:listitem="@layout/item_row_show" />
 
                         <Button
                             android:id="@+id/buttonKetrampilan"

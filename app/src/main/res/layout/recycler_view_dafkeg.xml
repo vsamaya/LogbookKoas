@@ -21,7 +21,7 @@
             android:text="CATHARINA"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/colorGradBefore"
             android:fontFamily="sans-serif-medium"
             />
         <TextView
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="22010118220123"
             android:id="@+id/nim_dafkeg"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/colorGradBefore"
             android:fontFamily="sans-serif-light"
             android:textSize="14sp"/>
         <TextView
@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/tgl_dafkeg"
             android:text="28 Oktober 2019"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/colorGradBefore"
             android:fontFamily="sans-serif"
             android:textStyle="italic"
             android:textSize="14sp"
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/waktu_dafkeg"
-            android:textColor="@color/md_white_1000"
+            android:textColor="@color/colorGradBefore"
             android:fontFamily="sans-serif"
             android:textSize="12sp"
             android:textStyle="italic"/>
@@ -63,14 +63,14 @@
                     android:textSize="14sp"
                     android:fontFamily="sans-serif"
                     android:text="Kegiatan :"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:fontFamily="sans-serif"
                     android:id="@+id/keg_dafkef"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,14 +85,14 @@
                     android:text="Lokasi :"
                     android:fontFamily="sans-serif"
                     android:textSize="14sp"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/lokasi_dafkef"
                     android:fontFamily="sans-serif"
                     android:textSize="14sp"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -107,14 +107,14 @@
                     android:text="Level kegiatan :"
                     android:fontFamily="sans-serif"
                     android:textSize="14sp"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:textSize="14sp"
                     android:id="@+id/lvkeg_dafkef"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
     </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -129,14 +129,14 @@
                     android:text="Kegiatan dosen :"
                     android:fontFamily="sans-serif"
                     android:textSize="14sp"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif"
                     android:textSize="14sp"
                     android:id="@+id/keg_dosen_dafkef"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
             </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -152,14 +152,14 @@
                     android:text="Kategori :"
                     android:fontFamily="sans-serif"
                     android:textSize="14sp"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/kategori_dafkef"
                     android:fontFamily="sans-serif"
                     android:textSize="14sp"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
             </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -174,7 +174,7 @@
                     android:id="@+id/jns_jurnal"
                     android:fontFamily="sans-serif"
                     android:textSize="14sp"
-                    android:textColor="@color/md_white_1000"/>
+                    android:textColor="@color/colorGradBefore"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -185,28 +185,28 @@
                         android:id="@+id/p1_dafkeg"
                         android:fontFamily="sans-serif"
                         android:textSize="14sp"
-                        android:textColor="@color/md_white_1000"/>
+                        android:textColor="@color/colorGradBefore"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/p2_dafkeg"
                         android:fontFamily="sans-serif"
                         android:textSize="14sp"
-                        android:textColor="@color/md_white_1000"/>
+                        android:textColor="@color/colorGradBefore"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/p3_dafkeg"
                         android:fontFamily="sans-serif"
                         android:textSize="14sp"
-                        android:textColor="@color/md_white_1000"/>
+                        android:textColor="@color/colorGradBefore"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/p4_dafkeg"
                         android:fontFamily="sans-serif"
                         android:textSize="14sp"
-                        android:textColor="@color/md_white_1000"/>
+                        android:textColor="@color/colorGradBefore"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -225,7 +225,7 @@
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="bold"
-                android:textColor="@color/md_white_1000"/>
+                android:textColor="@color/colorGradBefore"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -234,12 +234,12 @@
                 android:layout_marginHorizontal="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="bold"
-                android:textColor="@color/md_white_1000"/>
+                android:textColor="@color/colorGradBefore"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="show more"
-                android:textColor="@color/md_white_1000"
+                android:textColor="@color/colorGradBefore"
                 android:textSize="12sp"
                 android:textStyle="italic"
                 android:textAlignment="viewEnd"

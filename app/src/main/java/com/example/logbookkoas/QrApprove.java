@@ -27,13 +27,22 @@ public class QrApprove extends AppCompatActivity {
         setContentView(R.layout.activity_qr_approve);
         qr_dosen = findViewById(R.id.otp_dosen);
         qr_approve = findViewById(R.id.qr_approve);
-
+        Intent intent = getIntent();
+        final String id_jurnal = intent.getStringExtra("id_jurnal");
+        final String jurnal = intent.getStringExtra("jurnal");
+        final String dosen = intent.getStringExtra("dosen");
+        qr_dosen.setText(dosen);
+        qr_approve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent camera = new Intent(QrApprove.this,CamScanner.class);
+                camera.putExtra("id_jurnal",id_jurnal);
+                camera.putExtra("jurnal",jurnal);
+                camera.putExtra("dosen",dosen);
+                startActivity(camera);
+            }
+        });
     }
 
-
-    public void qr_click(View view) {
-        Intent camera = new Intent(QrApprove.this,CamScanner.class);
-        startActivity(camera);
-    }
 
 }
