@@ -35,6 +35,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -192,13 +194,14 @@ public class semester9 extends AppCompatActivity {
                     JSONArray kota3 = response.getJSONArray("nim");
                     JSONArray kota4 = response.getJSONArray("status");
                     for (int i = 0; i < kota1.length(); i++) {
-                        JSONObject j = kota.getJSONObject(i);
+                        final JSONObject j = kota.getJSONObject(i);
                         JSONObject c = kota1.getJSONObject(i);
                         JSONObject d = kota2.getJSONObject(i);
                         JSONObject e = kota3.getJSONObject(i);
                         JSONObject f = kota4.getJSONObject(i);
                         HashMap<String, String> map;
                         map = new HashMap<String, String>();
+                        final String tgl= c.getString("tgl_mulai");
                         map.put("stase", j.getString("kepaniteraan"));
                         map.put("nim", e.getString("nim"));
                         map.put("status", f.getString("status"));
@@ -219,8 +222,16 @@ public class semester9 extends AppCompatActivity {
                             map.put("sls", d.getString("tgl_selesai"));
 
                         }
-                        MyArrList.add(map);
 
+                      /*  MyArrList.add(map);
+                        Collections.sort(MyArrList, new Comparator<HashMap<String, String>>()
+                        {
+                            @Override
+                            public int compare(HashMap<String, String> a, HashMap<String, String> b)
+                            {
+                                return a.get(tgl).compareTo(b.get(tgl));
+                            }
+                        });*/
                     }
                     for(int j=0;j<MyArrList.size()+3;j++){
                     for (int i = 0; i < MyArrList.size(); i++) {

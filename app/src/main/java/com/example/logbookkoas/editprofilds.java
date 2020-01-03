@@ -103,8 +103,9 @@ public class editprofilds extends Activity {
         namat = findViewById(R.id.editnmds);
         gelart = (EditText) findViewById(R.id.gelarbrds);
         bagiant = (TextView) findViewById(R.id.ColCustomerID);
-        getBagian();
         getData1(usernametx.getText().toString());
+        getBagian();
+
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +113,12 @@ public class editprofilds extends Activity {
                 String[] idilm = getStringArray(idilmu);
                 id_sis1=idilm[spin.getSelectedItemPosition()];
                 Toast.makeText(editprofilds.this, id_sis1, Toast.LENGTH_SHORT).show();
-                passwordbr = passwordt.getText().toString();
+                if(passwordt.getText().toString().equals("")){
+                    passwordbr = list_data.get(0).get("pass");
+                }
+                else{
+                    passwordbr = passwordt.getText().toString();
+                }
                 namabr = namat.getText().toString();
                 gelarbr = gelart.getText().toString();
                 if (validateInputs()) {
@@ -145,12 +151,7 @@ public class editprofilds extends Activity {
     private boolean validateInputs() {
         if (KEY_EMPTY.equals(namabr)) {
             namat.setError("Username cannot be empty");
-            passwordt.requestFocus();
-            return false;
-        }
-        if (KEY_EMPTY.equals(passwordbr)) {
-            passwordt.setError("Password cannot be empty");
-            passwordt.requestFocus();
+            namat.requestFocus();
             return false;
         }
         return true;
@@ -320,24 +321,28 @@ public class editprofilds extends Activity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray kota = response.getJSONArray("datads");
+                    JSONArray kota1 = response.getJSONArray("pass");
                     for (int i = 0; i < kota.length(); i++) {
                         JSONObject j = kota.getJSONObject(i);
                         HashMap<String, String> map1 = new HashMap<String, String>();
                         map1 = new HashMap<String, String>();
                         map1.put("nama", j.getString("nama"));
                         map1.put("gelar", j.getString("gelar"));
-                        map1.put("id", j.getString("kode_bagian"));
-                        map1.put("bagian", j.getString("bagian"));
                         list_data1.add(map1);
+                    }
+                    for (int i = 0; i < kota1.length(); i++) {
+                        JSONObject k = kota1.getJSONObject(i);
+                        HashMap<String, String> map2 = new HashMap<String, String>();
+                        map2 = new HashMap<String, String>();
+                        map2.put("pass", k.getString("password"));
+                        list_data.add(map2);
                     }
 
                     //  namat.setText(list_data1.get(0).get("nama"));
                     gelart.setText(list_data1.get(0).get("gelar"));
-
+                  //  passwordt.setText(list_data.get(0).get("pass"));
 
                     // HashMap <String,String> map= list_data1.get(0);
-                    String id = list_data1.get(0).get("id");
-                    String bgn = list_data1.get(0).get("bagian");
                     //     Toast.makeText(editprofilds.this, id, Toast.LENGTH_SHORT).show();
                     //   Toast.makeText(editprofilds.this, bgn, Toast.LENGTH_SHORT).show();
                   /*  final SimpleAdapter[] s4dap1 = new SimpleAdapter[1];

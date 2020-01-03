@@ -3,17 +3,13 @@ package com.example.logbookkoas;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.OpenableColumns;
 import android.text.InputType;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +17,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,17 +42,15 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-import java.util.regex.PatternSyntaxException;
 
 import cyd.awesome.material.AwesomeText;
 import cyd.awesome.material.FontCharacterMaps;
 
 public class editprofil extends AppCompatActivity {
-    private Spinner spinnerkota, spinnerpropus, spinnerwali, spinnerkota1, spinnerkota2,spinnerpropal;
+    private SearchableSpinner spinnerkota, spinnerpropus, spinnerwali, spinnerkota1, spinnerkota2, spinnerpropal;
     Button buttonSubmit;
     ProgressDialog pDialog;
     private static final String KEY_STATUS = "status";
@@ -126,22 +120,49 @@ public class editprofil extends AppCompatActivity {
     String propusers, kotausers, propals, kotaals, propwalis, kotawalis;
     Button simpan;
     String tag_json_obj = "json_obj_req";
-    final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-    final ArrayList<HashMap<String, String>> MyArrList1 = new ArrayList<HashMap<String, String>>();
-    final ArrayList<HashMap<String, String>> MyArrList2 = new ArrayList<HashMap<String, String>>();
+    final ArrayList<String> MyArrList = new ArrayList<String>();
+    final ArrayList<String> MyArrList1 = new ArrayList<String>();
+    final ArrayList<String> MyArrList2 = new ArrayList<String>();
+    final ArrayList<String> MyArrList3 = new ArrayList<String>();
+    final ArrayList<String> MyArrList4 = new ArrayList<String>();
+    final ArrayList<String> MyArrList5 = new ArrayList<String>();
     final ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     final ArrayList<HashMap<String, String>> list_data1 = new ArrayList<HashMap<String, String>>();
     final ArrayList<HashMap<String, String>> list_data2 = new ArrayList<HashMap<String, String>>();
     final ArrayList<HashMap<String, String>> list_data3 = new ArrayList<HashMap<String, String>>();
     final ArrayList<HashMap<String, String>> list_data4 = new ArrayList<HashMap<String, String>>();
     final ArrayList<HashMap<String, String>> list_data5 = new ArrayList<HashMap<String, String>>();
+    final ArrayList<String> idpropu = new ArrayList<String>();
+    final ArrayList<String> propu = new ArrayList<String>();
+    final ArrayList<String> idpropa = new ArrayList<String>();
+    final ArrayList<String> propa = new ArrayList<String>();
+    final ArrayList<String> idpropwal = new ArrayList<String>();
+    final ArrayList<String> propwal = new ArrayList<String>();
+    final ArrayList<String> idkotau = new ArrayList<String>();
+    final ArrayList<String> kotau = new ArrayList<String>();
+    final ArrayList<String> idkotaa = new ArrayList<String>();
+    final ArrayList<String> kotaa = new ArrayList<String>();
+    final ArrayList<String> idkotawal = new ArrayList<String>();
+    final ArrayList<String> kotawal = new ArrayList<String>();
+    final ArrayList<String> sidpropu = new ArrayList<String>();
+    final ArrayList<String> spropu = new ArrayList<String>();
+    final ArrayList<String> sidpropa = new ArrayList<String>();
+    final ArrayList<String> spropa = new ArrayList<String>();
+    final ArrayList<String> sidpropwal = new ArrayList<String>();
+    final ArrayList<String> spropwal = new ArrayList<String>();
+    final ArrayList<String> sidkotau = new ArrayList<String>();
+    final ArrayList<String> skotau = new ArrayList<String>();
+    final ArrayList<String> sidkotaa = new ArrayList<String>();
+    final ArrayList<String> skotaa = new ArrayList<String>();
+    final ArrayList<String> sidkotawal = new ArrayList<String>();
+    final ArrayList<String> skotawal = new ArrayList<String>();
     AwesomeText imgShowhidepassword;
     boolean pwd_status = true;
     int bitmap_size = 100; // range 1 - 100
-    HashMap<String, String> map;
+    String map;
     // array list for spinner adapter
     ArrayList<String> kotaList1, kotalist2, kotalist3;
-    ImageView imgpropus,imgkotaus,imgpropal,imgkotaal,imgpropwali,imgkotawali;
+    ImageView imgpropus, imgkotaus, imgpropal, imgkotaal, imgpropwali, imgkotawali;
 
     private void showDateDialog() {
         Calendar newCalendar = Calendar.getInstance();
@@ -171,18 +192,18 @@ public class editprofil extends AppCompatActivity {
         id = findViewById(R.id.idms);
         btDatePicker = (EditText) findViewById(R.id.tanggal);
         tvDateResult = (TextView) findViewById(R.id.tanggal);
-        spinnerpropus = (Spinner) findViewById(R.id.propuser);
-        spinnerkota = (Spinner) findViewById(R.id.kotauser);
+        spinnerpropus = findViewById(R.id.propuser);
+        spinnerkota = findViewById(R.id.kotauser);
         dateimg = (ImageView) findViewById(R.id.imgbtn);
         ganti = (TextView) findViewById(R.id.ganti);
         hapus = (TextView) findViewById(R.id.hapus);
-        spinnerkota1 = (Spinner) findViewById(R.id.kotaal);
-        spinnerkota2 = (Spinner) findViewById(R.id.spinkotawali);
+        spinnerkota1 = findViewById(R.id.kotaal);
+        spinnerkota2 = findViewById(R.id.spinkotawali);
         kotaList1 = new ArrayList<String>();
         kotalist2 = new ArrayList<String>();
         kotalist3 = new ArrayList<String>();
         imageView = findViewById(R.id.imgprofil);
-        spinnerwali = (Spinner) findViewById(R.id.spinwali);
+        spinnerwali = findViewById(R.id.spinwali);
         spinnerpropal = findViewById(R.id.propoal);
         passwordt = findViewById(R.id.passms);
         namat = findViewById(R.id.namalngkpms);
@@ -199,16 +220,10 @@ public class editprofil extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         usernamems.setText(bundle.getString("data1"));
         namat.setText(bundle.getString("data2"));
-        imgpropus=findViewById(R.id.imgpropus);
-        imgkotaus=findViewById(R.id.imgkotaus);
-        imgpropal=findViewById(R.id.imgpropal);
-        imgkotaal=findViewById(R.id.imgkotaal);
-        imgpropwali=findViewById(R.id.imgpropwali);
-        imgkotawali=findViewById(R.id.imgkotawali);
         getData1(user1);
         getProp();
-        getData(usernamems.getText().toString());
-        imgShowhidepassword =(AwesomeText)findViewById(R.id.ImgShowPasswordms);
+        //    getData(usernamems.getText().toString());
+        imgShowhidepassword = (AwesomeText) findViewById(R.id.ImgShowPasswordms);
         imgShowhidepassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -229,36 +244,46 @@ public class editprofil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Retrieve the data entered in the edit texts
-                passwordbr = passwordt.getText().toString();
+                if (passwordt.getText().toString().equals("")) {
+                    passwordbr = list_data.get(0).get("pass");
+                } else {
+                    passwordbr = passwordt.getText().toString();
+                }
                 namabr = namat.getText().toString();
-                propuserbr = spinnerpropus.getSelectedItem().toString();
-                propusers = propuserbr.substring(propuserbr.indexOf("id=")+3,propuserbr.indexOf("}"));
-                kotauserbr = spinnerkota.getSelectedItem().toString();
-                kotausers = kotauserbr.substring(kotauserbr.indexOf("id=")+3,kotauserbr.indexOf("}"));
+                String[] idu = getStringArray(idpropu);
+                propusers = idu[spinnerpropus.getSelectedItemPosition()];
+                //  kotauserbr = spinnerkota.getSelectedItem().toString();
+                //  kotausers = kotauserbr.substring(kotauserbr.indexOf("id=")+3,kotauserbr.indexOf("}"));
+                String[] ktu = getStringArray(MyArrList);
+                kotausers = new String();
+                kotausers = ktu[spinnerkota.getSelectedItemPosition()];
                 //Toast.makeText(editprofil.this, kotausers, Toast.LENGTH_SHORT).show();
                 tgllahirbr = btDatePicker.getText().toString();
                 alamatbr = alamatt.getText().toString();
-                propalmtbr = spinnerpropal.getSelectedItem().toString();
-                propals = propalmtbr.substring(propalmtbr.indexOf("id=")+3,propalmtbr.indexOf("}"));
-                kotaalmtbr = spinnerkota1.getSelectedItem().toString();
-                kotaals = kotaalmtbr.substring(kotaalmtbr.indexOf("id=")+3,kotaalmtbr.indexOf("}"));
-                //Toast.makeText(editprofil.this, kotaals, Toast.LENGTH_SHORT).show();
+                String[] ida = getStringArray(idpropa);
+                propals = ida[spinnerpropal.getSelectedItemPosition()];
+                String[] kta = getStringArray(MyArrList4);
+                kotaals = new String();
+                kotaals = kta[spinnerkota1.getSelectedItemPosition()];
+                Toast.makeText(editprofil.this, kotaals, Toast.LENGTH_SHORT).show();
                 nohpbr = nohpt.getText().toString();
                 emailbr = emailt.getText().toString();
                 nmwalibr = nmwlt.getText().toString();
-                propwalibr = spinnerwali.getSelectedItem().toString();
-                propwalis = propwalibr.substring(propwalibr.indexOf("id=")+3,propwalibr.indexOf("}"));
-                kotawalibr = spinnerkota2.getSelectedItem().toString();
-                kotawalis = kotawalibr.substring(kotawalibr.indexOf("id=")+3,kotawalibr.indexOf("}"));
+                String[] idwal = getStringArray(idpropwal);
+                propwalis = idwal[spinnerwali.getSelectedItemPosition()];
+                String[] ktwal = getStringArray(MyArrList5);
+                kotawalis = new String();
+                kotawalis = ktwal[spinnerkota2.getSelectedItemPosition()];
                 almtwlbr = almtwlt.getText().toString();
                 nohpwalibr = nohpwlt.getText().toString();
                 namalengkap = nmlengkap.getText().toString();
                 idbr = id.getText().toString();
-                if(validateInputs()){
-                getsimpan();
-                uploadimage();
-                Intent i= new Intent(editprofil.this,MahasiswaActivity.class);
-                startActivity(i);}
+                if (validateInputs()) {
+                    getsimpan();
+                    uploadimage();
+                    Intent i = new Intent(editprofil.this, MahasiswaActivity.class);
+                    startActivity(i);
+                }
 
 
             }
@@ -271,7 +296,7 @@ public class editprofil extends AppCompatActivity {
                 showDateDialog();
             }
         });
-        spinnerwali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       /* spinnerwali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 MyArrList2.clear();
@@ -318,7 +343,7 @@ public class editprofil extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
-        });
+        });*/
 
         ganti.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -334,18 +359,14 @@ public class editprofil extends AppCompatActivity {
     }
 
     private boolean validateInputs() {
-        if(KEY_EMPTY.equals(namabr)){
+        if (KEY_EMPTY.equals(namabr)) {
             namat.setError("Username cannot be empty");
-            passwordt.requestFocus();
-            return false;
-        }
-        if(KEY_EMPTY.equals(passwordbr)){
-            passwordt.setError("Password cannot be empty");
-            passwordt.requestFocus();
+            namat.requestFocus();
             return false;
         }
         return true;
     }
+
     private void getKota(String provinsi) {
         JSONObject request = new JSONObject();
         try {
@@ -359,27 +380,22 @@ public class editprofil extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray kota = response.getJSONArray("kota");
+                    MyArrList1.clear();
+                    MyArrList.clear();
                     for (int i = 0; i < kota.length(); i++) {
                         JSONObject j = kota.getJSONObject(i);
-                        map = new HashMap<String, String>();
-                        map.put("id", j.getString("id_kota"));
-                        map.put("kota", j.getString("kota"));
-                        String namaKota = j.getString("kota");
-                        MyArrList.add(map);
-                        MyArrList1.add(map);
-                        MyArrList2.add(map);
-
+                        String id = j.getString("id_kota");
+                        String kt = j.getString("kota");
+                        MyArrList.add(id);
+                        MyArrList1.add(kt);
                     }
-                    SimpleAdapter s4dap;
-                    s4dap = new SimpleAdapter(editprofil.this, MyArrList, R.layout.columnkota, new String[]{"id", "kota"}, new int[]{R.id.idkota, R.id.nmkota});
-                    spinnerkota.setAdapter(s4dap);
-                    SimpleAdapter s4dap1;
-                    s4dap1 = new SimpleAdapter(editprofil.this, MyArrList1, R.layout.columnkota, new String[]{"id", "kota"}, new int[]{R.id.idkota, R.id.nmkota});
-                    spinnerkota1.setAdapter(s4dap1);
-                    SimpleAdapter s4dap2;
-                    s4dap2 = new SimpleAdapter(editprofil.this, MyArrList2, R.layout.columnkota, new String[]{"id", "kota"}, new int[]{R.id.idkota, R.id.nmkota});
-                    spinnerkota2.setAdapter(s4dap2);
-
+                    String[] idk = getStringArray(MyArrList);
+                    String[] bgn = getStringArray(MyArrList1);
+                    ArrayAdapter<String> p = new ArrayAdapter<String>(editprofil.this, android.R.layout.simple_spinner_item, bgn);
+                    spinnerkota.setAdapter(p);
+                    String[] pen1 = getStringArray(skotau);
+                    spinnerkota.setSelection(getIndex(spinnerkota, pen1[0]));
+                    spinnerkota.setTitle("Pilih Kota");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -389,39 +405,235 @@ public class editprofil extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "ERRORkt", Toast.LENGTH_SHORT).show();
             }
         });
         MySingleton.getInstance(this).addToRequestQueue(json);
     }
+
+    private void getKota1(String provinsi) {
+        JSONObject request = new JSONObject();
+        try {
+            request.put("provinsi", provinsi);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
+                KOTA_URL, request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray kota = response.getJSONArray("kota");
+                    MyArrList2.clear();
+                    MyArrList4.clear();
+                    for (int i = 0; i < kota.length(); i++) {
+                        JSONObject j = kota.getJSONObject(i);
+                        String id = j.getString("id_kota");
+                        String kt = j.getString("kota");
+                        MyArrList4.add(id);
+                        MyArrList2.add(kt);
+                    }
+
+                    String[] bgn1 = getStringArray(MyArrList2);
+                    ArrayAdapter<String> q = new ArrayAdapter<String>(editprofil.this, android.R.layout.simple_spinner_item, bgn1);
+                        spinnerkota1.setAdapter(q);
+                        String[] pen2 = getStringArray(skotaa);
+                        spinnerkota1.setSelection(getIndex(spinnerkota1, pen2[0]));
+                        spinnerkota1.setTitle("Pilih Kota");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "ERRORkt", Toast.LENGTH_SHORT).show();
+            }
+        });
+        MySingleton.getInstance(this).addToRequestQueue(json);
+    }
+
+    private void getKota2(String provinsi) {
+        JSONObject request = new JSONObject();
+        try {
+            request.put("provinsi", provinsi);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
+                KOTA_URL, request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray kota = response.getJSONArray("kota");
+                    MyArrList3.clear();
+                    MyArrList5.clear();
+                    for (int i = 0; i < kota.length(); i++) {
+                        JSONObject j = kota.getJSONObject(i);
+                        String id = j.getString("id_kota");
+                        String kt = j.getString("kota");
+                        MyArrList5.add(id);
+                        MyArrList3.add(kt);
+                    }
+                    String[] bgn2 = getStringArray(MyArrList3);
+                    ArrayAdapter<String> r = new ArrayAdapter<String>(editprofil.this, android.R.layout.simple_spinner_item, bgn2);
+                        spinnerkota2.setAdapter(r);
+                        String[] pen3 = getStringArray(skotawal);
+                        spinnerkota2.setSelection(getIndex(spinnerkota2, pen3[0]));
+                        spinnerkota2.setTitle("Pilih Kota");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "ERRORkt", Toast.LENGTH_SHORT).show();
+            }
+        });
+        MySingleton.getInstance(this).addToRequestQueue(json);
+    }
+
     private void getProp() {
         JSONObject request = new JSONObject();
+        try {
+            SessionHandler session = new SessionHandler(getApplicationContext());
+            User user = session.getUserDetails();
+            String username = user.getUsername();
+            request.put(KEY_USERNAME, username);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
                 PROP_URL, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray kota = response.getJSONArray("prop");
+                    JSONArray kota = response.getJSONArray("dfprop");
+                    JSONArray kota1 = response.getJSONArray("hsllhr");
+                    JSONArray kota2 = response.getJSONArray("hslalmt");
+                    JSONArray kota3 = response.getJSONArray("hslortu");
                     for (int i = 0; i < kota.length(); i++) {
                         JSONObject j = kota.getJSONObject(i);
-                        HashMap<String,String> map;
-                        map = new HashMap<String, String>();
-                        map.put("id", j.getString("id_prop"));
-                        map.put("prop", j.getString("prop"));
-                        list_data1.add(map);
-                        list_data2.add(map);
-                        list_data3.add(map);
+                        String prp = j.getString("prop");
+                        String idp = j.getString("id_prop");
+                        idpropu.add(idp);
+                        idpropa.add(idp);
+                        idpropwal.add(idp);
+                        propu.add(prp);
+                        propa.add(prp);
+                        propwal.add(prp);
                     }
-                    SimpleAdapter s4dap;
-                    s4dap = new SimpleAdapter(editprofil.this, list_data1, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
-                    spinnerpropus.setAdapter(s4dap);
-                    SimpleAdapter s4dap1;
-                    s4dap1 = new SimpleAdapter(editprofil.this, list_data2, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
-                    spinnerpropal.setAdapter(s4dap1);
-                    SimpleAdapter s4dap2;
-                    s4dap2 = new SimpleAdapter(editprofil.this, list_data3, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
-                    spinnerwali.setAdapter(s4dap2);
+                    for (int i = 0; i < kota1.length(); i++) {
+                        JSONObject k = kota1.getJSONObject(i);
+                        String prplhr = k.getString("prop");
+                        String idprlhr = k.getString("prop_lahir");
+                        String idktlhr = k.getString("kota_lahir");
+                        String ktlhr = k.getString("kota");
+                        sidkotau.add(idktlhr);
+                        skotau.add(ktlhr);
+                        spropu.add(prplhr);
+                        sidpropu.add(idprlhr);
+                    }
+                    for (int i = 0; i < kota2.length(); i++) {
+                        JSONObject l = kota2.getJSONObject(i);
+                        String prpalmt = l.getString("prop");
+                        String idpralmt = l.getString("prop_alamat");
+                        String idktalmt = l.getString("kota_alamat");
+                        String ktalmt = l.getString("kota");
+                        sidkotaa.add(idktalmt);
+                        skotaa.add(ktalmt);
+                        spropa.add(prpalmt);
+                        sidpropa.add(idpralmt);
+                    }
+                    for (int i = 0; i < kota3.length(); i++) {
+                        JSONObject m = kota3.getJSONObject(i);
+                        String prportu = m.getString("prop");
+                        String idprortu = m.getString("prop_ortu");
+                        String idktortu = m.getString("kota_ortu");
+                        String ktortu = m.getString("kota");
+                        sidkotawal.add(idktortu);
+                        skotawal.add(ktortu);
+                        spropwal.add(prportu);
+                        sidpropwal.add(idprortu);
+                    }
+                    final String[] idkotdf = getStringArray(MyArrList);
+                    final String[] kotdf = getStringArray(MyArrList1);
+                    String[] sidu = getStringArray(sidpropu);
+                    String[] sprpu = getStringArray(spropu);
+                    String[] sidktu = getStringArray(sidkotau);
+                    final String[] sktu = getStringArray(skotau);
+                    String[] sida = getStringArray(sidpropa);
+                    String[] sprpa = getStringArray(spropa);
+                    String[] sidkta = getStringArray(sidkotaa);
+                    final String[] skta = getStringArray(skotaa);
+                    String[] sidwal = getStringArray(sidpropwal);
+                    String[] sprpwal = getStringArray(spropwal);
+                    String[] sidktwal = getStringArray(sidkotawal);
+                    final String[] sktwal = getStringArray(skotawal);
+                    final String[] idu = getStringArray(idpropu);
+                    final String[] ida = getStringArray(idpropa);
+                    final String[] idwal = getStringArray(idpropwal);
+                    String[] prpu = getStringArray(propu);
+                    String[] prpa = getStringArray(propa);
+                    String[] prpwal = getStringArray(propwal);
+                    ArrayAdapter<String> a = new ArrayAdapter<String>(editprofil.this, android.R.layout.simple_spinner_item, prpu);
+                    final ArrayAdapter<String> b = new ArrayAdapter<String>(editprofil.this, android.R.layout.simple_spinner_item, prpa);
+                    ArrayAdapter<String> c = new ArrayAdapter<String>(editprofil.this, android.R.layout.simple_spinner_item, prpwal);
+                    spinnerpropus.setAdapter(a);
+                    spinnerpropus.setSelection(getIndex(spinnerpropus, sprpu[0]));
+                    spinnerpropal.setAdapter(b);
+                    spinnerpropal.setSelection(getIndex(spinnerpropal, sprpa[0]));
+                    spinnerwali.setAdapter(c);
+                    spinnerwali.setSelection(getIndex(spinnerwali, sprpwal[0]));
+                    spinnerpropus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            String idpus = idu[position];
+                            getKota(idpus);
+                            /*ArrayAdapter<String>a=new ArrayAdapter<String>(editprofil.this,android.R.layout.simple_spinner_item,kotdf);
+                            spinnerkota.setAdapter(a);
+                            spinnerkota.setSelection(getIndex(spinnerkota2,sktu[0]));*/
+                        }
 
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                    spinnerpropal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            String idpa = ida[position];
+                            getKota1(idpa);
+                           /* ArrayAdapter<String>a=new ArrayAdapter<String>(editprofil.this,android.R.layout.simple_spinner_item,kotdf);
+                            spinnerkota1.setAdapter(a);
+                            spinnerkota1.setSelection(getIndex(spinnerkota2,skta[0]));*/
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+                    spinnerwali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            String idpwal = idwal[position];
+                            getKota2(idpwal);
+                           /* ArrayAdapter<String>a=new ArrayAdapter<String>(editprofil.this,android.R.layout.simple_spinner_item,kotdf);
+                            spinnerkota2.setAdapter(a);
+                            spinnerkota2.setSelection(getIndex(spinnerkota2,sktwal[0]));*/
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -431,12 +643,20 @@ public class editprofil extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "ERRORpr", Toast.LENGTH_SHORT).show();
             }
         });
         MySingleton.getInstance(this).addToRequestQueue(json);
     }
 
+    private int getIndex(SearchableSpinner spinner, String myString) {
+        for (int i = 0; i < spinner.getCount(); i++) {
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(myString)) {
+                return i;
+            }
+        }
+        return 0;
+    }
   /*  public void getData(String user1){
 
         JSONObject request = new JSONObject();
@@ -509,6 +729,7 @@ public class editprofil extends AppCompatActivity {
                         map1.put("almtortu", j.getString("alamat_ortu"));
                         map1.put("nohportu", j.getString("no_hportu"));
                         map1.put("foto", j.getString("foto"));
+                        map1.put("pass", j.getString("password"));
                         list_data.add(map1);
 
 
@@ -546,213 +767,213 @@ public class editprofil extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(json);
     }
 
-    public void getData(String username) {
+    /* public void getData(String username) {
 
-        JSONObject request = new JSONObject();
-        try {
-            request.put(KEY_USERNAME, username);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
-                data_url, request, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-                    JSONArray kota = response.getJSONArray("datalhr");
-                    JSONArray kota1 = response.getJSONArray("dataalmt");
-                    JSONArray kota2 = response.getJSONArray("datawali");
-                    for (int i = 0; i < kota.length(); i++) {
-                        JSONObject j = kota.getJSONObject(i);
-                        JSONObject a = kota1.getJSONObject(i);
-                        JSONObject b = kota2.getJSONObject(i);
-                        HashMap<String, String> map1 = new HashMap<String, String>();
-                        map1 = new HashMap<String, String>();
-                       map1.put("kotalhr", j.getString("kota"));
-                       map1.put("idlhrkota", j.getString("kota_lahir"));
-                        map1.put("idlhrprop", j.getString("prop_lahir"));
-                        map1.put("proplhr", j.getString("prop"));
-                        map1.put("kotaalmt", a.getString("kota"));
-                        map1.put("idkotaalmt", a.getString("id_kota"));
-                        map1.put("idpropalmt", a.getString("id_prop"));
-                        map1.put("propalmt", a.getString("prop"));
-                        map1.put("kotaortu", b.getString("kota"));
-                        map1.put("idkotaortu", b.getString("id_kota"));
-                        map1.put("idproportu", b.getString("id_prop"));
-                        map1.put("proportu", b.getString("prop"));
-                        list_data4.add(map1);
-
-
-                    }
-                    final SimpleAdapter s4dap;
-                    final String idpropus=list_data4.get(0).get("idlhrprop");
-                    String idkotaus=list_data4.get(0).get("idlhrkota");
-                    String idpropal=list_data4.get(0).get("idpropalmt");
-                    String idkotaal=list_data4.get(0).get("idkotaalmt");
-                    String idpropwali=list_data4.get(0).get("idortuprop");
-                    String idkotawali=list_data4.get(0).get("idortukota");
-                    final SimpleAdapter[] s4dap1 = new SimpleAdapter[1];
-                    if (idpropus != null&&idpropal != null&&idpropwali != null) {
-                            final SimpleAdapter s4dap2;
-                            final SimpleAdapter s4dap3;
-                            final SimpleAdapter[] s4dap4 = new SimpleAdapter[1];
-                            final SimpleAdapter[] s4dap5 = new SimpleAdapter[1];
-                            final SimpleAdapter[] s4dap6 = new SimpleAdapter[1];
-                            final SimpleAdapter[] s4dap7 = new SimpleAdapter[1];
-                            final SimpleAdapter[] s4dap8 = new SimpleAdapter[1];
-                            s4dap = new SimpleAdapter(editprofil.this, list_data4, R.layout.prop, new String[]{"idlhrprop", "proplhr"}, new int[]{R.id.idprop, R.id.nmprop});
-                            spinnerpropus.setAdapter(s4dap);
-                            spinnerpropus.setSelection(0);
-                            s4dap2 = new SimpleAdapter(editprofil.this, list_data4, R.layout.prop, new String[]{"idpropalmt", "propalmt"}, new int[]{R.id.idprop, R.id.nmprop});
-                            spinnerpropal.setAdapter(s4dap2);
-                            spinnerpropal.setSelection(0);
-                            s4dap3 = new SimpleAdapter(editprofil.this, list_data4, R.layout.prop, new String[]{"idproportu", "proportu"}, new int[]{R.id.idprop, R.id.nmprop});
-                            spinnerwali.setAdapter(s4dap3);
-                            spinnerwali.setSelection(0);
-                            spinnerwali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                    MyArrList2.clear();
-                                    final SimpleAdapter s4dap11;
-                                    s4dap11 = new SimpleAdapter(editprofil.this, list_data4, R.layout.columnkota, new String[]{"idkotaortu", "kotaortu"}, new int[]{R.id.idkota, R.id.nmkota});
-                                    spinnerkota2.setAdapter(s4dap11);
-                                    spinnerkota2.setSelection(0);
-
-                                }
-
-                                @Override
-                                public void onNothingSelected(AdapterView<?> parent) {
-
-                                }
-                            });
-                            spinnerpropal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                    MyArrList1.clear();
-                                    final SimpleAdapter s4dap10;
-                                    s4dap10 = new SimpleAdapter(editprofil.this, list_data4, R.layout.columnkota, new String[]{"idkotaalmt", "kotaalmt"}, new int[]{R.id.idkota, R.id.nmkota});
-                                    spinnerkota1.setAdapter(s4dap10);
-                                    spinnerkota1.setSelection(0);
-                                }
-
-                                @Override
-                                public void onNothingSelected(AdapterView<?> parent) {
-
-                                }
-                            });
-                            spinnerpropus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                @Override
-                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                    MyArrList.clear();
-                                    final SimpleAdapter s4dap9;
-                                    // Refresh Spinner
-
-                                    s4dap9 = new SimpleAdapter(editprofil.this, list_data4, R.layout.columnkota, new String[]{"idlhrkota", "kotalhr"}, new int[]{R.id.idkota, R.id.nmkota});
-                                    spinnerkota.setAdapter(s4dap9);
-                                    spinnerkota.setSelection(0);
-                                }
-
-                                @Override
-                                public void onNothingSelected(AdapterView<?> parent) {
-                                }
-                            });
-
-                            imgpropus.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    String prov = spinnerpropus.getSelectedItem().toString();
-                                    String prov1 = prov.substring(prov.indexOf("id=")+3,prov.indexOf("}"));
-                                    getKota(prov1);
-                                    s4dap1[0] = new SimpleAdapter(editprofil.this, list_data1, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
-                                    spinnerpropus.setAdapter(s4dap1[0]);
-                                   // Toast.makeText(editprofil.this,idpropus, Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            imgpropal.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    String prov = spinnerpropal.getSelectedItem().toString();
-                                    String prov1 = prov.substring(prov.indexOf("id=")+3,prov.indexOf("}"));
-                                    getKota(prov1);
-                                    s4dap4[0] = new SimpleAdapter(editprofil.this, list_data2, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
-                                    spinnerpropal.setAdapter(s4dap4[0]);
-                                    //Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            imgpropwali.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    String prov = spinnerwali.getSelectedItem().toString();
-                                    String prov1 = prov.substring(prov.indexOf("id=")+3,prov.indexOf("}"));
-                                    getKota(prov1);
-                                    s4dap5[0] = new SimpleAdapter(editprofil.this, list_data3, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
-                                    spinnerwali.setAdapter(s4dap5[0]);
-                                  //  Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                                }
-
-                            });
-                            imgkotaus.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    s4dap6[0] = new SimpleAdapter(editprofil.this, MyArrList, R.layout.prop, new String[]{"id", "kota"}, new int[]{R.id.idprop, R.id.nmprop});
-                                    spinnerkota.setAdapter(s4dap6[0]);
-                                    // Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            imgkotaal.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                    s4dap7[0] = new SimpleAdapter(editprofil.this, MyArrList1, R.layout.prop, new String[]{"id", "kota"}, new int[]{R.id.idprop, R.id.nmprop});
-                                    spinnerkota1.setAdapter(s4dap7[0]);
-                                    //  Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            imgkotawali.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    s4dap8[0] = new SimpleAdapter(editprofil.this, MyArrList2, R.layout.prop, new String[]{"id", "kota"}, new int[]{R.id.idprop, R.id.nmprop});
-                                    spinnerkota2.setAdapter(s4dap8[0]);
-                                    //  Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
-                                }});
-                        }
-                    else{
-                        final SimpleAdapter s4dap2;
-                        final SimpleAdapter s4dap3;
-                        final SimpleAdapter s4dap4;
-                        final SimpleAdapter s4dap5;
-                        final SimpleAdapter s4dap6;
-                        s4dap = new SimpleAdapter(editprofil.this, list_data1, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
-                        spinnerpropus.setAdapter(s4dap);
-                        s4dap2 = new SimpleAdapter(editprofil.this, list_data2, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
-                        spinnerpropal.setAdapter(s4dap2);
-                        s4dap3 = new SimpleAdapter(editprofil.this, list_data3, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
-                        spinnerwali.setAdapter(s4dap3);
-                        s4dap4 = new SimpleAdapter(editprofil.this, MyArrList, R.layout.columnkota, new String[]{"id", "kota"}, new int[]{R.id.idkota, R.id.nmkota});
-                        spinnerkota.setAdapter(s4dap4);
-                        s4dap5 = new SimpleAdapter(editprofil.this, MyArrList1, R.layout.columnkota, new String[]{"id", "kota"}, new int[]{R.id.idkota, R.id.nmkota});
-                        spinnerkota1.setAdapter(s4dap5);
-                        s4dap6 = new SimpleAdapter(editprofil.this, MyArrList2, R.layout.columnkota, new String[]{"id", "kota"}, new int[]{R.id.idkota, R.id.nmkota});
-                        spinnerkota2.setAdapter(s4dap6);
-
-                    }
+         JSONObject request = new JSONObject();
+         try {
+             request.put(KEY_USERNAME, username);
+         } catch (JSONException e) {
+             e.printStackTrace();
+         }
+         JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
+                 data_url, request, new Response.Listener<JSONObject>() {
+             @Override
+             public void onResponse(JSONObject response) {
+                 try {
+                     JSONArray kota = response.getJSONArray("datalhr");
+                     JSONArray kota1 = response.getJSONArray("dataalmt");
+                     JSONArray kota2 = response.getJSONArray("datawali");
+                     for (int i = 0; i < kota.length(); i++) {
+                         JSONObject j = kota.getJSONObject(i);
+                         JSONObject a = kota1.getJSONObject(i);
+                         JSONObject b = kota2.getJSONObject(i);
+                         HashMap<String, String> map1 = new HashMap<String, String>();
+                         map1 = new HashMap<String, String>();
+                        map1.put("kotalhr", j.getString("kota"));
+                        map1.put("idlhrkota", j.getString("kota_lahir"));
+                         map1.put("idlhrprop", j.getString("prop_lahir"));
+                         map1.put("proplhr", j.getString("prop"));
+                         map1.put("kotaalmt", a.getString("kota"));
+                         map1.put("idkotaalmt", a.getString("id_kota"));
+                         map1.put("idpropalmt", a.getString("id_prop"));
+                         map1.put("propalmt", a.getString("prop"));
+                         map1.put("kotaortu", b.getString("kota"));
+                         map1.put("idkotaortu", b.getString("id_kota"));
+                         map1.put("idproportu", b.getString("id_prop"));
+                         map1.put("proportu", b.getString("prop"));
+                         list_data4.add(map1);
 
 
+                     }
+                     final SimpleAdapter s4dap;
+                     final String idpropus=list_data4.get(0).get("idlhrprop");
+                     String idkotaus=list_data4.get(0).get("idlhrkota");
+                     String idpropal=list_data4.get(0).get("idpropalmt");
+                     String idkotaal=list_data4.get(0).get("idkotaalmt");
+                     String idpropwali=list_data4.get(0).get("idortuprop");
+                     String idkotawali=list_data4.get(0).get("idortukota");
+                     final SimpleAdapter[] s4dap1 = new SimpleAdapter[1];
+                     if (idpropus != null&&idpropal != null&&idpropwali != null) {
+                             final SimpleAdapter s4dap2;
+                             final SimpleAdapter s4dap3;
+                             final SimpleAdapter[] s4dap4 = new SimpleAdapter[1];
+                             final SimpleAdapter[] s4dap5 = new SimpleAdapter[1];
+                             final SimpleAdapter[] s4dap6 = new SimpleAdapter[1];
+                             final SimpleAdapter[] s4dap7 = new SimpleAdapter[1];
+                             final SimpleAdapter[] s4dap8 = new SimpleAdapter[1];
+                             s4dap = new SimpleAdapter(editprofil.this, list_data4, R.layout.prop, new String[]{"idlhrprop", "proplhr"}, new int[]{R.id.idprop, R.id.nmprop});
+                             spinnerpropus.setAdapter(s4dap);
+                             spinnerpropus.setSelection(0);
+                             s4dap2 = new SimpleAdapter(editprofil.this, list_data4, R.layout.prop, new String[]{"idpropalmt", "propalmt"}, new int[]{R.id.idprop, R.id.nmprop});
+                             spinnerpropal.setAdapter(s4dap2);
+                             spinnerpropal.setSelection(0);
+                             s4dap3 = new SimpleAdapter(editprofil.this, list_data4, R.layout.prop, new String[]{"idproportu", "proportu"}, new int[]{R.id.idprop, R.id.nmprop});
+                             spinnerwali.setAdapter(s4dap3);
+                             spinnerwali.setSelection(0);
+                             spinnerwali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                 @Override
+                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                     MyArrList2.clear();
+                                     final SimpleAdapter s4dap11;
+                                     s4dap11 = new SimpleAdapter(editprofil.this, list_data4, R.layout.columnkota, new String[]{"idkotaortu", "kotaortu"}, new int[]{R.id.idkota, R.id.nmkota});
+                                     spinnerkota2.setAdapter(s4dap11);
+                                     spinnerkota2.setSelection(0);
+
+                                 }
+
+                                 @Override
+                                 public void onNothingSelected(AdapterView<?> parent) {
+
+                                 }
+                             });
+                             spinnerpropal.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                 @Override
+                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                     MyArrList1.clear();
+                                     final SimpleAdapter s4dap10;
+                                     s4dap10 = new SimpleAdapter(editprofil.this, list_data4, R.layout.columnkota, new String[]{"idkotaalmt", "kotaalmt"}, new int[]{R.id.idkota, R.id.nmkota});
+                                     spinnerkota1.setAdapter(s4dap10);
+                                     spinnerkota1.setSelection(0);
+                                 }
+
+                                 @Override
+                                 public void onNothingSelected(AdapterView<?> parent) {
+
+                                 }
+                             });
+                             spinnerpropus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                 @Override
+                                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                     MyArrList.clear();
+                                     final SimpleAdapter s4dap9;
+                                     // Refresh Spinner
+
+                                     s4dap9 = new SimpleAdapter(editprofil.this, list_data4, R.layout.columnkota, new String[]{"idlhrkota", "kotalhr"}, new int[]{R.id.idkota, R.id.nmkota});
+                                     spinnerkota.setAdapter(s4dap9);
+                                     spinnerkota.setSelection(0);
+                                 }
+
+                                 @Override
+                                 public void onNothingSelected(AdapterView<?> parent) {
+                                 }
+                             });
+
+                             imgpropus.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     String prov = spinnerpropus.getSelectedItem().toString();
+                                     String prov1 = prov.substring(prov.indexOf("id=")+3,prov.indexOf("}"));
+                                     getKota(prov1);
+                                     s4dap1[0] = new SimpleAdapter(editprofil.this, list_data1, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
+                                     spinnerpropus.setAdapter(s4dap1[0]);
+                                    // Toast.makeText(editprofil.this,idpropus, Toast.LENGTH_SHORT).show();
+                                 }
+                             });
+                             imgpropal.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     String prov = spinnerpropal.getSelectedItem().toString();
+                                     String prov1 = prov.substring(prov.indexOf("id=")+3,prov.indexOf("}"));
+                                     getKota(prov1);
+                                     s4dap4[0] = new SimpleAdapter(editprofil.this, list_data2, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
+                                     spinnerpropal.setAdapter(s4dap4[0]);
+                                     //Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                                 }
+                             });
+                             imgpropwali.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     String prov = spinnerwali.getSelectedItem().toString();
+                                     String prov1 = prov.substring(prov.indexOf("id=")+3,prov.indexOf("}"));
+                                     getKota(prov1);
+                                     s4dap5[0] = new SimpleAdapter(editprofil.this, list_data3, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
+                                     spinnerwali.setAdapter(s4dap5[0]);
+                                   //  Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                                 }
+
+                             });
+                             imgkotaus.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     s4dap6[0] = new SimpleAdapter(editprofil.this, MyArrList, R.layout.prop, new String[]{"id", "kota"}, new int[]{R.id.idprop, R.id.nmprop});
+                                     spinnerkota.setAdapter(s4dap6[0]);
+                                     // Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                                 }
+                             });
+                             imgkotaal.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+
+                                     s4dap7[0] = new SimpleAdapter(editprofil.this, MyArrList1, R.layout.prop, new String[]{"id", "kota"}, new int[]{R.id.idprop, R.id.nmprop});
+                                     spinnerkota1.setAdapter(s4dap7[0]);
+                                     //  Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                                 }
+                             });
+                             imgkotawali.setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+                                     s4dap8[0] = new SimpleAdapter(editprofil.this, MyArrList2, R.layout.prop, new String[]{"id", "kota"}, new int[]{R.id.idprop, R.id.nmprop});
+                                     spinnerkota2.setAdapter(s4dap8[0]);
+                                     //  Toast.makeText(editprofil.this,spinnerpropus.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                                 }});
+                         }
+                     else{
+                         final SimpleAdapter s4dap2;
+                         final SimpleAdapter s4dap3;
+                         final SimpleAdapter s4dap4;
+                         final SimpleAdapter s4dap5;
+                         final SimpleAdapter s4dap6;
+                         s4dap = new SimpleAdapter(editprofil.this, list_data1, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
+                         spinnerpropus.setAdapter(s4dap);
+                         s4dap2 = new SimpleAdapter(editprofil.this, list_data2, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
+                         spinnerpropal.setAdapter(s4dap2);
+                         s4dap3 = new SimpleAdapter(editprofil.this, list_data3, R.layout.prop, new String[]{"id", "prop"}, new int[]{R.id.idprop, R.id.nmprop});
+                         spinnerwali.setAdapter(s4dap3);
+                         s4dap4 = new SimpleAdapter(editprofil.this, MyArrList, R.layout.columnkota, new String[]{"id", "kota"}, new int[]{R.id.idkota, R.id.nmkota});
+                         spinnerkota.setAdapter(s4dap4);
+                         s4dap5 = new SimpleAdapter(editprofil.this, MyArrList1, R.layout.columnkota, new String[]{"id", "kota"}, new int[]{R.id.idkota, R.id.nmkota});
+                         spinnerkota1.setAdapter(s4dap5);
+                         s4dap6 = new SimpleAdapter(editprofil.this, MyArrList2, R.layout.columnkota, new String[]{"id", "kota"}, new int[]{R.id.idkota, R.id.nmkota});
+                         spinnerkota2.setAdapter(s4dap6);
+
+                     }
 
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
 
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
-            }
-        });
-        MySingleton.getInstance(this).addToRequestQueue(json);
-    }
+
+                 } catch (JSONException e) {
+                     e.printStackTrace();
+
+                 }
+             }
+         }, new Response.ErrorListener() {
+             @Override
+             public void onErrorResponse(VolleyError error) {
+                 Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+             }
+         });
+         MySingleton.getInstance(this).addToRequestQueue(json);
+     }*/
     private static String[] getStringArray(ArrayList<String> arr) {
         String str[] = new String[arr.size()];
         for (int i = 0; i < arr.size(); i++) {

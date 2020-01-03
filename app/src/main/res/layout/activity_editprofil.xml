@@ -185,18 +185,13 @@
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal">
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/propuser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/imgpropus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/clear" />
             </LinearLayout>
 
             <TextView
@@ -215,18 +210,13 @@
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal">
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/kotauser"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/imgkotaus"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/clear" />
             </LinearLayout>
 
             <LinearLayout
@@ -291,19 +281,13 @@
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal">
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/propoal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:entries="@array/proparray" />
+                    android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/imgpropal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/clear" />
             </LinearLayout>
 
             <TextView
@@ -322,18 +306,14 @@
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal">
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/kotaal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/imgkotaal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/clear" />
+
             </LinearLayout>
 
             <TextView
@@ -436,19 +416,13 @@
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal">
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/spinwali"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:entries="@array/proparray" />
+                    android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/imgpropwali"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/clear" />
             </LinearLayout>
 
             <TextView
@@ -467,18 +441,13 @@
                 android:layout_marginEnd="15dp"
                 android:orientation="horizontal">
 
-                <Spinner
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
                     android:id="@+id/spinkotawali"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_weight="1" />
 
-                <ImageView
-                    android:id="@+id/imgkotawali"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/clear" />
             </LinearLayout>
 
             <TextView
