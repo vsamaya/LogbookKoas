@@ -113,8 +113,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/md_black_1000"
                 android:layout_marginEnd="15dp"
                 android:text="@string/username" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="(Username tidak bisa diubah, NIP/NIDK/NIM/ID dari user.
+  Hubungi admin fakultas untuk melakukan perubahan)."
+                android:textSize="10sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -130,7 +140,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
-                    android:hint="@string/password"
+                    android:hint="Password Baru"
                     android:inputType="textPassword"
                     android:singleLine="true"
                     android:textSize="15sp" />
@@ -146,7 +156,14 @@
                     app:awesome_font="material_design"
                     app:awesome_icon="MD_VISIBILITY_OFF" />
             </LinearLayout>
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="(Jika kosong/tidak diisi, password tidak berubah)"
+                android:textSize="10sp" />
             <TextView
                 android:id="@+id/nmlengkap"
                 android:layout_width="wrap_content"

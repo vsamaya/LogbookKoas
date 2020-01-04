@@ -265,7 +265,7 @@ public class editprofil extends AppCompatActivity {
                 String[] kta = getStringArray(MyArrList4);
                 kotaals = new String();
                 kotaals = kta[spinnerkota1.getSelectedItemPosition()];
-                Toast.makeText(editprofil.this, kotaals, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(editprofil.this, kotaals, Toast.LENGTH_SHORT).show();
                 nohpbr = nohpt.getText().toString();
                 emailbr = emailt.getText().toString();
                 nmwalibr = nmwlt.getText().toString();

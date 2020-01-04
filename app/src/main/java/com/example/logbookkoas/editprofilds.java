@@ -112,7 +112,7 @@ public class editprofilds extends Activity {
                 id_sis1 = new String();
                 String[] idilm = getStringArray(idilmu);
                 id_sis1=idilm[spin.getSelectedItemPosition()];
-                Toast.makeText(editprofilds.this, id_sis1, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(editprofilds.this, id_sis1, Toast.LENGTH_SHORT).show();
                 if(passwordt.getText().toString().equals("")){
                     passwordbr = list_data.get(0).get("pass");
                 }
@@ -174,6 +174,8 @@ public class editprofilds extends Activity {
                 try {
                     JSONArray kota = response.getJSONArray("idbagian");
                     JSONArray kota1 = response.getJSONArray("idhsl");
+                    idilmu.clear();
+                    bagianilmu.clear();
                     for (int i = 0; i < kota.length(); i++) {
                         JSONObject j = kota.getJSONObject(i);
                         // JSONObject k = kota1.getJSONObject(i);

@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             loadDashboard(level);
          //   Toast.makeText(MainActivity.this, Username2, Toast.LENGTH_SHORT).show();
         }else {
-            Toast.makeText(MainActivity.this, "kosong", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "kosong", Toast.LENGTH_SHORT).show();
 
         }
 

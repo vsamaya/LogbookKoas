@@ -30,16 +30,33 @@
             android:background="@drawable/roundedlayout"
             android:orientation="vertical">
 
-
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="Username"
+                android:textSize="15sp" />
             <TextView
                 android:id="@+id/usernamedos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/username"
+                android:textColor="@color/md_black_1000"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="(Username tidak bisa diubah, NIP/NIDK/NIM/ID dari user.
+  Hubungi admin fakultas untuk melakukan perubahan)."
+                android:textSize="10sp" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -51,9 +68,6 @@
                     android:id="@+id/pass"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="15dp"
                     android:layout_weight="1"
                     android:hint="Password Baru"
                     android:singleLine="true"
@@ -69,6 +83,14 @@
                     app:awesome_font="material_design"
                     app:awesome_icon="MD_VISIBILITY_OFF" />
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:text="(Jika kosong/tidak diisi, password tidak berubah)"
+                android:textSize="10sp" />
             <TextView
                 android:id="@+id/namads"
                 android:layout_width="match_parent"

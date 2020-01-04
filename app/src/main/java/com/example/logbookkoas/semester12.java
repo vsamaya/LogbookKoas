@@ -17,6 +17,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -203,6 +205,16 @@ public class semester12 extends AppCompatActivity {
                             }
                         }}
                     int jumlah = MyArrList.size();
+                    Collections.sort(MyArrList, new Comparator<HashMap<String, String>>()
+                    {
+                        @Override
+                        public int compare(HashMap<String, String> a, HashMap<String, String> b)
+                        {
+                            if (a.get("mli") == null || b.get("mli") == null)
+                                return 0;
+                            return a.get("mli").compareTo(b.get("mli"));
+                        }
+                    });
                     String jumlaht = Integer.toString(jumlah);
                     Toast.makeText(semester12.this, jumlaht, Toast.LENGTH_SHORT).show();
                     SimpleAdapter s4dap;

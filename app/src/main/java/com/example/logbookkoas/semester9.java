@@ -223,15 +223,8 @@ public class semester9 extends AppCompatActivity {
 
                         }
 
-                      /*  MyArrList.add(map);
-                        Collections.sort(MyArrList, new Comparator<HashMap<String, String>>()
-                        {
-                            @Override
-                            public int compare(HashMap<String, String> a, HashMap<String, String> b)
-                            {
-                                return a.get(tgl).compareTo(b.get(tgl));
-                            }
-                        });*/
+                       MyArrList.add(map);
+
                     }
                     for(int j=0;j<MyArrList.size()+3;j++){
                     for (int i = 0; i < MyArrList.size(); i++) {
@@ -241,11 +234,20 @@ public class semester9 extends AppCompatActivity {
                         if (Objects.equals(MyArrList.get(i).get("st"), "")) {
                             MyArrList.remove(i);
 
-
                         }
                     }}
+                    final int jumlah = MyArrList.size();
+                    Collections.sort(MyArrList, new Comparator<HashMap<String, String>>()
+                    {
+                        @Override
+                        public int compare(HashMap<String, String> a, HashMap<String, String> b)
+                        {
+                            if (a.get("mli") == null || b.get("mli") == null)
+                                return 0;
+                            return a.get("mli").compareTo(b.get("mli"));
+                        }
+                    });
 
-                    int jumlah = MyArrList.size();
                     String jumlaht = Integer.toString(jumlah);
                     Toast.makeText(semester9.this, jumlaht, Toast.LENGTH_SHORT).show();
                     SimpleAdapter s4dap;
