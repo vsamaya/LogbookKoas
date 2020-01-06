@@ -34,7 +34,7 @@ public class OtpApprove extends AppCompatActivity {
     EditText pin;
     Button otp_approve;
     SessionHandler session;
-    private String otp_aprv = "http://192.168.43.159/otp_aprv.php";
+    private String otp_aprv = "http://192.168.0.109/logbook/otp_aprv.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +44,8 @@ public class OtpApprove extends AppCompatActivity {
         pin = findViewById(R.id.pin);
         otp_approve = findViewById(R.id.otp_approve);
         Intent intent = getIntent();
-        final String dos = intent.getStringExtra("dosen");
-        otp_dosen.setText(dos);
+        final String dosen_lengkap = intent.getStringExtra("dosen_lengkap");
+        otp_dosen.setText(dosen_lengkap);
     }
 
 

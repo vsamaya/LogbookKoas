@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -28,12 +29,15 @@ public class MainActivity extends AppCompatActivity {
     private static final String KEY_MENU = "level";
     private static final String KEY_MESSAGE = "message";
     private static final String KEY_USERNAME = "username";
+    private static final String KEY_FULL_NAME = "full_name";
     private static final String KEY_PASSWORD = "password";
+    private static final String KEY_PASS = "pass";
     private static final String KEY_EMPTY = "";
     private String username;
     private String password;
+    private CheckBox keep;
     private ProgressDialog pDialog;
-    private String login_url = "http://192.168.43.159/logbook/login.php";
+    private String login_url = "http://192.168.43.44/logbook/login.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;
@@ -44,14 +48,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
+        keep=findViewById(R.id.keep);
+        User user=session.getUserDetails();
+        if(session.isLoggedIn()) {
+            String Username2=user.getUsername();
+            String level=user.getLevel();
+            loadDashboard(level);
+            //   Toast.makeText(MainActivity.this, Username2, Toast.LENGTH_SHORT).show();
+        }else {
+            //Toast.makeText(MainActivity.this, "kosong", Toast.LENGTH_SHORT).show();
 
-        if(session.isLoggedIn()){
-            if(session.Dosen()){
-                loadDashboardDosen();
-
-            } else if(session.Mahasiswa()){
-                loadDashboardMahasiswa();
-            } else session.logoutUser();
         }
         setContentView(R.layout.activity_main);
         login = findViewById(R.id.signin);
@@ -87,6 +93,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    private void loadDashboard(String level1){
+        SessionHandler session=new SessionHandler(getApplicationContext());
+        if(level1.equals("4")){
+            loadDashboardDosen();
+        }
+        else if(level1.equals("5")){
+            loadDashboardMahasiswa();
+        }
+
+    }
 
     private void loadDashboardDosen() {
         Intent i = new Intent(getApplicationContext(), DosenActivity.class);
@@ -120,13 +136,11 @@ public class MainActivity extends AppCompatActivity {
                             //Check if user got logged in successfully
 
                             if (response.getInt(KEY_STATUS) == 0) {
-                                session.loginUser(username, response.getString(KEY_MENU),
-                                        response.getString("nama"));
+                                session.loginUser(username, response.getString(KEY_MENU),response.getString(KEY_FULL_NAME),response.getString(KEY_PASS));
                                 loadDashboardDosen();
 
                             }else if (response.getInt(KEY_STATUS) == 3){
-                                session.loginUser(username, response.getString(KEY_MENU),
-                                        response.getString("nama"));
+                                session.loginUser(username, response.getString(KEY_MENU),response.getString(KEY_FULL_NAME),response.getString(KEY_PASS));
                                 loadDashboardMahasiswa();
                             }else{
                                 Toast.makeText(getApplicationContext(),

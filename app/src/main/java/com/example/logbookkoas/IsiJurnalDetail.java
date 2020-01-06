@@ -61,8 +61,12 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String showURL = "http://192.168.43.159/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.43.159/logbook/deleteJurnal.php";
+    private String header = "http://192.168.0.109/logbook/getKepaniteraan.php";
+    private String judul = "http://192.168.0.109/logbook/getJadwal.php";
+    private String update_status = "http://192.168.0.109/logbook/updateStatus.php";
+    private String showURL = "http://192.168.0.109/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.0.109/logbook/deleteJurnal.php";
+    private String updateEntry = "http://192.168.0.109/logbook/updateEntry.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;
@@ -74,8 +78,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onResume() {
+        super.onResume();
         setContentView(R.layout.activity_isi_jurnal_detail);
         stase = findViewById(R.id.stase);
         MainLayout = findViewById(R.id.MainLayout);
@@ -136,7 +140,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
         private void judul() {
             Intent intent = getIntent();
             final String id = intent.getStringExtra(mainIsiJurnal.KEY_ID);
-            String url_judul = "http://192.168.43.159/logbook/getKepaniteraan.php?id="+id;
+            String url_judul = header+"?id="+id;
 
             try {
 
@@ -165,7 +169,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
             session = new SessionHandler(getApplicationContext());
             User user = session.getUserDetails();
             String username = user.getUsername();
-            String url_judul = "http://192.168.43.159/logbook/getJadwal.php?username="+username+"&stase="+idStase;
+            String url_judul = judul+"?username="+username+"&stase="+idStase;
 
             try {
 
@@ -197,7 +201,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                     MainLayout.setVisibility(LinearLayout.VISIBLE);
 
                     String status = "1";
-                    String url_status = "http://192.168.43.159/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -207,9 +211,9 @@ public class IsiJurnalDetail extends AppCompatActivity {
                     }
 
                 }
-                else if(now.after(tglMulai)){
+                else if(now.before(tglMulai)){
                     String status = "0";
-                    String url_status = "http://192.168.43.159/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -220,7 +224,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else{
                     String status = "2";
-                    String url_status = "http://192.168.43.159/logbook/updateStatus.php?username="+username+"&stase="+idStase+"&status="+status;
+                    String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
 
@@ -306,12 +310,10 @@ public class IsiJurnalDetail extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            String updateEntry = "http://192.168.43.159/logbook/updateEntry.php";
             JsonObjectRequest jsArrayRequest = new JsonObjectRequest
                     (Request.Method.POST, updateEntry, request, new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
-
 
                         }
 
@@ -326,6 +328,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
                     });
             // Access the RequestQueue through your singleton class.
             MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+            Toast.makeText(IsiJurnalDetail.this, "Entry Berhasil",
+                    Toast.LENGTH_LONG).show();
             Intent intent = getIntent();
             finish();
             startActivity(intent);
@@ -386,6 +390,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                             if(j.getString("status").equals("1")){
                                 item.put("status","Approved");
                             }else item.put("status","Unapproved");
+                            item.put("dos", j_nama.getString("nama"));
                             item.put("dosen", j_nama.getString("nama")+", "+j_nama.getString("gelar"));
                             item.put("kegiatan", j_kegiatan.getString("kegiatan"));
                             item.put("level",j_kegiatan.getString("level"));
@@ -451,6 +456,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                             if(j.getString("status").equals("1")){
                                 item.put("status","Approved");
                             }else item.put("status","Unapproved");
+                            item.put("dos",j_nama.getString("nama"));
                             item.put("dosen", j_nama.getString("nama")+", "+j_nama.getString("gelar"));
                             item.put("kegiatan", j_kegiatan.getString("kegiatan"));
                             item.put("level",j_kegiatan.getString("level"));
@@ -491,9 +497,9 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
                         ListAdapter adapter =new SimpleAdapter(
                                 getApplicationContext(), list_jurnal_penyakit,R.layout.item_row_show,
-                                new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status"},
+                                new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status","dos"},
                                 new int[]{R.id.tv_jam,R.id.tv_lokasi,R.id.tv_kegiatan,R.id.tv_sumber,R.id.tv_sumber2,
-                                        R.id.tv_sumber3,R.id.tv_sumber4,R.id.tv_dosen,R.id.tv_status}
+                                        R.id.tv_sumber3,R.id.tv_sumber4,R.id.tv_dosen,R.id.tv_status,R.id.tv_dos}
                         )
                         {
                             @Override
@@ -508,6 +514,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 final TextView lokasi = v.findViewById(R.id.tv_lokasi);
                                 final TextView kegiatan = v.findViewById(R.id.tv_kegiatan);
                                 final TextView dosen = v.findViewById(R.id.tv_dosen);
+                                final TextView dos = v.findViewById(R.id.tv_dos);
                                 TextView jam = v.findViewById(R.id.tv_jam);
                                 String jam1 = (String) jam.getText();
                                 final String jam_awal = jam1.substring(0,5);
@@ -522,7 +529,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                     public void onClick(View view) {
                                         Intent a=new Intent(IsiJurnalDetail.this, MainApprove.class);
                                         a.putExtra("jurnal","jurnal_penyakit");
-                                        a.putExtra("dosen",dosen.getText());
+                                        a.putExtra("dos",dos.getText());
+                                        a.putExtra("dosen_lengkap",dosen.getText());
                                         String[] idArray = getStringArray(id_penyakit);
                                         String id = idArray[position];
                                         a.putExtra("id_jurnal",id);
@@ -582,9 +590,9 @@ public class IsiJurnalDetail extends AppCompatActivity {
                         };
                         ListAdapter adapter1 =new SimpleAdapter(
                                 getApplicationContext(), list_jurnal_ketrampilan,R.layout.item_row_show,
-                                new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status"},
+                                new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status","dos"},
                                 new int[]{R.id.tv_jam,R.id.tv_lokasi,R.id.tv_kegiatan,R.id.tv_sumber,R.id.tv_sumber2,
-                                        R.id.tv_sumber3,R.id.tv_sumber4,R.id.tv_dosen,R.id.tv_status}
+                                        R.id.tv_sumber3,R.id.tv_sumber4,R.id.tv_dosen,R.id.tv_status,R.id.tv_dos}
                         )
                         {
                             @Override
@@ -599,6 +607,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 final TextView lokasi = v.findViewById(R.id.tv_lokasi);
                                 final TextView kegiatan = v.findViewById(R.id.tv_kegiatan);
                                 final TextView dosen = v.findViewById(R.id.tv_dosen);
+                                final TextView dos = v.findViewById(R.id.tv_dos);
                                 TextView jam = v.findViewById(R.id.tv_jam);
                                 String jam1 = (String) jam.getText();
                                 final String jam_awal = jam1.substring(0,5);
@@ -613,8 +622,9 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                     public void onClick(View view) {
                                         Intent a=new Intent(IsiJurnalDetail.this, MainApprove.class);
                                         a.putExtra("jurnal","jurnal_ketrampilan");
-                                        a.putExtra("dosen",dosen.getText());
-                                        String[] idArray = getStringArray(id_penyakit);
+                                        a.putExtra("dos",dos.getText());
+                                        a.putExtra("dosen_lengkap",dosen.getText());
+                                        String[] idArray = getStringArray(id_ketrampilan);
                                         String id = idArray[position];
                                         a.putExtra("id_jurnal",id);
                                         startActivity(a);

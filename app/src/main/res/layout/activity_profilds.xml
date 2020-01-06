@@ -61,20 +61,16 @@
                 android:gravity="center_horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgprof"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_marginStart="3dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="3dp"
-                    android:layout_marginBottom="3dp"
+                    android:layout_margin="3dp"
                     android:background="@drawable/circle"
                     android:padding="2dp"
                     android:src="@drawable/ic_account" />
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/namamahasiswa"
+                android:id="@+id/namadsp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/profilepic"
@@ -87,10 +83,10 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/usernamemahasiswa"
+                android:id="@+id/usernamedsp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/namamahasiswa"
+                android:layout_below="@+id/namadsp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-light"
@@ -112,7 +108,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/editp"
+                    android:id="@+id/editds"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -122,7 +118,7 @@
                     android:text="Edit Profile" />
 
                 <Button
-                    android:id="@+id/logout"
+                    android:id="@+id/logoutds"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

@@ -7,6 +7,15 @@ public class User {
     String level;
     String nama;
     Date sessionExpiryDate;
+    String fullName;
+    String password;
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -17,6 +26,9 @@ public class User {
     }
     public void setNama(String fullName) {
         this.nama= fullName;
+    }
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public void setSessionExpiryDate(Date sessionExpiryDate) {
@@ -35,6 +47,9 @@ public class User {
     }
     public String getNama() {
         return nama;
+    }
+    public String getFullName() {
+        return fullName;
     }
 
     public Date getSessionExpiryDate() {
