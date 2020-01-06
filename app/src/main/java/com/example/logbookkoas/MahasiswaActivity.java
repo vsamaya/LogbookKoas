@@ -1,15 +1,14 @@
 package com.example.logbookkoas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -28,11 +27,14 @@ public class MahasiswaActivity extends AppCompatActivity {
     ImageView iconmahasiswa;
     final ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
-    private String data_url = "http://192.168.43.44/logbook/getdataprofilms.php";
-    private String foto_url = "http://192.168.43.44/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.43.44/logbook/upload/";
+    private String data_url = "http://192.168.1.9/logbook/getdataprofilms.php";
+    private String foto_url = "http://192.168.1.9/logbook/getdatafoto.php";
+    private String foto_image = "http://192.168.1.9/logbook/upload/";
     TextView usernamems,nmlengkap,id;
     RelativeLayout rotasiinternal;
+    RelativeLayout cekjurnal;
+    RelativeLayout rekapjurnal;
+    RelativeLayout isijurnal;
     private String username;
     private String nama;
     ImageView foto;
@@ -51,6 +53,9 @@ public class MahasiswaActivity extends AppCompatActivity {
         usernamems=findViewById(R.id.usernamemahasiswa);
         nmlengkap=findViewById(R.id.namamahasiswa);
         rotasiinternal=findViewById(R.id.btn_rotasiinternal);
+        isijurnal=findViewById(R.id.btn_isijurnal);
+        cekjurnal=findViewById(R.id.btn_cekjurnal);
+        rekapjurnal=findViewById(R.id.btn_rekapjurnal);
         nama=nmlengkap.getText().toString();
         foto=findViewById(R.id.imgmhs);
         usernamems.setText(username);
@@ -74,6 +79,21 @@ public class MahasiswaActivity extends AppCompatActivity {
                 startActivity(ri);
             }
         });
+        cekjurnal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ri= new Intent(MahasiswaActivity.this,CekJurnal.class);
+                startActivity(ri);
+            }
+        });
+        isijurnal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ri= new Intent(MahasiswaActivity.this,IsiJurnalDetail.class);
+                startActivity(ri);
+            }
+        });
+
 
     }
     public void getData1(String username) {
@@ -102,6 +122,7 @@ public class MahasiswaActivity extends AppCompatActivity {
                     nmlengkap.setText(list_data.get(0).get("nama"));
                     Glide.with(getApplicationContext())
                             .load(foto_image + list_data.get(0).get("foto"))
+                            .placeholder(R.drawable.ic_account)
                             .into(foto);
 
 

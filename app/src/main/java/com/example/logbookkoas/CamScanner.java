@@ -16,8 +16,6 @@ import com.google.zxing.Result;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.logging.Logger;
-
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 public class CamScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
@@ -30,7 +28,7 @@ public class CamScanner extends AppCompatActivity implements ZXingScannerView.Re
     private static final String KEY_STATUS= "status";
     private ZXingScannerView mScannerView;
     SessionHandler session;
-    private String qr_aprv = "http://192.168.0.109/logbook/qr_aprv.php";
+    private String qr_aprv = "http://192.168.1.9/logbook/qr_aprv.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

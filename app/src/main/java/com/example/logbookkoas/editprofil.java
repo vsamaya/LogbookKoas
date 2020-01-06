@@ -73,15 +73,15 @@ public class editprofil extends AppCompatActivity {
     private static final String KEY_KOTAWALI = "kotawali";
     private static final String KEY_NOHPWALI = "nohpwali";
     private static final String KEY_EMPTY = "";
-    private String UPLOAD_URL = "http://192.168.43.44/logbook/upload.php";
+    private String UPLOAD_URL = "http://192.168.1.9/logbook/upload.php";
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
-    private String simpan_url = "http://192.168.43.44/logbook/updateprofil.php";
-    private String data_url = "http://192.168.43.44/logbook/getdataprofilms.php";
-    private String data_url1 = "http://192.168.43.44/logbook/getdataprofilms1.php";
-    public static final String KOTA_URL = "http://192.168.43.44/logbook/getKota.php";
-    private String foto_image = "http://192.168.43.44/logbook/upload/";
-    public static final String PROP_URL = "http://192.168.43.44/logbook/getpropkota.php";
+    private String simpan_url = "http://192.168.1.9/logbook/updateprofil.php";
+    private String data_url = "http://192.168.1.9/logbook/getdataprofilms.php";
+    private String data_url1 = "http://192.168.1.9/logbook/getdataprofilms1.php";
+    public static final String KOTA_URL = "http://192.168.1.9/logbook/getKota.php";
+    private String foto_image = "http://192.168.1.9/logbook/upload/";
+    public static final String PROP_URL = "http://192.168.1.9/logbook/getpropkota.php";
     private static final String TAG_MESSAGE = "message";
     public static final String KEY_IMAGE = "image";
     private String username;
@@ -751,6 +751,7 @@ public class editprofil extends AppCompatActivity {
                     nohpwlt.setText(list_data.get(0).get("nohportu"));
                     Glide.with(getApplicationContext())
                             .load(foto_image + list_data.get(0).get("foto"))
+                            .placeholder(R.drawable.ic_account)
                             .into(imageView);
 
                 } catch (JSONException e) {

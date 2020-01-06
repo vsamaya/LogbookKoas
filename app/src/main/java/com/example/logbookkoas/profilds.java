@@ -21,7 +21,7 @@ public class profilds extends AppCompatActivity {
     ArrayList<String> bagianilmu = new ArrayList<String>();
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     ArrayList<String> MyArrList = new ArrayList<String>();
-    String url = "http://192.168.1.4/logbook1/getidbagian.php";
+    String url = "http://192.168.1.9/logbook1/getidbagian.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

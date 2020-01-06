@@ -1,32 +1,25 @@
 package com.example.logbookkoas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.StrictMode;
-import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.apache.http.HttpEntity;
@@ -61,12 +54,12 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String header = "http://192.168.0.109/logbook/getKepaniteraan.php";
-    private String judul = "http://192.168.0.109/logbook/getJadwal.php";
-    private String update_status = "http://192.168.0.109/logbook/updateStatus.php";
-    private String showURL = "http://192.168.0.109/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.0.109/logbook/deleteJurnal.php";
-    private String updateEntry = "http://192.168.0.109/logbook/updateEntry.php";
+    private String header = "http://192.168.1.9/logbook/getKepaniteraan.php";
+    private String judul = "http://192.168.1.9/logbook/getJadwal.php";
+    private String update_status = "http://192.168.1.9/logbook/updateStatus.php";
+    private String showURL = "http://192.168.1.9/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.1.9/logbook/deleteJurnal.php";
+    private String updateEntry = "http://192.168.1.9/logbook/updateEntry.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;

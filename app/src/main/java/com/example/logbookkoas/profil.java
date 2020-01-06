@@ -29,8 +29,8 @@ public class profil extends AppCompatActivity {
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
     Button logout;
-    private String foto_url = "http://192.168.1.4/logbook1/getdatafoto.php";
-    private String foto_image = "http://192.168.1.4/upload/";
+    private String foto_url = "http://192.168.1.9/logbook1/getdatafoto.php";
+    private String foto_image = "http://192.168.1.9/upload/";
     TextView username, nama;
     ImageView foto;
 
@@ -105,6 +105,7 @@ public class profil extends AppCompatActivity {
 
                     Glide.with(getApplicationContext())
                             .load(foto_image + list_data.get(0).get("foto"))
+                            .placeholder(R.drawable.ic_account)
                             .into(foto);
 
 

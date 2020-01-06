@@ -53,9 +53,9 @@ public class editprofilds extends Activity {
     private static final String KEY_GELAR = "gelar";
     private static final String KEY_BAGIAN = "bagian";
     private static final String KEY_EMPTY = "";
-    private String simpan_url = "http://192.168.1.4/logbook1/updateprofilds.php";
-    private String data_url = "http://192.168.1.4/logbook1/getdatads.php";
-    String url = "http://192.168.1.4/logbook1/getidbagian.php";
+    private String simpan_url = "http://192.168.1.9/logbook1/updateprofilds.php";
+    private String data_url = "http://192.168.1.9/logbook1/getdatads.php";
+    String url = "http://192.168.1.9/logbook1/getidbagian.php";
     private String username;
     private String passwordbr;
     private String namabr;
