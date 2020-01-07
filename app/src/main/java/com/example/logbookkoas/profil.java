@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,10 +30,11 @@ public class profil extends AppCompatActivity {
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
     Button logout;
-    private String foto_url = "http://192.168.1.9/logbook1/getdatafoto.php";
-    private String foto_image = "http://192.168.1.9/upload/";
+    private String foto_url = "http://192.168.1.9/logbook/getdatafoto.php";
+    private String foto_image = "http://192.168.1.9/logbook/image/";
     TextView username, nama;
-    ImageView foto;
+    ImageView foto,back;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class profil extends AppCompatActivity {
         nama.setText(bundle.getString("data2"));
         foto = findViewById(R.id.imgprof);
         getData1(username.getText().toString());
+        back=findViewById(R.id.backprofilms);
         logout = findViewById(R.id.logout);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +80,14 @@ public class profil extends AppCompatActivity {
             }
         });
 
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i= new Intent(profil.this,MahasiswaActivity.class);
+                    startActivity(i);
 
+                }
+            });
     }
 
     public void getData1(String username) {
@@ -106,6 +116,8 @@ public class profil extends AppCompatActivity {
                     Glide.with(getApplicationContext())
                             .load(foto_image + list_data.get(0).get("foto"))
                             .placeholder(R.drawable.ic_account)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)//.placeholder(R.drawable.ic_account)
+                            .skipMemoryCache(true)
                             .into(foto);
 
 

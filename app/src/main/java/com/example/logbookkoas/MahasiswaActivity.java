@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +30,7 @@ public class MahasiswaActivity extends AppCompatActivity {
     private static final String KEY_USERNAME = "username";
     private String data_url = "http://192.168.1.9/logbook/getdataprofilms.php";
     private String foto_url = "http://192.168.1.9/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.1.9/logbook/upload/";
+    private String foto_image = "http://192.168.1.9/logbook/image/";
     TextView usernamems,nmlengkap,id;
     RelativeLayout rotasiinternal;
     RelativeLayout cekjurnal;
@@ -123,6 +124,8 @@ public class MahasiswaActivity extends AppCompatActivity {
                     Glide.with(getApplicationContext())
                             .load(foto_image + list_data.get(0).get("foto"))
                             .placeholder(R.drawable.ic_account)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)//.placeholder(R.drawable.ic_account)
+                            .skipMemoryCache(true)
                             .into(foto);
 
 

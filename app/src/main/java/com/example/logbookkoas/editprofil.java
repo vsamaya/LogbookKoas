@@ -30,6 +30,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import org.json.JSONArray;
@@ -80,7 +81,7 @@ public class editprofil extends AppCompatActivity {
     private String data_url = "http://192.168.1.9/logbook/getdataprofilms.php";
     private String data_url1 = "http://192.168.1.9/logbook/getdataprofilms1.php";
     public static final String KOTA_URL = "http://192.168.1.9/logbook/getKota.php";
-    private String foto_image = "http://192.168.1.9/logbook/upload/";
+    private String foto_image = "http://192.168.1.9/logbook/image/";
     public static final String PROP_URL = "http://192.168.1.9/logbook/getpropkota.php";
     private static final String TAG_MESSAGE = "message";
     public static final String KEY_IMAGE = "image";
@@ -752,6 +753,8 @@ public class editprofil extends AppCompatActivity {
                     Glide.with(getApplicationContext())
                             .load(foto_image + list_data.get(0).get("foto"))
                             .placeholder(R.drawable.ic_account)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)//.placeholder(R.drawable.ic_account)
+                            .skipMemoryCache(true)
                             .into(imageView);
 
                 } catch (JSONException e) {
