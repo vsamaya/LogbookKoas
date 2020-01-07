@@ -1,171 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/grad"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="sans-serif"
+        android:text="EDIT PROFIL"
+        android:textColor="@color/colorBorder"
+        android:textSize="25sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="sans-serif"
-            android:text="EDIT PROFIL"
-            android:layout_marginEnd="10dp"
-            android:textColor="@color/colorBorder"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1000dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/roundedlayout"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                android:text="Username"
-                android:textSize="15sp" />
-            <TextView
-                android:id="@+id/usernamedos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/username"
-                android:textColor="@color/md_black_1000"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:textSize="20sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                android:text="(Username tidak bisa diubah, NIP/NIDK/NIM/ID dari user.
-  Hubungi admin fakultas untuk melakukan perubahan)."
-                android:textSize="10sp" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/roundedlayout"
+                android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/pass"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Username"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:id="@+id/usernamedos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Password Baru"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="@string/username"
+                    android:textColor="@color/md_black_1000"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="(Username tidak bisa diubah, NIP/NIDK/NIM/ID dari user.
+        Hubungi admin fakultas untuk melakukan perubahan)."
+                    android:textSize="10sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/pass"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:hint="Password Baru"
+                        android:singleLine="true"
+                        android:textSize="20sp" />
+
+                    <cyd.awesome.material.AwesomeText
+                        android:id="@+id/ImgShowPasswordds"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="#000000"
+                        android:textSize="20sp"
+                        app:awesome_font="material_design"
+                        app:awesome_icon="MD_VISIBILITY_OFF" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="(Jika kosong/tidak diisi, password tidak berubah)"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/namads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Nama Lengkap"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/editnmds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="Nama Lengkap Baru"
                     android:singleLine="true"
                     android:textSize="20sp" />
-                <cyd.awesome.material.AwesomeText
-                    android:id="@+id/ImgShowPasswordds"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    android:textSize="20sp"
-                    app:awesome_font="material_design"
-                    app:awesome_icon="MD_VISIBILITY_OFF" />
+
+                <TextView
+                    android:id="@+id/gelards"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Gelar"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/gelarbrds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:hint="Gelar Baru"
+                    android:singleLine="true"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/bidangds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp"
+                    android:text="Bagian"
+                    android:textSize="20sp" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/bgnbr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="15dp" />
+
+
+                <Button
+                    android:id="@+id/simpan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="15dp"
+                    android:text="Simpan"
+                    android:textAlignment="center" />
+
+
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                android:text="(Jika kosong/tidak diisi, password tidak berubah)"
-                android:textSize="10sp" />
-            <TextView
-                android:id="@+id/namads"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Nama Lengkap"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/editnmds"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:singleLine="true"
-                android:hint="Nama Lengkap Baru"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/gelards"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:text="Gelar"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/gelarbrds"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:hint="Gelar Baru"
-                android:singleLine="true"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/bidangds"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:text="Bagian"
-                android:textSize="20sp" />
-            <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                android:id="@+id/bgnbr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp" />
-
-
-            <Button
-                android:id="@+id/simpan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Simpan"
-                android:layout_marginTop="20dp"
-                android:textSize="20sp"
-                android:layout_gravity="right"
-                android:textAlignment="center"/>
-
-
-
-
-
-
         </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+</LinearLayout>
