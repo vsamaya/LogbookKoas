@@ -75,6 +75,7 @@ public class editprofil extends AppCompatActivity {
     private static final String KEY_NOHPWALI = "nohpwali";
     private static final String KEY_EMPTY = "";
     private String UPLOAD_URL = "http://192.168.1.9/logbook/upload.php";
+    private String HAPUS_URL = "http://192.168.1.9/logbook/hpsfoto.php";
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
     private String simpan_url = "http://192.168.1.9/logbook/updateprofil.php";
@@ -115,7 +116,7 @@ public class editprofil extends AppCompatActivity {
     SessionHandler session;
     private TextView hapus;
     private EditText btDatePicker;
-    private Bitmap bitmap, decoded;
+    private Bitmap bitmap, decoded,drawable;
     private Uri filePath;
     TextView usernamems, nmlengkap, id;
     String propusers, kotausers, propals, kotaals, propwalis, kotawalis;
@@ -221,6 +222,7 @@ public class editprofil extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         usernamems.setText(bundle.getString("data1"));
         namat.setText(bundle.getString("data2"));
+        drawable=BitmapFactory.decodeResource(getResources(),R.drawable.icaccount1);
         getData1(user1);
         getProp();
         //    getData(usernamems.getText().toString());
@@ -290,7 +292,12 @@ public class editprofil extends AppCompatActivity {
             }
         });
 
-
+        hapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hapusfoto();
+            }
+        });
         dateimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -352,6 +359,7 @@ public class editprofil extends AppCompatActivity {
                 showFileChooser();
             }
         });
+
     }
 
 
@@ -455,6 +463,35 @@ public class editprofil extends AppCompatActivity {
         });
         MySingleton.getInstance(this).addToRequestQueue(json);
     }
+
+    private void hapusfoto() {
+        JSONObject request = new JSONObject();
+        try {
+            request.put(KEY_USERNAME, usernamems.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
+                HAPUS_URL, request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Toast.makeText(editprofil.this, response.getString("response"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "ERRORkt", Toast.LENGTH_SHORT).show();
+            }
+        });
+        MySingleton.getInstance(this).addToRequestQueue(json);
+    }
+
+
 
     private void getKota2(String provinsi) {
         JSONObject request = new JSONObject();
