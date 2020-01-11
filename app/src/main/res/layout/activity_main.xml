@@ -105,6 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Keep log in"
+                android:checked="false"
                 android:textStyle="italic"/>
 
             <Button

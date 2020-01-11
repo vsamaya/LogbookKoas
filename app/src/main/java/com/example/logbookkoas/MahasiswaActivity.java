@@ -48,7 +48,9 @@ public class MahasiswaActivity extends AppCompatActivity {
         String username=user.getUsername();
         String fullname=user.getFullName();
         String pass=user.getPassword();
-        // Toast.makeText(MahasiswaActivity.this,pass, Toast.LENGTH_SHORT).show();
+        int login1=user.getLogin();
+        String login2= Integer.toString(login1);
+     //  Toast.makeText(MahasiswaActivity.this,login2, Toast.LENGTH_SHORT).show();
         // Toast.makeText(MahasiswaActivity.this, fullname, Toast.LENGTH_SHORT).show();
         //Toast.makeText(MahasiswaActivity.this, username, Toast.LENGTH_SHORT).show();
         usernamems=findViewById(R.id.usernamemahasiswa);

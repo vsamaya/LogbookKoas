@@ -7,6 +7,7 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -46,21 +47,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
         session = new SessionHandler(getApplicationContext());
-        keep=findViewById(R.id.keep);
-        User user=session.getUserDetails();
-        if(session.isLoggedIn()) {
-            String Username2=user.getUsername();
-            String level=user.getLevel();
-            loadDashboard(level);
-            //   Toast.makeText(MainActivity.this, Username2, Toast.LENGTH_SHORT).show();
-        }else {
-            //Toast.makeText(MainActivity.this, "kosong", Toast.LENGTH_SHORT).show();
+        User s= session.getUserDetails();
+        if(session.isLoggedIn()){
+            if(s.getLogin()==1){
+           session.initiallogin(1);
+        }else{
+            session.initiallogin(2);
+        }}
+        else{
+                session.initiallogin(2);
+                session.loginUser("","","","",2);
 
         }
+        User user=session.getUserDetails();
+        keep=(CheckBox) findViewById(R.id.keep);
+        int login1=user.getLogin();
+        String login2=Integer.toString(login1);
+       // Toast.makeText(this, login2, Toast.LENGTH_SHORT).show();
+        if(login1==1){
+        if(session.isLoggedIn()) {
+            String Username2 = user.getUsername();
+            String level = user.getLevel();
+            loadDashboard(level);
+            //   Toast.makeText(MainActivity.this, Username2, Toast.LENGTH_SHORT).show();
+        }}
 
 
-        setContentView(R.layout.activity_main);
+
         login = findViewById(R.id.signin);
         usernamet = (EditText) findViewById(R.id.username);
         passwordt = (EditText) findViewById(R.id.password);
@@ -81,19 +96,28 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        login.setOnClickListener(new View.OnClickListener() {
+
+       login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Retrieve the data entered in the edit texts
                 username = usernamet.getText().toString().trim();
                 password = passwordt.getText().toString().trim();
                 if (validateInputs()) {
-                    login();
+                            if (keep.isChecked()) {
+                             //   Toast.makeText(MainActivity.this, "benar", Toast.LENGTH_SHORT).show();
+                                login(0);
+                            } else {
+                              //  Toast.makeText(MainActivity.this, "salah", Toast.LENGTH_SHORT).show();
+                                login(1);
+                            }
+
                 }
             }
         });
 
     }
+
     private void loadDashboard(String level1){
         SessionHandler session=new SessionHandler(getApplicationContext());
         if(level1.equals("4")){
@@ -118,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void login() {
+    private void login(final int key) {
         JSONObject request = new JSONObject();
         try {
             //Populate the request parameters
@@ -134,19 +158,32 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             //Check if user got logged in successfully
-
+                        if(key==0) {
                             if (response.getInt(KEY_STATUS) == 0) {
-                                session.loginUser(username, response.getString(KEY_MENU),response.getString(KEY_FULL_NAME),response.getString(KEY_PASS));
+                                session.loginUser(username, response.getString(KEY_MENU), response.getString(KEY_FULL_NAME), response.getString(KEY_PASS), 1);
                                 loadDashboardDosen();
 
-                            }else if (response.getInt(KEY_STATUS) == 3){
-                                session.loginUser(username, response.getString(KEY_MENU),response.getString(KEY_FULL_NAME),response.getString(KEY_PASS));
+                            } else if (response.getInt(KEY_STATUS) == 3) {
+                                session.loginUser(username, response.getString(KEY_MENU), response.getString(KEY_FULL_NAME), response.getString(KEY_PASS), 1);
                                 loadDashboardMahasiswa();
-                            }else{
+                            } else {
                                 Toast.makeText(getApplicationContext(),
                                         response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
-
                             }
+                        }
+                        else if(key==1){
+                            if (response.getInt(KEY_STATUS) == 0) {
+                                session.loginUser(username, response.getString(KEY_MENU), response.getString(KEY_FULL_NAME), response.getString(KEY_PASS), 2);
+                                loadDashboardDosen();
+
+                            } else if (response.getInt(KEY_STATUS) == 3) {
+                                session.loginUser(username, response.getString(KEY_MENU), response.getString(KEY_FULL_NAME), response.getString(KEY_PASS), 2);
+                                loadDashboardMahasiswa();
+                            } else {
+                                Toast.makeText(getApplicationContext(),
+                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
+                            }
+                        }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -183,6 +220,23 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+    public void Oncheckedboxclicked(View view) {
+        boolean checked= ((CheckBox) view).isChecked();
+        username = usernamet.getText().toString().trim();
+        password = passwordt.getText().toString().trim();
+        if (validateInputs()) {
+            if (view.getId() == R.id.keep) {
+                if (checked) {
+                    Toast.makeText(MainActivity.this, "benar", Toast.LENGTH_SHORT).show();
+                    // login(0);
+                } else {
+                    Toast.makeText(MainActivity.this, "salah", Toast.LENGTH_SHORT).show();
+                    //login(1);
+                }
+            }
+        }
     }
 /*
     public void onLogin(View view){

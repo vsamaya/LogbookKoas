@@ -13,6 +13,7 @@ public class SessionHandler {
     private static final String KEY_PASS = "pass";
     private static final String KEY_EXPIRES = "expires";
     private static final String KEY_FULL_NAME = "full_name";
+    private static final String KEY_LOGIN = "login";
     private static final String KEY_EMPTY = "";
     private Context mContext;
     private SharedPreferences.Editor mEditor;
@@ -30,11 +31,12 @@ public class SessionHandler {
      * @param username
      * @param fullName
      */
-    public void loginUser(String username, String level,String nama,String password) {
+    public void loginUser(String username, String level,String nama,String password,int login) {
         mEditor.putString(KEY_USERNAME, username);
         mEditor.putString(KEY_MENU,level);
         mEditor.putString(KEY_FULL_NAME,nama);
         mEditor.putString(KEY_PASS,password);
+        mEditor.putInt(KEY_LOGIN,login);
         Date date = new Date();
 
         //Set user session for next 7 days
@@ -93,6 +95,7 @@ public class SessionHandler {
         user.setFullName(mPreferences.getString(KEY_FULL_NAME, KEY_EMPTY));
         user.setPassword(mPreferences.getString(KEY_PASS, KEY_EMPTY));
         user.setLevel(mPreferences.getString(KEY_MENU,KEY_EMPTY));
+        user.setLogin(mPreferences.getInt(KEY_LOGIN,0));
         user.setSessionExpiryDate(new Date(mPreferences.getLong(KEY_EXPIRES, 0)));
 
         return user;
@@ -105,4 +108,20 @@ public class SessionHandler {
         mEditor.clear();
         mEditor.commit();
     }
+
+    public void initiallogin(int i) {
+        mEditor.putInt(KEY_LOGIN,i);
+        mEditor.commit();
+    }
+    public User getUserlogin() {
+        //Check if user is logged in first
+        if (!isLoggedIn()) {
+            return null;
+        }
+        User user = new User();
+        user.setLogin(mPreferences.getInt(KEY_LOGIN,0));
+        user.setSessionExpiryDate(new Date(mPreferences.getLong(KEY_EXPIRES, 0)));
+        return user;
+    }
+
 }

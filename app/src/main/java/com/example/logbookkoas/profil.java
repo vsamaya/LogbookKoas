@@ -70,11 +70,13 @@ public class profil extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 session.logoutUser();
-                user.setUsername("");
-                user.setLevel("");
+                session.initiallogin(2);
+                Intent i = new Intent(profil.this, MainActivity.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-                Intent edit = new Intent(profil.this, MainActivity.class);
-                startActivity(edit);
+                // Add new Flag to start new Activity
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
                 finish();
 
             }

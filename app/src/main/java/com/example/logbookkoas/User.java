@@ -9,6 +9,15 @@ public class User {
     Date sessionExpiryDate;
     String fullName;
     String password;
+    int login;
+
+    public int getLogin() {
+        return login;
+    }
+
+    public void setLogin(int login) {
+        this.login = login;
+    }
 
     public String getPassword() {
         return password;
@@ -34,7 +43,6 @@ public class User {
     public void setSessionExpiryDate(Date sessionExpiryDate) {
         this.sessionExpiryDate = sessionExpiryDate;
     }
-
 
 
 
