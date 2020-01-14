@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private String password;
     private ProgressDialog pDialog;
     private CheckBox keep;
-    private String login_url = "http://192.168.1.9/logbook/login.php";
+    private String login_url = "http://192.168.43.44/logbook/login.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;

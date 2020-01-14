@@ -3,6 +3,7 @@ package com.example.logbookkoas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
@@ -28,7 +29,7 @@ public class DosenActivity extends AppCompatActivity {
     Button btn_generatecode,btn_generateqr,btn_dftrkeg,btn_rekapkeg;
     TextView nama_user,name;
     private static final String KEY_USERNAME="username";
-    private String datads = "http://192.168.1.9/logbook/datads.php";
+    private String datads = "http://192.168.43.44/logbook/datads.php";
     ArrayList<HashMap<String,String>> list_data= new ArrayList<HashMap<String, String>>();
     ImageView iconprofil;
     @Override
@@ -89,7 +90,16 @@ public class DosenActivity extends AppCompatActivity {
                 startActivity(c);
             }
         });
-
+        btn_rekapkeg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent d = new Intent();
+                d.setAction(Intent.ACTION_VIEW);
+                d.addCategory(Intent.CATEGORY_BROWSABLE);
+                d.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/filter_rekap_kegiatan.php"));
+                startActivity(d);
+            }
+        });
 
 
 

@@ -40,8 +40,12 @@
         <activity android:name=".MainQR" />
         <activity android:name=".OTP" />
         <activity android:name=".MainOTP" />
-        <activity android:name=".profil" />
-        <activity android:name=".profilds" />
+        <activity
+            android:name=".profil"
+            android:noHistory="true"/>
+        <activity
+            android:name=".profilds"
+            android:noHistory="true"/>
         <activity android:name=".MahasiswaActivity" />
         <activity android:name=".DosenActivity" />
         <activity android:name=".MainActivity">
@@ -57,7 +61,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="192.168.1.9"
+                    android:host="192.168.43.44"
                     android:pathPrefix="/login.php"
                     android:scheme="http" />
             </intent-filter>

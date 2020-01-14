@@ -54,12 +54,12 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String header = "http://192.168.1.9/logbook/getKepaniteraan.php";
-    private String judul = "http://192.168.1.9/logbook/getJadwal.php";
-    private String update_status = "http://192.168.1.9/logbook/updateStatus.php";
-    private String showURL = "http://192.168.1.9/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.1.9/logbook/deleteJurnal.php";
-    private String updateEntry = "http://192.168.1.9/logbook/updateEntry.php";
+    private String header = "http://192.168.43.44/logbook/getKepaniteraan.php";
+    private String judul = "http://192.168.43.44/logbook/getJadwal.php";
+    private String update_status = "http://192.168.43.44/logbook/updateStatus.php";
+    private String showURL = "http://192.168.43.44/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.43.44/logbook/deleteJurnal.php";
+    private String updateEntry = "http://192.168.43.44/logbook/updateEntry.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;
@@ -563,6 +563,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                         i.putExtra("id_jurnal",id);
 
                                         startActivity(i);
+                                        finish();
                                     }
                                 });
                                if(statP[position].equals("0")){
@@ -653,6 +654,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                         String id = idArray[position];
                                         i.putExtra("id_jurnal", id);
                                         startActivity(i);
+                                        finish();
                                     }
                                 });
                                 if(statK[position].equals("0")){

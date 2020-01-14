@@ -7,6 +7,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Base64;
@@ -74,15 +76,16 @@ public class editprofil extends AppCompatActivity {
     private static final String KEY_KOTAWALI = "kotawali";
     private static final String KEY_NOHPWALI = "nohpwali";
     private static final String KEY_EMPTY = "";
-    private String UPLOAD_URL = "http://192.168.1.9/logbook/upload.php";
+    private String UPLOAD_URL = "http://192.168.43.44/logbook/upload.php";
+    private String HAPUS_URL = "http://192.168.43.44/logbook/hpsfoto.php";
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
-    private String simpan_url = "http://192.168.1.9/logbook/updateprofil.php";
-    private String data_url = "http://192.168.1.9/logbook/getdataprofilms.php";
-    private String data_url1 = "http://192.168.1.9/logbook/getdataprofilms1.php";
-    public static final String KOTA_URL = "http://192.168.1.9/logbook/getKota.php";
-    private String foto_image = "http://192.168.1.9/logbook/image/";
-    public static final String PROP_URL = "http://192.168.1.9/logbook/getpropkota.php";
+    private String simpan_url = "http://192.168.43.44/logbook/updateprofil.php";
+    private String data_url = "http://192.168.43.44/logbook/getdataprofilms.php";
+    private String data_url1 = "http://192.168.43.44/logbook/getdataprofilms1.php";
+    public static final String KOTA_URL = "http://192.168.43.44/logbook/getKota.php";
+    private String foto_image = "http://192.168.43.44/logbook/image/";
+    public static final String PROP_URL = "http://192.168.43.44/logbook/getpropkota.php";
     private static final String TAG_MESSAGE = "message";
     public static final String KEY_IMAGE = "image";
     private String username;
@@ -115,7 +118,7 @@ public class editprofil extends AppCompatActivity {
     SessionHandler session;
     private TextView hapus;
     private EditText btDatePicker;
-    private Bitmap bitmap, decoded;
+    private Bitmap bitmap, decoded,drawable;
     private Uri filePath;
     TextView usernamems, nmlengkap, id;
     String propusers, kotausers, propals, kotaals, propwalis, kotawalis;
@@ -221,6 +224,7 @@ public class editprofil extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         usernamems.setText(bundle.getString("data1"));
         namat.setText(bundle.getString("data2"));
+        drawable=BitmapFactory.decodeResource(getResources(), R.drawable.icaccount1);
         getData1(user1);
         getProp();
         //    getData(usernamems.getText().toString());
@@ -282,15 +286,28 @@ public class editprofil extends AppCompatActivity {
                 if (validateInputs()) {
                     getsimpan();
                     uploadimage();
-                    Intent i = new Intent(editprofil.this, MahasiswaActivity.class);
-                    startActivity(i);
+                    Handler h =new Handler() {
+                        @Override
+                        public void handleMessage(Message msg) {
+                            Intent i = new Intent(editprofil.this, MahasiswaActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
+                            finish();
+                        }
+                    };
+                    h.sendEmptyMessageDelayed(0,1500);
                 }
 
 
             }
         });
 
-
+        hapus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hapusfoto();
+            }
+        });
         dateimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -352,6 +369,7 @@ public class editprofil extends AppCompatActivity {
                 showFileChooser();
             }
         });
+
     }
 
 
@@ -455,6 +473,35 @@ public class editprofil extends AppCompatActivity {
         });
         MySingleton.getInstance(this).addToRequestQueue(json);
     }
+
+    private void hapusfoto() {
+        JSONObject request = new JSONObject();
+        try {
+            request.put(KEY_USERNAME, usernamems.getText().toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
+                HAPUS_URL, request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    Toast.makeText(editprofil.this, response.getString("response"), Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "ERRORkt", Toast.LENGTH_SHORT).show();
+            }
+        });
+        MySingleton.getInstance(this).addToRequestQueue(json);
+    }
+
+
 
     private void getKota2(String provinsi) {
         JSONObject request = new JSONObject();

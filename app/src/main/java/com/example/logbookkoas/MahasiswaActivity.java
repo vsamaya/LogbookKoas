@@ -1,6 +1,7 @@
 package com.example.logbookkoas;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,9 +29,9 @@ public class MahasiswaActivity extends AppCompatActivity {
     ImageView iconmahasiswa;
     final ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
-    private String data_url = "http://192.168.1.9/logbook/getdataprofilms.php";
-    private String foto_url = "http://192.168.1.9/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.1.9/logbook/image/";
+    private String data_url = "http://192.168.43.44/logbook/getdataprofilms.php";
+    private String foto_url = "http://192.168.43.44/logbook/getdatafoto.php";
+    private String foto_image = "http://192.168.43.44/logbook/image/";
     TextView usernamems,nmlengkap,id;
     RelativeLayout rotasiinternal;
     RelativeLayout cekjurnal;
@@ -90,11 +91,20 @@ public class MahasiswaActivity extends AppCompatActivity {
         isijurnal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ri= new Intent(MahasiswaActivity.this,IsiJurnalDetail.class);
+                Intent ri= new Intent(MahasiswaActivity.this,mainIsiJurnal.class);
                 startActivity(ri);
             }
         });
-
+        rekapjurnal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent d = new Intent();
+                d.setAction(Intent.ACTION_VIEW);
+                d.addCategory(Intent.CATEGORY_BROWSABLE);
+                d.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/rekap_individu.php"));
+                startActivity(d);
+            }
+        });
 
     }
     public void getData1(String username) {

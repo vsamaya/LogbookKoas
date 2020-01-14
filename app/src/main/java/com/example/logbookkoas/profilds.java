@@ -22,8 +22,7 @@ public class profilds extends AppCompatActivity {
     ArrayList<String> bagianilmu = new ArrayList<String>();
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     ArrayList<String> MyArrList = new ArrayList<String>();
-    String url = "http://192.168.1.9/logbook/getidbagian.php";
-    ImageView back;
+    String url = "http://192.168.43.44/logbook/getidbagian.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +38,6 @@ public class profilds extends AppCompatActivity {
         nama1.setText(bundleds.getString("datads1"));
         editprofile = findViewById(R.id.editds);
         logout = findViewById(R.id.logoutds);
-        back=findViewById(R.id.backprofilds);
         editprofile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,14 +58,6 @@ public class profilds extends AppCompatActivity {
                 Intent edit = new Intent(profilds.this, MainActivity.class);
                 startActivity(edit);
                 finish();
-
-            }
-        });
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i= new Intent(profilds.this,DosenActivity.class);
-                startActivity(i);
 
             }
         });

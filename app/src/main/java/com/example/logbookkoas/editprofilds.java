@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
@@ -53,9 +55,9 @@ public class editprofilds extends Activity {
     private static final String KEY_GELAR = "gelar";
     private static final String KEY_BAGIAN = "bagian";
     private static final String KEY_EMPTY = "";
-    private String simpan_url = "http://192.168.1.9/logbook/updateprofilds.php";
-    private String data_url = "http://192.168.1.9/logbook/getdatads.php";
-    String url = "http://192.168.1.9/logbook/getidbagian.php";
+    private String simpan_url = "http://192.168.43.44/logbook/updateprofilds.php";
+    private String data_url = "http://192.168.43.44/logbook/getdatads.php";
+    String url = "http://192.168.43.44/logbook/getidbagian.php";
     private String username;
     private String passwordbr;
     private String namabr;
@@ -121,8 +123,17 @@ public class editprofilds extends Activity {
                 gelarbr = gelart.getText().toString();
                 if (validateInputs()) {
                     getsimpan();
-                    Intent i = new Intent(editprofilds.this, DosenActivity.class);
-                    startActivity(i);
+                    Handler h =new Handler() {
+                        @Override
+                        public void handleMessage(Message msg) {
+                            Intent i = new Intent(editprofilds.this, DosenActivity.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
+                            finish();
+                        }
+                    };
+                    h.sendEmptyMessageDelayed(0,1000);
+
                 }
             }
         });

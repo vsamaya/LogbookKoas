@@ -30,7 +30,7 @@ public class QR extends AppCompatActivity {
     private static final String KEY_USERNAME = "username";
     private static final String KEY_QR = "qr";
     private static final String KEY_MESSAGE = "message";
-    private String updateQr_url = "http://192.168.1.9/setQr.php";
+    private String updateQr_url = "http://192.168.43.44/setQr.php";
     private SessionHandler session;
     private String qr;
     ImageView iv_qr;
