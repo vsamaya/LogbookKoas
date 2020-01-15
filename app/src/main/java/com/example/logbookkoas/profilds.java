@@ -1,18 +1,28 @@
 package com.example.logbookkoas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class profilds extends AppCompatActivity {
     Button editprofile;
     private SessionHandler session;
     Button logout;
-    TextView username1, nama1;
+    private static final String KEY_USERNAME = "username";
+    TextView username1, nama1,bagiansel;
+    ArrayList<String> idilmu = new ArrayList<String>();
+    ArrayList<String> bagianilmu = new ArrayList<String>();
+    ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
+    ArrayList<String> MyArrList = new ArrayList<String>();
+    String url = "http://192.168.43.44/logbook/getidbagian.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,5 +61,19 @@ public class profilds extends AppCompatActivity {
 
             }
         });
+    }
+
+    private static String[] getStringArray(ArrayList<String> arr) {
+        // declaration and initialise String Array
+        String str[] = new String[arr.size()];
+
+        // ArrayList to Array Conversion
+        for (int j = 0; j < arr.size(); j++) {
+
+            // Assign each value to String array
+            str[j] = arr.get(j);
+        }
+
+        return str;
     }
 }

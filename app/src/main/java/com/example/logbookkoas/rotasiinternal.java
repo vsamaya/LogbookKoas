@@ -1,17 +1,14 @@
 package com.example.logbookkoas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class rotasiinternal extends AppCompatActivity {
-    LinearLayout s9,s10,s11,s12;
+LinearLayout s9,s10,s11,s12;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,37 +17,39 @@ public class rotasiinternal extends AppCompatActivity {
         s9=findViewById(R.id.s9);
         s10=findViewById(R.id.s10);
         s11=findViewById(R.id.s11);
-//        s12=findViewById(R.id.s12);
+        s12=findViewById(R.id.s12);
 
         s9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent a = new Intent(rotasiinternal.this, semester9.class);
+                Intent a = new Intent(rotasiinternal.this, semester_rotasi.class);
+                a.putExtra("semester","9");
                 startActivity(a);
             }
         });
         s10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent b = new Intent(rotasiinternal.this, semester10.class);
+                Intent b = new Intent(rotasiinternal.this, semester_rotasi.class);
+                b.putExtra("semester","10");
                 startActivity(b);
             }
         });
         s11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent c = new Intent(rotasiinternal.this, semester11.class);
+                Intent c = new Intent(rotasiinternal.this, semester_rotasi.class);
+                c.putExtra("semester","11");
                 startActivity(c);
             }
         });
-//        s12.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent d = new Intent(rotasiinternal.this, semester12.class);
-//                startActivity(d);
-//            }
-//        });
+        s12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent d = new Intent(rotasiinternal.this, semester_rotasi.class);
+                d.putExtra("semester","12");
+                startActivity(d);
+            }
+        });
     }
 }
-
-

@@ -9,6 +9,8 @@ public class SessionHandler {
     private static final String PREF_NAME = "UserSession";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_MENU = "level";
+    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_PASS = "pass";
     private static final String KEY_EXPIRES = "expires";
     private static final String KEY_FULL_NAME = "full_name";
     private static final String KEY_EMPTY = "";
@@ -28,10 +30,11 @@ public class SessionHandler {
      * @param username
      * @param fullName
      */
-    public void loginUser(String username, String level, String nama) {
+    public void loginUser(String username, String level,String nama,String password) {
         mEditor.putString(KEY_USERNAME, username);
         mEditor.putString(KEY_MENU,level);
         mEditor.putString(KEY_FULL_NAME,nama);
+        mEditor.putString(KEY_PASS,password);
         Date date = new Date();
 
         //Set user session for next 7 days
@@ -46,9 +49,9 @@ public class SessionHandler {
         } else return false;
     }
     public boolean Mahasiswa(){
-        if (mPreferences.getString(KEY_MENU,KEY_EMPTY)=="5"){
-            return  true;
-        } else return false;
+        if(mPreferences.getString(KEY_MENU,KEY_EMPTY)=="5"){
+            return true;
+        }else return false;
     }
 
     /*
@@ -87,9 +90,9 @@ public class SessionHandler {
         }
         User user = new User();
         user.setUsername(mPreferences.getString(KEY_USERNAME, KEY_EMPTY));
-        user.setNama(mPreferences.getString(KEY_FULL_NAME, KEY_EMPTY));
-        user.setLevel(mPreferences.getString(KEY_MENU, KEY_EMPTY));
-
+        user.setFullName(mPreferences.getString(KEY_FULL_NAME, KEY_EMPTY));
+        user.setPassword(mPreferences.getString(KEY_PASS, KEY_EMPTY));
+        user.setLevel(mPreferences.getString(KEY_MENU,KEY_EMPTY));
         user.setSessionExpiryDate(new Date(mPreferences.getLong(KEY_EXPIRES, 0)));
 
         return user;

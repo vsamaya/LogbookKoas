@@ -113,9 +113,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="100dp"
-                    android:background="@drawable/roundedbutton"
+                    android:background="@color/blue_500"
+                    android:drawableTop="@drawable/ic_edit_profil"
                     android:elevation="4dp"
-                    android:text="Edit Profile" />
+                    android:text="Edit Profile"
+                    android:textColor="@android:color/background_light" />
 
                 <Button
                     android:id="@+id/logoutds"
@@ -123,9 +125,11 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/roundedbutton"
+                    android:background="@color/bootstrap_danger_pressed"
                     android:elevation="4dp"
-                    android:text="Logout"/>
+                    android:drawableTop="@drawable/ic_logout"
+                    android:text="Logout"
+                    android:textColor="@android:color/background_light"/>
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

@@ -39,7 +39,7 @@ public class PassApprove extends AppCompatActivity {
     EditText pass;
     Button approve;
     SessionHandler session;
-    private String pass_aprv = "http://192.168.43.159/pass_aprv.php";
+    private String pass_aprv = "http://192.168.43.44/logbook/pass_aprv.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +49,8 @@ public class PassApprove extends AppCompatActivity {
         pass = findViewById(R.id.pass);
         approve = findViewById(R.id.approve);
         Intent intent = getIntent();
-        final String dos = intent.getStringExtra("dosen");
-        dosen.setText(dos);
+        final String dosen_lengkap = intent.getStringExtra("dosen_lengkap");
+        dosen.setText(dosen_lengkap);
         imgShowhidepassword = findViewById(R.id.ImgShowPassword);
         imgShowhidepassword.setOnClickListener(new View.OnClickListener() {
             @Override

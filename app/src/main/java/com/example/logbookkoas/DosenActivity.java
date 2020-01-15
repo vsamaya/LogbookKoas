@@ -3,7 +3,7 @@ package com.example.logbookkoas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
@@ -16,40 +16,57 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.bumptech.glide.Glide;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class DosenActivity extends AppCompatActivity {
-Button btn_generatecode,btn_generateqr,btn_dftrkeg,btn_rekapkeg;
-    private static final String KEY_USERNAME = "username";
-    private static final String KEY_LEVEL = "level";
-ImageView profile;
-TextView username,namaDosen;
-    private SessionHandler session;
+    Button btn_generatecode,btn_generateqr,btn_dftrkeg,btn_rekapkeg;
+    TextView nama_user,name;
+    private static final String KEY_USERNAME="username";
+    private String datads = "http://192.168.43.44/logbook/datads.php";
+    ArrayList<HashMap<String,String>> list_data= new ArrayList<HashMap<String, String>>();
+    ImageView iconprofil;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dosen);
-        session = new SessionHandler(getApplicationContext());
-        User user = session.getUserDetails();
+        SessionHandler session= new SessionHandler(getApplicationContext());
+        User user=session.getUserDetails();
+        nama_user=findViewById(R.id.usernamedosen);
+        name=findViewById(R.id.namadosen);
+        String username=user.getUsername();
+        String nama=user.getFullName();
+        String pass=user.getPassword();
+        //   Toast.makeText(DosenActivity.this,pass, Toast.LENGTH_SHORT).show();
+        nama_user.setText(username);
+        getData1(nama_user.getText().toString());
+
+        if(username == null){
+            Intent i= new Intent(DosenActivity.this,MainActivity.class);
+            startActivity(i);
+        }
         btn_generatecode=findViewById(R.id.btn_generatecode);
         btn_generateqr=findViewById(R.id.btn_generateqr);
         btn_dftrkeg=findViewById(R.id.btn_dftrkeg);
         btn_rekapkeg=findViewById(R.id.btn_rekapkeg);
-        profile = findViewById(R.id.img_profile_dsn);
-        String nama = user.getNama();
-        String nip = user.getUsername();
-        namaDosen = findViewById(R.id.namadosen);
-        namaDosen.setText(nama);
-        username = findViewById(R.id.usernamedosen);
-        username.setText(nip);
-
-
-
-
-
-
+        iconprofil=findViewById(R.id.img_profile_dsn);
+        iconprofil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundleds = new Bundle();
+                bundleds.putString("datads", nama_user.getText().toString());
+                bundleds.putString("datads1", name.getText().toString());
+                Intent icon=new Intent(DosenActivity.this,profilds.class);
+                icon.putExtras(bundleds);
+                startActivity(icon);
+            }
+        });
         btn_generatecode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,73 +83,62 @@ TextView username,namaDosen;
             }
         });
 
-        btn_dftrkeg.setOnClickListener(new View.OnClickListener(){
+        btn_dftrkeg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent c = new Intent(DosenActivity.this, DaftarKegiatan.class);
                 startActivity(c);
             }
         });
-        profile.setOnClickListener(new View.OnClickListener() {
+        btn_rekapkeg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                session.logoutUser();
-                Intent i = new Intent(DosenActivity.this, MainActivity.class);
-                startActivity(i);
-                finish();
+                Intent d = new Intent();
+                d.setAction(Intent.ACTION_VIEW);
+                d.addCategory(Intent.CATEGORY_BROWSABLE);
+                d.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/filter_rekap_kegiatan.php"));
+                startActivity(d);
             }
         });
 
+
+
     }
+    public void getData1(String username) {
 
-//    private void setNama(String lv, String nip){
-//        JSONObject request = new JSONObject();
-//        try {
-//            //Populate the request parameters
-//            request.put(KEY_USERNAME, nip);
-//            request.put(KEY_LEVEL, lv);
-//
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-//                (Request.Method.POST, updateStatusSemua, request, new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//                        try {
-////                            ArrayList<HashMap<String,String>> rv_dafkeg1 = new ArrayList<HashMap<String, String>>();
-////                            rv_dafkeg1 = rv_dafkeg;
-////                            rv_dafkeg.removeAll(rv_dafkeg1);
-////                            getArray();
-//                            getArray();
-//
-//                            if (response.getInt(KEY_STATUS) == 0) {
-//
-//                            }
-//                            else{
-//                                Toast.makeText(getApplicationContext(),
-//                                        response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();
-//
-//                            }
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//
-//                    @Override
-//                    public void onErrorResponse(VolleyError error) {
-//
-//                        //Display error message whenever an error occurs
-//                        Toast.makeText(getApplicationContext(),
-//                                error.getMessage(), Toast.LENGTH_SHORT).show();
-//
-//                    }
-//                });
-//
-//        // Access the RequestQueue through your singleton class.
-//        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
-//    }
+        JSONObject request = new JSONObject();
+        try {
+            request.put(KEY_USERNAME, username);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,
+                datads, request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    JSONArray kota = response.getJSONArray("datads");
+                    for (int i = 0; i < kota.length(); i++) {
+                        JSONObject j = kota.getJSONObject(i);
+                        HashMap<String, String> map1 = new HashMap<String, String>();
+                        map1 = new HashMap<String, String>();
+                        map1.put("nama", j.getString("nama"));
+                        list_data.add(map1);
 
+                    }
+                    name.setText(list_data.get(0).get("nama"));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+            }
+        });
+        MySingleton.getInstance(this).addToRequestQueue(json);
+    }
 }

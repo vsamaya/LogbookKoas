@@ -20,7 +20,8 @@ public class MainApprove extends AppCompatActivity {
         Intent intent = getIntent();
         final String id_jurnal = intent.getStringExtra("id_jurnal");
         final String jurnal = intent.getStringExtra("jurnal");
-        final String dosen = intent.getStringExtra("dosen");
+        final String dosen = intent.getStringExtra("dos");
+        final String dosen_lengkap = intent.getStringExtra("dosen_lengkap");
 
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +30,7 @@ public class MainApprove extends AppCompatActivity {
                 a.putExtra("id_jurnal",id_jurnal);
                 a.putExtra("jurnal",jurnal);
                 a.putExtra("dosen",dosen);
+                a.putExtra("dosen_lengkap",dosen_lengkap);
                 startActivity(a);
             }
         });
@@ -40,6 +42,7 @@ public class MainApprove extends AppCompatActivity {
                 b.putExtra("id_jurnal",id_jurnal);
                 b.putExtra("jurnal",jurnal);
                 b.putExtra("dosen",dosen);
+                b.putExtra("dosen_lengkap",dosen_lengkap);
                 startActivity(b);
             }
         });
@@ -51,6 +54,7 @@ public class MainApprove extends AppCompatActivity {
                 c.putExtra("id_jurnal",id_jurnal);
                 c.putExtra("jurnal",jurnal);
                 c.putExtra("dosen",dosen);
+                c.putExtra("dosen_lengkap",dosen_lengkap);
                 startActivity(c);
             }
         });

@@ -55,7 +55,7 @@ public class showJurnal extends AppCompatActivity {
     ListView lv_re;
     LinearLayout iv_penyakit, iv_ketrampilan;
     TextView rencana, evaluasi;
-    final String url_re = "http://192.168.43.159/logbook/cj_re.php";
+    final String url_re = "http://192.168.43.44/logbook/cj_re.php";
     final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     final SimpleDateFormat convert = new SimpleDateFormat("yyyy-MM-dd");
     @Override
@@ -117,7 +117,7 @@ public class showJurnal extends AppCompatActivity {
             final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
             HashMap<String, String> map;
             for(int i = 0; i < data.length(); i++) {
-                JSONObject c = data.getJSONObject(0);
+                JSONObject c = data.getJSONObject(i);
                 map = new HashMap<String, String>();
                 map.put("evaluasi", c.getString("evaluasi"));
                 map.put("rencana", c.getString("rencana"));

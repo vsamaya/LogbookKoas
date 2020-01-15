@@ -3,6 +3,7 @@
     package="com.example.logbookkoas">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +15,8 @@
         <activity android:name=".showJurnalKetrampilan"></activity>
         <activity android:name=".showJurnalPenyakit" />
         <activity android:name=".showJurnal" />
+        <activity android:name=".editprofil" />
+        <activity android:name=".editprofilds" />
         <activity android:name=".CekJurnalDatePicker" />
         <activity android:name=".CekJurnal" />
         <activity android:name=".CamScanner" />
@@ -31,15 +34,18 @@
         <activity android:name=".IsiJurnalDetail" />
         <activity android:name=".mainIsiJurnal" />
         <activity android:name=".rotasiinternal" />
-        <activity android:name=".semester9" />
-        <activity android:name=".semester10" />
-        <activity android:name=".semester11" />
+        <activity android:name=".semester_rotasi" />
         <activity android:name=".DaftarKegiatan" />
         <activity android:name=".QR" />
         <activity android:name=".MainQR" />
         <activity android:name=".OTP" />
         <activity android:name=".MainOTP" />
-        <activity android:name=".profil" />
+        <activity
+            android:name=".profil"
+            android:noHistory="true"/>
+        <activity
+            android:name=".profilds"
+            android:noHistory="true"/>
         <activity android:name=".MahasiswaActivity" />
         <activity android:name=".DosenActivity" />
         <activity android:name=".MainActivity">
@@ -55,7 +61,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="192.168.1.5"
+                    android:host="192.168.43.44"
                     android:pathPrefix="/login.php"
                     android:scheme="http" />
             </intent-filter>

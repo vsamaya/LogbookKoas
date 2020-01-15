@@ -25,13 +25,14 @@ public class QrApprove extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_approve);
-        qr_dosen = findViewById(R.id.otp_dosen);
+        qr_dosen = findViewById(R.id.qr_dosen);
         qr_approve = findViewById(R.id.qr_approve);
         Intent intent = getIntent();
         final String id_jurnal = intent.getStringExtra("id_jurnal");
         final String jurnal = intent.getStringExtra("jurnal");
         final String dosen = intent.getStringExtra("dosen");
-        qr_dosen.setText(dosen);
+        final String dosen_lengkap = intent.getStringExtra("dosen_lengkap");
+        qr_dosen.setText(dosen_lengkap);
         qr_approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

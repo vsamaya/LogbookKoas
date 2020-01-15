@@ -59,7 +59,7 @@
 
                     <LinearLayout
                         android:id="@+id/s9"
-                        android:layout_width="175dp"
+                        android:layout_width="152dp"
                         android:layout_height="match_parent"
                         android:background="@color/blue_500"
                         android:orientation="vertical">
@@ -108,7 +108,7 @@
 
                     <LinearLayout
                         android:id="@+id/s11"
-                        android:layout_width="228dp"
+                        android:layout_width="204dp"
                         android:layout_height="match_parent"
                         android:layout_marginRight="2dp"
                         android:background="@color/md_light_green_A700"
