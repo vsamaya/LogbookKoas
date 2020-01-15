@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grad"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".profil">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_account" />
+
+            <TextView
+                android:id="@+id/tv_slmtdtg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:fontFamily="sans-serif"
+                android:text="E-LOGBOOK KOAS"
+                android:textColor="@color/colorBorder"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_slmtdtgket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_slmtdtg"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif"
+                android:text="Pendidikan Profesi Dokter"
+                android:textColor="@color/colorBorder"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/profilepic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_slmtdtgket"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/circle_border"
+                android:gravity="center_horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/circle"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_account" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/namadsp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/profilepic"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Valentina Samaya"
+                android:textColor="@color/colorBorder"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/usernamedsp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/namadsp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-light"
+                android:text="197907162008122002"
+                android:textColor="@color/colorBorder"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/roundedlayout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/editds"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="100dp"
+                    android:background="@drawable/roundedbutton"
+                    android:elevation="4dp"
+                    android:text="Edit Profile" />
+
+                <Button
+                    android:id="@+id/logoutds"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/roundedbutton"
+                    android:elevation="4dp"
+                    android:text="Logout"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>
