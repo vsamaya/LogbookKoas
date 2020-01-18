@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".isirtsinternal"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/layout_atas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/grad"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/head1"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginLeft="5dp"
+                android:gravity="center_horizontal"
+                android:text="ROTASI INTERNAL KEPANITERAAN (STASE)"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/semester9rts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Semester 11"
+                android:fontFamily="sans-serif-medium"
+                android:textColor="@color/colorGradBefore"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <ListView
+                android:id="@+id/lvsem11"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/lvrtsinternal"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+

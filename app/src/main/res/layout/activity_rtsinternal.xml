@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mainIsiJurnal"
+    tools:context=".rtsinternal"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,7 +15,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/head1"
+            android:id="@+id/headrtsinternal"
             android:layout_width="match_parent"
             android:layout_height="59dp"
             android:layout_marginTop="15dp"
@@ -23,7 +23,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:gravity="center_horizontal"
-            android:text="ISI LOGBOOK KEPANITERAAN (STASE)"
+            android:text="ROTASI INTERNAL"
             android:textColor="@android:color/background_light"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -31,7 +31,7 @@
     </LinearLayout>
 
     <ListView
-        android:id="@+id/lv_isi_jurnal"
+        android:id="@+id/listrtsinternal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_row_jurnal"/>

@@ -78,7 +78,7 @@ public class MahasiswaActivity extends AppCompatActivity {
         rotasiinternal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ri= new Intent(MahasiswaActivity.this,rotasiinternal.class);
+                Intent ri= new Intent(MahasiswaActivity.this,menurotasi.class);
                 startActivity(ri);
             }
         });
@@ -92,7 +92,7 @@ public class MahasiswaActivity extends AppCompatActivity {
         isijurnal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ri= new Intent(MahasiswaActivity.this,IsiJurnalDetail.class);
+                Intent ri= new Intent(MahasiswaActivity.this,mainIsiJurnal.class);
                 startActivity(ri);
             }
         });

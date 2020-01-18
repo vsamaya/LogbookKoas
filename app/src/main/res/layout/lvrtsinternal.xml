@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="5pt"
+        android:layout_marginEnd="5pt"
+        android:background="@drawable/recyclerview"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="Kepaniteraan : "
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/rtskepaniteraan"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="TextView"
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="Lama Pelaksaaan : "
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/lmpelaksanaan"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="TextView"
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="Tanggal Mulai : "
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/rtstglmli"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="TextView"
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="Tanggal Selesai : "
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/rtstglsls"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="TextView"
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="Status Approval : "
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/statusrts"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="Status "
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btneditrts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EDIT" />
+
+        <TextView
+            android:id="@+id/nmapprovalrts"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="Nama Approval  "
+            android:textColor="@color/darkgreen"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/approvalrts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Approval" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
