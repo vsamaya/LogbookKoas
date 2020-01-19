@@ -9,10 +9,20 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".showJurnalKetrampilan"></activity>
+        <activity android:name=".ri_PassApprove" />
+        <activity android:name=".ri_main_approval" />
+        <activity android:name=".RotasiInternalDetail" />
+        <activity android:name=".Rotasi" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity android:name=".showJurnalKetrampilan" />
         <activity android:name=".showJurnalPenyakit" />
         <activity android:name=".showJurnal" />
         <activity android:name=".editprofil" />
@@ -29,11 +39,12 @@
             android:noHistory="true" />
         <activity android:name=".PassApprove" />
         <activity android:name=".tambahJurnal" />
-        <activity android:name=".editJurnal"></activity>
+        <activity android:name=".editJurnal" />
         <activity android:name=".TampilanDaftarKegiatan" />
         <activity android:name=".IsiJurnalDetail" />
         <activity android:name=".mainIsiJurnal" />
-        <activity android:name=".rotasiinternal" />
+        <activity android:name=".RotasiStase" />
+        <activity android:name=".RotasiInternal" />
         <activity android:name=".semester_rotasi" />
         <activity android:name=".DaftarKegiatan" />
         <activity android:name=".QR" />
@@ -42,10 +53,10 @@
         <activity android:name=".MainOTP" />
         <activity
             android:name=".profil"
-            android:noHistory="true"/>
+            android:noHistory="true" />
         <activity
             android:name=".profilds"
-            android:noHistory="true"/>
+            android:noHistory="true" />
         <activity android:name=".MahasiswaActivity" />
         <activity android:name=".DosenActivity" />
         <activity android:name=".MainActivity">
@@ -61,7 +72,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="192.168.43.44"
+                    android:host="192.168.0.109"
                     android:pathPrefix="/login.php"
                     android:scheme="http" />
             </intent-filter>

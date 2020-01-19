@@ -54,12 +54,12 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String header = "http://192.168.43.44/logbook/getKepaniteraan.php";
-    private String judul = "http://192.168.43.44/logbook/getJadwal.php";
-    private String update_status = "http://192.168.43.44/logbook/updateStatus.php";
-    private String showURL = "http://192.168.43.44/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.43.44/logbook/deleteJurnal.php";
-    private String updateEntry = "http://192.168.43.44/logbook/updateEntry.php";
+    private String header = "http://192.168.0.109/logbook/getKepaniteraan.php";
+    private String judul = "http://192.168.0.109/logbook/getJadwal.php";
+    private String update_status = "http://192.168.0.109/logbook/updateStatus.php";
+    private String showURL = "http://192.168.0.109/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.0.109/logbook/deleteJurnal.php";
+    private String updateEntry = "http://192.168.0.109/logbook/updateEntry.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;
@@ -99,7 +99,6 @@ public class IsiJurnalDetail extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        MainLayout.setVisibility(LinearLayout.GONE);
         judul();
         process();
         showList();
@@ -191,8 +190,6 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
                 Date now = Calendar.getInstance().getTime();
                 if(now.after(tglMulai) && now.before(tglSelesai1)) {
-                    MainLayout.setVisibility(LinearLayout.VISIBLE);
-
                     String status = "1";
                     String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
                     try {
@@ -206,6 +203,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else if(now.before(tglMulai)){
                     String status = "0";
+                    MainLayout.setVisibility(LinearLayout.GONE);
                     String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
@@ -217,6 +215,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else{
                     String status = "2";
+                    MainLayout.setVisibility(LinearLayout.GONE);
                     String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
@@ -330,6 +329,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
 
         }
+
         private void showList(){
             JSONObject request = new JSONObject();
             try {

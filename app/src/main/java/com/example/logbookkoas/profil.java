@@ -30,8 +30,8 @@ public class profil extends AppCompatActivity {
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
     Button logout;
-    private String foto_url = "http://192.168.43.44/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.43.44/logbook/image/";
+    private String foto_url = "http://192.168.0.109/logbook/getdatafoto.php";
+    private String foto_image = "http://192.168.0.109/logbook/image/";
     TextView username, nama;
     ImageView foto;
 

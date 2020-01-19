@@ -29,9 +29,9 @@ public class MahasiswaActivity extends AppCompatActivity {
     ImageView iconmahasiswa;
     final ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
-    private String data_url = "http://192.168.43.44/logbook/getdataprofilms.php";
-    private String foto_url = "http://192.168.43.44/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.43.44/logbook/image/";
+    private String data_url = "http://192.168.0.109/logbook/getdataprofilms.php";
+    private String foto_url = "http://192.168.0.109/logbook/getdatafoto.php";
+    private String foto_image = "http://192.168.0.109/logbook/image/";
     TextView usernamems,nmlengkap,id;
     RelativeLayout rotasiinternal;
     RelativeLayout cekjurnal;
@@ -41,8 +41,8 @@ public class MahasiswaActivity extends AppCompatActivity {
     private String nama;
     ImageView foto;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onResume() {
+        super.onResume();
         setContentView(R.layout.activity_mahasiswa);
         SessionHandler session= new SessionHandler(getApplicationContext());
         User user=session.getUserDetails();
@@ -77,7 +77,7 @@ public class MahasiswaActivity extends AppCompatActivity {
         rotasiinternal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ri= new Intent(MahasiswaActivity.this,rotasiinternal.class);
+                Intent ri= new Intent(MahasiswaActivity.this, Rotasi.class);
                 startActivity(ri);
             }
         });
