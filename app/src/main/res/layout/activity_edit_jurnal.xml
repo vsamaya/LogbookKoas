@@ -39,7 +39,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
@@ -58,6 +59,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
@@ -74,6 +76,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -107,6 +110,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -122,6 +126,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -139,30 +144,14 @@
                     android:id="@+id/jenis_jurnal_isi_jurnal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="7dp"
                     android:textStyle="bold"
                     android:text="Penyakit (level-sumber)"
                     android:textColor="@color/colorGradBefore" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/sistem_1_ket"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sistem Penyakit-1     :   "
-                        android:textColor="@color/colorGradBefore" />
-                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                        android:id="@+id/sispen_1_isi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -180,23 +169,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/sistem_2_ket"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sistem Penyakit-2     :   "
-                        android:textColor="@color/colorGradBefore" />
-                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                        android:id="@+id/sispen_2_isi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="TextView" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -214,22 +187,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/sistem_3_ket"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sistem Penyakit-3     :   "
-                        android:textColor="@color/colorGradBefore" />
-                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                        android:id="@+id/sispen_3_isi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -246,22 +204,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/sistem_4_ket"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sistem Penyakit-4     :   "
-                        android:textColor="@color/colorGradBefore" />
-                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-                        android:id="@+id/sispen_4_isi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -278,6 +221,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
                     android:orientation="horizontal">
 
                     <TextView

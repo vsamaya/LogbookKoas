@@ -54,12 +54,12 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_SRENCANA = "SRencana";
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
-    private String header = "http://192.168.43.44/logbook/getKepaniteraan.php";
-    private String judul = "http://192.168.43.44/logbook/getJadwal.php";
-    private String update_status = "http://192.168.43.44/logbook/updateStatus.php";
-    private String showURL = "http://192.168.43.44/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.43.44/logbook/deleteJurnal.php";
-    private String updateEntry = "http://192.168.43.44/logbook/updateEntry.php";
+    private String header = "http://192.168.3.10/logbook/getKepaniteraan.php";
+    private String judul = "http://192.168.3.10/logbook/getJadwal.php";
+    private String update_status = "http://192.168.3.10/logbook/updateStatus.php";
+    private String showURL = "http://192.168.3.10/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.3.10/logbook/deleteJurnal.php";
+    private String updateEntry = "http://192.168.3.10/logbook/updateEntry.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;
@@ -391,30 +391,23 @@ public class IsiJurnalDetail extends AppCompatActivity {
                             id_penyakit.add(j.getString("id"));
                             statusPenyakit.add(j.getString("status"));
                             item.put("lokasi", j_lokasi.getString("lokasi"));
-                            item.put("p1", j_p1.getString("penyakit").toUpperCase() +
-                                    " (" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ") ");
+                            item.put("p1", j_p1.getString("penyakit").toUpperCase());
 
                             if (j_p2.getString("penyakit").equals("null")) {
                                 item.put("p2", "-");
 
                             } else {
-                                item.put("p2", j_p2.getString("penyakit").toUpperCase() +
-                                        " (" + j_p2.getString("skdi_level") + "-"
-                                        + j_p2.getString("sumber") + ") ");
+                                item.put("p2", j_p2.getString("penyakit").toUpperCase());
                             }
                             if (j_p3.getString("penyakit").equals("null")) {
                                 item.put("p3", "-");
                             } else {
-                                item.put("p3", j_p3.getString("penyakit").toUpperCase()
-                                        + " (" + j_p3.getString("skdi_level") + "-"
-                                        + j_p3.getString("sumber") + ") ");
+                                item.put("p3", j_p3.getString("penyakit").toUpperCase());
                             }
                             if (j_p4.getString("penyakit").equals("null")) {
                                 item.put("p4", "-");
                             } else {
-                                item.put("p4", j_p4.getString("penyakit").toUpperCase()
-                                        + " (" + j_p4.getString("skdi_level") + "-"
-                                        + j_p4.getString("sumber") + ") ");
+                                item.put("p4", j_p4.getString("penyakit").toUpperCase());
                             }
                             list_jurnal_penyakit.add(item);
 
@@ -458,30 +451,23 @@ public class IsiJurnalDetail extends AppCompatActivity {
                             statusKetrampilan.add(j.getString("status"));
                             item.put("lokasi", j_lokasi.getString("lokasi"));
 
-                            item.put("p1", j_p1.getString("ketrampilan").toUpperCase() +
-                                    " (" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ") ");
+                            item.put("p1", j_p1.getString("ketrampilan").toUpperCase());
 
                             if (j_p2.getString("ketrampilan").equals("null")) {
                                 item.put("p2", "-");
 
                             } else {
-                                item.put("p2", j_p2.getString("ketrampilan").toUpperCase() +
-                                        " (" + j_p2.getString("skdi_level") + "-"
-                                        + j_p2.getString("sumber") + ") ");
+                                item.put("p2", j_p2.getString("ketrampilan").toUpperCase());
                             }
                             if (j_p3.getString("ketrampilan").equals("null")) {
                                 item.put("p3", "-");
                             } else {
-                                item.put("p3", j_p3.getString("ketrampilan").toUpperCase()
-                                        + " (" + j_p3.getString("skdi_level") + "-"
-                                        + j_p3.getString("sumber") + ") ");
+                                item.put("p3", j_p3.getString("ketrampilan").toUpperCase());
                             }
                             if (j_p4.getString("ketrampilan").equals("null")) {
                                 item.put("p4", "-");
                             } else {
-                                item.put("p4", j_p4.getString("ketrampilan").toUpperCase()
-                                        + " (" + j_p4.getString("skdi_level") + "-"
-                                        + j_p4.getString("sumber") + ") ");
+                                item.put("p4", j_p4.getString("ketrampilan").toUpperCase());
                             }
                             list_jurnal_ketrampilan.add(item);
 
@@ -568,10 +554,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 });
                                if(statP[position].equals("0")){
                                    approve.setVisibility(View.VISIBLE);
-                                   edit.setVisibility(View.VISIBLE);
                                }else {
                                    approve.setVisibility(View.GONE);
-                                   edit.setVisibility(View.GONE);
                                }
 
 
@@ -659,10 +643,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 });
                                 if(statK[position].equals("0")){
                                     approve.setVisibility(View.VISIBLE);
-                                    edit.setVisibility(View.VISIBLE);
                                 }else {
                                     approve.setVisibility(View.GONE);
-                                    edit.setVisibility(View.GONE);
                                 }
 
 
