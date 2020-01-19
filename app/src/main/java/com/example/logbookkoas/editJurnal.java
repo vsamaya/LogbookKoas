@@ -604,8 +604,6 @@ public class editJurnal extends AppCompatActivity {
                                     request.put("id_jenis4", id_jenis4);
                                     Intent intent = new Intent(editJurnal.this, IsiJurnalDetail.class);
                                     intent.putExtra(mainIsiJurnal.KEY_ID, stase);
-                                    Toast.makeText(editJurnal.this, "Perubahan Berhasil",
-                                            Toast.LENGTH_LONG).show();
                                     startActivity(intent);
                                     finish();
 
