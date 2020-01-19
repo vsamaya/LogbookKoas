@@ -38,7 +38,7 @@ public class ri_main_approval extends AppCompatActivity {
         otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent b = new Intent(getApplicationContext(), OtpApprove.class);
+                Intent b = new Intent(getApplicationContext(), ri_OtpApprove.class);
                 b.putExtra("id_internal",id_internal);
                 b.putExtra("id",id);
                 b.putExtra("rotasi",rotasi);
@@ -50,7 +50,7 @@ public class ri_main_approval extends AppCompatActivity {
         qr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent c = new Intent(getApplicationContext(), QrApprove.class);
+                Intent c = new Intent(getApplicationContext(), ri_QrApprove.class);
                 c.putExtra("id_internal",id_internal);
                 c.putExtra("id",id);
                 c.putExtra("rotasi",rotasi);

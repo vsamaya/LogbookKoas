@@ -81,7 +81,7 @@
                         <TextView
                             android:id="@+id/textView4"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="fill_parent"
                             android:text="Jurnal Penyakit"
                             android:fontFamily="sans-serif-medium"
                             android:textColor="@color/colorGradBefore"
@@ -95,7 +95,7 @@
                             <ListView
                                 android:id="@+id/lv_penyakit"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="fill_parent"
                                 android:scrollbarSize="3dp"
                                 android:nestedScrollingEnabled="true"
                                 android:layout_marginTop="5dp"

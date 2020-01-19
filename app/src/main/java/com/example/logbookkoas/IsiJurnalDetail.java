@@ -99,6 +99,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
+        MainLayout.setVisibility(LinearLayout.GONE);
         judul();
         process();
         showList();
@@ -190,6 +191,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
                 Date now = Calendar.getInstance().getTime();
                 if(now.after(tglMulai) && now.before(tglSelesai1)) {
+                    MainLayout.setVisibility(LinearLayout.VISIBLE);
+
                     String status = "1";
                     String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
                     try {
@@ -203,7 +206,6 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else if(now.before(tglMulai)){
                     String status = "0";
-                    MainLayout.setVisibility(LinearLayout.GONE);
                     String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
@@ -215,7 +217,6 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 }
                 else{
                     String status = "2";
-                    MainLayout.setVisibility(LinearLayout.GONE);
                     String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
                     try {
                         new JSONArray(getJSONUrl(url_status));
@@ -329,7 +330,6 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
 
         }
-
         private void showList(){
             JSONObject request = new JSONObject();
             try {
@@ -391,30 +391,23 @@ public class IsiJurnalDetail extends AppCompatActivity {
                             id_penyakit.add(j.getString("id"));
                             statusPenyakit.add(j.getString("status"));
                             item.put("lokasi", j_lokasi.getString("lokasi"));
-                            item.put("p1", j_p1.getString("penyakit").toUpperCase() +
-                                    " (" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ") ");
+                            item.put("p1", j_p1.getString("penyakit").toUpperCase());
 
                             if (j_p2.getString("penyakit").equals("null")) {
                                 item.put("p2", "-");
 
                             } else {
-                                item.put("p2", j_p2.getString("penyakit").toUpperCase() +
-                                        " (" + j_p2.getString("skdi_level") + "-"
-                                        + j_p2.getString("sumber") + ") ");
+                                item.put("p2", j_p2.getString("penyakit").toUpperCase());
                             }
                             if (j_p3.getString("penyakit").equals("null")) {
                                 item.put("p3", "-");
                             } else {
-                                item.put("p3", j_p3.getString("penyakit").toUpperCase()
-                                        + " (" + j_p3.getString("skdi_level") + "-"
-                                        + j_p3.getString("sumber") + ") ");
+                                item.put("p3", j_p3.getString("penyakit").toUpperCase());
                             }
                             if (j_p4.getString("penyakit").equals("null")) {
                                 item.put("p4", "-");
                             } else {
-                                item.put("p4", j_p4.getString("penyakit").toUpperCase()
-                                        + " (" + j_p4.getString("skdi_level") + "-"
-                                        + j_p4.getString("sumber") + ") ");
+                                item.put("p4", j_p4.getString("penyakit").toUpperCase());
                             }
                             list_jurnal_penyakit.add(item);
 
@@ -458,30 +451,23 @@ public class IsiJurnalDetail extends AppCompatActivity {
                             statusKetrampilan.add(j.getString("status"));
                             item.put("lokasi", j_lokasi.getString("lokasi"));
 
-                            item.put("p1", j_p1.getString("ketrampilan").toUpperCase() +
-                                    " (" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ") ");
+                            item.put("p1", j_p1.getString("ketrampilan").toUpperCase());
 
                             if (j_p2.getString("ketrampilan").equals("null")) {
                                 item.put("p2", "-");
 
                             } else {
-                                item.put("p2", j_p2.getString("ketrampilan").toUpperCase() +
-                                        " (" + j_p2.getString("skdi_level") + "-"
-                                        + j_p2.getString("sumber") + ") ");
+                                item.put("p2", j_p2.getString("ketrampilan").toUpperCase());
                             }
                             if (j_p3.getString("ketrampilan").equals("null")) {
                                 item.put("p3", "-");
                             } else {
-                                item.put("p3", j_p3.getString("ketrampilan").toUpperCase()
-                                        + " (" + j_p3.getString("skdi_level") + "-"
-                                        + j_p3.getString("sumber") + ") ");
+                                item.put("p3", j_p3.getString("ketrampilan").toUpperCase());
                             }
                             if (j_p4.getString("ketrampilan").equals("null")) {
                                 item.put("p4", "-");
                             } else {
-                                item.put("p4", j_p4.getString("ketrampilan").toUpperCase()
-                                        + " (" + j_p4.getString("skdi_level") + "-"
-                                        + j_p4.getString("sumber") + ") ");
+                                item.put("p4", j_p4.getString("ketrampilan").toUpperCase());
                             }
                             list_jurnal_ketrampilan.add(item);
 
@@ -489,10 +475,10 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
 
                         ListAdapter adapter =new SimpleAdapter(
-                                getApplicationContext(), list_jurnal_penyakit,R.layout.item_row_show,
+                                getApplicationContext(), list_jurnal_penyakit, R.layout.item_row_show,
                                 new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status","dos"},
-                                new int[]{R.id.tv_jam,R.id.tv_lokasi,R.id.tv_kegiatan,R.id.tv_sumber,R.id.tv_sumber2,
-                                        R.id.tv_sumber3,R.id.tv_sumber4,R.id.tv_dosen,R.id.tv_status,R.id.tv_dos}
+                                new int[]{R.id.tv_jam, R.id.tv_lokasi, R.id.tv_kegiatan, R.id.tv_sumber, R.id.tv_sumber2,
+                                        R.id.tv_sumber3, R.id.tv_sumber4, R.id.tv_dosen, R.id.tv_status, R.id.tv_dos}
                         )
                         {
                             @Override
@@ -568,10 +554,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 });
                                if(statP[position].equals("0")){
                                    approve.setVisibility(View.VISIBLE);
-                                   edit.setVisibility(View.VISIBLE);
                                }else {
                                    approve.setVisibility(View.GONE);
-                                   edit.setVisibility(View.GONE);
                                }
 
 
@@ -583,10 +567,10 @@ public class IsiJurnalDetail extends AppCompatActivity {
 
                         };
                         ListAdapter adapter1 =new SimpleAdapter(
-                                getApplicationContext(), list_jurnal_ketrampilan,R.layout.item_row_show,
+                                getApplicationContext(), list_jurnal_ketrampilan, R.layout.item_row_show,
                                 new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status","dos"},
-                                new int[]{R.id.tv_jam,R.id.tv_lokasi,R.id.tv_kegiatan,R.id.tv_sumber,R.id.tv_sumber2,
-                                        R.id.tv_sumber3,R.id.tv_sumber4,R.id.tv_dosen,R.id.tv_status,R.id.tv_dos}
+                                new int[]{R.id.tv_jam, R.id.tv_lokasi, R.id.tv_kegiatan, R.id.tv_sumber, R.id.tv_sumber2,
+                                        R.id.tv_sumber3, R.id.tv_sumber4, R.id.tv_dosen, R.id.tv_status, R.id.tv_dos}
                         )
                         {
                             @Override
@@ -598,6 +582,7 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 Button delete = v.findViewById(R.id.btn_Delete);
                                 Button approve = v.findViewById(R.id.btn_approve);
                                 String statK[] = getStringArray(statusKetrampilan);
+                                final TextView status = v.findViewById(R.id.tv_status);
                                 final TextView lokasi = v.findViewById(R.id.tv_lokasi);
                                 final TextView kegiatan = v.findViewById(R.id.tv_kegiatan);
                                 final TextView dosen = v.findViewById(R.id.tv_dosen);
@@ -610,6 +595,10 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 final TextView ketrampilan2 = v.findViewById(R.id.tv_sumber2);
                                 final TextView ketrampilan3 = v.findViewById(R.id.tv_sumber3);
                                 final TextView ketrampilan4 = v.findViewById(R.id.tv_sumber4);
+
+                                if (status.getText().equals("Approved")) {
+                                    approve.setVisibility(View.GONE);
+                                    edit.setVisibility(View.GONE);}
 
                                 approve.setOnClickListener(new View.OnClickListener() {
                                     @Override
@@ -659,10 +648,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
                                 });
                                 if(statK[position].equals("0")){
                                     approve.setVisibility(View.VISIBLE);
-                                    edit.setVisibility(View.VISIBLE);
                                 }else {
                                     approve.setVisibility(View.GONE);
-                                    edit.setVisibility(View.GONE);
                                 }
 
 
