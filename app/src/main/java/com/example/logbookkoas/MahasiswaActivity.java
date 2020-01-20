@@ -29,9 +29,9 @@ public class MahasiswaActivity extends AppCompatActivity {
     ImageView iconmahasiswa;
     final ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
-    private String data_url = "http://192.168.0.109/logbook/getdataprofilms.php";
-    private String foto_url = "http://192.168.0.109/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.0.109/logbook/image/";
+    private String data_url = "http://192.168.1.9/logbook/getdataprofilms.php";
+    private String foto_url = "http://192.168.1.9/logbook/getdatafoto.php";
+    private String foto_image = "http://192.168.1.9/logbook/image/";
     TextView usernamems,nmlengkap,id;
     RelativeLayout rotasiinternal;
     RelativeLayout cekjurnal;

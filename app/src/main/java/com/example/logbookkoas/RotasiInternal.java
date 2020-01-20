@@ -52,12 +52,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 public class RotasiInternal extends Activity {
     private SessionHandler session;
     public static final String KEY_ID = "id";
+    public static final String KEY_MULAI= "tglmli";
+    public static final String KEY_SELESAI = "tglsls";
     private static final String KEY_USERNAME = "username";
     ArrayList<HashMap<String, String>> MyArr;
     ListView lv_isi_jurnal;
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
-    final String url_judul = "http://192.168.0.109/logbook/showalljurnal.php";
+    final String url_judul = "http://192.168.1.9/logbook/showalljurnal.php";
     TextView head1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,6 +176,8 @@ public class RotasiInternal extends Activity {
                             else  {
                                 Intent i = new Intent(RotasiInternal.this, RotasiInternalDetail.class);
                                 i.putExtra(KEY_ID, (map.get("id")));
+                                i.putExtra(KEY_MULAI,map.get("tgl_mulai"));
+                                i.putExtra(KEY_SELESAI,map.get("tgl_selesai"));
                                 startActivity(i);
                             }
                         }

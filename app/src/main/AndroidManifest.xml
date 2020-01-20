@@ -25,6 +25,7 @@
         <activity android:name=".showJurnalKetrampilan" />
         <activity android:name=".showJurnalPenyakit" />
         <activity android:name=".showJurnal" />
+        <activity android:name=".editrotasi" />
         <activity android:name=".editprofil" />
         <activity android:name=".editprofilds" />
         <activity android:name=".CekJurnalDatePicker" />
@@ -72,7 +73,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="192.168.0.109"
+                    android:host="192.168.1.9"
                     android:pathPrefix="/login.php"
                     android:scheme="http" />
             </intent-filter>

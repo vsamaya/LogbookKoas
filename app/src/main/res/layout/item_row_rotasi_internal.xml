@@ -157,7 +157,12 @@
                 android:layout_height="wrap_content"
                 android:text="Approve" />
         </LinearLayout>
-
+        <TextView
+            android:id="@+id/tv_rotasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
         <TextView
             android:id="@+id/tv_id"
             android:layout_width="match_parent"
@@ -165,7 +170,145 @@
             android:text="TextView"
             android:visibility="gone" />
         <TextView
-            android:id="@+id/tv_rotasi"
+            android:id="@+id/tv_dosen1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_rotasi1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_tgl1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_status1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_dosen2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_rotasi2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_tgl2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_status2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_dosen3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_rotasi3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_tgl3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_status3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_dosen4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_rotasi4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_tgl4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_status4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_dosen5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_rotasi5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_tgl5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_status5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_dosen6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_rotasi6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_tgl6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+        <TextView
+            android:id="@+id/tv_status6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView"
