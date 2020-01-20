@@ -1,19 +1,21 @@
 package com.example.logbookkoas;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -214,12 +216,6 @@ public class RotasiInternalDetail extends AppCompatActivity {
                     JSONArray array4 = response.getJSONArray("array4");
                     JSONArray array5 = response.getJSONArray("array5");
                     JSONArray array6 = response.getJSONArray("array6");
-                    JSONArray array7 = response.getJSONArray("array7");
-                    JSONArray array8 = response.getJSONArray("array8");
-                    JSONArray array9 = response.getJSONArray("array9");
-                    JSONArray array10 = response.getJSONArray("array10");
-                    JSONArray array11 = response.getJSONArray("array11");
-                    JSONArray array12 = response.getJSONArray("array12");
                     for (int i = 0; i < tmp.length(); i++) {
                         JSONObject c = tmp.getJSONObject(i);
                         JSONObject d = total.getJSONObject(i);
@@ -229,12 +225,6 @@ public class RotasiInternalDetail extends AppCompatActivity {
                         JSONObject h = array4.getJSONObject(i);
                         JSONObject j = array5.getJSONObject(i);
                         JSONObject k = array6.getJSONObject(i);
-                        JSONObject l = array7.getJSONObject(i);
-                        JSONObject m = array8.getJSONObject(i);
-                        JSONObject n = array9.getJSONObject(i);
-                        JSONObject o = array10.getJSONObject(i);
-                        JSONObject p = array11.getJSONObject(i);
-                        JSONObject q = array12.getJSONObject(i);
                         HashMap<String, String> map = new HashMap<String, String>();
                         map.put("id_rotasi",c.getString("id"));
                         map.put("stase", c.getString("internal"));
@@ -339,7 +329,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             if (i == 0) {
                                 tglMulai = format.parse(e.getString("tgl1"));
                                 a = e.getString("tgl1");
-                                b = l.getString("nama");
+                                b = e.getString("dosen1");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -353,7 +343,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             } else if (i == 1) {
 
                                 a = f.getString("tgl2");
-                                b = m.getString("nama");
+                                b = f.getString("dosen2");
                                 map.put("dosen",b);
                                 tglMulai = format.parse(f.getString("tgl2"));
                                 map.put("tglmli", a);
@@ -369,7 +359,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
 
                                 tglMulai = format.parse(g.getString("tgl3"));
                                 a = g.getString("tgl3");
-                                b = n.getString("nama");
+                                b = g.getString("dosen3");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -384,7 +374,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
 
                                 tglMulai = format.parse(h.getString("tgl4"));
                                 a = h.getString("tgl4");
-                                b = o.getString("nama");
+                                b = h.getString("dosen4");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -399,7 +389,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
 
                                 tglMulai = format.parse(j.getString("tgl5"));
                                 a = j.getString("tgl5");
-                                b = p.getString("nama");
+                                b = j.getString("dosen5");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
 
@@ -414,7 +404,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             } else if (i == 5) {
 
                                 tglMulai = format.parse(h.getString("tgl6"));
-                                b = q.getString("dosen6");
+                                b = k.getString("dosen6");
                                 map.put("dosen",b);
                                 a = k.getString("tgl6");
                                 map.put("tglmli", a);
@@ -520,13 +510,13 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                     "tgl1","rotasi1","dosen1","status1", "tgl2","rotasi2","dosen2","status2", "tgl3","rotasi3","dosen3","status3",
                                     "tgl4","rotasi4","dosen4","status4", "tgl5","rotasi5","dosen5","status5", "tgl6","rotasi6","dosen6","status6"},
                             new int[]{R.id.tv_judul, R.id.lama, R.id.tv_tgl_mulai, R.id.tv_tgl_selesai,
-                                    R.id.tv_status, R.id.tv_approval, R.id.btn_approve, R.id.tv_id, R.id.tv_rotasi,
-                                    R.id.tv_tgl1, R.id.tv_rotasi1, R.id.tv_dosen1, R.id.tv_status1,
-                                    R.id.tv_tgl2, R.id.tv_rotasi2, R.id.tv_dosen1, R.id.tv_status2,
-                                    R.id.tv_tgl3, R.id.tv_rotasi3, R.id.tv_dosen1, R.id.tv_status3,
-                                    R.id.tv_tgl4, R.id.tv_rotasi4, R.id.tv_dosen1, R.id.tv_status4,
-                                    R.id.tv_tgl5, R.id.tv_rotasi5, R.id.tv_dosen1, R.id.tv_status5,
-                                    R.id.tv_tgl6, R.id.tv_rotasi6, R.id.tv_dosen1, R.id.tv_status6}) {
+                                    R.id.tv_status,R.id.tv_approval,R.id.btn_approve,R.id.tv_id,R.id.tv_rotasi,
+                                    R.id.tv_tgl1,R.id.tv_rotasi1,R.id.tv_dosen1,R.id.tv_status1,
+                                    R.id.tv_tgl2,R.id.tv_rotasi2,R.id.tv_dosen1,R.id.tv_status2,
+                                    R.id.tv_tgl3,R.id.tv_rotasi3,R.id.tv_dosen1,R.id.tv_status3,
+                                    R.id.tv_tgl4,R.id.tv_rotasi4,R.id.tv_dosen1,R.id.tv_status4,
+                                    R.id.tv_tgl5,R.id.tv_rotasi5,R.id.tv_dosen1,R.id.tv_status5,
+                                    R.id.tv_tgl6,R.id.tv_rotasi6,R.id.tv_dosen1,R.id.tv_status6}) {
                         @Override
                         public View getView(final int position, View convertView, ViewGroup parent) {
                             View lv = super.getView(position, convertView, parent);

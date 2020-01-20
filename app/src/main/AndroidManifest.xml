@@ -45,6 +45,7 @@
         <activity android:name=".editrotasi" />
         <activity android:name=".showJurnalPenyakit" />
         <activity android:name=".showJurnal" />
+        <activity android:name=".editrotasi" />
         <activity android:name=".editprofil" />
         <activity android:name=".editprofilds" />
         <activity android:name=".CekJurnalDatePicker" />

@@ -52,6 +52,8 @@ import com.android.volley.toolbox.JsonObjectRequest;
 public class RotasiInternal extends Activity {
     private SessionHandler session;
     public static final String KEY_ID = "id";
+    public static final String KEY_MULAI= "tglmli";
+    public static final String KEY_SELESAI = "tglsls";
     private static final String KEY_USERNAME = "username";
     public static final String KEY_MULAI= "tglmli";
     public static final String KEY_SELESAI = "tglsls";
