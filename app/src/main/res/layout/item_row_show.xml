@@ -9,14 +9,8 @@
         android:layout_centerVertical="true"
         android:layout_marginStart="5pt"
         android:layout_marginEnd="5pt"
-        android:background="@drawable/recyclerview"
+        android:background="@drawable/rounded_border_edittext"
         android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"></LinearLayout>
 
         <TextView
             android:id="@+id/tv_dos"
@@ -29,139 +23,262 @@
             android:visibility="gone"
             android:textColor="@color/darkgreen"
             android:textSize="20sp" />
-        <TextView
-            android:id="@+id/tv_jam"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="TextView"
-            android:textColor="@color/darkgreen"
-            android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/tv_lokasi"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="TextView"
-            android:textColor="@color/darkgreen"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/tv_kegiatan"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="TextView"
-            android:textColor="@color/darkgreen"
-            android:textSize="20sp" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="vertical">
-        <TextView
-            android:id="@+id/tv_sumber"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="TextView"
-            android:textColor="@color/darkgreen"
-            android:textSize="20sp" />
-            <TextView
-            android:id="@+id/tv_sumber2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="TextView"
-                android:textColor="@color/darkgreen"
-            android:textSize="20sp" />
-            <TextView
-            android:id="@+id/tv_sumber3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="TextView"
-                android:textColor="@color/darkgreen"
-            android:textSize="20sp" />
-            <TextView
-            android:id="@+id/tv_sumber4"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="TextView"
-                android:textColor="@color/darkgreen"
-            android:textSize="20sp" />
-        </LinearLayout>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_dosen"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:fontFamily="sans-serif-medium"
-            android:text="TextView"
-            android:textColor="@color/darkgreen"
-            android:textSize="20sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Jam : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_jam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="TextView"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:id="@+id/tv_status"
+                android:id="@+id/textView8"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Lokasi : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_lokasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="TextView"
-                android:textColor="@color/darkgreen"
-                android:textSize="20sp" />
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btn_approve"
-                android:text="APPROVE"/>
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-            <Button
+
+            <TextView
+                android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Kegiatan : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_kegiatan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="TextView"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/sumber1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Penyakit 1 : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_sumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="TextView"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_sumber2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/sumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Penyakit 2 : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_sumber2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="-"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_sumber3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/sumber3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Penyakit 3 : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_sumber3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="-"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/l_sumber4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/sumber4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Penyakit 4 : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_sumber4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="-"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Dosen : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_dosen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="TextView"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Status : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="TextView"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp">
+
+            <Button
                 android:id="@+id/btn_Edit"
-                android:text="EDIT"/>
+                android:layout_width="wrap_content"
+                android:layout_marginRight="5dp"
+                android:layout_height="wrap_content"
+                android:text="edit" />
+
             <Button
+                android:id="@+id/btn_Delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_Delete"
-                android:text="Delete"/>
+                android:layout_marginRight="5dp"
+                android:text="delete" />
+
+            <Button
+                android:id="@+id/btn_approve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Approve" />
         </LinearLayout>
 
     </LinearLayout>
