@@ -5,6 +5,14 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,15 +21,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ri_OtpApprove"></activity>
+        <activity android:name=".ri_edit"></activity>
+        <activity
+            android:name=".IsiJurnalKP"
+            android:noHistory="true" />
+        <activity android:name=".ri_OtpApprove" />
         <activity
             android:name=".ri_QrApprove"
-            android:noHistory="true"/>
+            android:noHistory="true" />
         <activity android:name=".ri_PassApprove" />
         <activity android:name=".ri_CamScanner" />
         <activity
             android:name=".ri_main_approval"
-            android:noHistory="true"/>
+            android:noHistory="true" />
         <activity android:name=".RotasiInternalDetail" />
         <activity android:name=".Rotasi" />
 
@@ -30,6 +42,7 @@
             android:required="false" />
 
         <activity android:name=".showJurnalKetrampilan" />
+        <activity android:name=".editrotasi" />
         <activity android:name=".showJurnalPenyakit" />
         <activity android:name=".showJurnal" />
         <activity android:name=".editprofil" />
@@ -79,7 +92,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="192.168.0.109"
+                    android:host="192.168.43.44"
                     android:pathPrefix="/login.php"
                     android:scheme="http" />
             </intent-filter>

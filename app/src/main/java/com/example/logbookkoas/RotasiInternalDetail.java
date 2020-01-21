@@ -1,9 +1,6 @@
 package com.example.logbookkoas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
@@ -15,6 +12,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -46,15 +45,18 @@ import java.util.HashMap;
 public class RotasiInternalDetail extends AppCompatActivity {
     private SessionHandler session;
     ListView lv_rot;
-    private String header = "http://192.168.0.109/logbook/getKepaniteraan.php";
-    final String urlsem = "http://192.168.0.109/logbook/rotasi_internal.php";
-    private String judul = "http://192.168.0.109/logbook/getJadwal.php";
-    private String update_status = "http://192.168.0.109/logbook/updateStatus.php";
+    private String header = "http://192.168.43.44/logbook/getKepaniteraan.php";
+    final String urlsem = "http://192.168.43.44/logbook/rotasi_internal.php";
+    final String url_namadosen = "http://192.168.43.44/logbook/namadosen.php";
+    private String judul = "http://192.168.43.44/logbook/getJadwal.php";
+    private String update_status = "http://192.168.43.44/logbook/updateStatus.php";
     public static final String KEY_ID = "id";
+    ArrayList<HashMap<String, String>> MyArr1= new ArrayList<HashMap<String,String>>();
     TextView stase,tanggal,id_stase;
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
     ArrayList<HashMap<String, String>> MyArr= new ArrayList<HashMap<String,String>>();
+
 
     @Override
     protected void onResume() {
@@ -181,6 +183,10 @@ public class RotasiInternalDetail extends AppCompatActivity {
     private void staserotasi() {
         Intent i = getIntent();
         final String id = i.getStringExtra(RotasiInternal.KEY_ID);
+       // final String tglml=i.getStringExtra(RotasiInternal.KEY_MULAI);
+
+
+       // Toast.makeText(this, tglsl, Toast.LENGTH_SHORT).show();
         JSONObject request = new JSONObject();
         try {
 
@@ -208,6 +214,12 @@ public class RotasiInternalDetail extends AppCompatActivity {
                     JSONArray array4 = response.getJSONArray("array4");
                     JSONArray array5 = response.getJSONArray("array5");
                     JSONArray array6 = response.getJSONArray("array6");
+                    JSONArray array7 = response.getJSONArray("array7");
+                    JSONArray array8 = response.getJSONArray("array8");
+                    JSONArray array9 = response.getJSONArray("array9");
+                    JSONArray array10 = response.getJSONArray("array10");
+                    JSONArray array11 = response.getJSONArray("array11");
+                    JSONArray array12 = response.getJSONArray("array12");
                     for (int i = 0; i < tmp.length(); i++) {
                         JSONObject c = tmp.getJSONObject(i);
                         JSONObject d = total.getJSONObject(i);
@@ -217,26 +229,117 @@ public class RotasiInternalDetail extends AppCompatActivity {
                         JSONObject h = array4.getJSONObject(i);
                         JSONObject j = array5.getJSONObject(i);
                         JSONObject k = array6.getJSONObject(i);
+                        JSONObject l = array7.getJSONObject(i);
+                        JSONObject m = array8.getJSONObject(i);
+                        JSONObject n = array9.getJSONObject(i);
+                        JSONObject o = array10.getJSONObject(i);
+                        JSONObject p = array11.getJSONObject(i);
+                        JSONObject q = array12.getJSONObject(i);
                         HashMap<String, String> map = new HashMap<String, String>();
                         map.put("id_rotasi",c.getString("id"));
                         map.put("stase", c.getString("internal"));
                         map.put("hari", c.getString("hari"));
                         map.put("id_internal", d.getString("id"));
+                        map.put("tgl1",e.getString("tgl1"));
+                        map.put("dosen1",e.getString("dosen1"));
+                        map.put("rotasi1",e.getString("rotasi1"));
+                        map.put("status1",e.getString("status1"));
+                        map.put("tgl2",f.getString("tgl2"));
+                        map.put("dosen2",f.getString("dosen2"));
+                        map.put("rotasi2",f.getString("rotasi2"));
+                        map.put("status2",f.getString("status2"));
+                        map.put("tgl3",g.getString("tgl3"));
+                        map.put("dosen3",g.getString("dosen3"));
+                        map.put("rotasi3",g.getString("rotasi3"));
+                        map.put("status3",g.getString("status3"));
+                        map.put("tgl4",h.getString("tgl4"));
+                        map.put("dosen4",h.getString("dosen4"));
+                        map.put("rotasi4",h.getString("rotasi4"));
+                        map.put("status4",h.getString("status4"));
+                        map.put("tgl5",j.getString("tgl5"));
+                        map.put("dosen5",j.getString("dosen5"));
+                        map.put("rotasi5",j.getString("rotasi5"));
+                        map.put("status5",j.getString("status5"));
+                        map.put("tgl6",k.getString("tgl6"));
+                        map.put("dosen6",k.getString("dosen6"));
+                        map.put("rotasi6",k.getString("rotasi6"));
+                        map.put("status6",k.getString("status6"));
+                        if(e.getString("tgl1").equals("null")){
+                            map.put("tgl1","");
+                            map.put("dosen1","");
+                            map.put("rotasi1","");
+                            map.put("status1","");
+                        }else if(f.getString("tgl2").equals("null")){
+                            map.put("tgl2","");
+                            map.put("dosen2","");
+                            map.put("rotasi2","");
+                            map.put("status2","");
+                        }
+                        else if(g.getString("tgl3").equals("null")){
+                            map.put("tgl3","");
+                            map.put("dosen3","");
+                            map.put("rotasi3","");
+                            map.put("status3","");
+                        }
+                        else if(h.getString("tgl4").equals("null")){
+                            map.put("tgl4","");
+                            map.put("dosen4","");
+                            map.put("rotasi4","");
+                            map.put("status4","");
+                        }
+                        else if(j.getString("tgl5").equals("null")){
+                            map.put("tgl5","");
+                            map.put("dosen5","");
+                            map.put("rotasi5","");
+                            map.put("status5","");
+                        }
+                        else if(k.getString("tgl6").equals("null")){
+                            map.put("tgl6","");
+                            map.put("dosen6","");
+                            map.put("rotasi6","");
+                            map.put("status6","");
+                        }
                         if (d.getString("id").equals("null")) {
                             map.put("tglmli", "-");
                             map.put("tglsls", "-");
                             map.put("status", "-");
+                            map.put("tgl1","");
+                            map.put("dosen1","");
+                            map.put("rotasi1","");
+                            map.put("status1","");
+                            map.put("tgl2","");
+                            map.put("dosen2","");
+                            map.put("rotasi2","");
+                            map.put("status2","");
+                            map.put("tgl3","");
+                            map.put("dosen3","");
+                            map.put("rotasi3","");
+                            map.put("status3","");
+                            map.put("tgl4","");
+                            map.put("dosen4","");
+                            map.put("rotasi4","");
+                            map.put("status4","");
+                            map.put("tgl5","");
+                            map.put("dosen5","");
+                            map.put("rotasi5","");
+                            map.put("status5","");
+                            map.put("tgl6","");
+                            map.put("dosen6","");
+                            map.put("rotasi6","");
+                            map.put("status6","");
                         } else {
                             String tgl="0000-00-00";
                             Date tglml=format.parse(tgl);
+                            Date tglaw= null;
                             Date tglMulai = tglml;
                             Date tglselesai = tglml;
+                            Date tglselesai1 = tglml;
                             String a = "";
                             String b = "";
                             if (i == 0) {
                                 tglMulai = format.parse(e.getString("tgl1"));
                                 a = e.getString("tgl1");
-                                b = e.getString("dosen1");
+                                b = l.getString("nama");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -245,10 +348,12 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 int minus = 1000 * 60 * 60 * 24;
                                 if (tglMulai != null) {
                                     tglselesai = new Date(tglMulai.getTime() + sum - minus);
+
                                 }
                             } else if (i == 1) {
+
                                 a = f.getString("tgl2");
-                                b = f.getString("dosen2");
+                                b = m.getString("nama");
                                 map.put("dosen",b);
                                 tglMulai = format.parse(f.getString("tgl2"));
                                 map.put("tglmli", a);
@@ -258,11 +363,13 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 int minus = 1000 * 60 * 60 * 24;
                                 if (tglMulai != null) {
                                     tglselesai = new Date(tglMulai.getTime() + sum - minus);
+
                                 }
                             } else if (i == 2) {
+
                                 tglMulai = format.parse(g.getString("tgl3"));
                                 a = g.getString("tgl3");
-                                b = g.getString("dosen3");
+                                b = n.getString("nama");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -271,11 +378,13 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 int minus = 1000 * 60 * 60 * 24;
                                 if (tglMulai != null) {
                                     tglselesai = new Date(tglMulai.getTime() + sum - minus);
+
                                 }
                             } else if (i == 3) {
+
                                 tglMulai = format.parse(h.getString("tgl4"));
                                 a = h.getString("tgl4");
-                                b = h.getString("dosen4");
+                                b = o.getString("nama");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -284,11 +393,13 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 int minus = 1000 * 60 * 60 * 24;
                                 if (tglMulai != null) {
                                     tglselesai = new Date(tglMulai.getTime() + sum - minus);
+
                                 }
                             } else if (i == 4) {
+
                                 tglMulai = format.parse(j.getString("tgl5"));
                                 a = j.getString("tgl5");
-                                b = j.getString("dosen5");
+                                b = p.getString("nama");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
 
@@ -298,10 +409,12 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 int minus = 1000 * 60 * 60 * 24;
                                 if (tglMulai != null) {
                                     tglselesai = new Date(tglMulai.getTime() + sum - minus);
+
                                 }
                             } else if (i == 5) {
+
                                 tglMulai = format.parse(h.getString("tgl6"));
-                                b = k.getString("dosen6");
+                                b = q.getString("dosen6");
                                 map.put("dosen",b);
                                 a = k.getString("tgl6");
                                 map.put("tglmli", a);
@@ -312,6 +425,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 int minus = 1000 * 60 * 60 * 24;
                                 if (tglMulai != null) {
                                     tglselesai = new Date(tglMulai.getTime() + sum - minus);
+
                                 }
                             }
 
@@ -362,14 +476,63 @@ public class RotasiInternalDetail extends AppCompatActivity {
                         }
 
                         MyArr.add(map);
+
                     }
+               /*     for (int w = 0; w < tmp.length(); w++) {
+                        JSONObject c1 = tmp.getJSONObject(w);
+                        JSONObject d1 = total.getJSONObject(w);
+                        JSONObject e1 = array1.getJSONObject(w);
+                        JSONObject f1 = array2.getJSONObject(w);
+                        JSONObject g1 = array3.getJSONObject(w);
+                        JSONObject h1 = array4.getJSONObject(w);
+                        JSONObject j1 = array5.getJSONObject(w);
+                        JSONObject k1 = array6.getJSONObject(w);
+                        HashMap<String, String> map1 = new HashMap<String, String>();
+                        map1.put("tgl1",e1.getString("tgl1"));
+                        map1.put("dosen1",e1.getString("dosen1"));
+                        map1.put("rotasi1",e1.getString("rotasi1"));
+                        map1.put("status1",e1.getString("status1"));
+                        map1.put("tgl2",f1.getString("tgl2"));
+                        map1.put("dosen2",f1.getString("dosen2"));
+                        map1.put("rotasi2",f1.getString("rotasi2"));
+                        map1.put("status2",f1.getString("status2"));
+                        map1.put("tgl3",g1.getString("tgl3"));
+                        map1.put("dosen3",g1.getString("dosen3"));
+                        map1.put("rotasi3",g1.getString("rotasi3"));
+                        map1.put("status3",g1.getString("status3"));
+                        map1.put("tgl4",h1.getString("tgl4"));
+                        map1.put("dosen4",h1.getString("dosen4"));
+                        map1.put("rotasi4",h1.getString("rotasi4"));
+                        map1.put("status4",h1.getString("status4"));
+                        map1.put("tgl5",j1.getString("tgl5"));
+                        map1.put("dosen5",j1.getString("dosen5"));
+                        map1.put("rotasi5",j1.getString("rotasi5"));
+                        map1.put("status5",j1.getString("status5"));
+                        map1.put("tgl6",k1.getString("tgl6"));
+                        map1.put("dosen6",k1.getString("dosen6"));
+                        map1.put("rotasi6",k1.getString("rotasi6"));
+                        map1.put("status6",k1.getString("status6"));
+                        MyArr1.add(map1);
+                    }*/
                     SimpleAdapter sAdap;
                     sAdap = new SimpleAdapter(RotasiInternalDetail.this, MyArr, R.layout.item_row_rotasi_internal,
-                            new String[]{"stase", "hari", "tglmli", "tglsls","status","dosen","Approve","id_internal","id_rotasi"},
-                            new int[]{R.id.tv_judul, R.id.lama, R.id.tv_tgl_mulai, R.id.tv_tgl_selesai,R.id.tv_status,R.id.tv_approval,R.id.btn_approve,R.id.tv_id,R.id.tv_rotasi}) {
+                            new String[]{"stase", "hari", "tglmli", "tglsls","status","dosen","Approve","id_internal","id_rotasi",
+                                    "tgl1","rotasi1","dosen1","status1", "tgl2","rotasi2","dosen2","status2", "tgl3","rotasi3","dosen3","status3",
+                                    "tgl4","rotasi4","dosen4","status4", "tgl5","rotasi5","dosen5","status5", "tgl6","rotasi6","dosen6","status6"},
+                            new int[]{R.id.tv_judul, R.id.lama, R.id.tv_tgl_mulai, R.id.tv_tgl_selesai,
+                                    R.id.tv_status, R.id.tv_approval, R.id.btn_approve, R.id.tv_id, R.id.tv_rotasi,
+                                    R.id.tv_tgl1, R.id.tv_rotasi1, R.id.tv_dosen1, R.id.tv_status1,
+                                    R.id.tv_tgl2, R.id.tv_rotasi2, R.id.tv_dosen1, R.id.tv_status2,
+                                    R.id.tv_tgl3, R.id.tv_rotasi3, R.id.tv_dosen1, R.id.tv_status3,
+                                    R.id.tv_tgl4, R.id.tv_rotasi4, R.id.tv_dosen1, R.id.tv_status4,
+                                    R.id.tv_tgl5, R.id.tv_rotasi5, R.id.tv_dosen1, R.id.tv_status5,
+                                    R.id.tv_tgl6, R.id.tv_rotasi6, R.id.tv_dosen1, R.id.tv_status6}) {
                         @Override
                         public View getView(final int position, View convertView, ViewGroup parent) {
                             View lv = super.getView(position, convertView, parent);
+                            final HashMap<String,String>map=MyArr.get(position);
+                            Intent er= getIntent();
+                            final String tglsl=er.getStringExtra(RotasiInternal.KEY_SELESAI);
                             final TextView stase = lv.findViewById(R.id.tv_judul);
                             final TextView lamahari = lv.findViewById(R.id.lama);
                             final TextView status = lv.findViewById(R.id.tv_status);
@@ -382,6 +545,22 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             final Button approval = lv.findViewById(R.id.btn_approve);
                             final Button edit = lv.findViewById(R.id.btn_edit);
                             lamahari.append(" hari");
+                            try {
+                                final TextView tgl_selesai1 = lv.findViewById(R.id.tv_tgl_selesai);
+                                Date tglsel=format.parse(tglsl);
+                                String tglselText=convert.format(tglsel);
+                                String tglsl1=map.get("tglsls");
+                                Date tglsl2= format.parse(tglsl1);
+                                Toast.makeText(RotasiInternalDetail.this, tglsl1, Toast.LENGTH_SHORT).show();
+                                if(tglsel.before(tglsl2)){
+                                tgl_selesai1.setText(tglselText);
+                                }else{
+                                    tgl_selesai.setText(tglsl1);
+                                }
+                            } catch (ParseException e) {
+                                e.printStackTrace();
+                            }
+
                             if(tgl_mulai.getText().equals(" ")){
                                 lay_dos.setVisibility(View.GONE);
                                 approval.setVisibility(View.GONE);
@@ -399,7 +578,47 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             if(dosen.getText().equals("null")){
                                 lay_dos.setVisibility(View.GONE);
                             }
-
+                            edit.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent i=new Intent(RotasiInternalDetail.this,editrotasi.class);
+                                    int nomor= position+1;
+                                    String nmr=Integer.toString(nomor);
+                                    i.putExtra("id_internal",id_internal.getText());
+                                    i.putExtra("idst",id);
+                                    i.putExtra("nomor", nmr);
+                                    i.putExtra("id",map.get("id_rotasi"));
+                                    i.putExtra("stase",map.get("stase"));
+                                    i.putExtra("hari",map.get("hari"));
+                                    i.putExtra("dosen",dosen.getText());
+                                    i.putExtra("id_rotasi",map.get("rotasi"));
+                                    i.putExtra("tgl1",map.get("tgl1"));
+                                    i.putExtra("dosen1",map.get("dosen1"));
+                                    i.putExtra("rotasi1",map.get("rotasi1"));
+                                    i.putExtra("status1",map.get("status1"));
+                                    i.putExtra("tgl2",map.get("tgl2"));
+                                    i.putExtra("dosen2",map.get("dosen2"));
+                                    i.putExtra("rotasi2",map.get("rotasi2"));
+                                    i.putExtra("status2",map.get("status2"));
+                                    i.putExtra("tgl3",map.get("tgl3"));
+                                    i.putExtra("dosen3",map.get("dosen3"));
+                                    i.putExtra("rotasi3",map.get("rotasi3"));
+                                    i.putExtra("status3",map.get("status3"));
+                                    i.putExtra("tgl4",map.get("tgl4"));
+                                    i.putExtra("dosen4",map.get("dosen4"));
+                                    i.putExtra("rotasi4",map.get("rotasi4"));
+                                    i.putExtra("status4",map.get("status4"));
+                                    i.putExtra("tgl5",map.get("tgl5"));
+                                    i.putExtra("dosen5",map.get("dosen5"));
+                                    i.putExtra("rotasi5",map.get("rotasi5"));
+                                    i.putExtra("status5",map.get("status5"));
+                                    i.putExtra("tgl6",map.get("tgl6"));
+                                    i.putExtra("dosen6",map.get("dosen6"));
+                                    i.putExtra("rotasi6",map.get("rotasi6"));
+                                    i.putExtra("status6",map.get("status6"));
+                                    startActivity(i);
+                                }
+                            });
                             approval.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -432,6 +651,19 @@ public class RotasiInternalDetail extends AppCompatActivity {
         });
         MySingleton.getInstance(this).addToRequestQueue(json);
 
+    }
+    private static String[] getStringArray(ArrayList<String> arr) {
+        // declaration and initialise String Array
+        String[] str = new String[arr.size()];
+
+        // ArrayList to Array Conversion
+        for (int j = 0; j < arr.size(); j++) {
+
+            // Assign each value to String array
+            str[j] = arr.get(j);
+        }
+
+        return str;
     }
 
     public String getJSONUrl(String url) {

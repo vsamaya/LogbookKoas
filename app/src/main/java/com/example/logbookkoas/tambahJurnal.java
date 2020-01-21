@@ -26,9 +26,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class tambahJurnal extends AppCompatActivity {
-    String spinnerURL = "http://192.168.0.109/logbook/spinnerTambahJurnal.php";
-    String tanggalURL = "http://192.168.0.109/logbook/tanggalTambahJurnal.php";
-    String submitURL = "http://192.168.0.109/logbook/submitTambahJurnal.php";
+    String spinnerURL = "http://192.168.43.44/logbook/spinnerTambahJurnal.php";
+    String tanggalURL = "http://192.168.43.44/logbook/tanggalTambahJurnal.php";
+    String submitURL = "http://192.168.43.44/logbook/submitTambahJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;
@@ -568,6 +568,8 @@ public class tambahJurnal extends AppCompatActivity {
                                         request.put("id_jenis4", id_jenis4);
                                         Intent intent = new Intent(tambahJurnal.this, IsiJurnalDetail.class);
                                         intent.putExtra(mainIsiJurnal.KEY_ID, stase);
+                                        Toast.makeText(tambahJurnal.this, "Penambahan Berhasil",
+                                                Toast.LENGTH_LONG).show();
                                         startActivity(intent);
                                         finish();
 

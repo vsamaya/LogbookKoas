@@ -44,7 +44,7 @@ public class showJurnalPenyakit extends AppCompatActivity {
     private SessionHandler session;
     ListView lv_penyakit;
     ArrayList<HashMap<String, String>> MyArr;
-    final String url_penyakit = "http://192.168.0.109/logbook/penyakit.php";
+    final String url_penyakit = "http://192.168.43.44/logbook/penyakit.php";
     final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     final SimpleDateFormat convert = new SimpleDateFormat("yyyy-MM-dd");
     @Override
@@ -87,7 +87,6 @@ public class showJurnalPenyakit extends AppCompatActivity {
                     JSONArray tmp = response.getJSONArray("tmp");
                     JSONArray kegiatan = response.getJSONArray("kegiatan");
                     JSONArray lokasi = response.getJSONArray("lokasi");
-                    JSONArray kelas = response.getJSONArray("kelas");
                     JSONArray dosen = response.getJSONArray("dosen");
                     JSONArray penyakit1 = response.getJSONArray("penyakit1");
                     JSONArray penyakit2 = response.getJSONArray("penyakit2");
@@ -97,7 +96,6 @@ public class showJurnalPenyakit extends AppCompatActivity {
                         JSONObject j = tmp.getJSONObject(i);
                         JSONObject j_kegiatan = kegiatan.getJSONObject(i);
                         JSONObject j_lokasi = lokasi.getJSONObject(i);
-                        JSONObject j_kelas = kelas.getJSONObject(i);
                         JSONObject j_dosen = dosen.getJSONObject(i);
                         JSONObject j_p1 = penyakit1.getJSONObject(i);
                         JSONObject j_p2 = penyakit2.getJSONObject(i);
@@ -112,7 +110,6 @@ public class showJurnalPenyakit extends AppCompatActivity {
                         } else item.put("status", "Unapproved");
                         item.put("kegiatan", j_kegiatan.getString("kegiatan"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
-                        item.put("kelas", j_kelas.getString("kelas"));
                         item.put("p1", j_p1.getString("penyakit"));
                         if (j_p2.getString("penyakit").equals("null")) {
                             item.put("p2", " ");
@@ -133,8 +130,8 @@ public class showJurnalPenyakit extends AppCompatActivity {
 
                     }
                     ListAdapter sAdap = new SimpleAdapter(showJurnalPenyakit.this, MyArr, R.layout.item_row_cek,
-                            new String[] {"jam_awal","jam_akhir","kelas","lokasi","kegiatan","nama","status","p1","p2","p3","p4"},
-                            new int[] {R.id.tv_jam,R.id.tv_jam2,R.id.tv_kelas,R.id.tv_lokasi,R.id.tv_kegiatan,
+                            new String[] {"jam_awal","jam_akhir","lokasi","kegiatan","nama","status","p1","p2","p3","p4"},
+                            new int[] {R.id.tv_jam,R.id.tv_jam2,R.id.tv_lokasi,R.id.tv_kegiatan,
                                     R.id.tv_dosen,R.id.tv_status,R.id.tv_sumber1,R.id.tv_sumber2,
                                     R.id.tv_sumber3,R.id.tv_sumber4,});
                     lv_penyakit.setAdapter(sAdap);
