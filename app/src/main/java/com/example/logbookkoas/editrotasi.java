@@ -154,6 +154,7 @@ public class editrotasi extends AppCompatActivity {
                         simpan(idur,idst,rotasi1, tgla, dosena, rotasi2, tgl2, dosen2,
                                 rotasi3, tgl3, dosen3, rotasi4, tgl4, dosen4,
                                 rotasi5, tgl5, dosen5,  rotasi6, tgl6, dosen6);
+
                 } else if (idr.equals("2")) {
                     String tgla = tgl.getText().toString();
                     dosena=nospin[searchableSpinner.getSelectedItemPosition()];
@@ -169,6 +170,7 @@ public class editrotasi extends AppCompatActivity {
                        simpan(idur,idst,rotasi1, tgl1, dosen1, rotasi2, tgl2, dosen2,
                             rotasi3, tgla, dosena,  rotasi4, tgl4, dosen4,
                               rotasi5, tgl5, dosen5, rotasi6, tgl6, dosen6);
+
                 } else if (idr.equals("4")) {
                     String tgla = tgl.getText().toString();
                     dosena=nospin[searchableSpinner.getSelectedItemPosition()];
@@ -176,6 +178,7 @@ public class editrotasi extends AppCompatActivity {
                       simpan(idur,idst,rotasi1, tgl1, dosen1,  rotasi2, tgl2, dosen2,
                              rotasi3, tgl3, dosen3, rotasi4, tgla, dosena,
                              rotasi5, tgl5, dosen5, rotasi6, tgl6, dosen6);
+
                 } else if (idr.equals("5")) {
 
                     String tgla = tgl.getText().toString();

@@ -216,6 +216,12 @@ public class RotasiInternalDetail extends AppCompatActivity {
                     JSONArray array4 = response.getJSONArray("array4");
                     JSONArray array5 = response.getJSONArray("array5");
                     JSONArray array6 = response.getJSONArray("array6");
+                    JSONArray array7 = response.getJSONArray("array7");
+                    JSONArray array8 = response.getJSONArray("array8");
+                    JSONArray array9 = response.getJSONArray("array9");
+                    JSONArray array10 = response.getJSONArray("array10");
+                    JSONArray array11 = response.getJSONArray("array11");
+                    JSONArray array12 = response.getJSONArray("array12");
                     for (int i = 0; i < tmp.length(); i++) {
                         JSONObject c = tmp.getJSONObject(i);
                         JSONObject d = total.getJSONObject(i);
@@ -225,6 +231,12 @@ public class RotasiInternalDetail extends AppCompatActivity {
                         JSONObject h = array4.getJSONObject(i);
                         JSONObject j = array5.getJSONObject(i);
                         JSONObject k = array6.getJSONObject(i);
+                        JSONObject l = array7.getJSONObject(i);
+                        JSONObject m = array8.getJSONObject(i);
+                        JSONObject n = array9.getJSONObject(i);
+                        JSONObject o = array10.getJSONObject(i);
+                        JSONObject p = array11.getJSONObject(i);
+                        JSONObject q = array12.getJSONObject(i);
                         HashMap<String, String> map = new HashMap<String, String>();
                         map.put("id_rotasi",c.getString("id"));
                         map.put("stase", c.getString("internal"));
@@ -329,7 +341,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             if (i == 0) {
                                 tglMulai = format.parse(e.getString("tgl1"));
                                 a = e.getString("tgl1");
-                                b = e.getString("dosen1");
+                                b = l.getString("nama");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -343,7 +355,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             } else if (i == 1) {
 
                                 a = f.getString("tgl2");
-                                b = f.getString("dosen2");
+                                b = m.getString("nama");
                                 map.put("dosen",b);
                                 tglMulai = format.parse(f.getString("tgl2"));
                                 map.put("tglmli", a);
@@ -359,7 +371,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
 
                                 tglMulai = format.parse(g.getString("tgl3"));
                                 a = g.getString("tgl3");
-                                b = g.getString("dosen3");
+                                b = n.getString("nama");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -374,7 +386,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
 
                                 tglMulai = format.parse(h.getString("tgl4"));
                                 a = h.getString("tgl4");
-                                b = h.getString("dosen4");
+                                b = o.getString("nama");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -389,7 +401,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
 
                                 tglMulai = format.parse(j.getString("tgl5"));
                                 a = j.getString("tgl5");
-                                b = j.getString("dosen5");
+                                b = p.getString("nama");
                                 map.put("dosen",b);
                                 map.put("tglmli", a);
 
@@ -404,7 +416,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             } else if (i == 5) {
 
                                 tglMulai = format.parse(h.getString("tgl6"));
-                                b = k.getString("dosen6");
+                                b = q.getString("dosen6");
                                 map.put("dosen",b);
                                 a = k.getString("tgl6");
                                 map.put("tglmli", a);
