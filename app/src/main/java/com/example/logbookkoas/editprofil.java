@@ -226,7 +226,7 @@ public class editprofil extends AppCompatActivity {
         Random angkaacak= new Random();
         int a= angkaacak.nextInt(1000);
         String ac= Integer.toString(a);
-       // Toast.makeText(this, ac, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, ac, Toast.LENGTH_SHORT).show();
         usernamems.setText(bundle.getString("data1"));
         namat.setText(bundle.getString("data2"));
         drawable=BitmapFactory.decodeResource(getResources(), R.drawable.icaccount1);
