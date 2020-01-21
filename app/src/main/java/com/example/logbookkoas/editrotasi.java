@@ -468,7 +468,8 @@ public class editrotasi extends AppCompatActivity {
                 urlspin, request, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                try {
+                try {Arrspin.clear();
+                    Arrspin1.clear();
                     JSONArray spin = response.getJSONArray("nmapproval");
                     for (int i = 0; i < spin.length(); i++) {
                         JSONObject j = spin.getJSONObject(i);
