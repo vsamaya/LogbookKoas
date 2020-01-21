@@ -55,7 +55,7 @@ public class showJurnal extends AppCompatActivity {
     ListView lv_re;
     LinearLayout iv_penyakit, iv_ketrampilan;
     TextView rencana, evaluasi;
-    final String url_re = "http://192.168.43.44/logbook/cj_re.php";
+    final String url_re = "http://192.168.1.9/logbook/cj_re.php";
     final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     final SimpleDateFormat convert = new SimpleDateFormat("yyyy-MM-dd");
     @Override

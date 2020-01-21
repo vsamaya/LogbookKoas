@@ -48,6 +48,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import cyd.awesome.material.AwesomeText;
 import cyd.awesome.material.FontCharacterMaps;
@@ -76,16 +77,16 @@ public class editprofil extends AppCompatActivity {
     private static final String KEY_KOTAWALI = "kotawali";
     private static final String KEY_NOHPWALI = "nohpwali";
     private static final String KEY_EMPTY = "";
-    private String UPLOAD_URL = "http://192.168.43.44/logbook/upload.php";
-    private String HAPUS_URL = "http://192.168.43.44/logbook/hpsfoto.php";
+    private String UPLOAD_URL = "http://192.168.1.9/logbook/upload.php";
+    private String HAPUS_URL = "http://192.168.1.9/logbook/hpsfoto.php";
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
-    private String simpan_url = "http://192.168.43.44/logbook/updateprofil.php";
-    private String data_url = "http://192.168.43.44/logbook/getdataprofilms.php";
-    private String data_url1 = "http://192.168.43.44/logbook/getdataprofilms1.php";
-    public static final String KOTA_URL = "http://192.168.43.44/logbook/getKota.php";
-    private String foto_image = "http://192.168.43.44/logbook/image/";
-    public static final String PROP_URL = "http://192.168.43.44/logbook/getpropkota.php";
+    private String simpan_url = "http://192.168.1.9/logbook/updateprofil.php";
+    private String data_url = "http://192.168.1.9/logbook/getdataprofilms.php";
+    private String data_url1 = "http://192.168.1.9/logbook/getdataprofilms1.php";
+    public static final String KOTA_URL = "http://192.168.1.9/logbook/getKota.php";
+    private String foto_image = "http://192.168.1.9/logbook/image/";
+    public static final String PROP_URL = "http://192.168.1.9/logbook/getpropkota.php";
     private static final String TAG_MESSAGE = "message";
     public static final String KEY_IMAGE = "image";
     private String username;
@@ -222,6 +223,10 @@ public class editprofil extends AppCompatActivity {
         User user = session.getUserDetails();
         String user1 = user.getUsername();
         Bundle bundle = getIntent().getExtras();
+        Random angkaacak= new Random();
+        int a= angkaacak.nextInt(1000);
+        String ac= Integer.toString(a);
+        Toast.makeText(this, ac, Toast.LENGTH_SHORT).show();
         usernamems.setText(bundle.getString("data1"));
         namat.setText(bundle.getString("data2"));
         drawable=BitmapFactory.decodeResource(getResources(), R.drawable.icaccount1);
@@ -1153,9 +1158,13 @@ public class editprofil extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                Random angkaacak= new Random();
+                int a= angkaacak.nextInt(1000);
+                String ac= Integer.toString(a);
                 params.put("id", idbr);
                 params.put(KEY_NAMA, namabr);
                 params.put(KEY_USERNAME, usernamems.getText().toString());
+                params.put("foto", usernamems.getText().toString()+(ac));
                 params.put(KEY_IMAGE, getStringImage(bitmap));
                 params.put(KEY_PASSWORD, passwordbr);
                 params.put("namalengkap", namalengkap);

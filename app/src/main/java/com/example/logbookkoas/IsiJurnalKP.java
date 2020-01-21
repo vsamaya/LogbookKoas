@@ -44,8 +44,8 @@ public class IsiJurnalKP extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
     public static final String KEY_ID = "id";
-    private String showURL = "http://192.168.43.44/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.43.44/logbook/deleteJurnal.php";
+    private String showURL = "http://192.168.1.9/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.1.9/logbook/deleteJurnal.php";
     ListView list;
     LinearLayout buttonPenyakit;
     TextView head1,tmp;

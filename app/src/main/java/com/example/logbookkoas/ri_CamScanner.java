@@ -36,7 +36,7 @@ public class ri_CamScanner extends AppCompatActivity implements ZXingScannerView
     private ZXingScannerView mScannerView;
     private static final int PERMISSION_REQUEST_CODE = 200;
     SessionHandler session;
-    private String qr_aprv = "http://192.168.43.44/logbook/ri_qr_aprv.php";
+    private String qr_aprv = "http://192.168.1.9/logbook/ri_qr_aprv.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

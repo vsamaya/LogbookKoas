@@ -39,7 +39,7 @@ public class PassApprove extends AppCompatActivity {
     EditText pass;
     Button approve;
     SessionHandler session;
-    private String pass_aprv = "http://192.168.43.44/logbook/pass_aprv.php";
+    private String pass_aprv = "http://192.168.1.9/logbook/pass_aprv.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

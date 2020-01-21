@@ -59,7 +59,7 @@ public class RotasiInternal extends Activity {
     ListView lv_isi_jurnal;
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
-    final String url_judul = "http://192.168.43.44/logbook/showalljurnal.php";
+    final String url_judul = "http://192.168.1.9/logbook/showalljurnal.php";
     TextView head1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -47,10 +47,10 @@ public class editrotasi extends AppCompatActivity {
     final ArrayList<String> Arrspin1 = new ArrayList<String>();
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
-    final String urledt = "http://192.168.43.44/logbook/simpaneditrts.php";
-    private String url_username = "http://192.168.43.44/logbook/spinner_edit_username.php";
-    final String urlsem = "http://192.168.43.44/logbook/rotasi_internal.php";
-    final String urlspin = "http://192.168.43.44/logbook/spinner_edit_rotasi.php";
+    final String urledt = "http://192.168.1.9/logbook/simpaneditrts.php";
+    private String url_username = "http://192.168.1.9/logbook/spinner_edit_username.php";
+    final String urlsem = "http://192.168.1.9/logbook/rotasi_internal.php";
+    final String urlspin = "http://192.168.1.9/logbook/spinner_edit_rotasi.php";
     Button submit;
 
     @Override
