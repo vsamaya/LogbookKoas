@@ -547,25 +547,11 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             final Button approval = lv.findViewById(R.id.btn_approve);
                             final Button edit = lv.findViewById(R.id.btn_edit);
                             lamahari.append(" hari");
-                            try {
-                                final TextView tgl_selesai1 = lv.findViewById(R.id.tv_tgl_selesai);
-                                Date tglsel=format.parse(tglsl);
-                                String tglselText=convert.format(tglsel);
-                                String tglsl1=map.get("tglsls");
-                                Date tglsl2= format.parse(tglsl1);
-                                Toast.makeText(RotasiInternalDetail.this, tglsl1, Toast.LENGTH_SHORT).show();
-                                if(tglsel.before(tglsl2)){
-                                tgl_selesai1.setText(tglselText);
-                                }else{
-                                    tgl_selesai.setText(tglsl1);
-                                }
-                            } catch (ParseException e) {
-                                e.printStackTrace();
-                            }
 
                             if(tgl_mulai.getText().equals(" ")){
                                 lay_dos.setVisibility(View.GONE);
                                 approval.setVisibility(View.GONE);
+                                status.setVisibility(View.GONE);
                             }
                             if (status.getText().equals("Approve")) {
                                 status.setTextColor(getResources().getColor(R.color.md_green_900));
@@ -576,6 +562,10 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             } else if(status.getText().equals("-")){
                                 lay_dos.setVisibility(View.GONE);
                                 approval.setVisibility(View.GONE);
+                            }else if(status.getText().equals("Unapprove")&&tgl_mulai.getText().equals(" ")){
+                                lay_dos.setVisibility(View.GONE);
+                                approval.setVisibility(View.GONE);
+                                status.setVisibility(View.GONE);
                             }
                             if(dosen.getText().equals("null")){
                                 lay_dos.setVisibility(View.GONE);
