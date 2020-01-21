@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(MainActivity.this, "kosong", Toast.LENGTH_SHORT).show();
 
         }
-
-
         setContentView(R.layout.activity_main);
         login = findViewById(R.id.signin);
         usernamet = (EditText) findViewById(R.id.username);
