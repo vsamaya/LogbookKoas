@@ -129,56 +129,42 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
                         item.put("kategori",j_kegiatan.getString("kategori"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
                         if(getIntent().getStringExtra("jenis_jurnal").equals("Jurnal Penyakit")) {
-                            item.put("p1", j_p1.getString("penyakit").toUpperCase() +
-                                    "(" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ")");
+                            item.put("p1", j_p1.getString("penyakit").toUpperCase());
 
                             if (j_p2.getString("penyakit").equals("null")) {
                                 item.put("p2", " ");
 
                             } else {
-                                item.put("p2", j_p2.getString("penyakit").toUpperCase() +
-                                        "(" + j_p2.getString("skdi_level") + "-"
-                                        + j_p2.getString("sumber") + ")");
+                                item.put("p2", j_p2.getString("penyakit").toUpperCase());
                             }
                             if (j_p3.getString("penyakit").equals("null")) {
                                 item.put("p3", " ");
                             } else {
-                                item.put("p3", j_p3.getString("penyakit").toUpperCase()
-                                        + "(" + j_p3.getString("skdi_level") + "-"
-                                        + j_p3.getString("sumber") + ")");
+                                item.put("p3", j_p3.getString("penyakit").toUpperCase());
                             }
                             if (j_p4.getString("penyakit").equals("null")) {
                                 item.put("p4", " ");
                             } else {
-                                item.put("p4", j_p4.getString("penyakit").toUpperCase()
-                                        + "(" + j_p4.getString("skdi_level") + "-"
-                                        + j_p4.getString("sumber") + ")");
+                                item.put("p4", j_p4.getString("penyakit").toUpperCase());
                             }
                         }else {
-                            item.put("p1", j_p1.getString("ketrampilan").toUpperCase() +
-                                    "(" + j_p1.getString("skdi_level") + "-" + j_p1.getString("sumber") + ")");
+                            item.put("p1", j_p1.getString("ketrampilan").toUpperCase());
 
                             if (j_p2.getString("ketrampilan").equals("null")) {
                                 item.put("p2", " ");
 
                             } else {
-                                item.put("p2", j_p2.getString("ketrampilan").toUpperCase() +
-                                        "(" + j_p2.getString("skdi_level") + "-"
-                                        + j_p2.getString("sumber") + ")");
+                                item.put("p2", j_p2.getString("ketrampilan").toUpperCase());
                             }
                             if (j_p3.getString("ketrampilan").equals("null")) {
                                 item.put("p3", " ");
                             } else {
-                                item.put("p3", j_p3.getString("ketrampilan").toUpperCase()
-                                        + "(" + j_p3.getString("skdi_level") + "-"
-                                        + j_p3.getString("sumber") + ")");
+                                item.put("p3", j_p3.getString("ketrampilan").toUpperCase());
                             }
                             if (j_p4.getString("ketrampilan").equals("null")) {
                                 item.put("p4", " ");
                             } else {
-                                item.put("p4", j_p4.getString("ketrampilan").toUpperCase()
-                                        + "(" + j_p4.getString("skdi_level") + "-"
-                                        + j_p4.getString("sumber") + ")");
+                                item.put("p4", j_p4.getString("ketrampilan").toUpperCase());
                             }
 
                         }

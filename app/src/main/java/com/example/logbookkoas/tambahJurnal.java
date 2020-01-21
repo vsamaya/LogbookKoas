@@ -53,9 +53,9 @@ import java.util.concurrent.TimeUnit;
 import javax.sql.StatementEvent;
 
 public class tambahJurnal extends AppCompatActivity {
-    String spinnerURL = "http://192.168.3.10/logbook/spinnerTambahJurnal.php";
-    String tanggalURL = "http://192.168.3.10/logbook/tanggalTambahJurnal.php";
-    String submitURL = "http://192.168.3.10/logbook/submitTambahJurnal.php";
+    String spinnerURL = "http://192.168.43.159/logbook/spinnerTambahJurnal.php";
+    String tanggalURL = "http://192.168.43.159/logbook/tanggalTambahJurnal.php";
+    String submitURL = "http://192.168.43.159/logbook/submitTambahJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;
@@ -70,7 +70,7 @@ public class tambahJurnal extends AppCompatActivity {
     String tgl_skrg, hari_skrg;
     TextView stase, tanggalhari;
     TextView timePickerMulai, timePickerSelesai;
-    TimePickerDialog timePickerDialog;
+    CustomTimePickerDialog customTimePickerDialog;
 
     private SessionHandler session;
     @Override
@@ -211,18 +211,12 @@ public class tambahJurnal extends AppCompatActivity {
                             /**
                              * Initialize TimePicker Dialog
                              */
-                            timePickerDialog = new TimePickerDialog(tambahJurnal.this, new TimePickerDialog.OnTimeSetListener() {
+                            customTimePickerDialog = new CustomTimePickerDialog(tambahJurnal.this, new CustomTimePickerDialog.OnTimeSetListener() {
                                 @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    /**
-                                     * Method ini dipanggil saat kita selesai memilih waktu di DatePicker
-                                     */
+                                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                                     timePickerMulai.setText(hourOfDay+":"+minute);
                                 }
                             },
-                                    /**
-                                     * Tampilkan jam saat ini ketika TimePicker pertama kali dibuka
-                                     */
                                     calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
                                     DateFormat.is24HourFormat(tambahJurnal.this));
 
@@ -231,7 +225,7 @@ public class tambahJurnal extends AppCompatActivity {
                              */
 //                                    DateFormat.is24HourFormat(this)
 
-                            timePickerDialog.show();
+                            customTimePickerDialog.show();
                         }
 
 
@@ -244,18 +238,12 @@ public class tambahJurnal extends AppCompatActivity {
                             /**
                              * Initialize TimePicker Dialog
                              */
-                            timePickerDialog = new TimePickerDialog(tambahJurnal.this, new TimePickerDialog.OnTimeSetListener() {
+                            customTimePickerDialog = new CustomTimePickerDialog(tambahJurnal.this, new CustomTimePickerDialog.OnTimeSetListener() {
                                 @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    /**
-                                     * Method ini dipanggil saat kita selesai memilih waktu di DatePicker
-                                     */
+                                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                                     timePickerSelesai.setText(hourOfDay+":"+minute);
                                 }
                             },
-                                    /**
-                                     * Tampilkan jam saat ini ketika TimePicker pertama kali dibuka
-                                     */
                                     calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
                                     DateFormat.is24HourFormat(tambahJurnal.this));
 
@@ -264,7 +252,7 @@ public class tambahJurnal extends AppCompatActivity {
                              */
 //                                    DateFormat.is24HourFormat(this)
 
-                            timePickerDialog.show();
+                            customTimePickerDialog.show();
 
                         }
                     });
