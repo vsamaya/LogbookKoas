@@ -9,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -36,13 +37,20 @@ EditText date_picker;
     }
 
     public void cek(View view) {
+
         String tgl = date_picker.getText().toString();
-        Intent intent = getIntent();
-        final String id = intent.getStringExtra(CekJurnal.KEY_ID);
-        Intent a = new Intent(getApplicationContext(),showJurnal.class);
-        a.putExtra ("tgl",tgl);
-        a.putExtra("id",id);
-        startActivity(a);
+        if(tgl.trim().length() == 0){
+            Toast.makeText(CekJurnalDatePicker.this, "Maaf tanggal masih kosong",
+                    Toast.LENGTH_LONG).show();
+        }
+        else {
+            Intent intent = getIntent();
+            final String id = intent.getStringExtra(CekJurnal.KEY_ID);
+            Intent a = new Intent(getApplicationContext(), showJurnal.class);
+            a.putExtra("tgl", tgl);
+            a.putExtra("id", id);
+            startActivity(a);
+        }
     }
 
     private void setDateTimeField() {

@@ -42,7 +42,6 @@
             android:required="false" />
 
         <activity android:name=".showJurnalKetrampilan" />
-        <activity android:name=".editrotasi" />
         <activity android:name=".showJurnalPenyakit" />
         <activity android:name=".showJurnal" />
         <activity android:name=".editprofil" />

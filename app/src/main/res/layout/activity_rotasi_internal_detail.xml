@@ -38,6 +38,16 @@
             android:text="Belum terjadwal"
             android:textColor="@android:color/background_light"
             android:textSize="18sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:textColor="@color/md_yellow_900"
+            android:text="* Jika Tanggal Akhir Substase Melebihi Tanggal Akhir Stase Maka Mengikuti Tanggal Akhir Stase."/>
 
         <TextView
             android:id="@+id/tanggal_mulai"

@@ -91,6 +91,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
                     JSONArray tmp = response.getJSONArray("tmp");
                     JSONArray kegiatan = response.getJSONArray("kegiatan");
                     JSONArray lokasi = response.getJSONArray("lokasi");
+                    JSONArray kelas = response.getJSONArray("kelas");
                     JSONArray dosen = response.getJSONArray("dosen");
                     JSONArray ketrampilan1 = response.getJSONArray("ketrampilan1");
                     JSONArray ketrampilan2 = response.getJSONArray("ketrampilan2");
@@ -100,6 +101,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
                         JSONObject j = tmp.getJSONObject(i);
                         JSONObject j_kegiatan = kegiatan.getJSONObject(i);
                         JSONObject j_lokasi = lokasi.getJSONObject(i);
+                        JSONObject j_kelas = kelas.getJSONObject(i);
                         JSONObject j_dosen = dosen.getJSONObject(i);
                         JSONObject j_k1 = ketrampilan1.getJSONObject(i);
                         JSONObject j_k2 = ketrampilan2.getJSONObject(i);
@@ -114,6 +116,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
                         } else item.put("status", "Unapproved");
                         item.put("kegiatan", j_kegiatan.getString("kegiatan"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
+                        item.put("kelas", j_kelas.getString("kelas"));
                         item.put("k1", j_k1.getString("ketrampilan"));
                         if (j_k2.getString("ketrampilan").equals("null")) {
                             item.put("k2", " ");
@@ -134,8 +137,8 @@ public class showJurnalKetrampilan extends AppCompatActivity {
 
                     }
                     ListAdapter sAdap = new SimpleAdapter(showJurnalKetrampilan.this, MyArr, R.layout.item_row_cek,
-                            new String[] {"jam_awal","jam_akhir","lokasi","kegiatan","nama","status","k1","k2","k3","k4"},
-                            new int[] {R.id.tv_jam,R.id.tv_jam2,R.id.tv_lokasi,R.id.tv_kegiatan,
+                            new String[] {"jam_awal","jam_akhir","lokasi","kelas","kegiatan","nama","status","k1","k2","k3","k4"},
+                            new int[] {R.id.tv_jam,R.id.tv_jam2,R.id.tv_lokasi,R.id.tv_kelas,R.id.tv_kegiatan,
                                     R.id.tv_dosen,R.id.tv_status,R.id.tv_sumber1,R.id.tv_sumber2,
                                     R.id.tv_sumber3,R.id.tv_sumber4,})
                     {
