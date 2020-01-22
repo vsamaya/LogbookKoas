@@ -47,6 +47,8 @@ public class editJurnal extends AppCompatActivity {
     TextView timePickerMulai, timePickerSelesai;
     TimePickerDialog timePickerDialog;
     private SessionHandler session;
+    private CustomTimePickerDialog customTimePickerDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -481,18 +483,13 @@ public class editJurnal extends AppCompatActivity {
                             /**
                              * Initialize TimePicker Dialog
                              */
-                            timePickerDialog = new TimePickerDialog(editJurnal.this, new TimePickerDialog.OnTimeSetListener() {
+
+                            customTimePickerDialog = new CustomTimePickerDialog(editJurnal.this, new CustomTimePickerDialog.OnTimeSetListener() {
                                 @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    /**
-                                     * Method ini dipanggil saat kita selesai memilih waktu di DatePicker
-                                     */
+                                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                                     timePickerMulai.setText(hourOfDay+":"+minute);
                                 }
                             },
-                                    /**
-                                     * Tampilkan jam saat ini ketika TimePicker pertama kali dibuka
-                                     */
                                     calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
                                     DateFormat.is24HourFormat(editJurnal.this));
 
@@ -501,11 +498,37 @@ public class editJurnal extends AppCompatActivity {
                              */
 //                                    DateFormat.is24HourFormat(this)
 
-                            timePickerDialog.show();
+                            customTimePickerDialog.show();
                         }
 
 
                     });
+
+//                            timePickerDialog = new TimePickerDialog(editJurnal.this, new TimePickerDialog.OnTimeSetListener() {
+//                                @Override
+//                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//                                    /**
+//                                     * Method ini dipanggil saat kita selesai memilih waktu di DatePicker
+//                                     */
+//                                    timePickerMulai.setText(hourOfDay+":"+minute);
+//                                }
+//                            },
+//                                    /**
+//                                     * Tampilkan jam saat ini ketika TimePicker pertama kali dibuka
+//                                     */
+//                                    calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
+//                                    DateFormat.is24HourFormat(editJurnal.this));
+//
+//                            /**
+//                             * Cek apakah format waktu menggunakan 24-hour format
+//                             */
+////                                    DateFormat.is24HourFormat(this)
+//
+//                            CustomTimePickerDialog.show();
+//                        }
+//
+//
+//                    });
 
                     timePickerSelesai.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -514,18 +537,12 @@ public class editJurnal extends AppCompatActivity {
                             /**
                              * Initialize TimePicker Dialog
                              */
-                            timePickerDialog = new TimePickerDialog(editJurnal.this, new TimePickerDialog.OnTimeSetListener() {
+                            customTimePickerDialog = new CustomTimePickerDialog(editJurnal.this, new CustomTimePickerDialog.OnTimeSetListener() {
                                 @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    /**
-                                     * Method ini dipanggil saat kita selesai memilih waktu di DatePicker
-                                     */
+                                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                                     timePickerSelesai.setText(hourOfDay+":"+minute);
                                 }
                             },
-                                    /**
-                                     * Tampilkan jam saat ini ketika TimePicker pertama kali dibuka
-                                     */
                                     calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
                                     DateFormat.is24HourFormat(editJurnal.this));
 
@@ -534,9 +551,10 @@ public class editJurnal extends AppCompatActivity {
                              */
 //                                    DateFormat.is24HourFormat(this)
 
-                            timePickerDialog.show();
-
+                            customTimePickerDialog.show();
                         }
+
+
                     });
 
                     submit.setOnClickListener(new View.OnClickListener() {
@@ -958,6 +976,15 @@ public class editJurnal extends AppCompatActivity {
         MySingleton.getInstance(editJurnal.this).addToRequestQueue(jsonstase);
 
     }
+
+//    private CustomTimePickerDialog.OnTimeSetListener timeSetListener = new CustomTimePickerDialog.OnTimeSetListener(){
+//
+//        @Override
+//        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+//
+//
+//        }
+//    };
 
 
 

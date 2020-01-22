@@ -41,7 +41,7 @@ public class ri_OtpApprove extends AppCompatActivity {
     }
 
 
-    public void otp_click(View view) {
+    public void clickOtp(View view) {
         String otp = pin.getText().toString();
         if (otp.length() > 0) {
             JSONObject request = new JSONObject();

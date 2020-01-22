@@ -11,9 +11,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="sans-serif"
         android:text="EDIT ROTASI INTERNAL"
         android:textColor="@color/colorBorder"
@@ -40,6 +42,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -165,6 +168,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="15dp"
                     android:text="Simpan"
+                    android:onClick="simpan"
                     android:textAlignment="center" />
 
 

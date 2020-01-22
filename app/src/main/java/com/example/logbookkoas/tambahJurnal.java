@@ -1,6 +1,5 @@
 package com.example.logbookkoas;
 
-import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -43,7 +42,7 @@ public class tambahJurnal extends AppCompatActivity {
     String tgl_skrg, hari_skrg;
     TextView stase, tanggalhari;
     TextView timePickerMulai, timePickerSelesai;
-    TimePickerDialog timePickerDialog;
+    CustomTimePickerDialog customTimePickerDialog;
 
     private SessionHandler session;
     @Override
@@ -184,18 +183,12 @@ public class tambahJurnal extends AppCompatActivity {
                             /**
                              * Initialize TimePicker Dialog
                              */
-                            timePickerDialog = new TimePickerDialog(tambahJurnal.this, new TimePickerDialog.OnTimeSetListener() {
+                            customTimePickerDialog = new CustomTimePickerDialog(tambahJurnal.this, new CustomTimePickerDialog.OnTimeSetListener() {
                                 @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    /**
-                                     * Method ini dipanggil saat kita selesai memilih waktu di DatePicker
-                                     */
+                                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                                     timePickerMulai.setText(hourOfDay+":"+minute);
                                 }
                             },
-                                    /**
-                                     * Tampilkan jam saat ini ketika TimePicker pertama kali dibuka
-                                     */
                                     calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
                                     DateFormat.is24HourFormat(tambahJurnal.this));
 
@@ -204,7 +197,7 @@ public class tambahJurnal extends AppCompatActivity {
                              */
 //                                    DateFormat.is24HourFormat(this)
 
-                            timePickerDialog.show();
+                            customTimePickerDialog.show();
                         }
 
 
@@ -217,18 +210,12 @@ public class tambahJurnal extends AppCompatActivity {
                             /**
                              * Initialize TimePicker Dialog
                              */
-                            timePickerDialog = new TimePickerDialog(tambahJurnal.this, new TimePickerDialog.OnTimeSetListener() {
+                            customTimePickerDialog = new CustomTimePickerDialog(tambahJurnal.this, new CustomTimePickerDialog.OnTimeSetListener() {
                                 @Override
-                                public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                                    /**
-                                     * Method ini dipanggil saat kita selesai memilih waktu di DatePicker
-                                     */
+                                public void onTimeSet(TimePicker timePicker, int hourOfDay, int minute) {
                                     timePickerSelesai.setText(hourOfDay+":"+minute);
                                 }
                             },
-                                    /**
-                                     * Tampilkan jam saat ini ketika TimePicker pertama kali dibuka
-                                     */
                                     calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE),
                                     DateFormat.is24HourFormat(tambahJurnal.this));
 
@@ -237,7 +224,7 @@ public class tambahJurnal extends AppCompatActivity {
                              */
 //                                    DateFormat.is24HourFormat(this)
 
-                            timePickerDialog.show();
+                            customTimePickerDialog.show();
 
                         }
                     });

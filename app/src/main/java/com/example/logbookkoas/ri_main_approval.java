@@ -23,6 +23,7 @@ public class ri_main_approval extends AppCompatActivity {
         final String rotasi = intent.getStringExtra("rotasi");
         final String dosen = intent.getStringExtra("dosen");
 
+
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
