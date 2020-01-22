@@ -47,7 +47,6 @@ public class RotasiInternalDetail extends AppCompatActivity {
     ListView lv_rot;
     private String header = "http://192.168.43.44/logbook/getKepaniteraan.php";
     final String urlsem = "http://192.168.43.44/logbook/rotasi_internal.php";
-    final String url_namadosen = "http://192.168.43.44/logbook/namadosen.php";
     private String judul = "http://192.168.43.44/logbook/getJadwal.php";
     private String update_status = "http://192.168.43.44/logbook/updateStatus.php";
     public static final String KEY_ID = "id";
