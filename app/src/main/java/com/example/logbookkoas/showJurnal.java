@@ -53,6 +53,7 @@ public class showJurnal extends AppCompatActivity {
     private SessionHandler session;
     ArrayList<HashMap<String, String>> MyArr;
     ListView lv_re;
+    TextView empty;
     LinearLayout iv_penyakit, iv_ketrampilan;
     TextView rencana, evaluasi;
     final String url_re = "http://192.168.43.159/logbook/cj_re.php";
@@ -67,6 +68,7 @@ public class showJurnal extends AppCompatActivity {
         iv_ketrampilan = findViewById(R.id.iv_ketrampilan);
         rencana = findViewById(R.id.rencana);
         evaluasi = findViewById(R.id.evaluasi);
+        empty = findViewById(R.id.empty);
         MyArr = new ArrayList<HashMap<String, String>>();
         Intent intent = getIntent();
         final String id = intent.getStringExtra("id");
@@ -123,10 +125,17 @@ public class showJurnal extends AppCompatActivity {
                 map.put("rencana", c.getString("rencana"));
                 MyArrList.add(map);
             }
-            SimpleAdapter sAdap;
-            sAdap = new SimpleAdapter(showJurnal.this, MyArrList, R.layout.item_row_re,
-                    new String[] {"evaluasi","rencana"}, new int[] {R.id.evaluasi,R.id.rencana});
-            lv_re.setAdapter(sAdap);
+
+            if(MyArrList.isEmpty()){
+                empty.setVisibility(View.VISIBLE);
+//                empty.setText((CharSequence) date);
+                lv_re.setVisibility(View.GONE);
+            } else{
+                SimpleAdapter sAdap;
+                sAdap = new SimpleAdapter(showJurnal.this, MyArrList, R.layout.item_row_re,
+                        new String[] {"evaluasi","rencana"}, new int[] {R.id.evaluasi,R.id.rencana});
+                lv_re.setAdapter(sAdap);
+            }
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block

@@ -32,6 +32,7 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
     ListView rvdafkeg;
     ArrayList<HashMap<String, String>> rv_dafkeg;
     SessionHandler session;
+    TextView empty;
     TextView judul_dafkeg, app_all;
     private static final String KEY_USERNAME = "username";
     private static final String KEY_NEW_STATUS = "new_status";
@@ -55,6 +56,7 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
         rvdafkeg = findViewById(R.id.rv_daftarkegiatan);
         judul_dafkeg = findViewById(R.id.judul_dafkeg);
         app_all = findViewById(R.id.app_all);
+        empty = findViewById(R.id.empty);
 
         getArray();
     }
@@ -176,118 +178,127 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
 //
 //
 //                    }
-                    ListAdapter adapter =new SimpleAdapter(
-                            getApplicationContext(), rv_dafkeg,R.layout.recycler_view_dafkeg,
-                            new String[]{"nama","nim","tanggal","waktu","kegiatan","level",
-                                    "kegiatan_dosen","kategori","lokasi","p1","p2","p3","p4","status","id"},
-                            new int[]{R.id.namamhsw_dafkeg,R.id.nim_dafkeg,R.id.tgl_dafkeg,
-                                    R.id.waktu_dafkeg,R.id.keg_dafkef,R.id.lvkeg_dafkef,R.id.keg_dosen_dafkef,
-                                    R.id.kategori_dafkef,R.id.lokasi_dafkef,R.id.p1_dafkeg,R.id.p2_dafkeg,
-                                    R.id.p3_dafkeg,R.id.p4_dafkeg,R.id.status,R.id.id_jurnal}
-                    )
-                    {
-                        @Override
-                        public View getView (int position, View convertView, ViewGroup parent)
-                        {
-                            View v = super.getView(position, convertView, parent);
 
-                            final TextView status=(TextView) v.findViewById(R.id.status);
-                            final TextView statuslain=(TextView) v.findViewById(R.id.another_status);
-                            final TextView show_more=(TextView) v.findViewById(R.id.show_more);
-                            final LinearLayout kegiatan=(LinearLayout) v.findViewById(R.id.layout_keiatan);
-                            final LinearLayout lokasi=(LinearLayout) v.findViewById(R.id.layout_lokasi);
-                            final LinearLayout lv_keg=(LinearLayout) v.findViewById(R.id.layout_level);
-                            final LinearLayout keg_dosen=(LinearLayout) v.findViewById(R.id.layout_keg_dosen);
-                            final LinearLayout kategori=(LinearLayout) v.findViewById(R.id.layout_kategori);
-                            final LinearLayout penyakit=(LinearLayout) v.findViewById(R.id.layout_penyakit);
-                            final TextView jenis= v.findViewById(R.id.jns_jurnal);
-                            final TextView id_jurnal = v.findViewById(R.id.id_jurnal);
+
+                    if(rv_dafkeg.isEmpty()){
+                        empty.setVisibility(View.VISIBLE);
+                        rvdafkeg.setVisibility(View.GONE);
+                    } else {
+                        ListAdapter adapter =new SimpleAdapter(
+                                getApplicationContext(), rv_dafkeg,R.layout.recycler_view_dafkeg,
+                                new String[]{"nama","nim","tanggal","waktu","kegiatan","level",
+                                        "kegiatan_dosen","kategori","lokasi","p1","p2","p3","p4","status","id"},
+                                new int[]{R.id.namamhsw_dafkeg,R.id.nim_dafkeg,R.id.tgl_dafkeg,
+                                        R.id.waktu_dafkeg,R.id.keg_dafkef,R.id.lvkeg_dafkef,R.id.keg_dosen_dafkef,
+                                        R.id.kategori_dafkef,R.id.lokasi_dafkef,R.id.p1_dafkeg,R.id.p2_dafkeg,
+                                        R.id.p3_dafkeg,R.id.p4_dafkeg,R.id.status,R.id.id_jurnal}
+                        )
+                        {
+                            @Override
+                            public View getView (int position, View convertView, ViewGroup parent)
+                            {
+                                View v = super.getView(position, convertView, parent);
+
+                                final TextView status=(TextView) v.findViewById(R.id.status);
+                                final TextView statuslain=(TextView) v.findViewById(R.id.another_status);
+                                final TextView show_more=(TextView) v.findViewById(R.id.show_more);
+                                final LinearLayout kegiatan=(LinearLayout) v.findViewById(R.id.layout_keiatan);
+                                final LinearLayout lokasi=(LinearLayout) v.findViewById(R.id.layout_lokasi);
+                                final LinearLayout lv_keg=(LinearLayout) v.findViewById(R.id.layout_level);
+                                final LinearLayout keg_dosen=(LinearLayout) v.findViewById(R.id.layout_keg_dosen);
+                                final LinearLayout kategori=(LinearLayout) v.findViewById(R.id.layout_kategori);
+                                final LinearLayout penyakit=(LinearLayout) v.findViewById(R.id.layout_penyakit);
+                                final TextView jenis= v.findViewById(R.id.jns_jurnal);
+                                final TextView id_jurnal = v.findViewById(R.id.id_jurnal);
 
 //                            final TextView show_less=(TextView) v.findViewById(R.id.show_less);
-                            if(getIntent().getStringExtra("jenis_jurnal").equals("Jurnal Penyakit")){
-                                jenis.setText("Penyakit :");
-                            } else{
-                                jenis.setText("Keterampilan :");
+                                if(getIntent().getStringExtra("jenis_jurnal").equals("Jurnal Penyakit")){
+                                    jenis.setText("Penyakit :");
+                                } else{
+                                    jenis.setText("Keterampilan :");
+                                }
+
+
+                                if(status.getText().equals("Approved")){
+                                    statuslain.setText("Unapprove");
+                                    statuslain.setBackgroundResource(R.drawable.background_unapproved);
+                                }else {
+                                    statuslain.setText("Approve");
+                                    statuslain.setBackgroundResource(R.drawable.background_approved);
+                                }
+
+                                statuslain.setOnClickListener(new View.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(View arg0) {
+                                        if(status.getText().equals("Approved")){
+                                            String newstatus = "0";
+                                            String id = (String) id_jurnal.getText();
+                                            String jenis = getIntent().getStringExtra("jenis_jurnal");
+                                            updateStatus(newstatus,id, jenis);
+                                            status.setText("Unapproved");
+                                            statuslain.setText("Approve");
+                                            statuslain.setBackgroundResource(R.drawable.background_approved);
+
+                                        }else {
+                                            String newstatus = "1";
+                                            String id = (String) id_jurnal.getText();
+                                            String jenis = getIntent().getStringExtra("jenis_jurnal");
+                                            updateStatus(newstatus,id, jenis);
+                                            status.setText("Approved");
+                                            statuslain.setText("Unapprove");
+                                            statuslain.setBackgroundResource(R.drawable.background_unapproved);
+                                        }
+
+                                    }
+                                });
+                                show_more.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        if (show_more.getText().equals("show more")) {
+                                            kegiatan.setVisibility(View.VISIBLE);
+                                            lokasi.setVisibility(View.VISIBLE);
+                                            lv_keg.setVisibility(View.VISIBLE);
+                                            keg_dosen.setVisibility(View.VISIBLE);
+                                            kategori.setVisibility(View.VISIBLE);
+                                            penyakit.setVisibility(View.VISIBLE);
+                                            show_more.setText("show less ");
+                                        }else {
+                                            kegiatan.setVisibility(View.GONE);
+                                            lokasi.setVisibility(View.GONE);
+                                            lv_keg.setVisibility(View.GONE);
+                                            keg_dosen.setVisibility(View.GONE);
+                                            kategori.setVisibility(View.GONE);
+                                            penyakit.setVisibility(View.GONE);
+                                            show_more.setText("show more ");
+
+                                        }
+
+                                    }
+                                });
+
+                                return v;
                             }
 
 
-                            if(status.getText().equals("Approved")){
-                                statuslain.setText("Unapprove");
-                                statuslain.setBackgroundResource(R.drawable.background_unapproved);
-                            }else {
-                                statuslain.setText("Approve");
-                                statuslain.setBackgroundResource(R.drawable.background_approved);
-                            }
-
-                            statuslain.setOnClickListener(new View.OnClickListener() {
-
-                                @Override
-                                public void onClick(View arg0) {
-                                    if(status.getText().equals("Approved")){
-                                        String newstatus = "0";
-                                        String id = (String) id_jurnal.getText();
-                                        String jenis = getIntent().getStringExtra("jenis_jurnal");
-                                        updateStatus(newstatus,id, jenis);
-                                        status.setText("Unapproved");
-                                        statuslain.setText("Approve");
-                                        statuslain.setBackgroundResource(R.drawable.background_approved);
-
-                                    }else {
-                                        String newstatus = "1";
-                                        String id = (String) id_jurnal.getText();
-                                        String jenis = getIntent().getStringExtra("jenis_jurnal");
-                                        updateStatus(newstatus,id, jenis);
-                                        status.setText("Approved");
-                                        statuslain.setText("Unapprove");
-                                        statuslain.setBackgroundResource(R.drawable.background_unapproved);
-                                    }
-
-                                }
-                            });
-                            show_more.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    if (show_more.getText().equals("show more")) {
-                                        kegiatan.setVisibility(View.VISIBLE);
-                                        lokasi.setVisibility(View.VISIBLE);
-                                        lv_keg.setVisibility(View.VISIBLE);
-                                        keg_dosen.setVisibility(View.VISIBLE);
-                                        kategori.setVisibility(View.VISIBLE);
-                                        penyakit.setVisibility(View.VISIBLE);
-                                        show_more.setText("show less ");
-                                    }else {
-                                        kegiatan.setVisibility(View.GONE);
-                                        lokasi.setVisibility(View.GONE);
-                                        lv_keg.setVisibility(View.GONE);
-                                        keg_dosen.setVisibility(View.GONE);
-                                        kategori.setVisibility(View.GONE);
-                                        penyakit.setVisibility(View.GONE);
-                                        show_more.setText("show more ");
-
-                                    }
-
-                                }
-                            });
-
-                            return v;
-                        }
-
-
-                    };
-                    judul_dafkeg.setText(getIntent().getStringExtra("jenis_jurnal").toUpperCase());
-                    rvdafkeg.setAdapter(adapter);
-                    app_all.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            String jenis = getIntent().getStringExtra("jenis_jurnal");
-                            updateStatusSemua(jenis);
+                        };
+                        rvdafkeg.setAdapter(adapter);
+                        app_all.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String jenis = getIntent().getStringExtra("jenis_jurnal");
+                                updateStatusSemua(jenis);
 
 
 //                            Intent i = new Intent(TampilanDaftarKegiatan.this,TampilanDaftarKegiatan.class);
 //                            startActivity(i);
 
-                        }
-                    });
+                            }
+                        });
+
+                    }
+
+                    judul_dafkeg.setText(getIntent().getStringExtra("jenis_jurnal").toUpperCase());
 //                    rvdafkeg.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 //                        @Override
 //                        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

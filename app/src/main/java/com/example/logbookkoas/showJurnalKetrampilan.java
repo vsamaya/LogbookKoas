@@ -46,6 +46,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
     private static final String KEY_ID = "id";
     private static final String KEY_USERNAME = "username";
     private SessionHandler session;
+    TextView empty;
     ListView lv_ketrampilan;
     ArrayList<HashMap<String, String>> MyArr;
     final String url_ketrampilan = "http://192.168.43.159/logbook/ketrampilan.php";
@@ -56,6 +57,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_jurnal_ketrampilan);
         MyArr = new ArrayList<HashMap<String, String>>();
+        empty = findViewById(R.id.empty);
         lv_ketrampilan=findViewById(R.id.lv_ketrampilan);
         ketrampilan();
     }
@@ -91,6 +93,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
                     JSONArray tmp = response.getJSONArray("tmp");
                     JSONArray kegiatan = response.getJSONArray("kegiatan");
                     JSONArray lokasi = response.getJSONArray("lokasi");
+                    JSONArray kelas = response.getJSONArray("kelas");
                     JSONArray dosen = response.getJSONArray("dosen");
                     JSONArray ketrampilan1 = response.getJSONArray("ketrampilan1");
                     JSONArray ketrampilan2 = response.getJSONArray("ketrampilan2");
@@ -100,6 +103,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
                         JSONObject j = tmp.getJSONObject(i);
                         JSONObject j_kegiatan = kegiatan.getJSONObject(i);
                         JSONObject j_lokasi = lokasi.getJSONObject(i);
+                        JSONObject j_kelas = kelas.getJSONObject(i);
                         JSONObject j_dosen = dosen.getJSONObject(i);
                         JSONObject j_k1 = ketrampilan1.getJSONObject(i);
                         JSONObject j_k2 = ketrampilan2.getJSONObject(i);
@@ -114,6 +118,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
                         } else item.put("status", "Unapproved");
                         item.put("kegiatan", j_kegiatan.getString("kegiatan"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
+                        item.put("kelas", j_kelas.getString("kelas"));
                         item.put("k1", j_k1.getString("ketrampilan"));
                         if (j_k2.getString("ketrampilan").equals("null")) {
                             item.put("k2", " ");
@@ -133,32 +138,40 @@ public class showJurnalKetrampilan extends AppCompatActivity {
                         MyArr.add(item);
 
                     }
-                    ListAdapter sAdap = new SimpleAdapter(showJurnalKetrampilan.this, MyArr, R.layout.item_row_cek,
-                            new String[] {"jam_awal","jam_akhir","lokasi","kegiatan","nama","status","k1","k2","k3","k4"},
-                            new int[] {R.id.tv_jam,R.id.tv_jam2,R.id.tv_lokasi,R.id.tv_kegiatan,
-                                    R.id.tv_dosen,R.id.tv_status,R.id.tv_sumber1,R.id.tv_sumber2,
-                                    R.id.tv_sumber3,R.id.tv_sumber4,})
-                    {
-                        @Override
-                        public View getView (int position, View convertView, ViewGroup parent)
+                    if(MyArr.isEmpty()){
+                        empty.setVisibility(View.VISIBLE);
+                        lv_ketrampilan.setVisibility(View.GONE);
+
+                    }else{
+                        ListAdapter sAdap = new SimpleAdapter(showJurnalKetrampilan.this, MyArr, R.layout.item_row_cek,
+                                new String[] {"jam_awal","jam_akhir","lokasi","kelas","kegiatan","nama","status","k1","k2","k3","k4"},
+                                new int[] {R.id.tv_jam,R.id.tv_jam2,R.id.tv_lokasi,R.id.tv_kelas,R.id.tv_kegiatan,
+                                        R.id.tv_dosen,R.id.tv_status,R.id.tv_sumber1,R.id.tv_sumber2,
+                                        R.id.tv_sumber3,R.id.tv_sumber4,})
                         {
-                            View v = super.getView(position, convertView, parent);
+                            @Override
+                            public View getView (int position, View convertView, ViewGroup parent)
+                            {
+                                View v = super.getView(position, convertView, parent);
 
-                            final TextView sumber1=(TextView) v.findViewById(R.id.sumber1);
-                            final TextView sumber2=(TextView) v.findViewById(R.id.sumber2);
-                            final TextView sumber3=(TextView) v.findViewById(R.id.sumber3);
-                            final TextView sumber4=(TextView) v.findViewById(R.id.sumber4);
-                            sumber1.setText("Ketrampilan 1 :");
-                            sumber2.setText("Ketrampilan 2 :");
-                            sumber3.setText("Ketrampilan 3 :");
-                            sumber4.setText("Ketrampilan 4 :");
+                                final TextView sumber1=(TextView) v.findViewById(R.id.sumber1);
+                                final TextView sumber2=(TextView) v.findViewById(R.id.sumber2);
+                                final TextView sumber3=(TextView) v.findViewById(R.id.sumber3);
+                                final TextView sumber4=(TextView) v.findViewById(R.id.sumber4);
+                                sumber1.setText("Ketrampilan 1 : ");
+                                sumber2.setText("Ketrampilan 2 : ");
+                                sumber3.setText("Ketrampilan 3 : ");
+                                sumber4.setText("Ketrampilan 4 : ");
 
-                            return v;
-                        }
+                                return v;
+                            }
 
 
-                    };
-                    lv_ketrampilan.setAdapter(sAdap);
+                        };
+                        lv_ketrampilan.setAdapter(sAdap);
+
+                    }
+
 
                 } catch (JSONException e) {
                     // TODO Auto-generated catch block

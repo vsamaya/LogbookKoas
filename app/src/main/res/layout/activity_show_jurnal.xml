@@ -116,14 +116,23 @@
         android:layout_height="match_parent"
         android:background="@drawable/roundedlayout"
         android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Empty "
+            android:id="@+id/empty"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:gravity="center"
+            android:visibility="gone"/>
         <ListView
             android:id="@+id/lv_re"
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/item_row_re"/>
+            tools:listitem="@layout/item_row_re" />
     </LinearLayout>
 
 </LinearLayout>

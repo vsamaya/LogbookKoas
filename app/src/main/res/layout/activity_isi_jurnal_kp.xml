@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".showJurnalPenyakit">
+    tools:context=".IsiJurnalKP">
     <LinearLayout
         android:id="@+id/layout_atas"
         android:layout_width="match_parent"
@@ -13,13 +13,20 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/tmp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/head1"
             android:layout_width="match_parent"
-            android:layout_height="59dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="15dp"
+            android:paddingBottom="15dp"
             android:gravity="center_horizontal"
             android:text="JURNAL PENYAKIT"
             android:textColor="@android:color/background_light"
@@ -27,11 +34,36 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/buttonPenyakit"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/roundedfulllayout"
+            android:backgroundTint="@color/light_blue_500"
+            android:backgroundTintMode="src_in"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:text="Tambah"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/editText"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,12 +73,13 @@
                 android:textStyle="italic"
                 android:gravity="center"
                 android:visibility="gone"/>
+
             <ListView
-                android:id="@+id/lv_penyakit"
+                android:id="@+id/list"
                 android:layout_marginTop="2dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:listitem="@layout/item_row_cek" />
+                tools:listitem="@layout/item_row_show" />
         </LinearLayout>
 
     </LinearLayout>

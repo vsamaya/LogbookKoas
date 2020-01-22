@@ -25,24 +25,25 @@ import org.json.JSONObject;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class CamScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
+public class ri_CamScanner extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private static final String KEY_USERNAME = "username";
-    private static final String KEY_NIP = "nip";
     private static final String KEY_DOSEN = "dosen";
     private static final String KEY_QR_CODE= "qr_code";
     private static final String KEY_ID= "id";
-    private static final String KEY_JURNAL= "jurnal";
+    private static final String KEY_ID_INTERNAL= "id_internal";
     private static final String KEY_STATUS= "status";
+    private static final String KEY_ROTASI= "rotasi";
     private ZXingScannerView mScannerView;
     private static final int PERMISSION_REQUEST_CODE = 200;
     SessionHandler session;
-    private String qr_aprv = "http://192.168.43.159/logbook/qr_aprv.php";
+    private String qr_aprv = "http://192.168.43.159/logbook/ri_qr_aprv.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mScannerView = new ZXingScannerView(this);
-        setContentView(mScannerView);if (checkPermission()) {
+        setContentView(mScannerView);
+        if (checkPermission()) {
             //main logic or main code
 
             // . write your main code to execute, It will execute if the permission is already given.
@@ -98,13 +99,16 @@ public class CamScanner extends AppCompatActivity implements ZXingScannerView.Re
     }
 
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
-        new AlertDialog.Builder(CamScanner.this)
+        new AlertDialog.Builder(ri_CamScanner.this)
                 .setMessage(message)
                 .setPositiveButton("OK", okListener)
                 .setNegativeButton("Cancel", null)
                 .create()
                 .show();
     }
+
+
+
     @Override
     public void onResume() {
         super.onResume();
@@ -130,14 +134,16 @@ public class CamScanner extends AppCompatActivity implements ZXingScannerView.Re
                 User user = session.getUserDetails();
                 String username = user.getUsername();
                 Intent intent = getIntent();
-                final String id = intent.getStringExtra("id_jurnal");
-                final String jurnal = intent.getStringExtra("jurnal");
+                final String id_internal = intent.getStringExtra("id_internal");
+                final String id = intent.getStringExtra("id");
+                final String rotasi = intent.getStringExtra("rotasi");
                 final String dosen = intent.getStringExtra("dosen");
                 request.put(KEY_USERNAME, username);
                 request.put(KEY_DOSEN, dosen);
                 request.put(KEY_QR_CODE, qr_code);
                 request.put(KEY_ID, id);
-                request.put(KEY_JURNAL, jurnal);
+                request.put(KEY_ID_INTERNAL, id_internal);
+                request.put(KEY_ROTASI, rotasi);
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -148,12 +154,12 @@ public class CamScanner extends AppCompatActivity implements ZXingScannerView.Re
                         public void onResponse(JSONObject response) {
                             try {
                                 if (response.getInt(KEY_STATUS) == 1) {
-                                    Toast.makeText(CamScanner.this, "Approvement Berhasil",
+                                    Toast.makeText(ri_CamScanner.this, "Approvement Berhasil",
                                             Toast.LENGTH_LONG).show();
                                     finish();
 
                                 } else {
-                                    Toast.makeText(CamScanner.this, "Approvement Gagal, QR Code Salah atau Kadaluarsa",
+                                    Toast.makeText(ri_CamScanner.this, "Approvement Gagal, QR Code Salah atau Kadaluarsa",
                                             Toast.LENGTH_LONG).show();
 
                                 }

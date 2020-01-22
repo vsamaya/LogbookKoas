@@ -41,8 +41,8 @@ public class MahasiswaActivity extends AppCompatActivity {
     private String nama;
     ImageView foto;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected void onResume() {
+        super.onResume();
         setContentView(R.layout.activity_mahasiswa);
         SessionHandler session= new SessionHandler(getApplicationContext());
         User user=session.getUserDetails();
@@ -77,7 +77,7 @@ public class MahasiswaActivity extends AppCompatActivity {
         rotasiinternal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ri= new Intent(MahasiswaActivity.this,rotasiinternal.class);
+                Intent ri= new Intent(MahasiswaActivity.this, Rotasi.class);
                 startActivity(ri);
             }
         });

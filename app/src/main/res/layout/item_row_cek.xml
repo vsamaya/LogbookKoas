@@ -7,13 +7,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginStart="5pt"
-        android:layout_marginEnd="5pt"
         android:background="@drawable/rounded_border_edittext"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="2dp"
             android:layout_height="wrap_content">
 
             <TextView
@@ -55,6 +54,32 @@
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bootstrap_default_disabled_border"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Kelas : "
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_kelas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="TextView"
+                android:textColor="@color/colorGradBefore"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -82,6 +107,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/bootstrap_default_disabled_border"
             android:orientation="horizontal">
 
             <TextView
@@ -134,6 +160,7 @@
         <LinearLayout
             android:id="@+id/l_sumber2"
             android:layout_width="match_parent"
+            android:background="@color/bootstrap_default_disabled_border"
             android:layout_height="wrap_content">
 
             <TextView
@@ -186,6 +213,7 @@
         <LinearLayout
             android:id="@+id/l_sumber4"
             android:layout_width="match_parent"
+            android:background="@color/bootstrap_default_disabled_border"
             android:layout_height="wrap_content">
 
             <TextView
@@ -237,6 +265,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@color/bootstrap_default_disabled_border"
             android:orientation="horizontal">
 
             <TextView

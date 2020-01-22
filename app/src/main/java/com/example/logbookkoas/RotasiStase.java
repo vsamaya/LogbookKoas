@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class rotasiinternal extends AppCompatActivity {
+public class RotasiStase extends AppCompatActivity {
 LinearLayout s9,s10,s11,s12;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ LinearLayout s9,s10,s11,s12;
         s9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent a = new Intent(rotasiinternal.this, semester_rotasi.class);
+                Intent a = new Intent(RotasiStase.this, semester_rotasi.class);
                 a.putExtra("semester","9");
                 startActivity(a);
             }
@@ -30,7 +30,7 @@ LinearLayout s9,s10,s11,s12;
         s10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent b = new Intent(rotasiinternal.this, semester_rotasi.class);
+                Intent b = new Intent(RotasiStase.this, semester_rotasi.class);
                 b.putExtra("semester","10");
                 startActivity(b);
             }
@@ -38,7 +38,7 @@ LinearLayout s9,s10,s11,s12;
         s11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent c = new Intent(rotasiinternal.this, semester_rotasi.class);
+                Intent c = new Intent(RotasiStase.this, semester_rotasi.class);
                 c.putExtra("semester","11");
                 startActivity(c);
             }
@@ -46,7 +46,7 @@ LinearLayout s9,s10,s11,s12;
         s12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent d = new Intent(rotasiinternal.this, semester_rotasi.class);
+                Intent d = new Intent(RotasiStase.this, semester_rotasi.class);
                 d.putExtra("semester","12");
                 startActivity(d);
             }

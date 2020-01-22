@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/satu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="satu" />
+
+    <TextView
+        android:id="@+id/dua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="dua" />
+
+    <TextView
+        android:id="@+id/tiga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="tiga" />
+</LinearLayout>

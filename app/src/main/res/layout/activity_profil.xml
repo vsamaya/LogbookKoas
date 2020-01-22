@@ -99,42 +99,56 @@
                 android:textSize="12sp" />
         </RelativeLayout>
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/roundedlayout">
+            android:background="@drawable/roundedlayout"
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
-                android:layout_centerHorizontal="true"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
 
-                <Button
-                    android:id="@+id/editp"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="100dp"
-                    android:background="@color/blue_500"
-                    android:drawableTop="@drawable/ic_edit_profil"
-                    android:elevation="4dp"
-                    android:text="Edit Profile"
-                    android:textColor="@android:color/background_light" />
-
-                <Button
-                    android:id="@+id/logout"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
-                    android:background="@color/bootstrap_danger_pressed"
-                    android:elevation="4dp"
-                    android:drawableTop="@drawable/ic_logout"
-                    android:text="Logout"
-                    android:textColor="@android:color/background_light" />
+                    android:background="@drawable/roundedlayout"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/editp"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="100dp"
+                            android:background="@color/blue_500"
+                            android:drawableTop="@drawable/ic_edit_profil"
+                            android:elevation="4dp"
+                            android:text="Edit Profile"
+                            android:textColor="@android:color/background_light" />
+
+                        <Button
+                            android:id="@+id/logout"
+                            android:layout_width="300dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/bootstrap_danger_pressed"
+                            android:drawableTop="@drawable/ic_logout"
+                            android:elevation="4dp"
+                            android:text="Logout"
+                            android:textColor="@android:color/background_light" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
-        </RelativeLayout>
+        </ScrollView>
+
     </LinearLayout>
 </ScrollView>
