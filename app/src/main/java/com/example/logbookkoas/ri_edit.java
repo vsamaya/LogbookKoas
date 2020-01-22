@@ -38,7 +38,7 @@ public class ri_edit extends AppCompatActivity {
     final ArrayList<String> Arrspin = new ArrayList<String>();
     final ArrayList<String> Arrspin1 = new ArrayList<String>();
     String[] lspin;
-    final String urlspin = "http://192.168.1.9/logbook/spinner_edit_rotasi.php";
+    final String urlspin = "http://192.168.1.7/logbook/spinner_edit_rotasi.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

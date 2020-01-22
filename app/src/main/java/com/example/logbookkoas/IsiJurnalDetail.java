@@ -65,7 +65,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
     EditText evaluasi,rencana;
     LinearLayout MainLayout;
     ListView lv_penyakit,lv_ketrampilan;
-    Button buttonPenyakit, buttonKetrampilan, entry;
+    LinearLayout buttonPenyakit, buttonKetrampilan;
+    Button  entry;
     ArrayList<String> id_penyakit, id_ketrampilan, statusPenyakit, statusKetrampilan;
     ArrayList<HashMap<String,String>> list_jurnal_penyakit, list_jurnal_ketrampilan;
 
@@ -78,8 +79,8 @@ public class IsiJurnalDetail extends AppCompatActivity {
         MainLayout = findViewById(R.id.MainLayout);
         evaluasi = findViewById(R.id.evaluasi);
         rencana = findViewById(R.id.rencana);
-        buttonPenyakit = findViewById(R.id.buttonPenyakit);
-        buttonKetrampilan = findViewById(R.id.buttonKetrampilan);
+        buttonPenyakit = findViewById(R.id.j_penyakit);
+        buttonKetrampilan = findViewById(R.id.j_ketrampilan);
         entry = findViewById(R.id.entry);
         lv_penyakit = findViewById(R.id.lv_penyakit);
         lv_ketrampilan = findViewById(R.id.lv_ketrampilan);

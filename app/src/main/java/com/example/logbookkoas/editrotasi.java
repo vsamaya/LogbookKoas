@@ -49,10 +49,10 @@ public class editrotasi extends AppCompatActivity {
     final ArrayList<String> Arrspin1 = new ArrayList<String>();
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
-    final String urledt = "http://192.168.1.9/logbook/simpaneditrts.php";
-    private String url_username = "http://192.168.1.9/logbook/spinner_edit_username.php";
-    final String urlsem = "http://192.168.1.9/logbook/rotasi_internal.php";
-    final String urlspin = "http://192.168.1.9/logbook/spinner_edit_rotasi.php";
+    final String urledt = "http://192.168.1.7/logbook/simpaneditrts.php";
+    private String url_username = "http://192.168.1.7/logbook/spinner_edit_username.php";
+    final String urlsem = "http://192.168.1.7/logbook/rotasi_internal.php";
+    final String urlspin = "http://192.168.1.7/logbook/spinner_edit_rotasi.php";
     Button submit;
 
     @Override
@@ -103,32 +103,6 @@ public class editrotasi extends AppCompatActivity {
         stase.setText(sts);
         hari.setText(hr);
         hari.append(" hari");
-
-
-       /* rotasi1= MyArr.get(0).get("rotasi1");
-        dosen1=MyArr.get(0).get("dosen1");
-        tgl1=MyArr.get(0).get("tgl1");
-        status1=MyArr.get(0).get("status1");
-        rotasi2=MyArr.get(1).get("rotasi2");
-        tgl2=MyArr.get(1).get("tgl2");
-        dosen2=MyArr.get(1).get("dosen2");
-        status2=MyArr.get(1).get("status2");
-        rotasi3=MyArr.get(2).get("rotasi3");
-        tgl3=MyArr.get(2).get("tgl3");
-        dosen3=MyArr.get(2).get("dosen3");
-        status3=MyArr.get(2).get("status3");
-        rotasi4= MyArr.get(3).get("rotasi4");
-        tgl4=MyArr.get(3).get("tgl4");
-        dosen4=MyArr.get(3).get("dosen4");
-        status4=MyArr.get(3).get("status4");
-        rotasi5= MyArr.get(4).get("rotasi5");
-        tgl5=MyArr.get(4).get("tgl5");
-        dosen5=MyArr.get(4).get("dosen5");
-        status5=MyArr.get(4).get("status5");
-        rotasi6= MyArr.get(5).get("rotasi6");
-        tgl6=MyArr.get(5).get("tgl6");
-        dosen6=MyArr.get(5).get("dosen6");
-        status6=MyArr.get(5).get("status6");*/
 
         final String idr = idrot.substring(4, 5);
         btndate.setOnClickListener(new View.OnClickListener() {
@@ -266,202 +240,7 @@ public class editrotasi extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
 
-    /*  private void staserotasi() {
-          Intent i = getIntent();
-          final String id = i.getStringExtra(RotasiInternal.KEY_ID);
-          JSONObject request = new JSONObject();
-          try {
-              SessionHandler session;
-              session = new SessionHandler(getApplicationContext());
-              User user = session.getUserDetails();
-              String username = user.getUsername();
-              request.put("username", username);
-              request.put("id", id);
-          } catch (JSONException e) {
-              e.printStackTrace();
-          }
-          JsonObjectRequest json;
-          json = new JsonObjectRequest(Request.Method.POST,
-                  urlsem, request, new Response.Listener<JSONObject>() {
-              @Override
-              public void onResponse(JSONObject response) {
-                  try {
-                      JSONArray tmp = response.getJSONArray("tmp");
-                      JSONArray total = response.getJSONArray("total");
-                      JSONArray array1 = response.getJSONArray("array1");
-                      JSONArray array2 = response.getJSONArray("array2");
-                      JSONArray array3 = response.getJSONArray("array3");
-                      JSONArray array4 = response.getJSONArray("array4");
-                      JSONArray array5 = response.getJSONArray("array5");
-                      JSONArray array6 = response.getJSONArray("array6");
-                      for (int i = 0; i < tmp.length(); i++) {
-                          JSONObject c = tmp.getJSONObject(i);
-                          JSONObject d = total.getJSONObject(i);
-                          JSONObject e = array1.getJSONObject(i);
-                          JSONObject f = array2.getJSONObject(i);
-                          JSONObject g = array3.getJSONObject(i);
-                          JSONObject h = array4.getJSONObject(i);
-                          JSONObject j = array5.getJSONObject(i);
-                          JSONObject k = array6.getJSONObject(i);
-                          HashMap<String, String> map = new HashMap<String, String>();
-                          map.put("id_rotasi",c.getString("id"));
-                          map.put("stase", c.getString("internal"));
-                          map.put("hari", c.getString("hari"));
-                          map.put("id_internal", d.getString("id"));
-                          if (d.getString("id").equals("null")) {
-                              map.put("tgl1",e.getString(""));
-                              map.put("dosen1",e.getString(""));
-                              map.put("rotasi1",e.getString(""));
-                              map.put("status1",e.getString(""));
-                              map.put("tgl2",f.getString(""));
-                              map.put("dosen2",f.getString(""));
-                              map.put("rotasi2",f.getString(""));
-                              map.put("status2",f.getString(""));
-                              map.put("tgl3",g.getString(""));
-                              map.put("dosen3",g.getString(""));
-                              map.put("rotasi3",g.getString(""));
-                              map.put("status3",g.getString(""));
-                              map.put("tgl4",h.getString(""));
-                              map.put("dosen4",h.getString(""));
-                              map.put("rotasi4",h.getString(""));
-                              map.put("status4",h.getString(""));
-                              map.put("tgl5",j.getString(""));
-                              map.put("dosen5",j.getString(""));
-                              map.put("rotasi5",j.getString(""));
-                              map.put("status5",j.getString(""));
-                              map.put("tgl6",k.getString(""));
-                              map.put("dosen6",k.getString(""));
-                              map.put("rotasi6",k.getString(""));
-                              map.put("status6",k.getString(""));
-                          } else {
-                              String tgl="0000-00-00";
 
-                              Date tglml=format.parse(tgl);
-                              Date tglMulai = tglml;
-                              Date tglselesai = tglml;
-                              String a = "";
-                              String b = "";
-                              String x = "";
-                              if (i == 0) {
-                                  tglMulai = format.parse(e.getString("tgl1"));
-                                  a = e.getString("tgl1");
-                                  b = e.getString("dosen1");
-                                  x = e.getString("rotasi1");
-                                  map.put("dosen",b);
-                                  map.put("tglmli", a);
-                                  String wktu = c.getString("hari");
-                                  int waktu = Integer.parseInt(wktu);
-                                  int sum = 1000 * 60 * 60 * 24 * waktu;
-                                  int minus = 1000 * 60 * 60 * 24;
-                                  if (tglMulai != null) {
-                                      tglselesai = new Date(tglMulai.getTime() + sum - minus);
-                                  }
-                              } else if (i == 1) {
-                                  a = f.getString("tgl2");
-                                  b = f.getString("dosen2");
-                                  x = f.getString("rotasi2");
-                                  map.put("dosen",b);
-                                  tglMulai = format.parse(f.getString("tgl2"));
-                                  map.put("tglmli", a);
-                                  String wktu = c.getString("hari");
-                                  int waktu = Integer.parseInt(wktu);
-                                  int sum = 1000 * 60 * 60 * 24 * waktu;
-                                  int minus = 1000 * 60 * 60 * 24;
-                                  if (tglMulai != null) {
-                                      tglselesai = new Date(tglMulai.getTime() + sum - minus);
-                                  }
-                              } else if (i == 2) {
-                                  tglMulai = format.parse(g.getString("tgl3"));
-                                  a = g.getString("tgl3");
-                                  b = g.getString("dosen3");
-                                  x = g.getString("rotasi3");
-                                  map.put("dosen",b);
-                                  map.put("tglmli", a);
-                                  String wktu = c.getString("hari");
-                                  int waktu = Integer.parseInt(wktu);
-                                  int sum = 1000 * 60 * 60 * 24 * waktu;
-                                  int minus = 1000 * 60 * 60 * 24;
-                                  if (tglMulai != null) {
-                                      tglselesai = new Date(tglMulai.getTime() + sum - minus);
-                                  }
-                              } else if (i == 3) {
-                                  tglMulai = format.parse(h.getString("tgl4"));
-                                  a = h.getString("tgl4");
-                                  b = h.getString("dosen4");
-                                  x = h.getString("rotasi4");
-                                  map.put("dosen",b);
-                                  map.put("tglmli", a);
-                                  String wktu = c.getString("hari");
-                                  int waktu = Integer.parseInt(wktu);
-                                  int sum = 1000 * 60 * 60 * 24 * waktu;
-                                  int minus = 1000 * 60 * 60 * 24;
-                                  if (tglMulai != null) {
-                                      tglselesai = new Date(tglMulai.getTime() + sum - minus);
-                                  }
-                              } else if (i == 4) {
-                                  tglMulai = format.parse(j.getString("tgl5"));
-                                  a = j.getString("tgl5");
-                                  b = j.getString("dosen5");
-                                  x = j.getString("rotasi5");
-                                  map.put("dosen",b);
-                                  map.put("tglmli", a);
-
-                                  String wktu = c.getString("hari");
-                                  int waktu = Integer.parseInt(wktu);
-                                  int sum = 1000 * 60 * 60 * 24 * waktu;
-                                  int minus = 1000 * 60 * 60 * 24;
-                                  if (tglMulai != null) {
-                                      tglselesai = new Date(tglMulai.getTime() + sum - minus);
-                                  }
-                              } else if (i == 5) {
-                                  tglMulai = format.parse(h.getString("tgl6"));
-                                  b = k.getString("dosen6");
-                                  a = k.getString("tgl6");
-                                  x = k.getString("rotasi6");
-                                  map.put("tglmli", a);
-                                  map.put("dosen",b);
-
-                                  String wktu = c.getString("hari");
-                                  int waktu = Integer.parseInt(wktu);
-                                  int sum = 1000 * 60 * 60 * 24 * waktu;
-                                  int minus = 1000 * 60 * 60 * 24;
-                                  if (tglMulai != null) {
-                                      tglselesai = new Date(tglMulai.getTime() + sum - minus);
-                                  }
-                              }
-
-
-
-
-
-                          }
-
-                          MyArr.add(map);
-
-                      }
-
-
-
-
-
-
-                  } catch (JSONException e) {
-                      // TODO Auto-generated catch block
-                      e.printStackTrace();
-                  } catch (ParseException e) {
-                      e.printStackTrace();
-                  }
-              }
-          }, new Response.ErrorListener() {
-              @Override
-              public void onErrorResponse(VolleyError error) {
-                  Toast.makeText(getApplicationContext(),
-                          error.getMessage(), Toast.LENGTH_SHORT).show();
-              }
-          });
-          MySingleton.getInstance(this).addToRequestQueue(json);
-
-      }*/
     private void getApproval() {
         JSONObject request = new JSONObject();
         JsonObjectRequest json = new JsonObjectRequest(Request.Method.POST,

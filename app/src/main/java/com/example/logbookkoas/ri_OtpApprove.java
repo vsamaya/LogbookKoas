@@ -30,7 +30,7 @@ public class ri_OtpApprove extends AppCompatActivity {
     EditText pin;
     Button otp_approve;
     SessionHandler session;
-    private String otp_aprv = "http://192.168.1.9/logbook/ri_otp_aprv.php";
+    private String otp_aprv = "http://192.168.1.7/logbook/ri_otp_aprv.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

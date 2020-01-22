@@ -47,11 +47,11 @@ import java.util.HashMap;
 public class RotasiInternalDetail extends AppCompatActivity {
     private SessionHandler session;
     ListView lv_rot;
-    private String header = "http://192.168.1.9/logbook/getKepaniteraan.php";
-    final String urlsem = "http://192.168.1.9/logbook/rotasi_internal.php";
-    final String url_namadosen = "http://192.168.1.9/logbook/namadosen.php";
-    private String judul = "http://192.168.1.9/logbook/getJadwal.php";
-    private String update_status = "http://192.168.1.9/logbook/updateStatus.php";
+    private String header = "http://192.168.1.7/logbook/getKepaniteraan.php";
+    final String urlsem = "http://192.168.1.7/logbook/rotasi_internal.php";
+    final String url_namadosen = "http://192.168.1.7/logbook/namadosen.php";
+    private String judul = "http://192.168.1.7/logbook/getJadwal.php";
+    private String update_status = "http://192.168.1.7/logbook/updateStatus.php";
     public static final String KEY_ID = "id";
     ArrayList<HashMap<String, String>> MyArr1= new ArrayList<HashMap<String,String>>();
     TextView stase,tanggal,id_stase;
