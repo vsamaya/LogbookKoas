@@ -49,7 +49,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
     TextView empty;
     ListView lv_ketrampilan;
     ArrayList<HashMap<String, String>> MyArr;
-    final String url_ketrampilan = "http://192.168.0.104/logbook/ketrampilan.php";
+    final String url_ketrampilan = "http://192.168.1.7/logbook/ketrampilan.php";
     final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     final SimpleDateFormat convert = new SimpleDateFormat("yyyy-MM-dd");
     @Override
