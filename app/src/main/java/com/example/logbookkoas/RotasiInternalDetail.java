@@ -423,13 +423,13 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 }
                             } else if (i == 5) {
 
-                                tglMulai = format.parse(h.getString("tgl6"));
-                                b = q.getString("dosen6");
-                                map.put("dosen",b);
+                                tglMulai = format.parse(k.getString("tgl6"));
                                 a = k.getString("tgl6");
-                                map.put("tglmli", a);
+                                b = q.getString("nama");
                                 z = k.getString("dosen6");
                                 map.put("user",z);
+                                map.put("dosen",b);
+                                map.put("tglmli", a);
 
                                 String wktu = c.getString("hari");
                                 int waktu = Integer.parseInt(wktu);
