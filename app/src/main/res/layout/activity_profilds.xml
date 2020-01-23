@@ -93,22 +93,25 @@
                 android:text="197907162008122002"
                 android:textColor="@color/colorBorder"
                 android:textSize="12sp" />
+
         </RelativeLayout>
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:background="@drawable/roundedlayout"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical" >
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_height="match_parent"
+                    android:layout_centerHorizontal="false"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <Button
@@ -116,12 +119,35 @@
                         android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="100dp"
-                        android:background="@color/blue_500"
+                        android:background="@drawable/roundedfulllayout"
+                        android:backgroundTint="@color/blue_500"
+                        android:backgroundTintMode="src_in"
                         android:drawableTop="@drawable/ic_edit_profil"
                         android:elevation="4dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:text="Edit Profile"
-                        android:textColor="@android:color/background_light" />
+                        android:textColor="@android:color/background_light"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/informasi"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/roundedfulllayout"
+                        android:backgroundTint="@color/bootstrap_warning_pressed_border"
+                        android:backgroundTintMode="src_in"
+                        android:drawableTop="@drawable/ic_info"
+                        android:elevation="4dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:text="Informasi"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <Button
                         android:id="@+id/logoutds"
@@ -129,15 +155,20 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="10dp"
-                        android:background="@color/bootstrap_danger_pressed"
+                        android:background="@drawable/roundedfulllayout"
+                        android:backgroundTint="@color/bootstrap_danger_border"
+                        android:backgroundTintMode="src_in"
                         android:drawableTop="@drawable/ic_logout"
                         android:elevation="4dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:text="Logout"
-                        android:textColor="@android:color/background_light" />
+                        android:textColor="@android:color/background_light"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
-
             </LinearLayout>
-        </ScrollView>
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

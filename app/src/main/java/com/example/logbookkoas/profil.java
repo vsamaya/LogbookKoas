@@ -1,6 +1,7 @@
 package com.example.logbookkoas;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class profil extends AppCompatActivity {
     private SessionHandler session;
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
-    Button logout;
+    Button logout,informasi;
     private String foto_url = "http://192.168.0.104/logbook/getdatafoto.php";
     private String foto_image = "http://192.168.0.104/logbook/image/";
     TextView username, nama;
@@ -48,6 +49,7 @@ public class profil extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         username = findViewById(R.id.usernamemahasiswa);
         nama = findViewById(R.id.namamahasiswa);
+        informasi = findViewById(R.id.informasi);
         username.setText(bundle.getString("data1"));
         nama.setText(bundle.getString("data2"));
         foto = findViewById(R.id.imgprof);
@@ -75,6 +77,19 @@ public class profil extends AppCompatActivity {
                 Intent edit = new Intent(profil.this, MainActivity.class);
                 startActivity(edit);
                 finish();
+
+            }
+        });
+        informasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/informasi.php"));
+                String title = "Pilih browser untuk membuka  tautan";
+                Intent chooser = Intent.createChooser(intent, title);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(chooser);
+                }
 
             }
         });

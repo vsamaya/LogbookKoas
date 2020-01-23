@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,8 +36,7 @@ public class semester_rotasi extends AppCompatActivity {
     private static final String KEY_USERNAME = "username";
     private static final String TAG_ROTASI = "rotasi";
     ListView listView;
-    TextView title;
-    TextView empty;
+    TextView title,empty;
     String main = "http://192.168.0.104/logbook";
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
@@ -120,10 +120,6 @@ public class semester_rotasi extends AppCompatActivity {
                         MyArrList.add(map);
 
                     }
-                    if(MyArrList.isEmpty()){
-                        empty.setVisibility(View.VISIBLE);
-                        listView.setVisibility(View.GONE);
-                    } else {
 
                         for (int j = 0; j < MyArrList.size() + 3; j++) {
                             for (int i = 0; i < MyArrList.size(); i++) {
@@ -144,7 +140,10 @@ public class semester_rotasi extends AppCompatActivity {
                             }
                         });
 
-
+                    if(MyArrList.isEmpty()){
+                        empty.setVisibility(View.VISIBLE);
+                        listView.setVisibility(View.GONE);
+                    } else {
                         SimpleAdapter s4dap;
                         s4dap = new SimpleAdapter(semester_rotasi.this, MyArrList, R.layout.item_row_jurnal,
                                 new String[]{"kepaniteraan", "tgl_mulai_show", "tgl_selesai_show", "status"}, new int[]

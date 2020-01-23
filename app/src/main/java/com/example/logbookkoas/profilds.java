@@ -1,6 +1,7 @@
 package com.example.logbookkoas;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +16,7 @@ import java.util.HashMap;
 public class profilds extends AppCompatActivity {
     Button editprofile;
     private SessionHandler session;
-    Button logout;
+    Button logout,informasi;
     private static final String KEY_USERNAME = "username";
     TextView username1, nama1,bagiansel;
     ArrayList<String> idilmu = new ArrayList<String>();
@@ -32,6 +33,7 @@ public class profilds extends AppCompatActivity {
         User user = session.getUserDetails();
         username1 = findViewById(R.id.usernamedsp);
         nama1 = findViewById(R.id.namadsp);
+        informasi = findViewById(R.id.informasi);
         Bundle bundleds = getIntent().getExtras();
         assert bundleds != null;
         username1.setText(bundleds.getString("datads"));
@@ -58,6 +60,19 @@ public class profilds extends AppCompatActivity {
                 Intent edit = new Intent(profilds.this, MainActivity.class);
                 startActivity(edit);
                 finish();
+
+            }
+        });
+        informasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/informasi.php"));
+                String title = "Pilih browser untuk membuka  tautan";
+                Intent chooser = Intent.createChooser(intent, title);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(chooser);
+                }
 
             }
         });
