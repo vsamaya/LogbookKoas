@@ -39,7 +39,7 @@ import java.util.HashMap;
 
 public class DaftarKegiatan extends AppCompatActivity {
 
-    String spinnerURL = "http://192.168.43.159/logbook/spinnerkegiatandosen.php";
+    String spinnerURL = "http://192.168.0.104/logbook/spinnerkegiatandosen.php";
     Spinner spinnerJenisJurnal, spinnerStatus;
     SearchableSpinner spinnerStase, spinnerNamaMahasiswa;
     private SharedPreferences.Editor mEditor;

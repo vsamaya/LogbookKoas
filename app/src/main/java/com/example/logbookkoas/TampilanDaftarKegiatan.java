@@ -43,9 +43,9 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_MESSAGE = "message";
-    String showURL = "http://192.168.43.159/logbook/daftar_kegiatan_dosen.php";
-    String updateStatus = "http://192.168.43.159/logbook/updateStatusDosenActivity.php";
-    String updateStatusSemua = "http://192.168.43.159/logbook/updateStatusSemua.php";
+    String showURL = "http://192.168.0.104/logbook/daftar_kegiatan_dosen.php";
+    String updateStatus = "http://192.168.0.104/logbook/updateStatusDosenActivity.php";
+    String updateStatusSemua = "http://192.168.0.104/logbook/updateStatusSemua.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -255,7 +255,7 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
                                 show_more.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        if (show_more.getText().equals("show more")) {
+                                        if (show_more.getText().equals("show more ")) {
                                             kegiatan.setVisibility(View.VISIBLE);
                                             lokasi.setVisibility(View.VISIBLE);
                                             lv_keg.setVisibility(View.VISIBLE);

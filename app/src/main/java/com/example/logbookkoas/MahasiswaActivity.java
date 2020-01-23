@@ -29,9 +29,9 @@ public class MahasiswaActivity extends AppCompatActivity {
     ImageView iconmahasiswa;
     final ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
-    private String data_url = "http://192.168.43.159/logbook/getdataprofilms.php";
-    private String foto_url = "http://192.168.43.159/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.43.159/logbook/image/";
+    private String data_url = "http://192.168.0.104/logbook/getdataprofilms.php";
+    private String foto_url = "http://192.168.0.104/logbook/getdatafoto.php";
+    private String foto_image = "http://192.168.0.104/logbook/image/";
     TextView usernamems,nmlengkap,id;
     RelativeLayout rotasiinternal;
     RelativeLayout cekjurnal;
@@ -98,11 +98,13 @@ public class MahasiswaActivity extends AppCompatActivity {
         rekapjurnal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent d = new Intent();
-                d.setAction(Intent.ACTION_VIEW);
-                d.addCategory(Intent.CATEGORY_BROWSABLE);
-                d.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/rekap_individu.php"));
-                startActivity(d);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/rekap_individu.php"));
+                String title = "Pilih browser untuk membuka  tautan";
+                Intent chooser = Intent.createChooser(intent, title);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(chooser);
+                }
             }
         });
 

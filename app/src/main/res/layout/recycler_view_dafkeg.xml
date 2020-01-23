@@ -238,7 +238,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="show more"
+                android:text="show more "
                 android:textColor="@color/colorGradBefore"
                 android:textSize="12sp"
                 android:textStyle="italic"

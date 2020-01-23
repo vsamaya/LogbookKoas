@@ -45,10 +45,10 @@ import java.util.HashMap;
 public class RotasiInternalDetail extends AppCompatActivity {
     private SessionHandler session;
     ListView lv_rot;
-    private String header = "http://192.168.43.159/logbook/getKepaniteraan.php";
-    final String urlsem = "http://192.168.43.159/logbook/rotasi_internal.php";
-    private String judul = "http://192.168.43.159/logbook/getJadwal.php";
-    private String update_status = "http://192.168.43.159/logbook/updateStatus.php";
+    private String header = "http://192.168.0.104/logbook/getKepaniteraan.php";
+    final String urlsem = "http://192.168.0.104/logbook/rotasi_internal.php";
+    private String judul = "http://192.168.0.104/logbook/getJadwal.php";
+    private String update_status = "http://192.168.0.104/logbook/updateStatus.php";
     public static final String KEY_ID = "id";
     ArrayList<HashMap<String, String>> MyArr1= new ArrayList<HashMap<String,String>>();
     TextView stase,tanggal,id_stase;
@@ -502,7 +502,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                     R.id.tv_tgl3, R.id.tv_rotasi3, R.id.tv_dosen1, R.id.tv_status3,
                                     R.id.tv_tgl4, R.id.tv_rotasi4, R.id.tv_dosen1, R.id.tv_status4,
                                     R.id.tv_tgl5, R.id.tv_rotasi5, R.id.tv_dosen1, R.id.tv_status5,
-                                    R.id.tv_tgl6, R.id.tv_rotasi6, R.id.tv_dosen1, R.id.tv_status6,R.id.user}) {
+                                    R.id.tv_tgl6, R.id.tv_rotasi6, R.id.tv_dosen1, R.id.tv_status6, R.id.user}) {
                         @Override
                         public View getView(final int position, View convertView, ViewGroup parent) {
                             View lv = super.getView(position, convertView, parent);
@@ -559,6 +559,23 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             if(dosen.getText().equals("null")){
                                 lay_dos.setVisibility(View.GONE);
                             }
+                            tambah.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent i=new Intent(RotasiInternalDetail.this, ri_tambah.class);
+                                    int nomor= position+1;
+                                    String nmr=Integer.toString(nomor);
+                                    i.putExtra("lama",map.get("hari"));
+                                    i.putExtra("stase",stase.getText().toString());
+                                    i.putExtra("tgl_mulai",map.get("tglmli"));
+                                    i.putExtra("rotasi",rotasi.getText());
+                                    i.putExtra("id_internal",id_internal.getText());
+                                    i.putExtra("id",id);
+                                    i.putExtra("dosen",dosen.getText());
+                                    startActivity(i);
+                                }
+                            });
+
                             edit.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -608,6 +625,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
         MySingleton.getInstance(this).addToRequestQueue(json);
 
     }
+
     private static String[] getStringArray(ArrayList<String> arr) {
         // declaration and initialise String Array
         String[] str = new String[arr.size()];

@@ -57,6 +57,7 @@
             android:name=".MainApprove"
             android:noHistory="true" />
         <activity android:name=".PassApprove" />
+        <activity android:name=".ri_tambah" />
         <activity android:name=".tambahJurnal" />
         <activity android:name=".editJurnal" />
         <activity android:name=".TampilanDaftarKegiatan" />
@@ -91,7 +92,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="192.168.43.44"
+                    android:host="192.168.0.104"
                     android:pathPrefix="/login.php"
                     android:scheme="http" />
             </intent-filter>

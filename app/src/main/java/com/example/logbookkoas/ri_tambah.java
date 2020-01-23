@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ri_edit extends AppCompatActivity {
+public class ri_tambah extends AppCompatActivity {
     private DatePickerDialog mDatePickerDialog;
     TextView tv_stase, tv_lama;
     Button  simpan;
@@ -52,6 +52,7 @@ public class ri_edit extends AppCompatActivity {
     private SessionHandler session;
     String spinnerURL = "http://192.168.0.104/logbook/spinner_edit_rotasi.php";
     String simpanedit = "http://192.168.0.104/logbook/simpaneditrotasi.php";
+    String tambahedit = "http://192.168.0.104/logbook/tambahRotasi.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,16 +73,9 @@ public class ri_edit extends AppCompatActivity {
         final String id_internal = intent.getStringExtra("id_internal");
         final String id = intent.getStringExtra("id");
         final String rotasi = intent.getStringExtra("rotasi");
-        String tgla = getIntent().getStringExtra("tgl_mulai");
-        Date tglb = null;
-        try {
-            tglb = format.parse(tgla);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String tanggal = convert.format(tglb);
         tv_stase.setText(stase);
         tv_lama.setText(lama);
+        tambah();
         getSpinner();
         setDateTimeField();
         datepicker.setOnTouchListener(new View.OnTouchListener() {
@@ -142,20 +136,12 @@ public class ri_edit extends AppCompatActivity {
                         namaDosen.add(dosen);
                     }
                     String[] strdosen = getStringArray(namaDosen);
-                    ArrayAdapter<String> dsn = new ArrayAdapter<>(ri_edit.this, android.R.layout.simple_spinner_item,strdosen);
+                    ArrayAdapter<String> dsn = new ArrayAdapter<>(ri_tambah.this, android.R.layout.simple_spinner_item,strdosen);
                     spinnerDosen.setAdapter(dsn);
-                    String dosen = getIntent().getStringExtra("dosen");
-                    spinnerDosen.setSelection(getIndex(spinnerDosen, dosen));
                     spinnerDosen.setTitle("Pilih Dosen");
-                    String tgla = getIntent().getStringExtra("tgl_mulai");
-                    Date tglb = format.parse(tgla);
-                    String tgl_mulai = dateFormat.format(tglb);
-                    datepicker.setText(tgl_mulai);
 
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
                     e.printStackTrace();
                 }
 
@@ -176,68 +162,116 @@ public class ri_edit extends AppCompatActivity {
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                JSONObject request = new JSONObject();
-                try {
-                    session = new SessionHandler(getApplicationContext());
-                    User user = session.getUserDetails();
-                    String username = user.getUsername();
-                    Intent intent = getIntent();
-                    String id_internal = intent.getStringExtra("id_internal");
-                    String id = intent.getStringExtra("id");
-                    String rotasi = intent.getStringExtra("rotasi");
-                    String tgl1 = datepicker.getText().toString();
-                    Date tgl2 = dateFormat.parse(tgl1);
-                    String tanggal = convert.format(tgl2);
-                    String[] nip = getStringArray(nipDosen);
-                    String niptmpl = nip[spinnerDosen.getSelectedItemPosition()];
-
-                    request.put(KEY_USERNAME,username);
-                    request.put(KEY_TGL, tanggal);
-                    request.put(KEY_DOSEN, niptmpl);
-                    request.put(KEY_ID, id);
-                    request.put(KEY_ID_INTERNAL, id_internal);
-                    request.put(KEY_ROTASI, rotasi);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                String sdate = datepicker.getText().toString();
+                if(sdate.trim().length() == 0){
+                    Toast.makeText(ri_tambah.this, "Maaf data belum lengkap",
+                            Toast.LENGTH_LONG).show();
                 }
-                JsonObjectRequest jsArrayRequest = new JsonObjectRequest
-                        (Request.Method.POST, simpanedit, request, new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    if (response.getInt("pesan") == 1) {
-                                        finish();
+                else {
+                    JSONObject request = new JSONObject();
+                    try {
+                        session = new SessionHandler(getApplicationContext());
+                        User user = session.getUserDetails();
+                        String username = user.getUsername();
+                        Intent intent = getIntent();
+                        String id_internal = intent.getStringExtra("id_internal");
+                        String id = intent.getStringExtra("id");
+                        String rotasi = intent.getStringExtra("rotasi");
+                        String tgl1 = datepicker.getText().toString();
+                        Date tgl2 = dateFormat.parse(tgl1);
+                        String tanggal = convert.format(tgl2);
+                        String[] nip = getStringArray(nipDosen);
+                        String niptmpl = nip[spinnerDosen.getSelectedItemPosition()];
 
-                                    } else {
-                                        Toast.makeText(ri_edit.this, "Gagal",
-                                                Toast.LENGTH_LONG).show();
+                        request.put(KEY_USERNAME, username);
+                        request.put(KEY_TGL, tanggal);
+                        request.put(KEY_DOSEN, niptmpl);
+                        request.put(KEY_ID, id);
+                        request.put(KEY_ID_INTERNAL, id_internal);
+                        request.put(KEY_ROTASI, rotasi);
 
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                            (Request.Method.POST, simpanedit, request, new Response.Listener<JSONObject>() {
+                                @Override
+                                public void onResponse(JSONObject response) {
+                                    try {
+                                        if (response.getInt("pesan") == 1) {
+                                            finish();
+
+                                        } else {
+                                            Toast.makeText(ri_tambah.this, "Gagal",
+                                                    Toast.LENGTH_LONG).show();
+
+                                        }
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
                                     }
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+
                                 }
 
-                            }
+                            }, new Response.ErrorListener() {
 
-                        }, new Response.ErrorListener() {
-
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
 
 
-                            }
-                        });
-                // Access the RequestQueue through your singleton class.
-                MySingleton.getInstance(ri_edit.this).addToRequestQueue(jsArrayRequest);
+                                }
+                            });
+                    // Access the RequestQueue through your singleton class.
+                    MySingleton.getInstance(ri_tambah.this).addToRequestQueue(jsArrayRequest);
+                }
             }
         });
 
-        MySingleton.getInstance(ri_edit.this).addToRequestQueue(jsonstase);
+        MySingleton.getInstance(ri_tambah.this).addToRequestQueue(jsonstase);
 
     }
+
+    public void tambah() {
+
+            JSONObject request = new JSONObject();
+            try {
+                //Populate the request parameters
+                Intent intent = getIntent();
+                session = new SessionHandler(getApplicationContext());
+                User user = session.getUserDetails();
+                String id = intent.getStringExtra("id");
+                String username = user.getUsername();
+                request.put(KEY_USERNAME, username);
+                request.put(KEY_ID, id);
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                    (Request.Method.POST, tambahedit, request, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                        }
+
+                    }, new Response.ErrorListener() {
+
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+
+
+
+                        }
+                    });
+            // Access the RequestQueue through your singleton class.
+            MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+
+
+
+    }
+
 
     private static String[] getStringArray(ArrayList<String> arr) {
         // declaration and initialise String Array

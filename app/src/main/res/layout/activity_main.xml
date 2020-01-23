@@ -100,12 +100,6 @@
                     app:awesome_font="material_design"
                     app:awesome_icon="MD_VISIBILITY_OFF" />
             </LinearLayout>
-            <CheckBox
-                android:id="@+id/keep"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Keep log in"
-                android:textStyle="italic"/>
 
             <Button
                 android:id="@+id/signin"

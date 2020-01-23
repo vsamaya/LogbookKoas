@@ -39,6 +39,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -55,9 +57,9 @@ public class editprofilds extends Activity {
     private static final String KEY_GELAR = "gelar";
     private static final String KEY_BAGIAN = "bagian";
     private static final String KEY_EMPTY = "";
-    private String simpan_url = "http://192.168.43.159/logbook/updateprofilds.php";
-    private String data_url = "http://192.168.43.159/logbook/getdatads.php";
-    String url = "http://192.168.43.159/logbook/getidbagian.php";
+    private String simpan_url = "http://192.168.0.104/logbook/updateprofilds.php";
+    private String data_url = "http://192.168.0.104/logbook/getdatads.php";
+    String url = "http://192.168.0.104/logbook/getidbagian.php";
     private String username;
     private String passwordbr;
     private String namabr;
@@ -117,7 +119,7 @@ public class editprofilds extends Activity {
                     passwordbr = list_data.get(0).get("pass");
                 }
                 else{
-                    passwordbr = passwordt.getText().toString();
+                    passwordbr = md5(passwordt.getText().toString());
                 }
                 namabr = namat.getText().toString();
                 gelarbr = gelart.getText().toString();
@@ -164,6 +166,31 @@ public class editprofilds extends Activity {
             return false;
         }
         return true;
+    }
+
+    public static final String md5 ( final String s){
+        final String MD5 = "MD5";
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = MessageDigest
+                    .getInstance(MD5);
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuilder hexString = new StringBuilder();
+            for (byte aMessageDigest : messageDigest) {
+                String h = Integer.toHexString(0xFF & aMessageDigest);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     private void getBagian() {

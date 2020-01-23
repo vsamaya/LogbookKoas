@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -35,7 +36,8 @@ public class semester_rotasi extends AppCompatActivity {
     private static final String TAG_ROTASI = "rotasi";
     ListView listView;
     TextView title;
-    String main = "http://192.168.43.159/logbook";
+    TextView empty;
+    String main = "http://192.168.0.104/logbook";
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
     TextView nim, username, stase, status, mulai, selesai, stase1, nim1, mulai1, selesai1, status1;
@@ -47,6 +49,7 @@ public class semester_rotasi extends AppCompatActivity {
         setContentView(R.layout.activity_semester_rotasi);
         listView = findViewById(R.id.listview9);
         title = findViewById(R.id.titlr);
+        empty = findViewById(R.id.empty);
         Intent intent = getIntent();
         final String semester = intent.getStringExtra("semester");
         String judul = "Semester "+semester;
@@ -117,33 +120,37 @@ public class semester_rotasi extends AppCompatActivity {
                         MyArrList.add(map);
 
                     }
+                    if(MyArrList.isEmpty()){
+                        empty.setVisibility(View.VISIBLE);
+                        listView.setVisibility(View.GONE);
+                    } else {
 
-                    for(int j=0;j<MyArrList.size()+3;j++){
-                        for (int i = 0; i < MyArrList.size(); i++) {
-                            HashMap<String, String> hashMap = MyArrList.get(i);
+                        for (int j = 0; j < MyArrList.size() + 3; j++) {
+                            for (int i = 0; i < MyArrList.size(); i++) {
+                                HashMap<String, String> hashMap = MyArrList.get(i);
 
-                            // for(String j : hashMap.values()){
-                            if (Objects.equals(MyArrList.get(i).get("tgl_mulai"), " ")) {
-                                MyArrList.remove(i);
+                                // for(String j : hashMap.values()){
+                                if (Objects.equals(MyArrList.get(i).get("tgl_mulai"), " ")) {
+                                    MyArrList.remove(i);
+                                }
                             }
-                        }}
-                    Collections.sort(MyArrList, new Comparator<HashMap<String, String>>()
-                    {
-                        @Override
-                        public int compare(HashMap<String, String> a, HashMap<String, String> b)
-                        {
-                            if (a.get("tgl_mulai") == null || b.get("tgl_mulai") == null)
-                                return 0;
-                            return a.get("tgl_mulai").compareTo(b.get("tgl_mulai"));
                         }
-                    });
+                        Collections.sort(MyArrList, new Comparator<HashMap<String, String>>() {
+                            @Override
+                            public int compare(HashMap<String, String> a, HashMap<String, String> b) {
+                                if (a.get("tgl_mulai") == null || b.get("tgl_mulai") == null)
+                                    return 0;
+                                return a.get("tgl_mulai").compareTo(b.get("tgl_mulai"));
+                            }
+                        });
 
 
-                    SimpleAdapter s4dap;
-                    s4dap = new SimpleAdapter(semester_rotasi.this, MyArrList, R.layout.item_row_jurnal,
-                            new String[]{"kepaniteraan", "tgl_mulai_show", "tgl_selesai_show", "status"}, new int[]
-                            {R.id.tv_judul, R.id.tv_tgl_mulai, R.id.tv_tgl_selesai, R.id.tv_status});
-                    listView.setAdapter(s4dap);
+                        SimpleAdapter s4dap;
+                        s4dap = new SimpleAdapter(semester_rotasi.this, MyArrList, R.layout.item_row_jurnal,
+                                new String[]{"kepaniteraan", "tgl_mulai_show", "tgl_selesai_show", "status"}, new int[]
+                                {R.id.tv_judul, R.id.tv_tgl_mulai, R.id.tv_tgl_selesai, R.id.tv_status});
+                        listView.setAdapter(s4dap);
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();

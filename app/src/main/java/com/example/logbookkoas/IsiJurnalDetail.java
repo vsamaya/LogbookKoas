@@ -50,10 +50,10 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_SEVALUASI = "SEvaluasi";
     private static final String KEY_SRENCANA = "SRencana";
-    private String header = "http://192.168.43.159/logbook/getKepaniteraan.php";
-    private String judul = "http://192.168.43.159/logbook/getJadwal.php";
-    private String update_status = "http://192.168.43.159/logbook/updateStatus.php";
-    private String updateEntry = "http://192.168.43.159/logbook/updateEntry.php";
+    private String header = "http://192.168.0.104/logbook/getKepaniteraan.php";
+    private String judul = "http://192.168.0.104/logbook/getJadwal.php";
+    private String update_status = "http://192.168.0.104/logbook/updateStatus.php";
+    private String updateEntry = "http://192.168.0.104/logbook/updateEntry.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;

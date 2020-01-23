@@ -20,6 +20,9 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import cyd.awesome.material.AwesomeText;
 import cyd.awesome.material.FontCharacterMaps;
 
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private String password;
     private ProgressDialog pDialog;
     private CheckBox keep;
-    private String login_url = "http://192.168.43.159/logbook/login.php";
+    private String login_url = "http://192.168.0.104/logbook/login.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;
@@ -47,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         session = new SessionHandler(getApplicationContext());
-        keep=findViewById(R.id.keep);
         User user=session.getUserDetails();
         if(session.isLoggedIn()) {
             String Username2=user.getUsername();
@@ -86,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Retrieve the data entered in the edit texts
                 username = usernamet.getText().toString().trim();
-                password = passwordt.getText().toString().trim();
+                password = md5(passwordt.getText().toString().trim());
                 if (validateInputs()) {
                     login();
                 }
@@ -94,6 +96,32 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    public static final String md5 ( final String s){
+        final String MD5 = "MD5";
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = MessageDigest
+                    .getInstance(MD5);
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuilder hexString = new StringBuilder();
+            for (byte aMessageDigest : messageDigest) {
+                String h = Integer.toHexString(0xFF & aMessageDigest);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
     private void loadDashboard(String level1){
         SessionHandler session=new SessionHandler(getApplicationContext());
         if(level1.equals("4")){

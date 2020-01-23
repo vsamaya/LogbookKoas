@@ -29,7 +29,7 @@ public class DosenActivity extends AppCompatActivity {
     Button btn_generatecode,btn_generateqr,btn_dftrkeg,btn_rekapkeg;
     TextView nama_user,name;
     private static final String KEY_USERNAME="username";
-    private String datads = "http://192.168.43.159/logbook/datads.php";
+    private String datads = "http://192.168.0.104/logbook/datads.php";
     ArrayList<HashMap<String,String>> list_data= new ArrayList<HashMap<String, String>>();
     ImageView iconprofil;
     @Override
@@ -93,11 +93,13 @@ public class DosenActivity extends AppCompatActivity {
         btn_rekapkeg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent d = new Intent();
-                d.setAction(Intent.ACTION_VIEW);
-                d.addCategory(Intent.CATEGORY_BROWSABLE);
-                d.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/filter_rekap_kegiatan.php"));
-                startActivity(d);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/filter_rekap_kegiatan.php"));
+                String title = "Pilih browser untuk membuka  tautan";
+                Intent chooser = Intent.createChooser(intent, title);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(chooser);
+                }
             }
         });
 

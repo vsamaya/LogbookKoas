@@ -42,6 +42,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -76,16 +78,16 @@ public class editprofil extends AppCompatActivity {
     private static final String KEY_KOTAWALI = "kotawali";
     private static final String KEY_NOHPWALI = "nohpwali";
     private static final String KEY_EMPTY = "";
-    private String UPLOAD_URL = "http://192.168.43.159/logbook/upload.php";
-    private String HAPUS_URL = "http://192.168.43.159/logbook/hpsfoto.php";
+    private String UPLOAD_URL = "http://192.168.0.104/logbook/upload.php";
+    private String HAPUS_URL = "http://192.168.0.104/logbook/hpsfoto.php";
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
-    private String simpan_url = "http://192.168.43.159/logbook/updateprofil.php";
-    private String data_url = "http://192.168.43.159/logbook/getdataprofilms.php";
-    private String data_url1 = "http://192.168.43.159/logbook/getdataprofilms1.php";
-    public static final String KOTA_URL = "http://192.168.43.159/logbook/getKota.php";
-    private String foto_image = "http://192.168.43.159/logbook/image/";
-    public static final String PROP_URL = "http://192.168.43.159/logbook/getpropkota.php";
+    private String simpan_url = "http://192.168.0.104/logbook/updateprofil.php";
+    private String data_url = "http://192.168.0.104/logbook/getdataprofilms.php";
+    private String data_url1 = "http://192.168.0.104/logbook/getdataprofilms1.php";
+    public static final String KOTA_URL = "http://192.168.0.104/logbook/getKota.php";
+    private String foto_image = "http://192.168.0.104/logbook/image/";
+    public static final String PROP_URL = "http://192.168.0.104/logbook/getpropkota.php";
     private static final String TAG_MESSAGE = "message";
     public static final String KEY_IMAGE = "image";
     private String username;
@@ -252,7 +254,7 @@ public class editprofil extends AppCompatActivity {
                 if (passwordt.getText().toString().equals("")) {
                     passwordbr = list_data.get(0).get("pass");
                 } else {
-                    passwordbr = passwordt.getText().toString();
+                    passwordbr = md5(passwordt.getText().toString());
                 }
                 namabr = namat.getText().toString();
                 String[] idu = getStringArray(idpropu);
@@ -372,6 +374,31 @@ public class editprofil extends AppCompatActivity {
 
     }
 
+
+    public static final String md5 ( final String s){
+        final String MD5 = "MD5";
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = MessageDigest
+                    .getInstance(MD5);
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuilder hexString = new StringBuilder();
+            for (byte aMessageDigest : messageDigest) {
+                String h = Integer.toHexString(0xFF & aMessageDigest);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
     private void kosong() {
         imageView.setImageResource(0);

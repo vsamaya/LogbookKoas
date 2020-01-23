@@ -27,10 +27,10 @@ import java.util.Calendar;
 
 public class editJurnal extends AppCompatActivity {
 
-    String spinnerURL = "http://192.168.43.159/logbook/spinnerTambahJurnal.php";
-    String tanggalURL = "http://192.168.43.159/logbook/tanggalTambahJurnal.php";
-    String editSistemURL = "http://192.168.43.159/logbook/sistemEdit.php";
-    String editURL = "http://192.168.43.159/logbook/editJurnal.php";
+    String spinnerURL = "http://192.168.0.104/logbook/spinnerTambahJurnal.php";
+    String tanggalURL = "http://192.168.0.104/logbook/tanggalTambahJurnal.php";
+    String editSistemURL = "http://192.168.0.104/logbook/sistemEdit.php";
+    String editURL = "http://192.168.0.104/logbook/editJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;

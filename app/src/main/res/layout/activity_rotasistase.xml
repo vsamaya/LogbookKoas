@@ -20,7 +20,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:gravity="center_horizontal"
-            android:text="Rotasi Internal"
+            android:text="Rotasi Stase"
             android:textColor="@android:color/background_light"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -144,6 +144,29 @@
                             android:textSize="100sp"
                             android:textStyle="bold" />
                     </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:text="* Untuk pengisian evaluasi stase silahkan klik tombol dibawah"
+                        android:textColor="@color/md_orange_900"
+                        android:textSize="18sp" />
+
+                    <Button
+                        android:id="@+id/note"
+                        android:layout_width="119dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Evaluasi" />
                 </LinearLayout>
 
             </LinearLayout>

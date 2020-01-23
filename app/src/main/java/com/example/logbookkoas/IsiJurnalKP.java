@@ -44,8 +44,8 @@ public class IsiJurnalKP extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
     public static final String KEY_ID = "id";
-    private String showURL = "http://192.168.43.159/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.43.159/logbook/deleteJurnal.php";
+    private String showURL = "http://192.168.0.104/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.0.104/logbook/deleteJurnal.php";
     ListView list;
     TextView empty;
     LinearLayout buttonPenyakit;
@@ -211,6 +211,11 @@ public class IsiJurnalKP extends AppCompatActivity {
                                 final TextView penyakit2 = v.findViewById(R.id.tv_sumber2);
                                 final TextView penyakit3 = v.findViewById(R.id.tv_sumber3);
                                 final TextView penyakit4 = v.findViewById(R.id.tv_sumber4);
+                                final TextView status = v.findViewById(R.id.tv_status);
+
+                                if (status.getText().equals("Approved")) {
+                                    approve.setVisibility(View.GONE);
+                                    edit.setVisibility(View.GONE);}
 
                                 approve.setOnClickListener(new View.OnClickListener() {
                                     @Override
