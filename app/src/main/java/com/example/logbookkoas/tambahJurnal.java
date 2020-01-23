@@ -259,7 +259,6 @@ public class tambahJurnal extends AppCompatActivity {
                             String pen = j.getString("penyakit")+" ("+j.getString("skdi_level")+"/"+j.getString("k_level")+")";
                             id_penyakit.add(id);
                             penyakit.add(pen);
-//                            penyakit.add(pen+" ("+j.getString("skdi_level")+"-"+j.getString("sumber")+") ");
                         }
                         String[] strp = getStringArray(penyakit);
                         ArrayAdapter<String> p = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item, strp);
