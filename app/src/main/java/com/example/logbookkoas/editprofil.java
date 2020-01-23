@@ -82,12 +82,12 @@ public class editprofil extends AppCompatActivity {
     private String HAPUS_URL = "http://192.168.0.104/logbook/hpsfoto.php";
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
-    private String simpan_url = "http://192.168.0.104/logbook/updateprofil.php";
-    private String data_url = "http://192.168.0.104/logbook/getdataprofilms.php";
-    private String data_url1 = "http://192.168.0.104/logbook/getdataprofilms1.php";
-    public static final String KOTA_URL = "http://192.168.0.104/logbook/getKota.php";
-    private String foto_image = "http://192.168.0.104/logbook/image/";
-    public static final String PROP_URL = "http://192.168.0.104/logbook/getpropkota.php";
+    private String simpan_url = "http://192.168.43.159/logbook/updateprofil.php";
+    private String data_url = "http://192.168.43.159/logbook/getdataprofilms.php";
+    private String data_url1 = "http://192.168.43.159/logbook/getdataprofilms1.php";
+    public static final String KOTA_URL = "http://192.168.43.159/logbook/getKota.php";
+    private String foto_image = "http://192.168.43.159/logbook/image/";
+    public static final String PROP_URL = "http://192.168.43.159/logbook/getpropkota.php";
     private static final String TAG_MESSAGE = "message";
     public static final String KEY_IMAGE = "image";
     private String username;

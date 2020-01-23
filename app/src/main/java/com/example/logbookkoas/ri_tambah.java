@@ -50,9 +50,9 @@ public class ri_tambah extends AppCompatActivity {
     ArrayList<String> nipDosen, namaDosen;
     String[] lspin;
     private SessionHandler session;
-    String spinnerURL = "http://192.168.0.104/logbook/spinner_edit_rotasi.php";
-    String simpanedit = "http://192.168.0.104/logbook/simpaneditrotasi.php";
-    String tambahedit = "http://192.168.0.104/logbook/tambahRotasi.php";
+    String spinnerURL = "http://192.168.43.159/logbook/spinner_edit_rotasi.php";
+    String simpanedit = "http://192.168.43.159/logbook/simpaneditrotasi.php";
+    String tambahedit = "http://192.168.43.159/logbook/tambahRotasi.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

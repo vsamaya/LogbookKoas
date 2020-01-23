@@ -45,10 +45,10 @@ import java.util.HashMap;
 public class RotasiInternalDetail extends AppCompatActivity {
     private SessionHandler session;
     ListView lv_rot;
-    private String header = "http://192.168.0.104/logbook/getKepaniteraan.php";
-    final String urlsem = "http://192.168.0.104/logbook/rotasi_internal.php";
-    private String judul = "http://192.168.0.104/logbook/getJadwal.php";
-    private String update_status = "http://192.168.0.104/logbook/updateStatus.php";
+    private String header = "http://192.168.43.159/logbook/getKepaniteraan.php";
+    final String urlsem = "http://192.168.43.159/logbook/rotasi_internal.php";
+    private String judul = "http://192.168.43.159/logbook/getJadwal.php";
+    private String update_status = "http://192.168.43.159/logbook/updateStatus.php";
     public static final String KEY_ID = "id";
     ArrayList<HashMap<String, String>> MyArr1= new ArrayList<HashMap<String,String>>();
     TextView stase,tanggal,id_stase;
@@ -126,7 +126,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
             Date tglMulai = format.parse(mulai);
             String tglMulaiText = convert.format(tglMulai);
             Date tglSelesai = format.parse(selesai);
-            Date tglSelesai1 = new Date(tglSelesai.getTime() + (1000 * 60 * 60 * 24));;
+            Date tglSelesai1 = new Date(tglSelesai.getTime() + (1000 * 60 * 60 * 24));
             String tglSelesaiText = convert.format(tglSelesai);
             String jadwal = tglMulaiText + " - " + tglSelesaiText;
             tanggal.setText(jadwal);

@@ -2,7 +2,11 @@ package com.example.logbookkoas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -44,8 +48,8 @@ public class IsiJurnalKP extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
     public static final String KEY_ID = "id";
-    private String showURL = "http://192.168.0.104/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.0.104/logbook/deleteJurnal.php";
+    private String showURL = "http://192.168.43.159/logbook/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.43.159/logbook/deleteJurnal.php";
     ListView list;
     TextView empty;
     LinearLayout buttonPenyakit;
@@ -157,23 +161,23 @@ public class IsiJurnalKP extends AppCompatActivity {
                         id_penyakit.add(j.getString("id"));
                         statusPenyakit.add(j.getString("status"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
-                        item.put("p1", j_p1.getString("penyakit").toUpperCase());
+                        item.put("p1", j_p1.getString("penyakit").toUpperCase()+" ("+j_p1.getString("skdi_level")+"/"+j_p1.getString("k_level")+")");
 
                         if (j_p2.getString("penyakit").equals("null")) {
                             item.put("p2", "-");
 
                         } else {
-                            item.put("p2", j_p2.getString("penyakit").toUpperCase());
+                            item.put("p2", j_p2.getString("penyakit").toUpperCase()+" ("+j_p2.getString("skdi_level")+"/"+j_p2.getString("k_level")+")");
                         }
                         if (j_p3.getString("penyakit").equals("null")) {
                             item.put("p3", "-");
                         } else {
-                            item.put("p3", j_p3.getString("penyakit").toUpperCase());
+                            item.put("p3", j_p3.getString("penyakit").toUpperCase()+" ("+j_p3.getString("skdi_level")+"/"+j_p3.getString("k_level")+")");
                         }
                         if (j_p4.getString("penyakit").equals("null")) {
                             item.put("p4", "-");
                         } else {
-                            item.put("p4", j_p4.getString("penyakit").toUpperCase());
+                            item.put("p4", j_p4.getString("penyakit").toUpperCase()+" ("+j_p4.getString("skdi_level")+"/"+j_p4.getString("k_level")+")");
                         }
                         list_jurnal_penyakit.add(item);
 
@@ -190,6 +194,7 @@ public class IsiJurnalKP extends AppCompatActivity {
                                         R.id.tv_sumber3, R.id.tv_sumber4, R.id.tv_dosen, R.id.tv_status, R.id.tv_dos}
                         )
                         {
+                            @SuppressLint("ResourceAsColor")
                             @Override
                             public View getView (final int position, View convertView, ViewGroup parent)
                             {
@@ -234,10 +239,24 @@ public class IsiJurnalKP extends AppCompatActivity {
                                 delete.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        String jenis = "Jurnal Penyakit";
-                                        String[] idArray = getStringArray(id_penyakit);
-                                        String id = idArray[position];
-                                        deleteJurnalPenyakit(jenis,id);
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(IsiJurnalKP.this);
+                                        builder.setMessage("Delete Jurnal?")
+                                                .setTitle("Confirm delete")
+                                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int i) {
+                                                        // CONFIRM
+                                                        String jenis = "Jurnal Penyakit";
+                                                        String[] idArray = getStringArray(id_penyakit);
+                                                        String id = idArray[position];
+                                                        deleteJurnalPenyakit(jenis,id);
+                                                    }
+                                                })
+                                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        // CANCEL
+                                                    }
+                                                }).show();
+
 
 
                                     }
@@ -267,9 +286,15 @@ public class IsiJurnalKP extends AppCompatActivity {
                                     }
                                 });
                                 if(statP[position].equals("0")){
+                                    status.setTextColor(Color.RED);
                                     approve.setVisibility(View.VISIBLE);
+                                    edit.setVisibility(View.VISIBLE);
+                                    delete.setVisibility(View.VISIBLE);
                                 }else {
+                                    status.setTextColor(getResources().getColor(R.color.colorGradBefore));
                                     approve.setVisibility(View.GONE);
+                                    edit.setVisibility(View.GONE);
+                                    delete.setVisibility(View.GONE);
                                 }
 
 
@@ -369,23 +394,23 @@ public class IsiJurnalKP extends AppCompatActivity {
                         statusKetrampilan.add(j.getString("status"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
 
-                        item.put("p1", j_p1.getString("ketrampilan").toUpperCase());
+                        item.put("p1", j_p1.getString("ketrampilan").toUpperCase()+" ("+j_p1.getString("skdi_level")+"/"+j_p1.getString("k_level")+"/"+j_p1.getString("ipsg_level")+")");
 
                         if (j_p2.getString("ketrampilan").equals("null")) {
                             item.put("p2", "-");
 
                         } else {
-                            item.put("p2", j_p2.getString("ketrampilan").toUpperCase());
+                            item.put("p2", j_p2.getString("ketrampilan").toUpperCase()+" ("+j_p2.getString("skdi_level")+"/"+j_p2.getString("k_level")+"/"+j_p2.getString("ipsg_level")+")");
                         }
                         if (j_p3.getString("ketrampilan").equals("null")) {
                             item.put("p3", "-");
                         } else {
-                            item.put("p3", j_p3.getString("ketrampilan").toUpperCase());
+                            item.put("p3", j_p3.getString("ketrampilan").toUpperCase()+" ("+j_p3.getString("skdi_level")+"/"+j_p3.getString("k_level")+"/"+j_p3.getString("ipsg_level")+")");
                         }
                         if (j_p4.getString("ketrampilan").equals("null")) {
                             item.put("p4", "-");
                         } else {
-                            item.put("p4", j_p4.getString("ketrampilan").toUpperCase());
+                            item.put("p4", j_p4.getString("ketrampilan").toUpperCase()+" ("+j_p4.getString("skdi_level")+"/"+j_p4.getString("k_level")+"/"+j_p4.getString("ipsg_level")+")");
                         }
                         list_jurnal_ketrampilan.add(item);
 
@@ -456,10 +481,26 @@ public class IsiJurnalKP extends AppCompatActivity {
                                 delete.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        String jenis = "Jurnal Ketrampilan";
-                                        String[] idArray = getStringArray(id_ketrampilan);
-                                        String id = idArray[position];
-                                        deleteJurnalKetrampilan(jenis,id);
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(IsiJurnalKP.this);
+                                        builder.setMessage("Delete Jurnal?")
+                                                .setTitle("Confirm delete")
+                                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int i) {
+                                                        // CONFIRM
+                                                        String jenis = "Jurnal Ketrampilan";
+                                                        String[] idArray = getStringArray(id_ketrampilan);
+                                                        String id = idArray[position];
+                                                        deleteJurnalKetrampilan(jenis,id);
+                                                    }
+                                                })
+                                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        // CANCEL
+                                                    }
+                                                }).show();
+                                        // Create the AlertDialog object and return it
+//                                        return builder.create();
+
                                     }
                                 });
                                 edit.setOnClickListener(new View.OnClickListener() {
@@ -486,9 +527,15 @@ public class IsiJurnalKP extends AppCompatActivity {
                                     }
                                 });
                                 if(statK[position].equals("0")){
+                                    status.setTextColor(Color.RED);
                                     approve.setVisibility(View.VISIBLE);
+                                    edit.setVisibility(View.VISIBLE);
+                                    delete.setVisibility(View.VISIBLE);
                                 }else {
+                                    status.setTextColor(getResources().getColor(R.color.colorGradBefore));
                                     approve.setVisibility(View.GONE);
+                                    edit.setVisibility(View.GONE);
+                                    delete.setVisibility(View.GONE);
                                 }
 
 
