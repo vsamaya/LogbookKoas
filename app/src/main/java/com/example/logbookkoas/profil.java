@@ -32,7 +32,7 @@ public class profil extends AppCompatActivity {
     private static final String KEY_USERNAME = "username";
     Button logout,informasi;
     private String foto_url = "http://192.168.0.104/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.0.104/logbook/image/";
+    private String foto_image = "http://192.168.0.104/koas/foto/";
     TextView username, nama;
     ImageView foto;
 
@@ -42,6 +42,7 @@ public class profil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
         editprofile = findViewById(R.id.editp);
+        informasi = findViewById(R.id.informasi);
         session = new SessionHandler(getApplicationContext());
         final User user = session.getUserDetails();
         final String username1 = user.getUsername();
@@ -49,7 +50,6 @@ public class profil extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         username = findViewById(R.id.usernamemahasiswa);
         nama = findViewById(R.id.namamahasiswa);
-        informasi = findViewById(R.id.informasi);
         username.setText(bundle.getString("data1"));
         nama.setText(bundle.getString("data2"));
         foto = findViewById(R.id.imgprof);

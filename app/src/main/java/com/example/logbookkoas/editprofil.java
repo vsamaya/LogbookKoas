@@ -50,6 +50,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Random;
 
 import cyd.awesome.material.AwesomeText;
 import cyd.awesome.material.FontCharacterMaps;
@@ -86,7 +87,7 @@ public class editprofil extends AppCompatActivity {
     private String data_url = "http://192.168.0.104/logbook/getdataprofilms.php";
     private String data_url1 = "http://192.168.0.104/logbook/getdataprofilms1.php";
     public static final String KOTA_URL = "http://192.168.0.104/logbook/getKota.php";
-    private String foto_image = "http://192.168.0.104/logbook/image/";
+    private String foto_image = "http://192.168.0.104/koas/foto/";
     public static final String PROP_URL = "http://192.168.0.104/logbook/getpropkota.php";
     private static final String TAG_MESSAGE = "message";
     public static final String KEY_IMAGE = "image";
@@ -1180,9 +1181,13 @@ public class editprofil extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
+                Random angkaacak= new Random();
+                int a= angkaacak.nextInt(1000);
+                String ac= Integer.toString(a);
                 params.put("id", idbr);
                 params.put(KEY_NAMA, namabr);
                 params.put(KEY_USERNAME, usernamems.getText().toString());
+                params.put("foto", usernamems.getText().toString()+(ac));
                 params.put(KEY_IMAGE, getStringImage(bitmap));
                 params.put(KEY_PASSWORD, passwordbr);
                 params.put("namalengkap", namalengkap);

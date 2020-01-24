@@ -548,6 +548,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 lay_dos.setVisibility(View.GONE);
                                 approval.setVisibility(View.GONE);
                                 edit.setVisibility(View.GONE);
+                                tambah.setVisibility(View.GONE);
                             } else if (status.getText().equals("Unapprove")) {
                                 status.setTextColor(getResources().getColor(R.color.md_red_900));
                                 tambah.setVisibility(View.GONE);

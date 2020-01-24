@@ -31,7 +31,7 @@ public class MahasiswaActivity extends AppCompatActivity {
     private static final String KEY_USERNAME = "username";
     private String data_url = "http://192.168.0.104/logbook/getdataprofilms.php";
     private String foto_url = "http://192.168.0.104/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.0.104/logbook/image/";
+    private String foto_image = "http://192.168.0.104/koas/foto/";
     TextView usernamems,nmlengkap,id;
     RelativeLayout rotasiinternal;
     RelativeLayout cekjurnal;
@@ -84,14 +84,14 @@ public class MahasiswaActivity extends AppCompatActivity {
         cekjurnal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ri= new Intent(MahasiswaActivity.this,CekJurnal.class);
+                Intent ri= new Intent(MahasiswaActivity.this, CekJurnal.class);
                 startActivity(ri);
             }
         });
         isijurnal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ri= new Intent(MahasiswaActivity.this,mainIsiJurnal.class);
+                Intent ri= new Intent(MahasiswaActivity.this, mainIsiJurnal.class);
                 startActivity(ri);
             }
         });

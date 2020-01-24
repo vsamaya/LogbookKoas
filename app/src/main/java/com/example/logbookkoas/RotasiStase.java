@@ -60,7 +60,7 @@ Button note;
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/rotasi_internal.php"));
+                intent.setData(Uri.parse("https://logbook.fk.undip.ac.id/koas/rotasi_internal.php?username=mhsw_trial&password=f722e04d8a84f6ce289ffc5034e3a88a"));
                 String title = "Pilih browser untuk membuka  tautan";
                 Intent chooser = Intent.createChooser(intent, title);
                 if (intent.resolveActivity(getPackageManager()) != null) {
