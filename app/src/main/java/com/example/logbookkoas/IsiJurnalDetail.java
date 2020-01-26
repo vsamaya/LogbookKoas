@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,16 +51,19 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_SEVALUASI = "SEvaluasi";
     private static final String KEY_SRENCANA = "SRencana";
-    private String header = "http://192.168.43.159/logbook/getKepaniteraan.php";
-    private String judul = "http://192.168.43.159/logbook/getJadwal.php";
-    private String update_status = "http://192.168.43.159/logbook/updateStatus.php";
-    private String updateEntry = "http://192.168.43.159/logbook/updateEntry.php";
+    private String header = "http://192.168.0.104/android/getKepaniteraan.php";
+    private String judul = "http://192.168.0.104/android/getJadwal.php";
+    private String update_status = "http://192.168.0.104/android/updateStatus.php";
+    private String updateEntry = "http://192.168.0.104/android/updateEntry.php";
+    private String create_evaluasi = "http://192.168.0.104/android/create_evaluasi.php";
+    private String url_re = "http://192.168.0.104/android/show_re.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;
     LinearLayout MainLayout, j_penyakit, j_ketrampilan;
     ListView lv_penyakit,lv_ketrampilan;
     Button entry;
+    ArrayList<HashMap<String, String>> MyArr;
 
 
     @Override
@@ -85,8 +89,9 @@ public class IsiJurnalDetail extends AppCompatActivity {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-        MainLayout.setVisibility(LinearLayout.GONE);
         judul();
+        re();
+        create();
         process();
         j_penyakit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,44 +181,6 @@ public class IsiJurnalDetail extends AppCompatActivity {
                 id_stase.setText(idStase);
 
 
-                Date now = Calendar.getInstance().getTime();
-                if(now.after(tglMulai) && now.before(tglSelesai1)) {
-                    MainLayout.setVisibility(LinearLayout.VISIBLE);
-
-                    String status = "1";
-                    String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
-                    try {
-                        new JSONArray(getJSONUrl(url_status));
-
-                    } catch (JSONException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-
-                }
-                else if(now.before(tglMulai)){
-                    String status = "0";
-                    String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
-                    try {
-                        new JSONArray(getJSONUrl(url_status));
-
-                    } catch (JSONException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-                else{
-                    String status = "2";
-                    String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
-                    try {
-                        new JSONArray(getJSONUrl(url_status));
-
-                    } catch (JSONException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-
             } catch (JSONException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -222,6 +189,98 @@ public class IsiJurnalDetail extends AppCompatActivity {
             }
         }
 
+    private void create() {
+        JSONObject request = new JSONObject();
+        try {
+            Intent intent = getIntent();
+            final String stase = intent.getStringExtra(mainIsiJurnal.KEY_ID);
+            session = new SessionHandler(getApplicationContext());
+            User user = session.getUserDetails();
+            String username = user.getUsername();
+            String ang = username.substring(6,8);
+            String angkatan = "20"+ang;
+            SimpleDateFormat convert = new SimpleDateFormat("yyyy-MM-dd");
+            Date now = Calendar.getInstance().getTime();
+            String tanggal = convert.format(now);
+            request.put(KEY_USERNAME, username);
+            request.put(KEY_ANGKATAN, angkatan);
+            request.put(KEY_STASE, stase);
+            request.put(KEY_TANGGAL, tanggal);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST, create_evaluasi, request, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        //Display error message whenever an error occurs
+
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+    }
+
+    private void re(){
+        JSONObject request = new JSONObject();
+        try {
+            Intent intent = getIntent();
+            final String id = intent.getStringExtra("id");
+            session = new SessionHandler(getApplicationContext());
+            User user = session.getUserDetails();
+            String username = user.getUsername();
+            SimpleDateFormat convert = new SimpleDateFormat("yyyy-MM-dd");
+            Date now = Calendar.getInstance().getTime();
+            String tanggal = convert.format(now);
+            request.put(KEY_USERNAME, username);
+            request.put(KEY_ID, id);
+            request.put(KEY_TANGGAL, tanggal);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST, url_re, request, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            JSONArray re = response.getJSONArray("re");
+                            JSONObject c = re.getJSONObject(0);
+                            String TEvaluasi=c.getString("evaluasi");
+                            String TRencana=c.getString("rencana");
+                            evaluasi.setText(TEvaluasi);
+                            rencana.setText(TRencana);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        //Display error message whenever an error occurs
+
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+    }
 
     public String getJSONUrl(String url) {
         StringBuilder str = new StringBuilder();

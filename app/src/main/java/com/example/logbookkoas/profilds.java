@@ -1,6 +1,7 @@
 package com.example.logbookkoas;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,14 +16,14 @@ import java.util.HashMap;
 public class profilds extends AppCompatActivity {
     Button editprofile;
     private SessionHandler session;
-    Button logout;
+    Button logout,informasi;
     private static final String KEY_USERNAME = "username";
     TextView username1, nama1,bagiansel;
     ArrayList<String> idilmu = new ArrayList<String>();
     ArrayList<String> bagianilmu = new ArrayList<String>();
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     ArrayList<String> MyArrList = new ArrayList<String>();
-    String url = "http://192.168.43.159/logbook/getidbagian.php";
+    String url = "http://192.168.0.104/android/getidbagian.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,11 @@ public class profilds extends AppCompatActivity {
         setContentView(R.layout.activity_profilds);
         final SessionHandler session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
+        final String username = user.getUsername();
+        final String password = user.getPassword();
         username1 = findViewById(R.id.usernamedsp);
         nama1 = findViewById(R.id.namadsp);
+        informasi = findViewById(R.id.informasi);
         Bundle bundleds = getIntent().getExtras();
         assert bundleds != null;
         username1.setText(bundleds.getString("datads"));
@@ -58,6 +62,19 @@ public class profilds extends AppCompatActivity {
                 Intent edit = new Intent(profilds.this, MainActivity.class);
                 startActivity(edit);
                 finish();
+
+            }
+        });
+        informasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://logbook.fk.undip.ac.id/koas/bridge_informasi.php?usr="+username+"&pwd="+password));
+                String title = "Pilih browser untuk membuka  tautan";
+                Intent chooser = Intent.createChooser(intent, title);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(chooser);
+                }
 
             }
         });

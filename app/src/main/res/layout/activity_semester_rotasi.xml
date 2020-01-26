@@ -31,15 +31,17 @@
         android:layout_height="match_parent"
         android:background="@drawable/roundedlayout"
         android:orientation="vertical">
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Empty "
             android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/screen_background_light_transparent"
+            android:gravity="center"
+            android:text="Empty "
             android:textSize="16sp"
             android:textStyle="italic"
-            android:gravity="center"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <ListView
             android:id="@+id/listview9"

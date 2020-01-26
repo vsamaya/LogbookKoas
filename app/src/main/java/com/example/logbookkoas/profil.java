@@ -1,6 +1,7 @@
 package com.example.logbookkoas;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -29,9 +30,9 @@ public class profil extends AppCompatActivity {
     private SessionHandler session;
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
-    Button logout;
-    private String foto_url = "http://192.168.43.159/logbook/getdatafoto.php";
-    private String foto_image = "http://192.168.43.159/logbook/image/";
+    Button logout,informasi;
+    private String foto_url = "http://192.168.0.104/android/getdatafoto.php";
+    private String foto_image = "http://192.168.0.104/koas/foto/";
     TextView username, nama;
     ImageView foto;
 
@@ -41,9 +42,11 @@ public class profil extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profil);
         editprofile = findViewById(R.id.editp);
+        informasi = findViewById(R.id.informasi);
         session = new SessionHandler(getApplicationContext());
         final User user = session.getUserDetails();
         final String username1 = user.getUsername();
+        final String password = user.getPassword();
         String level1 = user.getLevel();
         Bundle bundle = getIntent().getExtras();
         username = findViewById(R.id.usernamemahasiswa);
@@ -75,6 +78,19 @@ public class profil extends AppCompatActivity {
                 Intent edit = new Intent(profil.this, MainActivity.class);
                 startActivity(edit);
                 finish();
+
+            }
+        });
+        informasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://logbook.fk.undip.ac.id/koas/bridge_informasi.php?usr="+username1+"&pwd="+password));
+                String title = "Pilih browser untuk membuka  tautan";
+                Intent chooser = Intent.createChooser(intent, title);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(chooser);
+                }
 
             }
         });

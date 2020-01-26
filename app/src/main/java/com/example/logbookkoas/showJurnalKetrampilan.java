@@ -49,7 +49,7 @@ public class showJurnalKetrampilan extends AppCompatActivity {
     TextView empty;
     ListView lv_ketrampilan;
     ArrayList<HashMap<String, String>> MyArr;
-    final String url_ketrampilan = "http://192.168.43.159/logbook/ketrampilan.php";
+    final String url_ketrampilan = "http://192.168.0.104/android/ketrampilan.php";
     final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     final SimpleDateFormat convert = new SimpleDateFormat("yyyy-MM-dd");
     @Override
@@ -112,28 +112,28 @@ public class showJurnalKetrampilan extends AppCompatActivity {
                         HashMap<String, String> item = new HashMap<String, String>();
                         item.put("jam_awal", j.getString("jam_awal"));
                         item.put("jam_akhir", j.getString("jam_akhir"));
-                        item.put("nama", j_dosen.getString("nama"));
+                        item.put("nama", j_dosen.getString("nama")+", "+j_dosen.getString("gelar"));
                         if (j.getString("status").equals("1")) {
                             item.put("status", "Approved");
                         } else item.put("status", "Unapproved");
                         item.put("kegiatan", j_kegiatan.getString("kegiatan"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
                         item.put("kelas", j_kelas.getString("kelas"));
-                        item.put("k1", j_k1.getString("ketrampilan"));
+                        item.put("k1", j_k1.getString("ketrampilan")+" ("+j_k1.getString("skdi_level")+"/"+j_k1.getString("k_level")+"/"+j_k1.getString("ipsg_level")+")");
                         if (j_k2.getString("ketrampilan").equals("null")) {
                             item.put("k2", " ");
                         } else {
-                            item.put("k2", j_k2.getString("ketrampilan"));
+                            item.put("k2", j_k2.getString("ketrampilan")+" ("+j_k2.getString("skdi_level")+"/"+j_k2.getString("k_level")+"/"+j_k2.getString("ipsg_level")+")");
                         }
                         if (j_k3.getString("ketrampilan").equals("null")) {
                             item.put("k3", " ");
                         } else {
-                            item.put("k3", j_k3.getString("ketrampilan"));
+                            item.put("k3", j_k3.getString("ketrampilan")+" ("+j_k3.getString("skdi_level")+"/"+j_k3.getString("k_level")+"/"+j_k3.getString("ipsg_level")+")");
                         }
                         if (j_k4.getString("ketrampilan").equals("null")) {
                             item.put("k4", " ");
                         } else {
-                            item.put("k4", j_k4.getString("ketrampilan"));
+                            item.put("k4", j_k4.getString("ketrampilan")+" ("+j_k4.getString("skdi_level")+"/"+j_k4.getString("k_level")+"/"+j_k4.getString("ipsg_level")+")");
                         }
                         MyArr.add(item);
 
@@ -158,10 +158,16 @@ public class showJurnalKetrampilan extends AppCompatActivity {
                                 final TextView sumber2=(TextView) v.findViewById(R.id.sumber2);
                                 final TextView sumber3=(TextView) v.findViewById(R.id.sumber3);
                                 final TextView sumber4=(TextView) v.findViewById(R.id.sumber4);
+                                final TextView status = v.findViewById(R.id.tv_status);
+
                                 sumber1.setText("Ketrampilan 1 : ");
                                 sumber2.setText("Ketrampilan 2 : ");
                                 sumber3.setText("Ketrampilan 3 : ");
                                 sumber4.setText("Ketrampilan 4 : ");
+
+                                if (status.getText().equals("Unapproved")) {
+                                    status.setTextColor(getResources().getColor(R.color.md_red_500));
+                                }
 
                                 return v;
                             }

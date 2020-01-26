@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ResidenActivity"
+    android:id="@+id/profile"
+    android:background="@drawable/grad">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_profile_dsn"
+        android:src="@drawable/ic_account"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/img_about3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_info" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E-LOGBOOK KOAS"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/colorBorder"
+        android:textSize="25sp"
+        android:id="@+id/tv_slmtdtg"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pendidikan Profesi Dokter"
+        android:fontFamily="sans-serif"
+        android:textStyle="bold"
+        android:layout_below="@id/tv_slmtdtg"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorBorder"
+        android:textSize="25sp"
+        android:id="@+id/tv_slmtdtgket"/>
+
+    <TextView
+        android:id="@+id/namadosen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_slmtdtgket"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_horizontal"
+        android:text="nama"
+        android:textColor="@color/colorBorder"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/namadosen"
+        android:id="@+id/usernamedosen"
+        android:text="nip"
+        android:fontFamily="sans-serif-light"
+        android:textSize="12sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorBorder"
+        android:layout_marginBottom="30dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp"
+        android:background="@drawable/roundedlayout"
+        android:layout_below="@+id/usernamedosen">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/menumhsw1"
+                android:gravity="center">
+                <RelativeLayout
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="#E37A04">
+
+                    <Button
+                        android:id="@+id/btn_generatecode"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="10dp" />
+
+                    <LinearLayout
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_centerHorizontal="true">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/ic_code"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Generate OTP"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#FFFFFF"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            android:textSize="17sp"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="#B61751">
+                    <Button
+                        android:id="@+id/btn_generateqr"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="10dp" />
+                    <LinearLayout
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_centerHorizontal="true">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/ic_qr"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Generate QR"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#FFFFFF"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            android:textSize="17sp"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/menumhsw1"
+                android:gravity="center">
+                <RelativeLayout
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="#460F39">
+                    <Button
+                        android:id="@+id/btn_dftrkeg"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@android:color/transparent"
+                        android:gravity="center"
+                        android:padding="10dp" />
+                    <LinearLayout
+                        android:layout_marginTop="15dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_centerHorizontal="true">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/ic_daftar_kegiatan"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Daftar Kegiatan"
+                            android:layout_marginTop="10dp"
+                            android:textColor="#FFFFFF"
+                            android:fontFamily="sans-serif"
+                            android:textStyle="bold"
+                            android:textSize="17sp"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>
+

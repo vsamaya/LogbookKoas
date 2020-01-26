@@ -25,9 +25,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class tambahJurnal extends AppCompatActivity {
-    String spinnerURL = "http://192.168.43.159/logbook/spinnerTambahJurnal.php";
-    String tanggalURL = "http://192.168.43.159/logbook/tanggalTambahJurnal.php";
-    String submitURL = "http://192.168.43.159/logbook/submitTambahJurnal.php";
+    String spinnerURL = "http://192.168.0.104/android/spinnerTambahJurnal.php";
+    String tanggalURL = "http://192.168.0.104/android/tanggalTambahJurnal.php";
+    String submitURL = "http://192.168.0.104/android/submitTambahJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;

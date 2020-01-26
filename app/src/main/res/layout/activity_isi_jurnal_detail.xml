@@ -28,7 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginRight="30dp"
                 android:gravity="center_horizontal"
                 android:text="TextView"
@@ -64,11 +64,13 @@
                 android:id="@+id/j_penyakit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_material_rounded_blue"
+                android:background="@drawable/roundedfulllayout"
+                android:backgroundTint="@color/md_blue_500"
+                android:backgroundTintMode="src_in"
                 android:orientation="vertical">
 
                 <ImageView
@@ -94,11 +96,13 @@
                 android:id="@+id/j_ketrampilan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/button_material_rounded_deep_orange"
+                android:background="@drawable/roundedfulllayout"
+                android:backgroundTint="@color/md_deep_orange_500"
+                android:backgroundTintMode="src_in"
                 android:orientation="vertical">
 
                 <ImageView
@@ -138,6 +142,18 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:id="@+id/textView24"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginBottom="5dp"
+                            android:text="* Setelah melakukan pegisian jurnal penyakit dan jurnal ketrampilan, harap mengisi evaluasi diri dan rencana esok hari dibawah"
+                            android:textColor="@color/md_deep_orange_A400"
+                            android:textSize="16sp" />
+
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="5dp"
@@ -152,6 +168,8 @@
                             android:id="@+id/evaluasi"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:background="@color/editText"
@@ -173,6 +191,8 @@
                             android:id="@+id/rencana"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
+                            android:paddingLeft="2dp"
+                            android:paddingRight="2dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:background="@color/editText"
@@ -181,6 +201,7 @@
                         <Button
                             android:id="@+id/entry"
                             android:layout_marginTop="5dp"
+                            android:layout_marginBottom="15dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"

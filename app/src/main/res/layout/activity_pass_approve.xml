@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="117dp"
@@ -65,7 +66,7 @@
 
                 <TextView
                     android:id="@+id/dosen"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -89,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawableStart="@drawable/usericon"
+                    android:drawableStart="@drawable/userpass"
                     android:drawablePadding="5dp"
                     android:hint="Password (Dosen)"
                     android:inputType="textPassword" />

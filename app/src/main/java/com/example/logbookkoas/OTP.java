@@ -25,7 +25,7 @@ public class OTP extends AppCompatActivity {
     private static final String KEY_USERNAME = "username";
     private static final String KEY_PIN = "pin";
     private static final String KEY_MESSAGE = "message";
-    private String updateOtp_url = "http://192.168.43.159/logbook/setOtp.php";
+    private String updateOtp_url = "http://192.168.0.104/android/setOtp.php";
     private SessionHandler session;
     private String pin;
     TextView Waktu;
