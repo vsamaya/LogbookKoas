@@ -29,8 +29,8 @@ public class MahasiswaActivity extends AppCompatActivity {
     ImageView iconmahasiswa;
     final ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
-    private String data_url = "http://192.168.0.104/logbook/getdataprofilms.php";
-    private String foto_url = "http://192.168.0.104/logbook/getdatafoto.php";
+    private String data_url = "http://192.168.0.104/android/getdataprofilms.php";
+    private String foto_url = "http://192.168.0.104/android/getdatafoto.php";
     private String foto_image = "http://192.168.0.104/koas/foto/";
     TextView usernamems,nmlengkap,id;
     RelativeLayout rotasiinternal;
@@ -39,16 +39,17 @@ public class MahasiswaActivity extends AppCompatActivity {
     RelativeLayout isijurnal;
     private String username;
     private String nama;
-    ImageView foto;
+    ImageView foto,about;
     @Override
     protected void onResume() {
         super.onResume();
         setContentView(R.layout.activity_mahasiswa);
         SessionHandler session= new SessionHandler(getApplicationContext());
         User user=session.getUserDetails();
-        String username=user.getUsername();
+        final String username=user.getUsername();
+        final String password = user.getPassword();
         String fullname=user.getFullName();
-        String pass=user.getPassword();
+        final String pass=user.getPassword();
         // Toast.makeText(MahasiswaActivity.this,pass, Toast.LENGTH_SHORT).show();
         // Toast.makeText(MahasiswaActivity.this, fullname, Toast.LENGTH_SHORT).show();
         //Toast.makeText(MahasiswaActivity.this, username, Toast.LENGTH_SHORT).show();
@@ -58,6 +59,7 @@ public class MahasiswaActivity extends AppCompatActivity {
         isijurnal=findViewById(R.id.btn_isijurnal);
         cekjurnal=findViewById(R.id.btn_cekjurnal);
         rekapjurnal=findViewById(R.id.btn_rekapjurnal);
+        about=findViewById(R.id.img_about);
         nama=nmlengkap.getText().toString();
         foto=findViewById(R.id.imgmhs);
         usernamems.setText(username);
@@ -72,6 +74,13 @@ public class MahasiswaActivity extends AppCompatActivity {
                 Intent iconms = new Intent(MahasiswaActivity.this, profil.class);
                 iconms.putExtras(bundle);
                 startActivity(iconms);
+            }
+        });
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MahasiswaActivity.this,about.class);
+                startActivity(i);
             }
         });
         rotasiinternal.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +108,7 @@ public class MahasiswaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/rekap_individu.php"));
+                intent.setData(Uri.parse("https://logbook.fk.undip.ac.id/koas/bridge_rekap_individu.php?usr="+username+"&pwd="+password));
                 String title = "Pilih browser untuk membuka  tautan";
                 Intent chooser = Intent.createChooser(intent, title);
                 if (intent.resolveActivity(getPackageManager()) != null) {

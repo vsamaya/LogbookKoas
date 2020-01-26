@@ -59,7 +59,7 @@ public class RotasiInternal extends Activity {
     ListView lv_isi_jurnal;
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
-    final String url_judul = "http://192.168.0.104/logbook/showalljurnal.php";
+    final String url_judul = "http://192.168.0.104/android/showalljurnal.php";
     TextView head1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,11 +93,10 @@ public class RotasiInternal extends Activity {
                 try {
                     JSONArray tmp = response.getJSONArray("tmp");
                     JSONArray mulai = response.getJSONArray("mulai");
-                    JSONArray selesai = response.getJSONArray("selesai");
                     for (int i = 0; i < tmp.length(); i++) {
                         JSONObject c = tmp.getJSONObject(i);
                         JSONObject cmulai = mulai.getJSONObject(i);
-                        JSONObject cselesai = selesai.getJSONObject(i);
+                        JSONObject cselesai = mulai.getJSONObject(i);
                         HashMap<String, String> map = new HashMap<String, String>();
                         map.put("id", c.getString("id"));
                         map.put("kepaniteraan", c.getString("kepaniteraan"));

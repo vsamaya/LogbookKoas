@@ -29,9 +29,9 @@ public class DosenActivity extends AppCompatActivity {
     Button btn_generatecode,btn_generateqr,btn_dftrkeg,btn_rekapkeg;
     TextView nama_user,name;
     private static final String KEY_USERNAME="username";
-    private String datads = "http://192.168.0.104/logbook/datads.php";
+    private String datads = "http://192.168.0.104/android/datads.php";
     ArrayList<HashMap<String,String>> list_data= new ArrayList<HashMap<String, String>>();
-    ImageView iconprofil;
+    ImageView iconprofil,about;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +40,8 @@ public class DosenActivity extends AppCompatActivity {
         User user=session.getUserDetails();
         nama_user=findViewById(R.id.usernamedosen);
         name=findViewById(R.id.namadosen);
-        String username=user.getUsername();
+        final String username=user.getUsername();
+        final String password = user.getPassword();
         String nama=user.getFullName();
         String pass=user.getPassword();
         //   Toast.makeText(DosenActivity.this,pass, Toast.LENGTH_SHORT).show();
@@ -56,6 +57,7 @@ public class DosenActivity extends AppCompatActivity {
         btn_dftrkeg=findViewById(R.id.btn_dftrkeg);
         btn_rekapkeg=findViewById(R.id.btn_rekapkeg);
         iconprofil=findViewById(R.id.img_profile_dsn);
+        about=findViewById(R.id.img_about);
         iconprofil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +67,13 @@ public class DosenActivity extends AppCompatActivity {
                 Intent icon=new Intent(DosenActivity.this,profilds.class);
                 icon.putExtras(bundleds);
                 startActivity(icon);
+            }
+        });
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(DosenActivity.this,about.class);
+                startActivity(i);
             }
         });
         btn_generatecode.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +103,7 @@ public class DosenActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/filter_rekap_kegiatan.php"));
+                intent.setData(Uri.parse("https://logbook.fk.undip.ac.id/koas/bridge_filter_rekap_kegiatan.php?usr="+username+"&pwd="+password));
                 String title = "Pilih browser untuk membuka  tautan";
                 Intent chooser = Intent.createChooser(intent, title);
                 if (intent.resolveActivity(getPackageManager()) != null) {

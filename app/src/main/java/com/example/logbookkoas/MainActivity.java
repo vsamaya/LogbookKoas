@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private String password;
     private ProgressDialog pDialog;
     private CheckBox keep;
-    private String login_url = "http://192.168.0.104/logbook/login.php";
+    private String login_url = "http://192.168.0.104/android/login.php";
     private SessionHandler session;
     EditText usernamet,passwordt;
     AwesomeText imgShowhidepassword;
@@ -130,10 +130,20 @@ public class MainActivity extends AppCompatActivity {
         else if(level1.equals("5")){
             loadDashboardMahasiswa();
         }
+        else if(level1.equals("6")){
+            loadDashboardResiden();
+        }
 
     }
     private void loadDashboardDosen() {
         Intent i = new Intent(getApplicationContext(), DosenActivity.class);
+        startActivity(i);
+        finish();
+
+    }
+
+    private void loadDashboardResiden() {
+        Intent i = new Intent(getApplicationContext(), ResidenActivity.class);
         startActivity(i);
         finish();
 
@@ -170,6 +180,9 @@ public class MainActivity extends AppCompatActivity {
                             }else if (response.getInt(KEY_STATUS) == 3){
                                 session.loginUser(username, response.getString(KEY_MENU),response.getString(KEY_FULL_NAME),response.getString(KEY_PASS));
                                 loadDashboardMahasiswa();
+                            }else if (response.getInt(KEY_STATUS) == 4){
+                                session.loginUser(username, response.getString(KEY_MENU),response.getString(KEY_FULL_NAME),response.getString(KEY_PASS));
+                                loadDashboardResiden();
                             }else{
                                 Toast.makeText(getApplicationContext(),
                                         response.getString(KEY_MESSAGE), Toast.LENGTH_SHORT).show();

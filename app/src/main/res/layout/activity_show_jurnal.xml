@@ -42,7 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/button_material_rounded_blue"
+                android:background="@drawable/roundedfulllayout"
+                android:backgroundTint="@color/md_blue_500"
+                android:backgroundTintMode="src_in"
                 android:orientation="vertical">
 
                 <TextView
@@ -78,7 +80,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/button_material_rounded_deep_orange"
+                android:background="@drawable/roundedfulllayout"
+                android:backgroundTint="@color/md_deep_orange_500"
                 android:orientation="vertical">
 
                 <TextView

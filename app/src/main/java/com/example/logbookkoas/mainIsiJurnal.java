@@ -36,7 +36,7 @@ public class mainIsiJurnal extends Activity {
     ListView lv_isi_jurnal;
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
-    final String url_judul = "http://192.168.0.104/logbook/showalljurnal.php";
+    final String url_judul = "http://192.168.0.104/android/showalljurnal.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,73 +45,7 @@ public class mainIsiJurnal extends Activity {
         MyArr = new ArrayList<HashMap<String, String>>();
         showalljurnal();
 
-        /*try {
-
-            JSONArray data = new JSONArray(getJSONUrl(url_judul));
-
-            final ArrayList<HashMap<String, String>> MyArrList = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
-            for(int i = 0; i < data.length(); i++){
-                JSONObject c = data.getJSONObject(i);
-                map = new HashMap<String, String>();
-                map.put("kepaniteraan", c.getString("kepaniteraan"));
-                map.put("id", c.getString("id"));
-                MyArrList.add(map);
-                String stase="stase_"+c.getString("kepaniteraan");
-                String url_jadwal= "http://192.168.0.103/jadwal1.php?stase="+stase;
-            }
-            SimpleAdapter lAdap;
-            lAdap = new SimpleAdapter(mainIsiJurnal.this, MyArrList, R.layout.item_row_jurnal,
-                    new String[] {"kepaniteraan"}, new int[] {R.id.tv_judul});
-            lv_isi_jurnal.setAdapter(lAdap);
-
-            final AlertDialog.Builder viewDetail = new AlertDialog.Builder(this);
-
-            lv_isi_jurnal.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-                    HashMap<String, String> map = MyArrList.get(pos);
-                    Intent i = new Intent(mainIsiJurnal.this,IsiJurnalDetail.class);
-                    i.putExtra (KEY_ID,(map.get("id")));
-                    startActivity(i);
-                }
-            });
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
     }
-
-    /*public String getJSONUrl(String url) {
-        StringBuilder str = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(url);
-        try {
-            HttpResponse response = client.execute(httpGet);
-            StatusLine statusLine = response.getStatusLine();
-            int statusCode = statusLine.getStatusCode();
-            if (statusCode == 200) { // Download OK
-                HttpEntity entity = response.getEntity();
-                InputStream content = entity.getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    str.append(line);
-                }
-            } else {
-                Log.e("Log", "Failed to download result..");
-            }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return str.toString();
-    }
-*/
 
     private void showalljurnal(){
         JSONObject request = new JSONObject();
@@ -132,11 +66,10 @@ public class mainIsiJurnal extends Activity {
                 try {
                     JSONArray tmp = response.getJSONArray("tmp");
                     JSONArray mulai = response.getJSONArray("mulai");
-                    JSONArray selesai = response.getJSONArray("selesai");
                     for (int i = 0; i < tmp.length(); i++) {
                         JSONObject c = tmp.getJSONObject(i);
                         JSONObject cmulai = mulai.getJSONObject(i);
-                        JSONObject cselesai = selesai.getJSONObject(i);
+                        JSONObject cselesai = mulai.getJSONObject(i);
                         HashMap<String, String> map = new HashMap<String, String>();
                         map.put("id", c.getString("id"));
                         map.put("kepaniteraan", c.getString("kepaniteraan"));

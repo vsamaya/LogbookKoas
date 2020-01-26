@@ -1,6 +1,7 @@
 package com.example.logbookkoas;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.Menu;
@@ -45,11 +46,13 @@ import java.util.HashMap;
 public class RotasiInternalDetail extends AppCompatActivity {
     private SessionHandler session;
     ListView lv_rot;
-    private String header = "http://192.168.0.104/logbook/getKepaniteraan.php";
-    final String urlsem = "http://192.168.0.104/logbook/rotasi_internal.php";
-    private String judul = "http://192.168.0.104/logbook/getJadwal.php";
-    private String update_status = "http://192.168.0.104/logbook/updateStatus.php";
+    private String header = "http://192.168.0.104/android/getKepaniteraan.php";
+    final String urlsem = "http://192.168.0.104/android/rotasi_internal.php";
+    private String judul = "http://192.168.0.104/android/getJadwal.php";
+    private String update_status = "http://192.168.0.104/android/updateStatus.php";
+    private String create_rotasi = "http://192.168.0.104/android/create_rotasi.php";
     public static final String KEY_ID = "id";
+    public static final String KEY_USERNAME = "username";
     ArrayList<HashMap<String, String>> MyArr1= new ArrayList<HashMap<String,String>>();
     TextView stase,tanggal,id_stase;
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -70,6 +73,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
         judul();
+        create();
         process();
         staserotasi();
     }
@@ -131,46 +135,6 @@ public class RotasiInternalDetail extends AppCompatActivity {
             String jadwal = tglMulaiText + " - " + tglSelesaiText;
             tanggal.setText(jadwal);
             id_stase.setText(idStase);
-
-
-            Date now = Calendar.getInstance().getTime();
-            if(now.after(tglMulai) && now.before(tglSelesai1)) {
-                String status = "1";
-                String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
-                try {
-                    new JSONArray(getJSONUrl(url_status));
-
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-
-            }
-            else if(now.before(tglMulai)){
-                String status = "0";
-                lv_rot.setVisibility(LinearLayout.GONE);
-                String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
-                try {
-                    new JSONArray(getJSONUrl(url_status));
-
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-            else{
-                String status = "2";
-                lv_rot.setVisibility(LinearLayout.GONE);
-                String url_status = update_status+"?username="+username+"&stase="+idStase+"&status="+status;
-                try {
-                    new JSONArray(getJSONUrl(url_status));
-
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
-
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -219,6 +183,12 @@ public class RotasiInternalDetail extends AppCompatActivity {
                     JSONArray array10 = response.getJSONArray("array10");
                     JSONArray array11 = response.getJSONArray("array11");
                     JSONArray array12 = response.getJSONArray("array12");
+                    JSONArray gelar1 = response.getJSONArray("gelar1");
+                    JSONArray gelar2 = response.getJSONArray("gelar2");
+                    JSONArray gelar3 = response.getJSONArray("gelar3");
+                    JSONArray gelar4 = response.getJSONArray("gelar4");
+                    JSONArray gelar5 = response.getJSONArray("gelar5");
+                    JSONArray gelar6 = response.getJSONArray("gelar6");
                     for (int i = 0; i < tmp.length(); i++) {
                         JSONObject c = tmp.getJSONObject(i);
                         JSONObject d = total.getJSONObject(i);
@@ -234,6 +204,12 @@ public class RotasiInternalDetail extends AppCompatActivity {
                         JSONObject o = array10.getJSONObject(i);
                         JSONObject p = array11.getJSONObject(i);
                         JSONObject q = array12.getJSONObject(i);
+                        JSONObject aa = gelar1.getJSONObject(i);
+                        JSONObject bb = gelar2.getJSONObject(i);
+                        JSONObject cc = gelar3.getJSONObject(i);
+                        JSONObject dd = gelar4.getJSONObject(i);
+                        JSONObject ee = gelar5.getJSONObject(i);
+                        JSONObject ff = gelar6.getJSONObject(i);
                         HashMap<String, String> map = new HashMap<String, String>();
                         map.put("id_rotasi",c.getString("id"));
                         map.put("stase", c.getString("internal"));
@@ -243,26 +219,50 @@ public class RotasiInternalDetail extends AppCompatActivity {
                         map.put("dosen1",e.getString("dosen1"));
                         map.put("rotasi1",e.getString("rotasi1"));
                         map.put("status1",e.getString("status1"));
+                        map.put("gelar1",aa.getString("gelar"));
+                        if(aa.getString("gelar").equals("null")){
+                            map.put("gelar","");
+                        }
                         map.put("tgl2",f.getString("tgl2"));
                         map.put("dosen2",f.getString("dosen2"));
                         map.put("rotasi2",f.getString("rotasi2"));
                         map.put("status2",f.getString("status2"));
+                        map.put("gelar2",bb.getString("gelar"));
+                        if(bb.getString("gelar").equals("null")){
+                            map.put("gelar","");
+                        }
                         map.put("tgl3",g.getString("tgl3"));
                         map.put("dosen3",g.getString("dosen3"));
                         map.put("rotasi3",g.getString("rotasi3"));
                         map.put("status3",g.getString("status3"));
+                        map.put("gelar3",cc.getString("gelar"));
+                        if(cc.getString("gelar").equals("null")){
+                            map.put("gelar","");
+                        }
                         map.put("tgl4",h.getString("tgl4"));
                         map.put("dosen4",h.getString("dosen4"));
                         map.put("rotasi4",h.getString("rotasi4"));
                         map.put("status4",h.getString("status4"));
+                        map.put("gelar4",dd.getString("gelar"));
+                        if(dd.getString("gelar").equals("null")){
+                            map.put("gelar","");
+                        }
                         map.put("tgl5",j.getString("tgl5"));
                         map.put("dosen5",j.getString("dosen5"));
                         map.put("rotasi5",j.getString("rotasi5"));
                         map.put("status5",j.getString("status5"));
+                        map.put("gelar5",ee.getString("gelar"));
+                        if(ee.getString("gelar").equals("null")){
+                            map.put("gelar","");
+                        }
                         map.put("tgl6",k.getString("tgl6"));
                         map.put("dosen6",k.getString("dosen6"));
                         map.put("rotasi6",k.getString("rotasi6"));
                         map.put("status6",k.getString("status6"));
+                        map.put("gelar6",ff.getString("gelar"));
+                        if(ee.getString("gelar").equals("null")){
+                            map.put("gelar","");
+                        }
                         if(e.getString("tgl1").equals("null")){
                             map.put("tgl1","");
                             map.put("dosen1","");
@@ -334,6 +334,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             Date tglselesai = tglml;
                             Date tglselesai1 = tglml;
                             String a = "";
+                            String za = "";
                             String b = "";
                             String z = "";
                             if (i == 0) {
@@ -341,9 +342,10 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 a = e.getString("tgl1");
                                 b = l.getString("nama");
                                 z = e.getString("dosen1");
+                                za= aa.getString("gelar");
                                 map.put("user",z);
-                                map.put("dosen",b);
-                                map.put("tglmli", a);
+                                map.put("dosen",b+", "+za);
+                                map.put("tglmli",a);
                                 String wktu = c.getString("hari");
                                 int waktu = Integer.parseInt(wktu);
                                 int sum = 1000 * 60 * 60 * 24 * waktu;
@@ -357,8 +359,9 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 a = f.getString("tgl2");
                                 b = m.getString("nama");
                                 z = f.getString("dosen2");
+                                za= bb.getString("gelar");
                                 map.put("user",z);
-                                map.put("dosen",b);
+                                map.put("dosen",b+", "+za);
                                 tglMulai = format.parse(f.getString("tgl2"));
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
@@ -375,8 +378,9 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 a = g.getString("tgl3");
                                 b = n.getString("nama");
                                 z = g.getString("dosen3");
+                                za= cc.getString("gelar");
                                 map.put("user",z);
-                                map.put("dosen",b);
+                                map.put("dosen",b+", "+za);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
                                 int waktu = Integer.parseInt(wktu);
@@ -392,8 +396,9 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 a = h.getString("tgl4");
                                 b = o.getString("nama");
                                 z = h.getString("dosen4");
+                                za= dd.getString("gelar");
                                 map.put("user",z);
-                                map.put("dosen",b);
+                                map.put("dosen",b+", "+za);
                                 map.put("tglmli", a);
                                 String wktu = c.getString("hari");
                                 int waktu = Integer.parseInt(wktu);
@@ -409,8 +414,9 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 a = j.getString("tgl5");
                                 b = p.getString("nama");
                                 z = j.getString("dosen5");
+                                za= ee.getString("gelar");
                                 map.put("user",z);
-                                map.put("dosen",b);
+                                map.put("dosen",b+", "+za);
                                 map.put("tglmli", a);
 
                                 String wktu = c.getString("hari");
@@ -427,8 +433,9 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                 a = k.getString("tgl6");
                                 b = q.getString("nama");
                                 z = k.getString("dosen6");
+                                za= ff.getString("gelar");
                                 map.put("user",z);
-                                map.put("dosen",b);
+                                map.put("dosen",b+", "+za);
                                 map.put("tglmli", a);
 
                                 String wktu = c.getString("hari");
@@ -479,10 +486,10 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                     map.put("status", "-");
                                     break;
                                 case "0":
-                                    map.put("status", "Unapprove");
+                                    map.put("status", "Unapproved");
                                     break;
                                 case "1":
-                                    map.put("status", "Approve");
+                                    map.put("status", "Approved");
                                     break;
                             }
                         }
@@ -521,7 +528,6 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             final LinearLayout lay_dos = lv.findViewById(R.id.lay_dos);
                             final Button approval = lv.findViewById(R.id.btn_approve);
                             final Button edit = lv.findViewById(R.id.btn_edit);
-                            final Button tambah = lv.findViewById(R.id.btn_tambah);
                             lamahari.append(" hari");
                             try {
                                 final TextView tgl_selesai1 = lv.findViewById(R.id.tv_tgl_selesai);
@@ -542,41 +548,19 @@ public class RotasiInternalDetail extends AppCompatActivity {
                             if(tgl_mulai.getText().equals(" ")){
                                 lay_dos.setVisibility(View.GONE);
                                 approval.setVisibility(View.GONE);
+                                edit.setVisibility(View.VISIBLE);
                             }
-                            if (status.getText().equals("Approve")) {
+                            if (status.getText().equals("Approved")) {
                                 status.setTextColor(getResources().getColor(R.color.md_green_900));
                                 lay_dos.setVisibility(View.GONE);
                                 approval.setVisibility(View.GONE);
                                 edit.setVisibility(View.GONE);
-                                tambah.setVisibility(View.GONE);
-                            } else if (status.getText().equals("Unapprove")) {
+                            } else if (status.getText().equals("Unapproved")) {
                                 status.setTextColor(getResources().getColor(R.color.md_red_900));
-                                tambah.setVisibility(View.GONE);
-                            } else if(status.getText().equals("-")){
-                                lay_dos.setVisibility(View.GONE);
-                                approval.setVisibility(View.GONE);
-                                edit.setVisibility(View.GONE);
+                                lay_dos.setVisibility(View.VISIBLE);
+                                approval.setVisibility(View.VISIBLE);
+                                edit.setVisibility(View.VISIBLE);
                             }
-                            if(dosen.getText().equals("null")){
-                                lay_dos.setVisibility(View.GONE);
-                            }
-                            tambah.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent i=new Intent(RotasiInternalDetail.this, ri_tambah.class);
-                                    int nomor= position+1;
-                                    String nmr=Integer.toString(nomor);
-                                    i.putExtra("lama",map.get("hari"));
-                                    i.putExtra("stase",stase.getText().toString());
-                                    i.putExtra("tgl_mulai",map.get("tglmli"));
-                                    i.putExtra("rotasi",rotasi.getText());
-                                    i.putExtra("id_internal",id_internal.getText());
-                                    i.putExtra("id",id);
-                                    i.putExtra("dosen",dosen.getText());
-                                    startActivity(i);
-                                }
-                            });
-
                             edit.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
@@ -625,6 +609,44 @@ public class RotasiInternalDetail extends AppCompatActivity {
         });
         MySingleton.getInstance(this).addToRequestQueue(json);
 
+    }
+
+    private void create() {
+        JSONObject request = new JSONObject();
+        try {
+            //Populate the request parameters
+            session = new SessionHandler(getApplicationContext());
+            User user = session.getUserDetails();
+            String username = user.getUsername();
+            Intent i = getIntent();
+            final String id = i.getStringExtra(RotasiInternal.KEY_ID);
+            request.put(KEY_USERNAME, username);
+            request.put(KEY_ID, id);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        JsonObjectRequest jsArrayRequest = new JsonObjectRequest
+                (Request.Method.POST, create_rotasi, request, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                    }
+                }, new Response.ErrorListener() {
+
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        //Display error message whenever an error occurs
+                        Toast.makeText(getApplicationContext(),
+                                error.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+        // Access the RequestQueue through your singleton class.
+        MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
     }
 
     private static String[] getStringArray(ArrayList<String> arr) {

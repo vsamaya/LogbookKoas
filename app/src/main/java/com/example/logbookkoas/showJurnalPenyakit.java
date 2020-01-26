@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -47,7 +48,7 @@ public class showJurnalPenyakit extends AppCompatActivity {
     ListView lv_penyakit;
     TextView empty;
     ArrayList<HashMap<String, String>> MyArr;
-    final String url_penyakit = "http://192.168.0.104/logbook/penyakit.php";
+    final String url_penyakit = "http://192.168.0.104/android/penyakit.php";
     final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     final SimpleDateFormat convert = new SimpleDateFormat("yyyy-MM-dd");
     @Override
@@ -110,28 +111,28 @@ public class showJurnalPenyakit extends AppCompatActivity {
                         HashMap<String, String> item = new HashMap<String, String>();
                         item.put("jam_awal", j.getString("jam_awal"));
                         item.put("jam_akhir", j.getString("jam_akhir"));
-                        item.put("nama", j_dosen.getString("nama"));
+                        item.put("nama", j_dosen.getString("nama")+", "+j_dosen.getString("gelar"));
                         if (j.getString("status").equals("1")) {
                             item.put("status", "Approved");
                         } else item.put("status", "Unapproved");
                         item.put("kegiatan", j_kegiatan.getString("kegiatan"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
                         item.put("kelas", j_kelas.getString("kelas"));
-                        item.put("p1", j_p1.getString("penyakit"));
+                        item.put("p1", j_p1.getString("penyakit")+" ("+j_p1.getString("skdi_level")+"/"+j_p1.getString("k_level")+")");
                         if (j_p2.getString("penyakit").equals("null")) {
                             item.put("p2", " ");
                         } else {
-                            item.put("p2", j_p2.getString("penyakit"));
+                            item.put("p2", j_p2.getString("penyakit")+" ("+j_p2.getString("skdi_level")+"/"+j_p2.getString("k_level")+")");
                         }
                         if (j_p3.getString("penyakit").equals("null")) {
                             item.put("p3", " ");
                         } else {
-                            item.put("p3", j_p3.getString("penyakit"));
+                            item.put("p3", j_p3.getString("penyakit")+" ("+j_p3.getString("skdi_level")+"/"+j_p3.getString("k_level")+")");
                         }
                         if (j_p4.getString("penyakit").equals("null")) {
                             item.put("p4", " ");
                         } else {
-                            item.put("p4", j_p4.getString("penyakit"));
+                            item.put("p4", j_p4.getString("penyakit")+" ("+j_p4.getString("skdi_level")+"/"+j_p4.getString("k_level")+")");
                         }
                         MyArr.add(item);
 
@@ -145,7 +146,23 @@ public class showJurnalPenyakit extends AppCompatActivity {
                                 new String[] {"jam_awal","jam_akhir","lokasi","kelas","kegiatan","nama","status","p1","p2","p3","p4"},
                                 new int[] {R.id.tv_jam,R.id.tv_jam2,R.id.tv_lokasi,R.id.tv_kelas,R.id.tv_kegiatan,
                                         R.id.tv_dosen,R.id.tv_status,R.id.tv_sumber1,R.id.tv_sumber2,
-                                        R.id.tv_sumber3,R.id.tv_sumber4,});
+                                        R.id.tv_sumber3,R.id.tv_sumber4,})
+                        {
+                            @Override
+                            public View getView (int position, View convertView, ViewGroup parent)
+                            {
+                                View v = super.getView(position, convertView, parent);
+
+                                final TextView status = v.findViewById(R.id.tv_status);
+
+                                if (status.getText().equals("Unapproved")) {
+                                    status.setTextColor(getResources().getColor(R.color.md_red_500));
+                                }
+
+                                return v;
+                            }
+                        }
+                                ;
                         lv_penyakit.setAdapter(sAdap);
 
                     }

@@ -25,6 +25,8 @@
     <string name="hapus">hapus</string>
     <string name="ganti">ganti</string>
     <string name="namabr">Nama Lengkap</string>
+    <string name="deskripsi_about">Aplikasi E-Logbook Koas merupakan aplikasi pengganti pengisian logbook manual untuk kegiatan koas di Program Studi Pendidikan Profesi Dokter Fakultas Kedokteran Universitas Diponegoro.</string>
+    <string name="copyright">Copyright: @fkundip</string>
     <string-array name="select">selecet an item</string-array>
     <string-array name="proparray">
         <item>11-ACEH</item>

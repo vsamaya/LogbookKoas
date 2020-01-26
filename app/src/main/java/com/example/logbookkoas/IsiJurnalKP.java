@@ -1,8 +1,10 @@
 package com.example.logbookkoas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +16,8 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -44,8 +48,8 @@ public class IsiJurnalKP extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_MESSAGE = "message";
     public static final String KEY_ID = "id";
-    private String showURL = "http://192.168.0.104/logbook/daftar_isi_jurnal.php";
-    private String deleteJurnalURL= "http://192.168.0.104/logbook/deleteJurnal.php";
+    private String showURL = "http://192.168.0.104/android/daftar_isi_jurnal.php";
+    private String deleteJurnalURL= "http://192.168.0.104/android/deleteJurnal.php";
     ListView list;
     TextView empty;
     LinearLayout buttonPenyakit;
@@ -143,6 +147,7 @@ public class IsiJurnalKP extends AppCompatActivity {
                         HashMap<String, String> item = new HashMap<String, String>();
                         item.put("id",j.getString("id"));
                         item.put("nim", j.getString("nim"));
+                        item.put("nama", j.getString("dosen"));
                         String tanggal = changeDate(j.getString("tanggal"));
                         item.put("tanggal",tanggal+" ");
                         item.put("waktu",j.getString("jam_awal")+"-"+j.getString("jam_akhir")+" ");
@@ -157,23 +162,23 @@ public class IsiJurnalKP extends AppCompatActivity {
                         id_penyakit.add(j.getString("id"));
                         statusPenyakit.add(j.getString("status"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
-                        item.put("p1", j_p1.getString("penyakit").toUpperCase());
+                        item.put("p1", j_p1.getString("penyakit").toUpperCase()+" ("+j_p1.getString("skdi_level")+"/"+j_p1.getString("k_level")+")");
 
                         if (j_p2.getString("penyakit").equals("null")) {
                             item.put("p2", "-");
 
                         } else {
-                            item.put("p2", j_p2.getString("penyakit").toUpperCase());
+                            item.put("p2", j_p2.getString("penyakit").toUpperCase()+" ("+j_p2.getString("skdi_level")+"/"+j_p2.getString("k_level")+")");
                         }
                         if (j_p3.getString("penyakit").equals("null")) {
                             item.put("p3", "-");
                         } else {
-                            item.put("p3", j_p3.getString("penyakit").toUpperCase());
+                            item.put("p3", j_p3.getString("penyakit").toUpperCase()+" ("+j_p3.getString("skdi_level")+"/"+j_p3.getString("k_level")+")");
                         }
                         if (j_p4.getString("penyakit").equals("null")) {
                             item.put("p4", "-");
                         } else {
-                            item.put("p4", j_p4.getString("penyakit").toUpperCase());
+                            item.put("p4", j_p4.getString("penyakit").toUpperCase()+" ("+j_p4.getString("skdi_level")+"/"+j_p4.getString("k_level")+")");
                         }
                         list_jurnal_penyakit.add(item);
 
@@ -185,11 +190,12 @@ public class IsiJurnalKP extends AppCompatActivity {
 
                         ListAdapter adapter =new SimpleAdapter(
                                 getApplicationContext(), list_jurnal_penyakit, R.layout.item_row_show,
-                                new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status","dos"},
+                                new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status","dos","nama"},
                                 new int[]{R.id.tv_jam, R.id.tv_lokasi, R.id.tv_kegiatan, R.id.tv_sumber, R.id.tv_sumber2,
-                                        R.id.tv_sumber3, R.id.tv_sumber4, R.id.tv_dosen, R.id.tv_status, R.id.tv_dos}
+                                        R.id.tv_sumber3, R.id.tv_sumber4, R.id.tv_dosen, R.id.tv_status, R.id.tv_dos, R.id.dosen}
                         )
                         {
+                            @SuppressLint("ResourceAsColor")
                             @Override
                             public View getView (final int position, View convertView, ViewGroup parent)
                             {
@@ -212,17 +218,15 @@ public class IsiJurnalKP extends AppCompatActivity {
                                 final TextView penyakit3 = v.findViewById(R.id.tv_sumber3);
                                 final TextView penyakit4 = v.findViewById(R.id.tv_sumber4);
                                 final TextView status = v.findViewById(R.id.tv_status);
+                                final TextView nama = v.findViewById(R.id.dosen);
 
-                                if (status.getText().equals("Approved")) {
-                                    approve.setVisibility(View.GONE);
-                                    edit.setVisibility(View.GONE);}
 
                                 approve.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
                                         Intent a=new Intent(IsiJurnalKP.this, MainApprove.class);
                                         a.putExtra("jurnal","jurnal_penyakit");
-                                        a.putExtra("dos",dos.getText());
+                                        a.putExtra("dos",nama.getText());
                                         a.putExtra("dosen_lengkap",dosen.getText());
                                         String[] idArray = getStringArray(id_penyakit);
                                         String id = idArray[position];
@@ -234,10 +238,24 @@ public class IsiJurnalKP extends AppCompatActivity {
                                 delete.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        String jenis = "Jurnal Penyakit";
-                                        String[] idArray = getStringArray(id_penyakit);
-                                        String id = idArray[position];
-                                        deleteJurnalPenyakit(jenis,id);
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(IsiJurnalKP.this);
+                                        builder.setMessage("Delete Jurnal?")
+                                                .setTitle("Confirm delete")
+                                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int i) {
+                                                        // CONFIRM
+                                                        String jenis = "Jurnal Penyakit";
+                                                        String[] idArray = getStringArray(id_penyakit);
+                                                        String id = idArray[position];
+                                                        deleteJurnalPenyakit(jenis,id);
+                                                    }
+                                                })
+                                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        // CANCEL
+                                                    }
+                                                }).show();
+
 
 
                                     }
@@ -267,9 +285,15 @@ public class IsiJurnalKP extends AppCompatActivity {
                                     }
                                 });
                                 if(statP[position].equals("0")){
+                                    status.setTextColor(Color.RED);
                                     approve.setVisibility(View.VISIBLE);
+                                    edit.setVisibility(View.VISIBLE);
+                                    delete.setVisibility(View.VISIBLE);
                                 }else {
+                                    status.setTextColor(getResources().getColor(R.color.colorGradBefore));
                                     approve.setVisibility(View.GONE);
+                                    edit.setVisibility(View.GONE);
+                                    delete.setVisibility(View.GONE);
                                 }
 
 
@@ -354,6 +378,7 @@ public class IsiJurnalKP extends AppCompatActivity {
                         HashMap<String, String> item = new HashMap<String, String>();
                         item.put("id",j.getString("id"));
                         item.put("nim", j.getString("nim"));
+                        item.put("nama", j.getString("dosen"));
                         String tanggal = changeDate(j.getString("tanggal"));
                         item.put("tanggal",tanggal+" ");
                         item.put("waktu",j.getString("jam_awal")+"-"+j.getString("jam_akhir")+" ");
@@ -369,23 +394,23 @@ public class IsiJurnalKP extends AppCompatActivity {
                         statusKetrampilan.add(j.getString("status"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
 
-                        item.put("p1", j_p1.getString("ketrampilan").toUpperCase());
+                        item.put("p1", j_p1.getString("ketrampilan").toUpperCase()+" ("+j_p1.getString("skdi_level")+"/"+j_p1.getString("k_level")+"/"+j_p1.getString("ipsg_level")+")");
 
                         if (j_p2.getString("ketrampilan").equals("null")) {
                             item.put("p2", "-");
 
                         } else {
-                            item.put("p2", j_p2.getString("ketrampilan").toUpperCase());
+                            item.put("p2", j_p2.getString("ketrampilan").toUpperCase()+" ("+j_p2.getString("skdi_level")+"/"+j_p2.getString("k_level")+"/"+j_p2.getString("ipsg_level")+")");
                         }
                         if (j_p3.getString("ketrampilan").equals("null")) {
                             item.put("p3", "-");
                         } else {
-                            item.put("p3", j_p3.getString("ketrampilan").toUpperCase());
+                            item.put("p3", j_p3.getString("ketrampilan").toUpperCase()+" ("+j_p3.getString("skdi_level")+"/"+j_p3.getString("k_level")+"/"+j_p3.getString("ipsg_level")+")");
                         }
                         if (j_p4.getString("ketrampilan").equals("null")) {
                             item.put("p4", "-");
                         } else {
-                            item.put("p4", j_p4.getString("ketrampilan").toUpperCase());
+                            item.put("p4", j_p4.getString("ketrampilan").toUpperCase()+" ("+j_p4.getString("skdi_level")+"/"+j_p4.getString("k_level")+"/"+j_p4.getString("ipsg_level")+")");
                         }
                         list_jurnal_ketrampilan.add(item);
 
@@ -397,9 +422,9 @@ public class IsiJurnalKP extends AppCompatActivity {
                     } else {
                         ListAdapter adapter =new SimpleAdapter(
                                 getApplicationContext(), list_jurnal_ketrampilan, R.layout.item_row_show,
-                                new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status","dos"},
+                                new String[]{"waktu","lokasi","kegiatan","p1","p2","p3","p4","dosen","status","dos","nama"},
                                 new int[]{R.id.tv_jam, R.id.tv_lokasi, R.id.tv_kegiatan, R.id.tv_sumber, R.id.tv_sumber2,
-                                        R.id.tv_sumber3, R.id.tv_sumber4, R.id.tv_dosen, R.id.tv_status, R.id.tv_dos}
+                                        R.id.tv_sumber3, R.id.tv_sumber4, R.id.tv_dosen, R.id.tv_status, R.id.tv_dos,R.id.dosen}
                         )
                         {
                             @Override
@@ -416,6 +441,7 @@ public class IsiJurnalKP extends AppCompatActivity {
                                 final TextView kegiatan = v.findViewById(R.id.tv_kegiatan);
                                 final TextView dosen = v.findViewById(R.id.tv_dosen);
                                 final TextView dos = v.findViewById(R.id.tv_dos);
+                                final TextView nama = v.findViewById(R.id.dosen);
                                 TextView jam = v.findViewById(R.id.tv_jam);
                                 String jam1 = (String) jam.getText();
                                 final String jam_awal = jam1.substring(0,5);
@@ -435,16 +461,12 @@ public class IsiJurnalKP extends AppCompatActivity {
                                 sumber3.setText("Ketrampilan 3 : ");
                                 sumber4.setText("Ketrampilan 4 : ");
 
-                                if (status.getText().equals("Approved")) {
-                                    approve.setVisibility(View.GONE);
-                                    edit.setVisibility(View.GONE);}
-
                                 approve.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
                                         Intent a=new Intent(IsiJurnalKP.this, MainApprove.class);
                                         a.putExtra("jurnal","jurnal_ketrampilan");
-                                        a.putExtra("dos",dos.getText());
+                                        a.putExtra("dos",nama.getText());
                                         a.putExtra("dosen_lengkap",dosen.getText());
                                         String[] idArray = getStringArray(id_ketrampilan);
                                         String id = idArray[position];
@@ -456,10 +478,26 @@ public class IsiJurnalKP extends AppCompatActivity {
                                 delete.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
-                                        String jenis = "Jurnal Ketrampilan";
-                                        String[] idArray = getStringArray(id_ketrampilan);
-                                        String id = idArray[position];
-                                        deleteJurnalKetrampilan(jenis,id);
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(IsiJurnalKP.this);
+                                        builder.setMessage("Delete Jurnal?")
+                                                .setTitle("Confirm delete")
+                                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int i) {
+                                                        // CONFIRM
+                                                        String jenis = "Jurnal Ketrampilan";
+                                                        String[] idArray = getStringArray(id_ketrampilan);
+                                                        String id = idArray[position];
+                                                        deleteJurnalKetrampilan(jenis,id);
+                                                    }
+                                                })
+                                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                                    public void onClick(DialogInterface dialog, int id) {
+                                                        // CANCEL
+                                                    }
+                                                }).show();
+                                        // Create the AlertDialog object and return it
+//                                        return builder.create();
+
                                     }
                                 });
                                 edit.setOnClickListener(new View.OnClickListener() {
@@ -486,9 +524,15 @@ public class IsiJurnalKP extends AppCompatActivity {
                                     }
                                 });
                                 if(statK[position].equals("0")){
+                                    status.setTextColor(Color.RED);
                                     approve.setVisibility(View.VISIBLE);
+                                    edit.setVisibility(View.VISIBLE);
+                                    delete.setVisibility(View.VISIBLE);
                                 }else {
+                                    status.setTextColor(getResources().getColor(R.color.colorGradBefore));
                                     approve.setVisibility(View.GONE);
+                                    edit.setVisibility(View.GONE);
+                                    delete.setVisibility(View.GONE);
                                 }
 
 
@@ -584,6 +628,11 @@ public class IsiJurnalKP extends AppCompatActivity {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+        Toast.makeText(IsiJurnalKP.this, "Jurnal berhasil dihapus",
+                Toast.LENGTH_LONG).show();
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
 
     }
 
@@ -635,6 +684,11 @@ public class IsiJurnalKP extends AppCompatActivity {
 
         // Access the RequestQueue through your singleton class.
         MySingleton.getInstance(this).addToRequestQueue(jsArrayRequest);
+        Toast.makeText(IsiJurnalKP.this, "Jurnal berhasil dihapus",
+                Toast.LENGTH_LONG).show();
+        Intent intent = getIntent();
+        finish();
+        startActivity(intent);
 
     }
 

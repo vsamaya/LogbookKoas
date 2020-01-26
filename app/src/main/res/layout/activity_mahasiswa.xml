@@ -15,6 +15,16 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/img_about"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/ic_info" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -59,18 +69,23 @@
             android:layout_margin="3dp"
             android:padding="2dp" />
     </RelativeLayout>
+
     <TextView
+        android:id="@+id/namamahasiswa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/profilepic"
-        android:id="@+id/namamahasiswa"
-        android:text="nama"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
+        android:layout_marginEnd="10dp"
         android:fontFamily="sans-serif-light"
-        android:textColor="@color/colorBorder"/>
+        android:gravity="center_horizontal"
+        android:text="nama"
+        android:textColor="@color/colorBorder"
+        android:textSize="20sp"
+        android:textStyle="bold" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

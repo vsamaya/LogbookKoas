@@ -23,7 +23,7 @@ public class profilds extends AppCompatActivity {
     ArrayList<String> bagianilmu = new ArrayList<String>();
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     ArrayList<String> MyArrList = new ArrayList<String>();
-    String url = "http://192.168.0.104/logbook/getidbagian.php";
+    String url = "http://192.168.0.104/android/getidbagian.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,8 @@ public class profilds extends AppCompatActivity {
         setContentView(R.layout.activity_profilds);
         final SessionHandler session = new SessionHandler(getApplicationContext());
         User user = session.getUserDetails();
+        final String username = user.getUsername();
+        final String password = user.getPassword();
         username1 = findViewById(R.id.usernamedsp);
         nama1 = findViewById(R.id.namadsp);
         informasi = findViewById(R.id.informasi);
@@ -67,7 +69,7 @@ public class profilds extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://logbook.fk.undip.ac.id/koas/informasi.php"));
+                intent.setData(Uri.parse("https://logbook.fk.undip.ac.id/koas/bridge_informasi.php?usr="+username+"&pwd="+password));
                 String title = "Pilih browser untuk membuka  tautan";
                 Intent chooser = Intent.createChooser(intent, title);
                 if (intent.resolveActivity(getPackageManager()) != null) {

@@ -25,9 +25,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class tambahJurnal extends AppCompatActivity {
-    String spinnerURL = "http://192.168.0.104/logbook/spinnerTambahJurnal.php";
-    String tanggalURL = "http://192.168.0.104/logbook/tanggalTambahJurnal.php";
-    String submitURL = "http://192.168.0.104/logbook/submitTambahJurnal.php";
+    String spinnerURL = "http://192.168.0.104/android/spinnerTambahJurnal.php";
+    String tanggalURL = "http://192.168.0.104/android/tanggalTambahJurnal.php";
+    String submitURL = "http://192.168.0.104/android/submitTambahJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;
@@ -256,10 +256,9 @@ public class tambahJurnal extends AppCompatActivity {
                         for (int i = 0; i < penyakitArray.length(); i++) {
                             JSONObject j = penyakitArray.getJSONObject(i);
                             String id = j.getString("id");
-                            String pen = j.getString("penyakit");
+                            String pen = j.getString("penyakit")+" ("+j.getString("skdi_level")+"/"+j.getString("k_level")+")";
                             id_penyakit.add(id);
                             penyakit.add(pen);
-//                            penyakit.add(pen+" ("+j.getString("skdi_level")+"-"+j.getString("sumber")+") ");
                         }
                         String[] strp = getStringArray(penyakit);
                         ArrayAdapter<String> p = new ArrayAdapter<>(tambahJurnal.this, android.R.layout.simple_spinner_item, strp);
@@ -295,7 +294,7 @@ public class tambahJurnal extends AppCompatActivity {
                         for (int i = 0; i < keterampilanArray.length(); i++) {
                             JSONObject j = keterampilanArray.getJSONObject(i);
                             String id = j.getString("id");
-                            String ketr = j.getString("ketrampilan");
+                            String ketr = j.getString("ketrampilan")+" ("+j.getString("skdi_level")+"/"+j.getString("k_level")+"/"+j.getString("ipsg_level")+")";
                             id_keterampilan.add(id);
                             keterampilan.add(ketr);
 //                            keterampilan.add(ketr+" ("+j.getString("skdi_level")+"-"+j.getString("sumber")+") ");

@@ -1,20 +1,16 @@
 package com.example.logbookkoas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
-import android.renderscript.Sampler;
-import android.support.v4.app.INotificationSideChannel;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -43,9 +39,9 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_MESSAGE = "message";
-    String showURL = "http://192.168.0.104/logbook/daftar_kegiatan_dosen.php";
-    String updateStatus = "http://192.168.0.104/logbook/updateStatusDosenActivity.php";
-    String updateStatusSemua = "http://192.168.0.104/logbook/updateStatusSemua.php";
+    String showURL = "http://192.168.0.104/android/daftar_kegiatan_dosen.php";
+    String updateStatus = "http://192.168.0.104/android/updateStatusDosenActivity.php";
+    String updateStatusSemua = "http://192.168.0.104/android/updateStatusSemua.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,42 +127,42 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
                         item.put("kategori",j_kegiatan.getString("kategori"));
                         item.put("lokasi", j_lokasi.getString("lokasi"));
                         if(getIntent().getStringExtra("jenis_jurnal").equals("Jurnal Penyakit")) {
-                            item.put("p1", j_p1.getString("penyakit").toUpperCase());
+                            item.put("p1", j_p1.getString("penyakit").toUpperCase()+" ("+j_p1.getString("skdi_level")+"/"+j_p1.getString("k_level")+")");
 
                             if (j_p2.getString("penyakit").equals("null")) {
                                 item.put("p2", " ");
 
                             } else {
-                                item.put("p2", j_p2.getString("penyakit").toUpperCase());
+                                item.put("p2", j_p2.getString("penyakit").toUpperCase()+" ("+j_p2.getString("skdi_level")+"/"+j_p2.getString("k_level")+")");
                             }
                             if (j_p3.getString("penyakit").equals("null")) {
                                 item.put("p3", " ");
                             } else {
-                                item.put("p3", j_p3.getString("penyakit").toUpperCase());
+                                item.put("p3", j_p3.getString("penyakit").toUpperCase()+" ("+j_p3.getString("skdi_level")+"/"+j_p3.getString("k_level")+")");
                             }
                             if (j_p4.getString("penyakit").equals("null")) {
                                 item.put("p4", " ");
                             } else {
-                                item.put("p4", j_p4.getString("penyakit").toUpperCase());
+                                item.put("p4", j_p4.getString("penyakit").toUpperCase()+" ("+j_p4.getString("skdi_level")+"/"+j_p4.getString("k_level")+")");
                             }
                         }else {
-                            item.put("p1", j_p1.getString("ketrampilan").toUpperCase());
+                            item.put("p1", j_p1.getString("ketrampilan").toUpperCase()+" ("+j_p1.getString("skdi_level")+"/"+j_p1.getString("k_level")+"/"+j_p1.getString("ipsg_level")+")");
 
                             if (j_p2.getString("ketrampilan").equals("null")) {
                                 item.put("p2", " ");
 
                             } else {
-                                item.put("p2", j_p2.getString("ketrampilan").toUpperCase());
+                                item.put("p2", j_p2.getString("ketrampilan").toUpperCase()+" ("+j_p2.getString("skdi_level")+"/"+j_p2.getString("k_level")+"/"+j_p2.getString("ipsg_level")+")");
                             }
                             if (j_p3.getString("ketrampilan").equals("null")) {
                                 item.put("p3", " ");
                             } else {
-                                item.put("p3", j_p3.getString("ketrampilan").toUpperCase());
+                                item.put("p3", j_p3.getString("ketrampilan").toUpperCase()+" ("+j_p3.getString("skdi_level")+"/"+j_p3.getString("k_level")+"/"+j_p3.getString("ipsg_level")+")");
                             }
                             if (j_p4.getString("ketrampilan").equals("null")) {
                                 item.put("p4", " ");
                             } else {
-                                item.put("p4", j_p4.getString("ketrampilan").toUpperCase());
+                                item.put("p4", j_p4.getString("ketrampilan").toUpperCase()+" ("+j_p4.getString("skdi_level")+"/"+j_p4.getString("k_level")+"/"+j_p4.getString("ipsg_level")+")");
                             }
 
                         }
@@ -185,13 +181,13 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
                         rvdafkeg.setVisibility(View.GONE);
                     } else {
                         ListAdapter adapter =new SimpleAdapter(
-                                getApplicationContext(), rv_dafkeg,R.layout.recycler_view_dafkeg,
+                                getApplicationContext(), rv_dafkeg, R.layout.recycler_view_dafkeg,
                                 new String[]{"nama","nim","tanggal","waktu","kegiatan","level",
                                         "kegiatan_dosen","kategori","lokasi","p1","p2","p3","p4","status","id"},
-                                new int[]{R.id.namamhsw_dafkeg,R.id.nim_dafkeg,R.id.tgl_dafkeg,
-                                        R.id.waktu_dafkeg,R.id.keg_dafkef,R.id.lvkeg_dafkef,R.id.keg_dosen_dafkef,
-                                        R.id.kategori_dafkef,R.id.lokasi_dafkef,R.id.p1_dafkeg,R.id.p2_dafkeg,
-                                        R.id.p3_dafkeg,R.id.p4_dafkeg,R.id.status,R.id.id_jurnal}
+                                new int[]{R.id.namamhsw_dafkeg, R.id.nim_dafkeg, R.id.tgl_dafkeg,
+                                        R.id.waktu_dafkeg, R.id.keg_dafkef, R.id.lvkeg_dafkef, R.id.keg_dosen_dafkef,
+                                        R.id.kategori_dafkef, R.id.lokasi_dafkef, R.id.p1_dafkeg, R.id.p2_dafkeg,
+                                        R.id.p3_dafkeg, R.id.p4_dafkeg, R.id.status, R.id.id_jurnal}
                         )
                         {
                             @Override

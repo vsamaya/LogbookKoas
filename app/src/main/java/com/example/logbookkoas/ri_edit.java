@@ -50,8 +50,8 @@ public class ri_edit extends AppCompatActivity {
     ArrayList<String> nipDosen, namaDosen;
     String[] lspin;
     private SessionHandler session;
-    String spinnerURL = "http://192.168.0.104/logbook/spinner_edit_rotasi.php";
-    String simpanedit = "http://192.168.0.104/logbook/simpaneditrotasi.php";
+    String spinnerURL = "http://192.168.0.104/android/spinner_edit_rotasi.php";
+    String simpanedit = "http://192.168.0.104/android/simpaneditrotasi.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,14 +72,7 @@ public class ri_edit extends AppCompatActivity {
         final String id_internal = intent.getStringExtra("id_internal");
         final String id = intent.getStringExtra("id");
         final String rotasi = intent.getStringExtra("rotasi");
-        String tgla = getIntent().getStringExtra("tgl_mulai");
-        Date tglb = null;
-        try {
-            tglb = format.parse(tgla);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        String tanggal = convert.format(tglb);
+
         tv_stase.setText(stase);
         tv_lama.setText(lama);
         getSpinner();
@@ -137,13 +130,15 @@ public class ri_edit extends AppCompatActivity {
                         JSONObject j = dosenArray.getJSONObject(i);
                         String nip = j.getString("username");
                         String dosen = j.getString("nama");
+                        String gelar = j.getString("gelar");
                         nipDosen.add(nip);
-                        namaDosen.add(dosen);
+                        namaDosen.add(dosen+", "+gelar);
                     }
                     String[] strdosen = getStringArray(namaDosen);
                     ArrayAdapter<String> dsn = new ArrayAdapter<>(ri_edit.this, android.R.layout.simple_spinner_item,strdosen);
                     spinnerDosen.setAdapter(dsn);
-                    String dosen = getIntent().getStringExtra("dosen");
+                    Intent intent = getIntent();
+                    final String dosen = intent.getStringExtra("dosen");
                     spinnerDosen.setSelection(getIndex(spinnerDosen, dosen));
                     spinnerDosen.setTitle("Pilih Dosen");
                     String tgla = getIntent().getStringExtra("tgl_mulai");
