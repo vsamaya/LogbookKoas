@@ -29,7 +29,7 @@ public class DosenActivity extends AppCompatActivity {
     Button btn_generatecode,btn_generateqr,btn_dftrkeg,btn_rekapkeg;
     TextView nama_user,name;
     private static final String KEY_USERNAME="username";
-    private String datads = "http://logbook.fk.undip.ac.id/koas/android/datads.php";
+    private String datads = "https://logbook.fk.undip.ac.id/koas/android/datads.php";
     ArrayList<HashMap<String,String>> list_data= new ArrayList<HashMap<String, String>>();
     ImageView iconprofil,about;
     @Override

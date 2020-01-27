@@ -36,7 +36,7 @@ public class mainIsiJurnal extends Activity {
     ListView lv_isi_jurnal;
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
-    final String url_judul = "http://logbook.fk.undip.ac.id/koas/android/showalljurnal.php";
+    final String url_judul = "https://logbook.fk.undip.ac.id/koas/android/showalljurnal.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

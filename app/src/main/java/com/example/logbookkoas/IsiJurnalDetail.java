@@ -51,12 +51,12 @@ public class IsiJurnalDetail extends AppCompatActivity {
     private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_SEVALUASI = "SEvaluasi";
     private static final String KEY_SRENCANA = "SRencana";
-    private String header = "http://logbook.fk.undip.ac.id/koas/android/getKepaniteraan.php";
-    private String judul = "http://logbook.fk.undip.ac.id/koas/android/getJadwal.php";
-    private String update_status = "http://logbook.fk.undip.ac.id/koas/android/updateStatus.php";
-    private String updateEntry = "http://logbook.fk.undip.ac.id/koas/android/updateEntry.php";
-    private String create_evaluasi = "http://logbook.fk.undip.ac.id/koas/android/create_evaluasi.php";
-    private String url_re = "http://logbook.fk.undip.ac.id/koas/android/show_re.php";
+    private String header = "https://logbook.fk.undip.ac.id/koas/android/getKepaniteraan.php";
+    private String judul = "https://logbook.fk.undip.ac.id/koas/android/getJadwal.php";
+    private String update_status = "https://logbook.fk.undip.ac.id/koas/android/updateStatus.php";
+    private String updateEntry = "https://logbook.fk.undip.ac.id/koas/android/updateEntry.php";
+    private String create_evaluasi = "https://logbook.fk.undip.ac.id/koas/android/create_evaluasi.php";
+    private String url_re = "https://logbook.fk.undip.ac.id/koas/android/show_re.php";
     public static final String KEY_ID = "id";
     TextView stase,tanggal,id_stase,coba;
     EditText evaluasi,rencana;

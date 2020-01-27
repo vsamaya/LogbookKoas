@@ -31,8 +31,8 @@ public class profil extends AppCompatActivity {
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
     Button logout,informasi;
-    private String foto_url = "http://logbook.fk.undip.ac.id/koas/android/getdatafoto.php";
-    private String foto_image = "http://logbook.fk.undip.ac.id/koas/foto/";
+    private String foto_url = "https://logbook.fk.undip.ac.id/koas/android/getdatafoto.php";
+    private String foto_image = "https://logbook.fk.undip.ac.id/koas/foto/";
     TextView username, nama;
     ImageView foto;
 

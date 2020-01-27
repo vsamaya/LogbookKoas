@@ -37,7 +37,7 @@ public class semester_rotasi extends AppCompatActivity {
     private static final String TAG_ROTASI = "rotasi";
     ListView listView;
     TextView title,empty;
-    String main = "http://logbook.fk.undip.ac.id/koas/android";
+    String main = "https://logbook.fk.undip.ac.id/koas/android";
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
     TextView nim, username, stase, status, mulai, selesai, stase1, nim1, mulai1, selesai1, status1;
@@ -161,7 +161,7 @@ public class semester_rotasi extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Belum Terjadwal", Toast.LENGTH_SHORT).show();
             }
         });
         MySingleton.getInstance(this).addToRequestQueue(json);

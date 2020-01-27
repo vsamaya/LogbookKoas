@@ -39,9 +39,9 @@ public class TampilanDaftarKegiatan extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_TANGGAL = "tanggal";
     private static final String KEY_MESSAGE = "message";
-    String showURL = "http://logbook.fk.undip.ac.id/koas/android/daftar_kegiatan_dosen.php";
-    String updateStatus = "http://logbook.fk.undip.ac.id/koas/android/updateStatusDosenActivity.php";
-    String updateStatusSemua = "http://logbook.fk.undip.ac.id/koas/android/updateStatusSemua.php";
+    String showURL = "https://logbook.fk.undip.ac.id/koas/android/daftar_kegiatan_dosen.php";
+    String updateStatus = "https://logbook.fk.undip.ac.id/koas/android/updateStatusDosenActivity.php";
+    String updateStatusSemua = "https://logbook.fk.undip.ac.id/koas/android/updateStatusSemua.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -50,8 +50,8 @@ public class ri_edit extends AppCompatActivity {
     ArrayList<String> nipDosen, namaDosen;
     String[] lspin;
     private SessionHandler session;
-    String spinnerURL = "http://logbook.fk.undip.ac.id/koas/android/spinner_edit_rotasi.php";
-    String simpanedit = "http://logbook.fk.undip.ac.id/koas/android/simpaneditrotasi.php";
+    String spinnerURL = "https://logbook.fk.undip.ac.id/koas/android/spinner_edit_rotasi.php";
+    String simpanedit = "https://logbook.fk.undip.ac.id/koas/android/simpaneditrotasi.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

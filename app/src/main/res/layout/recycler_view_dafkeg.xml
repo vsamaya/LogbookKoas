@@ -215,14 +215,25 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:layout_margin="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Status : "
+                android:textStyle="bold"
+                android:textColor="@color/colorGradBefore"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/status"
-                android:padding="5dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_gravity="center_horizontal"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="bold"
                 android:textColor="@color/colorGradBefore"/>
@@ -230,7 +241,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/another_status"
-                android:padding="5dp"
+                android:padding="8dp"
                 android:layout_marginHorizontal="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:textStyle="bold"

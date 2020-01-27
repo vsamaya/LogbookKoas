@@ -39,7 +39,7 @@ import java.util.HashMap;
 
 public class DaftarKegiatan extends AppCompatActivity {
 
-    String spinnerURL = "http://logbook.fk.undip.ac.id/koas/android/spinnerkegiatandosen.php";
+    String spinnerURL = "https://logbook.fk.undip.ac.id/koas/android/spinnerkegiatandosen.php";
     Spinner spinnerJenisJurnal, spinnerStatus;
     SearchableSpinner spinnerStase, spinnerNamaMahasiswa;
     private SharedPreferences.Editor mEditor;

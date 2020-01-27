@@ -27,10 +27,10 @@ import java.util.Calendar;
 
 public class editJurnal extends AppCompatActivity {
 
-    String spinnerURL = "http://logbook.fk.undip.ac.id/koas/android/spinnerTambahJurnal.php";
-    String tanggalURL = "http://logbook.fk.undip.ac.id/koas/android/tanggalTambahJurnal.php";
-    String editSistemURL = "http://logbook.fk.undip.ac.id/koas/android/sistemEdit.php";
-    String editURL = "http://logbook.fk.undip.ac.id/koas/android/editJurnal.php";
+    String spinnerURL = "https://logbook.fk.undip.ac.id/koas/android/spinnerTambahJurnal.php";
+    String tanggalURL = "https://logbook.fk.undip.ac.id/koas/android/tanggalTambahJurnal.php";
+    String editSistemURL = "https://logbook.fk.undip.ac.id/koas/android/sistemEdit.php";
+    String editURL = "https://logbook.fk.undip.ac.id/koas/android/editJurnal.php";
     TextView jurnal,potong;
     ArrayList<String> lokasi, id_lokasi, kegiatan, id_kegiatan;
     ArrayList<String> sistem_penyakit, id_sistemP,penyakit,id_penyakit;

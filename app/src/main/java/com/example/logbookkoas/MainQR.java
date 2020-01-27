@@ -19,7 +19,7 @@ public class MainQR extends AppCompatActivity {
     private static final String KEY_STATUS = "status";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_MESSAGE = "message";
-    private String setNull_url = "http://logbook.fk.undip.ac.id/koas/android/setNullQr.php";
+    private String setNull_url = "https://logbook.fk.undip.ac.id/koas/android/setNullQr.php";
     private SessionHandler session;
 
     @Override

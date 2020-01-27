@@ -46,11 +46,11 @@ import java.util.HashMap;
 public class RotasiInternalDetail extends AppCompatActivity {
     private SessionHandler session;
     ListView lv_rot;
-    private String header = "http://logbook.fk.undip.ac.id/koas/android/getKepaniteraan.php";
-    final String urlsem = "http://logbook.fk.undip.ac.id/koas/android/rotasi_internal.php";
-    private String judul = "http://logbook.fk.undip.ac.id/koas/android/getJadwal.php";
-    private String update_status = "http://logbook.fk.undip.ac.id/koas/android/updateStatus.php";
-    private String create_rotasi = "http://logbook.fk.undip.ac.id/koas/android/create_rotasi.php";
+    private String header = "https://logbook.fk.undip.ac.id/koas/android/getKepaniteraan.php";
+    final String urlsem = "https://logbook.fk.undip.ac.id/koas/android/rotasi_internal.php";
+    private String judul = "https://logbook.fk.undip.ac.id/koas/android/getJadwal.php";
+    private String update_status = "https://logbook.fk.undip.ac.id/koas/android/updateStatus.php";
+    private String create_rotasi = "https://logbook.fk.undip.ac.id/koas/android/create_rotasi.php";
     public static final String KEY_ID = "id";
     public static final String KEY_USERNAME = "username";
     ArrayList<HashMap<String, String>> MyArr1= new ArrayList<HashMap<String,String>>();

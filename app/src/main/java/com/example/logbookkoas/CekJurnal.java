@@ -45,7 +45,7 @@ public class CekJurnal extends AppCompatActivity {
         }
         lv_cekjurnal=findViewById(R.id.lv_cekjurnal);
         session = new SessionHandler(getApplicationContext());
-        String url_kepaniteraan = "http://logbook.fk.undip.ac.id/koas/android/judul.php";
+        String url_kepaniteraan = "https://logbook.fk.undip.ac.id/koas/android/judul.php";
 
         try {
 

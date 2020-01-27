@@ -39,7 +39,7 @@
                 android:layout_alignParentRight="true"
                 android:background="@drawable/background_approved"
                 android:padding="8dp"
-                android:text="Aprrove All"
+                android:text="Approve All"
                 android:textColor="@color/md_white_1000"
                 android:textSize="16sp"
                 android:textStyle="bold" />

@@ -57,9 +57,9 @@ public class editprofilrs extends Activity {
     private static final String KEY_GELAR = "gelar";
     private static final String KEY_BAGIAN = "bagian";
     private static final String KEY_EMPTY = "";
-    private String simpan_url = "http://logbook.fk.undip.ac.id/koas/android/updateprofilds.php";
-    private String data_url = "http://logbook.fk.undip.ac.id/koas/android/getdatads.php";
-    String url = "http://logbook.fk.undip.ac.id/koas/android/getidbagian.php";
+    private String simpan_url = "https://logbook.fk.undip.ac.id/koas/android/updateprofilds.php";
+    private String data_url = "https://logbook.fk.undip.ac.id/koas/android/getdatads.php";
+    String url = "https://logbook.fk.undip.ac.id/koas/android/getidbagian.php";
     private String username;
     private String passwordbr;
     private String namabr;
