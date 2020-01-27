@@ -31,8 +31,8 @@ public class profil extends AppCompatActivity {
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     private static final String KEY_USERNAME = "username";
     Button logout,informasi;
-    private String foto_url = "http://192.168.0.104/android/getdatafoto.php";
-    private String foto_image = "http://192.168.0.104/koas/foto/";
+    private String foto_url = "http://logbook.fk.undip.ac.id/koas/android/getdatafoto.php";
+    private String foto_image = "http://logbook.fk.undip.ac.id/koas/foto/";
     TextView username, nama;
     ImageView foto;
 
@@ -76,6 +76,7 @@ public class profil extends AppCompatActivity {
                 user.setLevel("");
 
                 Intent edit = new Intent(profil.this, MainActivity.class);
+                edit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(edit);
                 finish();
 

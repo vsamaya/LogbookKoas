@@ -23,7 +23,7 @@ public class profilds extends AppCompatActivity {
     ArrayList<String> bagianilmu = new ArrayList<String>();
     ArrayList<HashMap<String, String>> list_data = new ArrayList<HashMap<String, String>>();
     ArrayList<String> MyArrList = new ArrayList<String>();
-    String url = "http://192.168.0.104/android/getidbagian.php";
+    String url = "http://logbook.fk.undip.ac.id/koas/android/getidbagian.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +60,7 @@ public class profilds extends AppCompatActivity {
             public void onClick(View v) {
                 session.logoutUser();
                 Intent edit = new Intent(profilds.this, MainActivity.class);
+                edit.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(edit);
                 finish();
 

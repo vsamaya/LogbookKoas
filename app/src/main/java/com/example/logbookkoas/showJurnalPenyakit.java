@@ -48,7 +48,7 @@ public class showJurnalPenyakit extends AppCompatActivity {
     ListView lv_penyakit;
     TextView empty;
     ArrayList<HashMap<String, String>> MyArr;
-    final String url_penyakit = "http://192.168.0.104/android/penyakit.php";
+    final String url_penyakit = "http://logbook.fk.undip.ac.id/koas/android/penyakit.php";
     final SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
     final SimpleDateFormat convert = new SimpleDateFormat("yyyy-MM-dd");
     @Override

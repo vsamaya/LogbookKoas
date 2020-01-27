@@ -37,7 +37,7 @@ public class semester_rotasi extends AppCompatActivity {
     private static final String TAG_ROTASI = "rotasi";
     ListView listView;
     TextView title,empty;
-    String main = "http://192.168.0.104/android";
+    String main = "http://logbook.fk.undip.ac.id/koas/android";
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat convert = new SimpleDateFormat("dd MMM yyyy");
     TextView nim, username, stase, status, mulai, selesai, stase1, nim1, mulai1, selesai1, status1;

@@ -46,11 +46,11 @@ import java.util.HashMap;
 public class RotasiInternalDetail extends AppCompatActivity {
     private SessionHandler session;
     ListView lv_rot;
-    private String header = "http://192.168.0.104/android/getKepaniteraan.php";
-    final String urlsem = "http://192.168.0.104/android/rotasi_internal.php";
-    private String judul = "http://192.168.0.104/android/getJadwal.php";
-    private String update_status = "http://192.168.0.104/android/updateStatus.php";
-    private String create_rotasi = "http://192.168.0.104/android/create_rotasi.php";
+    private String header = "http://logbook.fk.undip.ac.id/koas/android/getKepaniteraan.php";
+    final String urlsem = "http://logbook.fk.undip.ac.id/koas/android/rotasi_internal.php";
+    private String judul = "http://logbook.fk.undip.ac.id/koas/android/getJadwal.php";
+    private String update_status = "http://logbook.fk.undip.ac.id/koas/android/updateStatus.php";
+    private String create_rotasi = "http://logbook.fk.undip.ac.id/koas/android/create_rotasi.php";
     public static final String KEY_ID = "id";
     public static final String KEY_USERNAME = "username";
     ArrayList<HashMap<String, String>> MyArr1= new ArrayList<HashMap<String,String>>();
@@ -61,8 +61,8 @@ public class RotasiInternalDetail extends AppCompatActivity {
 
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rotasi_internal_detail);
         lv_rot = findViewById(R.id.lv_rotasi);
         stase = findViewById(R.id.stase);
@@ -575,6 +575,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                     i.putExtra("id",id);
                                     i.putExtra("dosen",dosen.getText());
                                     startActivity(i);
+                                    finish();
                                 }
                             });
                             approval.setOnClickListener(new View.OnClickListener() {
@@ -586,6 +587,7 @@ public class RotasiInternalDetail extends AppCompatActivity {
                                     a.putExtra("rotasi",rotasi.getText());
                                     a.putExtra("dosen",user.getText());
                                     startActivity(a);
+                                    finish();
                                 }
                             });
 
