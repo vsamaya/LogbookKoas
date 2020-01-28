@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.logbookkoas">
+    package="logbook.koas.logbookkoas">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -23,70 +23,70 @@
         android:roundIcon="@mipmap/icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".about"></activity>
-        <activity android:name=".ResidenActivity" />
-        <activity android:name=".editprofilrs" />
-        <activity android:name=".ri_edit" />
+        <activity android:name="logbook.koas.logbookkoas.about"></activity>
+        <activity android:name="logbook.koas.logbookkoas.ResidenActivity" />
+        <activity android:name="logbook.koas.logbookkoas.editprofilrs" />
+        <activity android:name="logbook.koas.logbookkoas.ri_edit" />
         <activity
-            android:name=".profilrs"
+            android:name="logbook.koas.logbookkoas.profilrs"
             android:noHistory="true" />
         <activity
-            android:name=".IsiJurnalKP"
+            android:name="logbook.koas.logbookkoas.IsiJurnalKP"
             android:noHistory="true" />
-        <activity android:name=".ri_OtpApprove" />
+        <activity android:name="logbook.koas.logbookkoas.ri_OtpApprove" />
         <activity
-            android:name=".ri_QrApprove"
+            android:name="logbook.koas.logbookkoas.ri_QrApprove"
             android:noHistory="true" />
-        <activity android:name=".ri_PassApprove" />
-        <activity android:name=".ri_CamScanner" />
+        <activity android:name="logbook.koas.logbookkoas.ri_PassApprove" />
+        <activity android:name="logbook.koas.logbookkoas.ri_CamScanner" />
         <activity
-            android:name=".ri_main_approval"
+            android:name="logbook.koas.logbookkoas.ri_main_approval"
             android:noHistory="true" />
-        <activity android:name=".RotasiInternalDetail" />
-        <activity android:name=".Rotasi" />
+        <activity android:name="logbook.koas.logbookkoas.RotasiInternalDetail" />
+        <activity android:name="logbook.koas.logbookkoas.Rotasi" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".showJurnalKetrampilan" />
-        <activity android:name=".showJurnalPenyakit" />
-        <activity android:name=".showJurnal" />
-        <activity android:name=".editprofil" />
-        <activity android:name=".editprofilds" />
-        <activity android:name=".CekJurnalDatePicker" />
-        <activity android:name=".CekJurnal" />
-        <activity android:name=".CamScanner" />
+        <activity android:name="logbook.koas.logbookkoas.showJurnalKetrampilan" />
+        <activity android:name="logbook.koas.logbookkoas.showJurnalPenyakit" />
+        <activity android:name="logbook.koas.logbookkoas.showJurnal" />
+        <activity android:name="logbook.koas.logbookkoas.editprofil" />
+        <activity android:name="logbook.koas.logbookkoas.editprofilds" />
+        <activity android:name="logbook.koas.logbookkoas.CekJurnalDatePicker" />
+        <activity android:name="logbook.koas.logbookkoas.CekJurnal" />
+        <activity android:name="logbook.koas.logbookkoas.CamScanner" />
         <activity
-            android:name=".QrApprove"
+            android:name="logbook.koas.logbookkoas.QrApprove"
             android:noHistory="true" />
-        <activity android:name=".OtpApprove" />
+        <activity android:name="logbook.koas.logbookkoas.OtpApprove" />
         <activity
-            android:name=".MainApprove"
+            android:name="logbook.koas.logbookkoas.MainApprove"
             android:noHistory="true" />
-        <activity android:name=".PassApprove" />
-        <activity android:name=".tambahJurnal" />
-        <activity android:name=".editJurnal" />
-        <activity android:name=".TampilanDaftarKegiatan" />
-        <activity android:name=".IsiJurnalDetail" />
-        <activity android:name=".mainIsiJurnal" />
-        <activity android:name=".RotasiStase" />
-        <activity android:name=".RotasiInternal" />
-        <activity android:name=".semester_rotasi" />
-        <activity android:name=".DaftarKegiatan" />
-        <activity android:name=".QR" />
-        <activity android:name=".MainQR" />
-        <activity android:name=".OTP" />
-        <activity android:name=".MainOTP" />
+        <activity android:name="logbook.koas.logbookkoas.PassApprove" />
+        <activity android:name="logbook.koas.logbookkoas.tambahJurnal" />
+        <activity android:name="logbook.koas.logbookkoas.editJurnal" />
+        <activity android:name="logbook.koas.logbookkoas.TampilanDaftarKegiatan" />
+        <activity android:name="logbook.koas.logbookkoas.IsiJurnalDetail" />
+        <activity android:name="logbook.koas.logbookkoas.mainIsiJurnal" />
+        <activity android:name="logbook.koas.logbookkoas.RotasiStase" />
+        <activity android:name="logbook.koas.logbookkoas.RotasiInternal" />
+        <activity android:name="logbook.koas.logbookkoas.semester_rotasi" />
+        <activity android:name="logbook.koas.logbookkoas.DaftarKegiatan" />
+        <activity android:name="logbook.koas.logbookkoas.QR" />
+        <activity android:name="logbook.koas.logbookkoas.MainQR" />
+        <activity android:name="logbook.koas.logbookkoas.OTP" />
+        <activity android:name="logbook.koas.logbookkoas.MainOTP" />
         <activity
-            android:name=".profil"
+            android:name="logbook.koas.logbookkoas.profil"
             android:noHistory="true" />
         <activity
-            android:name=".profilds"
+            android:name="logbook.koas.logbookkoas.profilds"
             android:noHistory="true" />
-        <activity android:name=".MahasiswaActivity" />
-        <activity android:name=".DosenActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name="logbook.koas.logbookkoas.MahasiswaActivity" />
+        <activity android:name="logbook.koas.logbookkoas.DosenActivity" />
+        <activity android:name="logbook.koas.logbookkoas.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

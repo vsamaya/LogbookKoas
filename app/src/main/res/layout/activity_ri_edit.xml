@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/grad"
     android:orientation="vertical"
-    tools:context=".ri_edit">
+    tools:context="logbook.koas.logbookkoas.ri_edit">
 
     <TextView
         android:layout_width="wrap_content"

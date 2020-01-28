@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ResidenActivity"
+    tools:context="logbook.koas.logbookkoas.ResidenActivity"
     android:id="@+id/profile"
     android:background="@drawable/grad">
     <ImageView

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/grad"
-    tools:context=".ri_OtpApprove">
+    tools:context="logbook.koas.logbookkoas.ri_OtpApprove">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

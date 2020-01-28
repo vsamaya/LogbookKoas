@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/grad"
     android:orientation="vertical"
-    tools:context=".CekJurnalDatePicker">
+    tools:context="logbook.koas.logbookkoas.CekJurnalDatePicker">
 
     <ImageView
         android:id="@+id/event"

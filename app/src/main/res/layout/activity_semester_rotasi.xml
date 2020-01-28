@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/grad"
     android:orientation="vertical"
-    tools:context=".semester_rotasi">
+    tools:context="logbook.koas.logbookkoas.semester_rotasi">
 
     <LinearLayout
         android:layout_width="match_parent"

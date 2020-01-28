@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorGradBefore"
-    tools:context=".showJurnal">
+    tools:context="logbook.koas.logbookkoas.showJurnal">
 
     <TextView
         android:id="@+id/head1"

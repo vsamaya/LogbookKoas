@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainQR">
+    tools:context="logbook.koas.logbookkoas.MainQR">
 
     <LinearLayout
         android:id="@+id/layout_atas"

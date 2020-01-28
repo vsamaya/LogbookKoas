@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/grad"
-    tools:context=".IsiJurnalDetail">
+    tools:context="logbook.koas.logbookkoas.IsiJurnalDetail">
 
     <ScrollView
         android:layout_width="match_parent"

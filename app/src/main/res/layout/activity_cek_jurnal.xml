@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".CekJurnal">
+    tools:context="logbook.koas.logbookkoas.CekJurnal">
 
     <LinearLayout
         android:id="@+id/layout_atas"

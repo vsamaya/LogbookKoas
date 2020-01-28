@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorGradBefore"
     android:orientation="vertical"
-    tools:context=".RotasiStase">
+    tools:context="logbook.koas.logbookkoas.RotasiStase">
 
     <LinearLayout
         android:layout_width="match_parent"

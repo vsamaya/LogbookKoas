@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/grad"
-    tools:context=".QrApprove">
+    tools:context="logbook.koas.logbookkoas.QrApprove">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -93,7 +93,6 @@
                 android:layout_marginTop="20dp"
                 android:background="@android:color/holo_orange_dark"
                 android:text="Scan qr"
-                android:onClick="qr_click"
                 android:textColor="@android:color/background_light"
                 android:textSize="24sp" />
 
